@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AllMyTripsComponent } from './all-my-trips.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { LocationDetailComponent } from './location-detail/location-detail.component';
 
 const routes: Routes = [
   {
@@ -11,7 +12,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [AllMyTripsComponent],
+  declarations: [AllMyTripsComponent, LocationDetailComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

@@ -61,6 +61,30 @@ export class AllMyTripsComponent implements OnInit {
     }
   ]
 
+  location: string = 'Prague';
+  date: string = 'December 2, 2020';
+  leftData = [
+    {
+      img: 'https://img.traveltriangle.com/blog/wp-content/uploads/2018/11/Prague_Cover.jpg',
+      title: 'Guided walking tour of the Royal Route',
+      isSelfGuided: false,
+      timeInterval: '9:00 AM - 12:30 PM'
+    },
+    {
+      img: 'https://img.traveltriangle.com/blog/wp-content/uploads/2018/11/Prague_Cover.jpg',
+      title: 'Prague Castle',
+      isSelfGuided: true,
+      timeInterval: 'Early Afternoon'
+    },
+    {
+      img: 'https://img.traveltriangle.com/blog/wp-content/uploads/2018/11/Prague_Cover.jpg',
+      title: 'The Little Quarter',
+      isSelfGuided: true,
+      timeInterval: 'Late Afternoon'
+    }
+  ]
+  leftItemActiveIndex: number = 1;
+
   constructor() { }
 
   ngOnInit(): void {
