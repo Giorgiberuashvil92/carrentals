@@ -1,0 +1,37 @@
+<div class="wrapper">
+    <div class="location-wrapper flex justify-between items-center">
+        <div class="location-details ">
+            <div class="location-names">
+                <div 
+                    *ngFor="let l of (locationsToVisit.length > 3 ? 
+                        [locationsToVisit[0], '...', locationsToVisit[locationsToVisit.length - 1]] 
+                        : locationsToVisit)">
+                    {{ l }}
+                </div>
+            </div>
+            <div class="trip-time">
+                {{ tripTime }} Day Trip
+            </div>
+        </div>  
+
+        <app-location-paginator 
+            class="block" 
+            [data]="locationPaginatorData"
+            [leftMostIndex]="1"
+            [locationsToShow]="8"
+            [activeIndex]="2"
+        ></app-location-paginator>
+    </div>
+
+    <div class="line"></div>
+    
+    <app-paginator 
+        class="block"
+        style="width: 360px"
+        [currentPage]="8"
+        [leftMostPage]="1"
+        [pagesAmount]="20"
+        [pagesToShow]="10"
+        (page)="onPageChange($event)"
+    ></app-paginator>
+</div>

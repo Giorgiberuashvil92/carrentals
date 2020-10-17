@@ -1,0 +1,42 @@
+.wrapper {
+    .location-wrapper {
+        color: #767388;
+        width: 100px;
+        margin-top: 30px;
+    
+        .icon-data {
+            width: 35px;
+            height: 35px;
+            margin: 5px 0;
+
+            &__active {
+                border-color: #02A388;
+                border-width: 1px;
+                border-radius: 50%;
+            }
+        }
+        
+        .first-data {
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .second-data {
+            font-size: 14px;
+            font-weight: bolder;
+            
+            &__active {
+                color: #000000;
+            }
+        }
+        
+        .third-data {
+            font-size: 14px;
+            font-weight: bold;
+        }
+    }
+    
+    .lower-than, .higher-than {
+        width: 15px;
+    }
+}
