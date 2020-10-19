@@ -2,9 +2,9 @@
     <div class="location-wrapper flex justify-between items-center">
         <div class="location-details ">
             <div class="location-names">
-                <div 
-                    *ngFor="let l of (locationsToVisit.length > 3 ? 
-                        [locationsToVisit[0], '...', locationsToVisit[locationsToVisit.length - 1]] 
+                <div
+                    *ngFor="let l of (locationsToVisit.length > 3 ?
+                        [locationsToVisit[0], '...', locationsToVisit[locationsToVisit.length - 1]]
                         : locationsToVisit)">
                     {{ l }}
                 </div>
@@ -12,10 +12,10 @@
             <div class="trip-time">
                 {{ tripTime }} Day Trip
             </div>
-        </div>  
+        </div>
 
-        <app-location-paginator 
-            class="block" 
+        <app-location-paginator
+            class="block"
             [data]="locationPaginatorData"
             [leftMostIndex]="1"
             [locationsToShow]="8"
@@ -24,14 +24,14 @@
     </div>
 
     <div class="line"></div>
-    
-    <div class="details-wrapper flex justify-between">
+
+    <div class="details-wrapper flex ">
         <div class="left-side">
             <div class="day">
                 DAY:
             </div>
-            
-            <app-paginator 
+
+            <app-paginator
                 class="block"
                 [currentPage]="8"
                 [leftMostPage]="1"
@@ -61,15 +61,15 @@
                         <div class="title">
                             {{ l.title }}
                         </div>
-    
+
                         <div class="self-guided">
                             {{ l.isSelfGuided ? '(Self Guided)' : '' }}
                         </div>
-    
+
                         <div class="time-interval">
                             {{ l.timeInterval }}
                         </div>
-    
+
                         <div class="actions flex">
                             <button class="change-button flex justify-between items-center">
                                 <img src="/assets/change-icon.svg" alt="">
@@ -89,7 +89,7 @@
             </div>
         </div>
 
-        <div class="right-side">
+        <div class="right-side pd-lf">
             <app-location-detail></app-location-detail>
         </div>
     </div>
