@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LocationDetailComponent implements OnInit {
 
+  config = {
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    loop: true
+  };
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onIndexChange(event) {
+    console.log(event);
+  }
 }

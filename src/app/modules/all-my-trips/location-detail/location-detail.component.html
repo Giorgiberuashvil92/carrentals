@@ -2,3 +2,34 @@
 <div class="wraper">
   <img src="../../../../assets/full-photo.svg" width="749px" height="499" alt="alt">
 </div>
+
+<!-- <div  class="swiper-container" [swiper]="config" [(index)]="index">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">
+      Swiper slide content
+    </div>
+  </div>
+ 
+  <div class="swiper-scrollbar"></div>
+  <div class="swiper-pagination"></div>
+ 
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+</div> -->
+
+<swiper class="swiper-container swiper1 hero" (indexChange)="onIndexChange($event)"
+    [config]="config">
+
+
+      <div class="swiper-slide">
+        ბლა
+      </div>
+
+      <div class="swiper-slide">
+        ბლო
+      </div>
+    
+      <div class="swiper-slide">
+        ბლუ
+      </div>
+</swiper>
