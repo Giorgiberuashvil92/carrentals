@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
+     array = [
+    {name:'Traveler References'},
+    {name: 'Terms of Use'},
+    {name: 'FAQ'}
+  ]
+
   constructor() { }
 
   ngOnInit(): void {
