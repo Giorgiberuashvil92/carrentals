@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { LocationPaginator } from 'src/app/core/models/location-paginator.model';
 
 @Component({
@@ -12,6 +12,7 @@ export class LocationPaginatorComponent implements OnInit {
   @Input() leftMostIndex: number = 1;
   @Input() locationsToShow: number = 5;
   @Input() activeIndex: number = 1;
+  @Output() locationChange: EventEmitter<number> = new EventEmitter<number>();
 
   dataToShow: LocationPaginator[];
 
@@ -26,12 +27,20 @@ export class LocationPaginatorComponent implements OnInit {
       this.leftMostIndex--;
       this.generateArray();
     }
+    if(this.activeIndex > 1) {
+      this.activeIndex--;
+      this.locationChange.emit(this.activeIndex);
+    }
   }
 
   onRight() {
     if(this.leftMostIndex + this.locationsToShow <= this.data.length) {
       this.leftMostIndex++;
       this.generateArray();
+    }
+    if(this.activeIndex < this.data.length) {
+      this.activeIndex++;
+      this.locationChange.emit(this.activeIndex);
     }
   }
 

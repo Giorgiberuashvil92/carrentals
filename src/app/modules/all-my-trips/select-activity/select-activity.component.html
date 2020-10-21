@@ -1,0 +1,69 @@
+<div class="wrapper relative">
+    <img class="close-dialog-btn absolute cursor-pointer" src="/assets/close-dialog-icon.svg" alt="" (click)="dialogService.closeDialog()">
+    
+    <div class="select-activity">
+        Select the activity:
+    </div>
+
+    <div class="form-wrapper">
+
+        <div class="text-field flex justify-around align-center">
+            <img class="cursor-pointer" src="/assets/search-icon.svg" alt="">
+            <input type="text">
+        </div>
+
+        <div class="select-city">
+            Select city or cities:
+        </div>
+
+        <div class="cities-wrapper flex flex-wrap">
+            <div class="city cursor-pointer" *ngFor="let c of cities">
+                {{ c }}
+            </div>
+        </div>
+
+        <div class="interested-in">
+            You are interested in...
+        </div>
+
+        <div class="interests-wrapper flex flex-wrap">
+            <div class="interest cursor-pointer" *ngFor="let i of interests">
+                {{ i }}
+            </div>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="searching-for-activities text-center" *ngIf="currentlyChosenIndex < 0">
+            Searching for activities for you...
+        </div>
+
+        <div class="activity-wrapper" *ngIf="currentlyChosenIndex >= 0">
+            <div class="activity relative flex" *ngFor="let r of result; let i=index" [ngClass]="{ 'activity__active': i === currentlyChosenIndex}">
+                
+                <div class="current absolute flex items-center" *ngIf="i === currentlyChosenIndex">    
+                    <div class="current-icon">
+                        <img src="/assets/tick-circle-icon.svg" alt="">
+                    </div>
+                </div>
+                
+                <div class="image" [style.background-image]="'url(\'' + r.img + '\')'"></div>
+    
+                <div class="detail-wrapper">
+                    <div class="title-self-guided">
+                        {{ r.title }}  {{ r.isSelfGuided ? '(Self Guided)' : '' }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="actions absolute flex justify-between" *ngIf="currentlyChosenIndex >= 0">
+        <button class="cancel-button">
+            CANCEL
+        </button>
+        <button class="next-button">
+            NEXT
+        </button>
+    </div>
+</div>

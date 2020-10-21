@@ -33,7 +33,7 @@
 
             <app-paginator
                 class="block"
-                [currentPage]="8"
+                [currentPage]="5"
                 [leftMostPage]="1"
                 [pagesAmount]="20"
                 [pagesToShow]="10"
@@ -42,7 +42,7 @@
 
             <div class="edit-add">
                 <button>EDIT TRIP</button>
-                <button>+ ADD ACTIVITY</button>
+                <button (click)="dialogService.openDialog('selectActivity')">+ ADD ACTIVITY</button>
             </div>
 
             <div class="location">
@@ -71,7 +71,7 @@
                         </div>
 
                         <div class="actions flex">
-                            <button class="change-button flex justify-between items-center">
+                            <button class="change-button flex justify-between items-center" (click)="onChange()">
                                 <img src="/assets/change-icon.svg" alt="">
                                 <div>
                                     CHANGE

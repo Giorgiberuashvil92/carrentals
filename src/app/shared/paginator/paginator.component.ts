@@ -7,10 +7,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class PaginatorComponent implements OnInit {
 
-  @Input() currentPage: number = 1;
+  @Input() currentPage: number;
   @Input() pagesAmount: number;
-  @Input() pagesToShow: number = 10;
-  @Input() leftMostPage: number = 1;
+  @Input() pagesToShow: number;
+  @Input() leftMostPage: number;
   @Output() page: EventEmitter<number> = new EventEmitter<number>();
 
   pagesArr: number[] = [];
@@ -26,12 +26,20 @@ export class PaginatorComponent implements OnInit {
       this.leftMostPage--;
       this.generateArray();
     }
+    if(this.currentPage > 1) {
+      this.currentPage--;
+      this.page.emit(this.currentPage);
+    }
   }
 
   onRight() {
     if(this.leftMostPage + this.pagesToShow <= this.pagesAmount) {
       this.leftMostPage++;
       this.generateArray();
+    }
+    if(this.currentPage < this.pagesAmount) {
+      this.currentPage++;
+      this.page.emit(this.currentPage);
     }
   }
 

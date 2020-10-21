@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocationPaginator } from 'src/app/core/models/location-paginator.model';
+import { DialogService } from 'src/app/core/services/dialog.service';
 
 @Component({
   selector: 'app-all-my-trips',
@@ -85,12 +86,20 @@ export class AllMyTripsComponent implements OnInit {
   ]
   leftItemActiveIndex: number = 1;
 
-  constructor() { }
+  constructor(
+    public dialogService: DialogService
+  ) { }
 
   ngOnInit(): void {
+    this.dialogService.openDialog('selectActivity');
   }
 
   onPageChange(page: number) {
     console.log(page);
+  }
+
+  onChange() {
+    console.log('aaaaaaa');
+    this.dialogService.openDialog('changeActivity');
   }
 }
