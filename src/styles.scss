@@ -8,4 +8,14 @@ html, body {
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.close-dialog-btn {
+    top: -12px;
+    right: -12px;
+}
+
+*,*:focus,*:hover{
+    outline:none;
 }

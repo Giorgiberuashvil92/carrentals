@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { LocationDetailComponent } from './location-detail/location-detail.component';
 import { SwiperModule } from 'ngx-swiper-wrapper';
+import { ChangeActivityComponent } from './change-activity/change-activity.component';
+import { SelectActivityComponent } from './select-activity/select-activity.component';
 
 const routes: Routes = [
   {
@@ -13,7 +15,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [AllMyTripsComponent, LocationDetailComponent],
+  declarations: [AllMyTripsComponent, LocationDetailComponent, ChangeActivityComponent, SelectActivityComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
