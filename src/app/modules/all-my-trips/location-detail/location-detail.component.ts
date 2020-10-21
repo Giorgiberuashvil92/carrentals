@@ -6,6 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./location-detail.component.scss']
 })
 export class LocationDetailComponent implements OnInit {
+  imgURL = "../../../../assets/full-photo.svg"
+  imgALT = "DONTWORKING"
+
+  array = [
+    { name:'Prague Castle & Hradčany',
+      description:'Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards, goldsmiths, and, Throughout history, theyve been occupied by castle guards, goldsmiths, and,Throughout history, theyve been occupied by castle guards, goldsmiths, and,Throughout history, theyve been occupied by castle guards, goldsmiths, and,Throughout history, theyve been occupied by castle guards, goldsmiths, and,Throughout history, theyve been occupied by castle guards, goldsmiths, and',
+      nam: this.imgURL,
+      small:'Overview of Golden Lane'},
+    {name:'bero2', nam: this.imgURL,small:'Overview of Golden Lane'},
+    {name:'bero3', nam: this.imgURL,small:'Overview of Golden Lane'},
+  ]
 
   config = {
     navigation: {
