@@ -84,14 +84,14 @@ export class AllMyTripsComponent implements OnInit {
       timeInterval: 'Late Afternoon'
     }
   ]
-  leftItemActiveIndex: number = 1;
+  leftItemActiveIndex: number = 0;
 
   constructor(
     public dialogService: DialogService
   ) { }
 
   ngOnInit(): void {
-    this.dialogService.openDialog('selectActivity');
+    this.dialogService.openDialog('editTrip');
   }
 
   onPageChange(page: number) {

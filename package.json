@@ -24,10 +24,6 @@
     "ngx-build-plus": "^10.1.1",
     "ngx-swiper-wrapper": "^10.0.0",
     "rxjs": "~6.6.0",
-<<<<<<< HEAD
-=======
-    "sudo": "^1.0.3",
->>>>>>> f9509dd6c2513e5efefcc874a7ac0c50b5d0cbac
     "swiper": "^6.3.3",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

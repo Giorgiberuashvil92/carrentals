@@ -1,3 +1,7 @@
-<app-header></app-header>
+<app-header *ngIf="deviceDetectorService.isDesktop"></app-header>
+<app-header-mobile *ngIf="deviceDetectorService.isMobile"></app-header-mobile>
+
 <router-outlet></router-outlet>
-<app-footer></app-footer>
+
+<app-footer *ngIf="deviceDetectorService.isDesktop"></app-footer>
+<!-- <app-footer-mobile *ngIf="deviceDetectorService.isMobile"></app-footer-mobile> -->

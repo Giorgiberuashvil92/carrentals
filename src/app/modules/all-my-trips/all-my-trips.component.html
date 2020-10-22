@@ -41,7 +41,7 @@
             ></app-paginator>
 
             <div class="edit-add">
-                <button>EDIT TRIP</button>
+                <button (click)="dialogService.openDialog('editTrip')">EDIT TRIP</button>
                 <button (click)="dialogService.openDialog('selectActivity')">+ ADD ACTIVITY</button>
             </div>
 
@@ -54,7 +54,10 @@
             </div>
 
             <div class="left-list-wrapper">
-                <div class="left-item flex" *ngFor="let l of leftData; let i=index" [ngClass]="{ 'left-item__active': i === leftItemActiveIndex }">
+                <div class="left-item flex cursor-pointer" 
+                    *ngFor="let l of leftData; let i=index" 
+                    [ngClass]="{ 'left-item__active': i === leftItemActiveIndex }"
+                    (click)="leftItemActiveIndex = i">
                     <div class="image" [style.background-image]="'url(\'' + l.img + '\')'"></div>
 
                     <div class="detail-wrapper">

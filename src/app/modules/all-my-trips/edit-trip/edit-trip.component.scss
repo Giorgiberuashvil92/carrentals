@@ -1,84 +1,37 @@
 .wrapper {
-    width: 832px;
+    width: 762px;
     padding-top: 35px;
-    font-weight: 600;
+    font-weight: 700;
 
-    .select-activity {
+    .replace-day {
         font-size: 22px;
         width: 100%;
         text-align: center;
+
+        .replace-day-number {
+            color: #02A388;
+        }
     }
 
-    .form-wrapper {
-
-        .text-field {
-            margin: 10px 0px 15px 0px;
-            width: 100%;
-            height: 20px;
-            border-width: 1px;
-            border-color: #02A388;
-            border-radius: 6px;
-
-            input {
-                width: 95%;
-            }
-
-            img {
-            }
-        }
-
-        .select-city, .interested-in, .recommended-for {
-            font-size: 20px;
-        }
-
-        .recommended-for-value {
-            color: #02A388;
-        }
-
-        .cities-wrapper, .interests-wrapper {
-            margin-top: 10px;
-        }
-
-        .city, .interest {
-            user-select: none;
-            font-size: 12px;
-            font-weight: 600;
-            padding: 5px 8px;
-            border-width: 1px;
-            border-color: #02A388;
-            border-radius: 7px;
-            color: #02A388;
-            margin: 0px 15px 15px 0px;
-
-            &__active {
-                background-color: #02A388;
-                color: #fff;
-            }
-        }
-
-        .line {
-            background-color: #757575;
-            height: 1px;
-            width: 97%;
-            margin: 5px auto;
-        }
-
-        .searching-for-activities {
-            font-weight: 400;
-            font-size: 16px;
-            margin-top: 20px;
-        }
+    .current-new {
+        width: 80%;
+        margin: 40px auto;
+        margin-bottom: 100px;
 
         .activity-wrapper {
-            margin-bottom: 100px;
             font-weight: 700;
+            width: 40%;
+
+            .current, .new {
+                margin-left: 8px;
+            }
     
             .activity {
                 padding: 4px;
                 border-radius: 10px;
                 margin: 10px 0px;
                 border-color: #02A388;
-                width: 30%;
+                width: 100%;
                 
                 &__active {
                     border-width: 1px;
@@ -102,7 +55,7 @@
                     position: relative;
                     margin-left: 20px;
                     max-width: 130px;
-
+    
                     .city-detail {
                         color: #868B9B;
                         font-size: 12px;

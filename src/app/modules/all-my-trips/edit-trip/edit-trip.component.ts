@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { DialogService } from 'src/app/core/services/dialog.service';
 
 @Component({
-  selector: 'app-select-activity',
-  templateUrl: './select-activity.component.html',
-  styleUrls: ['./select-activity.component.scss']
+  selector: 'app-edit-trip',
+  templateUrl: './edit-trip.component.html',
+  styleUrls: ['./edit-trip.component.scss']
 })
-export class SelectActivityComponent implements OnInit {
+export class EditTripComponent implements OnInit {
 
   result = [
     {
@@ -32,7 +32,8 @@ export class SelectActivityComponent implements OnInit {
   cities = ['PRAGUE', 'PARIS', 'VIENNA'];
   interests = ['PRAGUE1', 'PARIS1', 'VIENNA1', 'PRAGUE2', 'PARIS2', 'VIENNA2', 'PRAGUE3', 'PARIS3', 'VIENNA3', 'PRAGUE4', 'PARIS4', 'VIENNA4', 'PRAGUE5', 'PARIS5', 'VIENNA5', 'PRAGUE6', 'PARIS6', 'VIENNA6'];
 
-  currentlyChosenIndex = -1;
+  currentIndex = -1;
+  newIndex = 0;
 
   citySet = new Set<string>();
   interestSet = new Set<string>();
