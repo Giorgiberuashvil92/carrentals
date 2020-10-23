@@ -1,5 +1,5 @@
 .wrapper {
-    width: 762px;
+    width: 100%;
     padding-top: 35px;
     font-weight: 700;
 
@@ -31,7 +31,7 @@
                 border-radius: 10px;
                 margin: 10px 0px;
                 border-color: #02A388;
-                width: 100%;
+                width: 110%;
                 
                 &__active {
                     border-width: 1px;
