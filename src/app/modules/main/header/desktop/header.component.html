@@ -17,8 +17,20 @@
         </div>
       </div>
     </div>
-    <div class="rounded-sm border-0 bg-green-1 border-gray-600 rounded-full h-16 w-16 flex items-center justify-center">
-      <img src="../../../../assets/user-icon.svg" [alt]="imageAlt">
+   
+    <div class="mr-r" (mouseover)="condition=true">
+        <div class="rounded-sm border-0 bg-green-1 border-gray-600 rounded-full h-16 w-16 flex items-center justify-center mr-r">
+          <button>
+            <img src="../../../../assets/user-icon.svg" [alt]="imageAlt">
+          </button>
+          <p>BERO</p>
+      </div>
+      <div class="dv-h" *ngif='!condition'>
+        <h1>Mr.John</h1>
+         <div><button class="bg-green-10 hover:bg-green-10 text-white font-bold py-2 px-4 rounded-full">Edit Profile</button></div>
+        <div><button class="bg-green-10 hover:bg-green-10 text-white font-bold py-2 px-4 rounded-full">Log Out</button></div>
+      </div>
     </div>
+   
   </div>
 </nav>
