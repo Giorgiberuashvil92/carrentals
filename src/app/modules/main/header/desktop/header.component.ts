@@ -9,15 +9,15 @@ export class HeaderComponent implements OnInit {
 
   imageSrc = '../../../assetsImg/images/user.png'
   imageAlt = 'User'
-  condition: boolean;
+  condition = false;
 
   constructor() {
-    
+
   }
 
   ngOnInit(): void {
   }
-   
+
 
 
     navigation = [
@@ -28,5 +28,8 @@ export class HeaderComponent implements OnInit {
     {url: 'www.google.ge', name:'Contact Us'},
   ];
 
+  click(){
+    this.condition = true;
+  }
 
 }

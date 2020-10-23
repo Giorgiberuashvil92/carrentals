@@ -9,6 +9,7 @@ import { ChangeActivityComponent } from './change-activity/change-activity.compo
 import { SelectActivityComponent } from './select-activity/select-activity.component';
 import { FormsModule } from '@angular/forms';
 import { EditTripComponent } from './edit-trip/edit-trip.component';
+import { CheckExperienceComponent } from './check-experience/check-experience.component';
 
 const routes: Routes = [
   {
@@ -18,11 +19,12 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    AllMyTripsComponent, 
-    LocationDetailComponent, 
-    ChangeActivityComponent, 
-    SelectActivityComponent, 
-    EditTripComponent
+    AllMyTripsComponent,
+    LocationDetailComponent,
+    ChangeActivityComponent,
+    SelectActivityComponent,
+    EditTripComponent,
+    CheckExperienceComponent
   ],
   imports: [
     CommonModule,

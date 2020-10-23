@@ -14,8 +14,8 @@ export class LocationDetailComponent implements OnInit {
       description:'Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards, goldsmiths, and, Throughout history, theyve been occupied by castle guards, goldsmiths, and,Throughout history, theyve been occupied by castle guards, goldsmiths, and,Throughout history, theyve been occupied by castle guards, goldsmiths, and,Throughout history, theyve been occupied by castle guards, goldsmiths, and,Throughout history, theyve been occupied by castle guards, goldsmiths, and',
       nam: this.imgURL,
       small:'Overview of Golden Lane'},
-    {name:'bero2', nam: this.imgURL,small:'Overview of Golden Lane'},
-    {name:'bero3', nam: this.imgURL,small:'Overview of Golden Lane'},
+    {name:'Golden Line', nam: this.imgURL,small:'Overview of Golden Lane'},
+    {name:'Golden Line', nam: this.imgURL,small:'Overview of Golden Lane'},
   ]
 
   config = {

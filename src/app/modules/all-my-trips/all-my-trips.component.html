@@ -54,8 +54,8 @@
             </div>
 
             <div class="left-list-wrapper">
-                <div class="left-item flex cursor-pointer" 
-                    *ngFor="let l of leftData; let i=index" 
+                <div class="left-item flex cursor-pointer"
+                    *ngFor="let l of leftData; let i=index"
                     [ngClass]="{ 'left-item__active': i === leftItemActiveIndex }"
                     (click)="leftItemActiveIndex = i">
                     <div class="image" [style.background-image]="'url(\'' + l.img + '\')'"></div>
@@ -94,8 +94,8 @@
 
         <div class="right-side pd-lf">
             <app-location-detail></app-location-detail>
+            <app-all-my-trips></app-all-my-trips>
         </div>
     </div>
-
     <div class="line"></div>
 </div>
