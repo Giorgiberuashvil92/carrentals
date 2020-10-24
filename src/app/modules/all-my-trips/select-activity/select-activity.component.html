@@ -79,7 +79,7 @@
         <button class="cancel-button" (click)="dialogService.closeDialog()">
             CANCEL
         </button>
-        <button class="next-button">
+        <button class="next-button" (click)="dialogService.closeDialog(); dialogService.openDialog('arriveDay')">
             NEXT
         </button>
     </div>

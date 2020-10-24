@@ -34,7 +34,7 @@ export class EditTripComponent implements OnInit {
 
   currentIndex = -1;
   newIndex = 0;
-  currentlyChosenIndex = -1;
+  currentlyChosenIndex: number;
   citySet = new Set<string>();
   interestSet = new Set<string>();
   acitivityInput: string = '';
@@ -44,6 +44,7 @@ export class EditTripComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.searchActivity();
   }
   
   toggleCity(city: string) {

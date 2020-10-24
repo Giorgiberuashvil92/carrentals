@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ArriveDayComponent } from 'src/app/modules/all-my-trips/arrive-day/arrive-day.component';
 import { ChangeActivityComponent } from 'src/app/modules/all-my-trips/change-activity/change-activity.component';
 import { EditTripComponent } from 'src/app/modules/all-my-trips/edit-trip/edit-trip.component';
 import { SelectActivityComponent } from 'src/app/modules/all-my-trips/select-activity/select-activity.component';
@@ -10,9 +11,22 @@ import { SelectActivityComponent } from 'src/app/modules/all-my-trips/select-act
 export class DialogService {
 
   dialogMap = {
-    'changeActivity': ChangeActivityComponent,
-    'selectActivity': SelectActivityComponent,
-    'editTrip': EditTripComponent
+    'changeActivity': {
+      component: ChangeActivityComponent,
+      maxWidth: '470px'
+    },
+    'selectActivity': {
+      component: SelectActivityComponent,
+      maxWidth: '832px'
+    },
+    'editTrip': {
+      component: EditTripComponent,
+      maxWidth: '762px'
+    },
+    'arriveDay': {
+      component: ArriveDayComponent,
+      maxWidth: '470px'
+    }
   }
 
   private dialogRef;
@@ -23,7 +37,10 @@ export class DialogService {
 
   openDialog(dialogName: string) {
     if(this.dialogMap.hasOwnProperty(dialogName)) {
-      this.dialogRef = this.dialog.open(this.dialogMap[dialogName]);
+      this.dialogRef = this.dialog.open(this.dialogMap[dialogName].component, {
+        width: '90%',
+        maxWidth: this.dialogMap[dialogName].maxWidth
+      });
     }
   }
 

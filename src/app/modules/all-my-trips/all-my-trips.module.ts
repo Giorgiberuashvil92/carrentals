@@ -10,7 +10,12 @@ import { SelectActivityComponent } from './select-activity/select-activity.compo
 import { FormsModule } from '@angular/forms';
 import { EditTripComponent } from './edit-trip/edit-trip.component';
 import { CheckExperienceComponent } from './check-experience/check-experience.component';
+<<<<<<< HEAD
 import {DetailItirenaryComponent} from './detail-itirenary/detail-itirenary.component'
+=======
+import { ArriveDayComponent } from './arrive-day/arrive-day.component';
+import { LocationDaysComponent } from './location-days/location-days.component';
+>>>>>>> 5273e7bd86ed2cc4d6636a48779eef75556ca018
 
 const routes: Routes = [
   {
@@ -26,7 +31,12 @@ const routes: Routes = [
     SelectActivityComponent,
     EditTripComponent,
     CheckExperienceComponent,
+<<<<<<< HEAD
     DetailItirenaryComponent
+=======
+    ArriveDayComponent,
+    LocationDaysComponent
+>>>>>>> 5273e7bd86ed2cc4d6636a48779eef75556ca018
   ],
   imports: [
     CommonModule,
