@@ -14,7 +14,7 @@
 
 <swiper class="f-w swiper-wrapper" (indexChange)="onIndexChange($event)" [config]="config">
       <div class="f-w" *ngFor="let item of array">
-        <div style="position: relative;">
+        <div  class="img-tr"style="position: relative;">
           <img [src]="item.nam" alt="">
           <div class="p-a">
            <h1>{{item.name}}</h1>

@@ -40,18 +40,22 @@
                 (page)="onPageChange($event)"
             ></app-paginator>
 
-            <div class="edit-add">
+            <div class="gt-n">
+              <div class="edit-add">
                 <button (click)="dialogService.openDialog('editTrip')">EDIT TRIP</button>
                 <button (click)="dialogService.openDialog('selectActivity')">+ ADD ACTIVITY</button>
             </div>
 
-            <div class="location">
+            <div class="tl-wr">
+              <div class="location">
                 {{ location }}
             </div>
-
             <div class="date">
                 {{ date }}
             </div>
+            </div>
+            </div>
+
 
             <div class="left-list-wrapper">
                 <div class="left-item flex cursor-pointer"
@@ -91,11 +95,15 @@
                 </div>
             </div>
         </div>
-
         <div class="right-side pd-lf">
             <app-location-detail></app-location-detail>
-            <app-all-my-trips></app-all-my-trips>
         </div>
     </div>
-    <div class="line"></div>
+    <div class="pd-rg">
+        <app-check-experience></app-check-experience>
+    </div>
+    <div class="line2"></div>
+    <div class="pr-g " style="height: 200px;">
+      <app-detail-itirenary></app-detail-itirenary>
+    </div>
 </div>

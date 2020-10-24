@@ -33,6 +33,12 @@
         height: 1px;
         background-color: #707070;
     }
+    .line2 {
+      width: 100%;
+      margin-top: 19%;
+      height: 1px;
+      background-color: #707070;
+  }
 
     .details-wrapper {
         .left-side {
@@ -147,5 +153,46 @@
       .pd-lf {
         padding-left: 2%;
       }
+      .pr-g{
+        margin-top: 10%;
+        height: 100%;
+        max-height: 207px;
+      }
     }
+    @media only screen and (max-width: 992px) {
+      .details-wrapper {
+        display: block;
+      }
+      app-paginator {
+        width: 100% !important
+    }
+    .gt-n{
+      display: flex;
+      align-items: center;
+
+    }
+
+    .tl-wr{
+      display: flex;
+      flex-direction: column;
+      order: -1;
+      margin-right: 30px;
+    }
+    .left-list-wrapper{
+      display: flex;
+      overflow: auto;
+    }
+    .left-item{
+flex: 0 0 300px;
+    }
+
+    .location-wrapper{
+      display: block;
+    }
+    .location-names > div{
+      display: inline-block;
+      margin-right: 10px;
+    }
+    }
+
 }

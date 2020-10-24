@@ -10,6 +10,7 @@ import { SelectActivityComponent } from './select-activity/select-activity.compo
 import { FormsModule } from '@angular/forms';
 import { EditTripComponent } from './edit-trip/edit-trip.component';
 import { CheckExperienceComponent } from './check-experience/check-experience.component';
+import {DetailItirenaryComponent} from './detail-itirenary/detail-itirenary.component'
 
 const routes: Routes = [
   {
@@ -24,7 +25,8 @@ const routes: Routes = [
     ChangeActivityComponent,
     SelectActivityComponent,
     EditTripComponent,
-    CheckExperienceComponent
+    CheckExperienceComponent,
+    DetailItirenaryComponent
   ],
   imports: [
     CommonModule,
