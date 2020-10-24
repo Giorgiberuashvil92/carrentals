@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  imageSrc = '../../../assetsImg/images/user.png'
+  imageSrc = '/assetsImg/images/user.png'
   imageAlt = 'User'
   condition = false;
 

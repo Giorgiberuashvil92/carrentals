@@ -7,10 +7,10 @@ import { DialogService } from 'src/app/core/services/dialog.service';
   styleUrls: ['./check-experience.component.scss']
 })
 export class CheckExperienceComponent implements OnInit {
- imgURL = "../../../../assets/ph-t.svg"
- ClockIMG = "../../../assets/time.svg"
- Dollar = "../../../assets/dollar.svg"
- time = "../../../assets/exit.svg"
+ imgURL = "/assets/ph-t.svg"
+ ClockIMG = "/assets/time.svg"
+ Dollar = "/assets/dollar.svg"
+ time = "/assets/exit.svg"
 
   constructor(public dialogService: DialogService) { }
 
@@ -32,7 +32,7 @@ export class CheckExperienceComponent implements OnInit {
   ]
 
   openSite() {
-    window.open("www.google.ge" , '_blank');
+    window.open("https://www.google.com" , '_blank');
  }
 
 }

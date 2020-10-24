@@ -13,6 +13,7 @@ import { CheckExperienceComponent } from './check-experience/check-experience.co
 import { DetailItirenaryComponent } from './detail-itirenary/detail-itirenary.component'
 import { ArriveDayComponent } from './arrive-day/arrive-day.component';
 import { LocationDaysComponent } from './location-days/location-days.component';
+import { AcceptDialogComponent } from './accept-dialog/accept-dialog.component';
 
 const routes: Routes = [
   {
@@ -30,7 +31,8 @@ const routes: Routes = [
     CheckExperienceComponent,
     DetailItirenaryComponent,
     ArriveDayComponent,
-    LocationDaysComponent
+    LocationDaysComponent,
+    AcceptDialogComponent
   ],
   imports: [
     CommonModule,

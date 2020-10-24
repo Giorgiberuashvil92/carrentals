@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AcceptDialogComponent } from 'src/app/modules/all-my-trips/accept-dialog/accept-dialog.component';
 import { ArriveDayComponent } from 'src/app/modules/all-my-trips/arrive-day/arrive-day.component';
 import { ChangeActivityComponent } from 'src/app/modules/all-my-trips/change-activity/change-activity.component';
 import { EditTripComponent } from 'src/app/modules/all-my-trips/edit-trip/edit-trip.component';
@@ -26,6 +27,10 @@ export class DialogService {
     'arriveDay': {
       component: ArriveDayComponent,
       maxWidth: '470px'
+    },
+    'acceptDialog': {
+      component: AcceptDialogComponent,
+      maxWidth: '450px'
     }
   }
 

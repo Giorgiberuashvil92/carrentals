@@ -8,7 +8,7 @@ import { DeviceDetectorService } from 'src/app/core/services/device-detector.ser
 })
 export class MainComponent implements OnInit {
 
-  showMobileHeader = true;
+  showMobileHeader = false;
 
   constructor(
     public deviceDetectorService: DeviceDetectorService

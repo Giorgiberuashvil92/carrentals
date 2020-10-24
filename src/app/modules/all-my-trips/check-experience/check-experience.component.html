@@ -2,7 +2,7 @@
 <div class="rel">
  <h1>Book a related experience:</h1>
 </div>
-  <div class="col-sc" (click)="dialogService.openDialog('editTrip')" (click)="openSite()">
+  <div class="col-sc" (click)="dialogService.openDialog('acceptDialog'); openSite()">
    <div class="col" *ngFor="let item of array">
     <div class="ph-t">
       <img [src]="item.image" alt="">

@@ -2,7 +2,7 @@
     .location-wrapper {
         color: #767388;
         width: 100px;
-        margin-top: 30px;
+        margin-top: 35px;
     
         .icon-data {
             width: 35px;
@@ -19,6 +19,7 @@
         .first-data {
             font-size: 12px;
             font-weight: 700;
+            width: 105%;
         }
         
         .second-data {
@@ -38,5 +39,15 @@
     
     .lower-than, .higher-than {
         width: 15px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .wrapper {
+        margin-top: -40px;
+
+        .location-wrapper {
+            margin-top: 70px;
+        }
     }
 }
