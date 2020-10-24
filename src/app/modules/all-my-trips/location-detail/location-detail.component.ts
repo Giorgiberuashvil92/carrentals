@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 @Component({
   selector: 'app-location-detail',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./location-detail.component.scss']
 })
 export class LocationDetailComponent implements OnInit {
-  imgURL = "../../../../assets/full-photo.svg"
+  imgURL = "/assets/full-photo.svg"
   imgALT = "DONTWORKING"
 
   array = [
@@ -30,10 +31,10 @@ export class LocationDetailComponent implements OnInit {
     }
   ]
 
-  config = {
+  config: SwiperConfigInterface = {
     navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
+      nextEl: 'none',
+      prevEl: 'none'
     },
     loop: true
   };
@@ -45,5 +46,13 @@ export class LocationDetailComponent implements OnInit {
 
   onIndexChange(event) {
     console.log(event);
+  }
+
+  goLeftSlider() {
+
+  }
+
+  goRightSlider() {
+
   }
 }

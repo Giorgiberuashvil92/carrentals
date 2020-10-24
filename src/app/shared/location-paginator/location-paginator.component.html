@@ -1,24 +1,41 @@
-<div class="wrapper w-full flex justify-between">
-    <img class="lower-than cursor-pointer" (click)="onLeft()" src="/assets/lower-than-icon.svg">
+<div class="wrapper w-full flex justify-between overflow-hidden"
+            (touchstart)="onTouchStart($event)"
+            (touchmove)="onTouchMove($event)">
+    <img class="lower-than cursor-pointer" *ngIf="deviceDetectorService.isDesktop" (click)="onLeft()" src="/assets/lower-than-icon.svg">
 
-    <ng-container *ngFor="let d of dataToShow; let i=index">
-        <div class="location-wrapper flex flex-col items-center" [ngStyle]="{ 'opacity': i === activeIndex - 1 ? '1' : '0.3'}">
-            <div class="first-data w-full text-center">
-                {{ d.firstData }}
+    <div class="locations-wrapper w-full flex justify-between" #wrapper>
+        <ng-container *ngFor="let d of dataToShow; let i=index">
+            <div class="location-wrapper flex flex-col items-center" 
+                [ngStyle]="{ 
+                    'opacity': i === activeIndex - 1 ? '1' : '0.3',
+                    'transform': 'translateX(' + mobileTranslate + 'px)'
+                }"
+                (click)="changeIndex(i+1)">
+                <div class="first-data w-full text-center">
+                    {{ d.firstData }}
+                </div>
+                <div class="icon-data flex justify-center items-center" [ngClass]="{ 'icon-data__active': i === activeIndex - 1 }">
+                    <img [src]="'/assets/' + d.icon">
+                </div>
+                <div class="second-data w-full text-center" [ngClass]="{ 'second-data__active': i === activeIndex - 1 }">
+                    {{ d.secondData }}
+                </div>
+                <div class="third-data w-full text-center">
+                    {{ d.thirdData }}
+                </div>
             </div>
-            <div class="icon-data flex justify-center items-center" [ngClass]="{ 'icon-data__active': i === activeIndex - 1 }">
-                <img [src]="'/assets/' + d.icon">
-            </div>
-            <div class="second-data w-full text-center" [ngClass]="{ 'second-data__active': i === activeIndex - 1 }">
-                {{ d.secondData }}
-            </div>
-            <div class="third-data w-full text-center">
-                {{ d.thirdData }}
-            </div>
-        </div>
+    
+            <img 
+                *ngIf="i !== dataToShow.length - 1" 
+                [ngStyle]="{
+                    'transform': 'translateX(' + mobileTranslate + 'px)'
+                }"
+                class="block" 
+                src="/assets/location-line-icon.svg" 
+                alt=""
+            >
+        </ng-container>
+    </div>
 
-        <img *ngIf="i !== dataToShow.length - 1" class="block" src="/assets/location-line-icon.svg" alt="">
-    </ng-container>
-
-    <img class="higher-than cursor-pointer" (click)="onRight()" src="/assets/higher-than-icon.svg">
+    <img class="higher-than cursor-pointer" *ngIf="deviceDetectorService.isDesktop" (click)="onRight()" src="/assets/higher-than-icon.svg">
 </div>

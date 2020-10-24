@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { HeaderComponent } from '../desktop/header.component';
 
 @Component({
@@ -7,6 +7,8 @@ import { HeaderComponent } from '../desktop/header.component';
   styleUrls: ['./header-mobile.component.scss']
 })
 export class HeaderMobileComponent extends HeaderComponent implements OnInit {
+
+  @Output() hideMobileHeader: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {
     super();

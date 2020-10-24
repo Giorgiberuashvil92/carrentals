@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocationPaginator } from 'src/app/core/models/location-paginator.model';
+import { DeviceDetectorService } from 'src/app/core/services/device-detector.service';
 import { DialogService } from 'src/app/core/services/dialog.service';
 
 @Component({
@@ -87,11 +88,12 @@ export class AllMyTripsComponent implements OnInit {
   leftItemActiveIndex: number = 0;
 
   constructor(
-    public dialogService: DialogService
+    public dialogService: DialogService,
+    public deviceDetectorService: DeviceDetectorService
   ) { }
 
   ngOnInit(): void {
-    this.dialogService.openDialog('arriveDay');
+    // this.dialogService.openDialog('arriveDay');
   }
 
   onPageChange(page: number) {

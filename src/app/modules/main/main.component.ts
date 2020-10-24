@@ -8,6 +8,8 @@ import { DeviceDetectorService } from 'src/app/core/services/device-detector.ser
 })
 export class MainComponent implements OnInit {
 
+  showMobileHeader = true;
+
   constructor(
     public deviceDetectorService: DeviceDetectorService
   ) { }
@@ -15,4 +17,7 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onShowMobileHeader() {
+    
+  }
 }

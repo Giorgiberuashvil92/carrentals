@@ -1,7 +1,6 @@
 .f-w{
   width: 100%;
-  padding-left: 67px;
-  margin-top:20px
+  margin-top:10px
 }
 .w-f{
   width: 100%;
@@ -28,7 +27,12 @@
   color: #ACD8E0;
 }
 
-@media only screen and (max-width: 992px) {
+.swiper-button-prev,
+.swiper-button-next {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
 
   .f-w {
     padding-left: 0px;
