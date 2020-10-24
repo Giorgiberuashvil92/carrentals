@@ -8,39 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class LocationDaysComponent implements OnInit {
 
   @Input() city: string;
-
-  days = [
-    {
-      num: 1,
-      name: 'FRI',
-      dd: 25,
-      month: 'AUG'
-    },
-    {
-      num: 2,
-      name: 'FRI',
-      dd: 26,
-      month: 'AUG'
-    },
-    {
-      num: 3,
-      name: 'FRI',
-      dd: 27,
-      month: 'AUG'
-    },
-    {
-      num: 4,
-      name: 'FRI',
-      dd: 28,
-      month: 'AUG'
-    },
-    {
-      num: 5,
-      name: 'FRI',
-      dd: 29,
-      month: 'AUG'
-    }
-  ]
+  @Input() days: any[];
 
   constructor() { }
 

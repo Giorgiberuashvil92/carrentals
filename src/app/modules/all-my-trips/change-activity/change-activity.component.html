@@ -6,7 +6,10 @@
     </div>
 
     <div class="activity-wrapper">
-        <div class="activity relative flex" *ngFor="let a of activities; let i=index" [ngClass]="{ 'activity__active': i === currentIndex}">
+        <div class="activity relative flex" 
+            *ngFor="let a of activities; let i=index" 
+            [ngClass]="{ 'activity__active': i === currentIndex}"
+            (click)="currentIndex = i">
             
             <div class="current absolute flex items-center" *ngIf="i === currentIndex">
                 <div class="current-text">

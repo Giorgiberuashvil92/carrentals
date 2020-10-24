@@ -55,16 +55,26 @@
         }
     }
 
+    .days-wrapper {
+        margin-top: 30px;
+        margin-bottom: 100px;
+
+        .spacing {
+            height: 10px;
+        }
+    }
+
     .actions {
         bottom: -100px;
         width: 100%;
         padding: 0 15%;
-    
+        
         button {
             font-size: 17px;
             width: 138px;
             height: 50px;
             border-radius: 10px;
+            font-weight: 600;
         }
         
         .cancel-button {

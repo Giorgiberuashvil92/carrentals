@@ -32,8 +32,11 @@
         </div>
     </div>
     
-    <app-location-days [city]="'Prague'"></app-location-days>
-    <app-location-days [city]="'Paris'"></app-location-days>
+    <div class="days-wrapper">
+        <app-location-days [city]="'Prague'" [days]="days1"></app-location-days>
+        <div class="spacing"></div>
+        <app-location-days [city]="'Paris'"  [days]="days2"></app-location-days>
+    </div>
 
     <div class="actions absolute flex justify-between">
         <button class="cancel-button" (click)="dialogService.closeDialog()">
