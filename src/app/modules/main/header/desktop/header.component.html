@@ -1,29 +1,28 @@
-<nav class="flex items-center justify-between border-b-2 border-gray-400 border-opacity-25 flex-wrap bg-white-500 p-6">
-  <div class="flex items-center flex-shrink-0 text-white mr-6">
-    <img src="/assets/header-icon.svg" alt="">
-  </div>
-  <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto space-x-20">
-    <div class="flex text-sm lg:flex-grow space-x-12 paddingLeft">
-      <div class="flexing space-x-12 block pl-24 lg:inline-block lg:mt-0 text-black  mr-4">
-        <div class="spacingBetween hover:text-green-300 cursor-pointer" *ngFor="let item of navigation">
-          {{item.name}}
-        </div>
-      </div>
+
+<div class="wrapper">
+  <img src="/assets/header-icon.svg" alt="">
+
+  
+  <div class="pages-wrapper">
+    <div class="page" *ngFor="let p of pages" [ngClass]="{ 'page__active': router.url === p.url }">
+      {{ p.name }}
     </div>
 
-    <div class="mr-r" (click)="click()">
-      <div class="rounded-sm border-0 bg-green-1 border-gray-600 rounded-full h-16 w-16 flex items-center justify-center mr-r">
-        <button>
-          <img src="/assets/user-icon.svg" [alt]="imageAlt">
-        </button>
+    <div class="user" (mouseenter)="onMouseEnter($event)" (mouseleave)="onMouseLeave($event)" [ngClass]="{ 'user__active': isOpen }">
+      <div class="green-wrapper">
+        <img src="/assets/user-icon.svg" alt="">
       </div>
-      
-      <div class="dv-h" *ngIf='condition'>
-        <h1>Mr.John</h1>
-        <div><button class="bg-green-10 hover:bg-greens-10 text-white font-bold py-2 px-4 rounded-full">Edit Profile</button></div>
-        <div><button class="bg-green-10 hover:bg-green-10 text-white font-bold py-2 px-4 rounded-full">Log Out</button></div>
+      <div class="username">Username22138</div>
+
+      <div class="triangle"></div>
+
+      <div class="user-menu" [ngClass]="{ 'user-menu__active': isOpen }">
+        <div class="name">Mr.John Doe</div>
+        <div class="edit-profile">Edit Profile</div>
+        <div class="log-out">Log Out</div>
       </div>
     </div>
-
   </div>
-</nav>
+</div>
+
+  

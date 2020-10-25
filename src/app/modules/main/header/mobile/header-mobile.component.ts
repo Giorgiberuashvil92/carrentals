@@ -11,37 +11,13 @@ export class HeaderMobileComponent extends HeaderComponent implements OnInit {
 
   @Output() hideMobileHeader: EventEmitter<any> = new EventEmitter<any>();
 
-  pages: any[] = [
-    {
-      name: 'Plan Another Trip',
-      url: 'bla'
-    }, 
-    {
-      name: 'All My Trips', 
-      url: '/all-my-trips',
-    },
-    {
-      name: 'Before Trip', 
-      url: 'bla'
-    },
-    {
-      name: 'FAQ',
-      url: 'bla'
-    },
-    { 
-      name: 'Contact us',
-      url: 'bla'
-    }
-  ];
-
   constructor(
     public router: Router
   ) {
-    super();
+    super(router);
   }
 
   ngOnInit(): void {
     super.ngOnInit();
   }
-
 }

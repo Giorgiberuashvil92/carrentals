@@ -1,10 +1,12 @@
 
 <app-header *ngIf="deviceDetectorService.isDesktop"></app-header>
+
 <app-header-mobile 
     *ngIf="deviceDetectorService.isMobile" 
     [ngClass]="{ 'show-mobile-header': showMobileHeader}"
     (hideMobileHeader)="showMobileHeader = false"
 ></app-header-mobile>
+
 <div class="temp-header" *ngIf="deviceDetectorService.isMobile" (click)="showMobileHeader = true">
     <img *ngIf="!showMobileHeader" src="/assets/hamburger.svg" alt="">
 </div>

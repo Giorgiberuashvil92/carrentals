@@ -10,7 +10,7 @@ export class ChangeActivityComponent implements OnInit {
 
   activities = [
     {
-      img: 'https://img.traveltriangle.com/blog/wp-content/uploads/2018/11/Prague_Covesr.jpg',
+      img: 'https://img.traveltriangle.com/blog/wp-content/uploads/2018/11/Prague_Cover.jpg',
       title: 'Prague Castle',
       isSelfGuided: true,
       tags: ["FISHERMAN'S BASTION", "PLACEHOLDER"]
