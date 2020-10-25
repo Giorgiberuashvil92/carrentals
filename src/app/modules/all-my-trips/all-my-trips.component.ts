@@ -93,7 +93,7 @@ export class AllMyTripsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.dialogService.openDialog('arriveDay');
+    this.dialogService.openDialog('notInclude');
   }
 
   onPageChange(page: number) {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DialogService } from 'src/app/core/services/dialog.service';
 
 @Component({
   selector: 'app-accept-dialog',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AcceptDialogComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dialogService: DialogService
+  ) { }
 
   ngOnInit(): void {
   }

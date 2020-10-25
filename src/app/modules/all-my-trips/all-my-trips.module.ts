@@ -14,6 +14,7 @@ import { DetailItirenaryComponent } from './detail-itirenary/detail-itirenary.co
 import { ArriveDayComponent } from './arrive-day/arrive-day.component';
 import { LocationDaysComponent } from './location-days/location-days.component';
 import { AcceptDialogComponent } from './accept-dialog/accept-dialog.component';
+import { NotIncludeComponent } from './not-include/not-include.component';
 
 const routes: Routes = [
   {
@@ -32,7 +33,8 @@ const routes: Routes = [
     DetailItirenaryComponent,
     ArriveDayComponent,
     LocationDaysComponent,
-    AcceptDialogComponent
+    AcceptDialogComponent,
+    NotIncludeComponent
   ],
   imports: [
     CommonModule,
