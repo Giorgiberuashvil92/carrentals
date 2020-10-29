@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { LocationPaginator } from 'src/app/core/models/location-paginator.model';
 import { DeviceDetectorService } from 'src/app/core/services/device-detector.service';
 import { DialogService } from 'src/app/core/services/dialog.service';
+import { LoadItineraryAction } from 'src/app/store/actions/itinerary.action';
+import { AppState } from 'src/app/store/models/app-state.model';
 
 @Component({
   selector: 'app-all-my-trips',
@@ -89,11 +92,13 @@ export class AllMyTripsComponent implements OnInit {
 
   constructor(
     public dialogService: DialogService,
-    public deviceDetectorService: DeviceDetectorService
+    public deviceDetectorService: DeviceDetectorService,
+    private store: Store<AppState>
   ) { }
 
   ngOnInit(): void {
     this.dialogService.openDialog('notInclude');
+    this.store.dispatch(new LoadItineraryAction('5f5e23be306f344825352472'));
   }
 
   onPageChange(page: number) {

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  breakpoint: 768
+  breakpoint: 768,
+  API_URL: 'https://api-staging.gorealtravel.com/api/v3'
 };
 
 /*
