@@ -1,3 +1,7 @@
 export {
-    ItineraryReducer
+    ItineraryReducer,
 } from './itinerary.reducer';
+
+export {
+  ProfileReducer
+} from './profile.reducer'

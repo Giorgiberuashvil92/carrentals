@@ -1,34 +1,34 @@
 import {
-    ItineraryAction,
-    ItineraryActionTypes
+    ProfileAction,
+    ProfileActionTypes
 } from '../actions';
 
-export interface ItineraryState {
+export interface ProfileState {
     data: any,
     loading: boolean,
     error: Error
   }
 
-  const initialState: ItineraryState = {
+  const initialState: ProfileState = {
     data: undefined,
     loading: false,
     error: undefined
   };
 
-export function ItineraryReducer(state: ItineraryState = initialState, action: ItineraryAction) {
+export function ProfileReducer(state: ProfileState = initialState, action: ProfileAction) {
   switch (action.type) {
-    case ItineraryActionTypes.LOAD_ITINERARY:
+    case ProfileActionTypes.LOAD_PROFILE:
       return {
           ...state,
           loading: true
       };
-    case ItineraryActionTypes.LOAD_ITINERARY_SUCCESS:
+    case ProfileActionTypes.LOAD_PROFILE_SUCCESS:
       return {
           ...state,
           data: action.payload,
           loading: false
       }
-    case ItineraryActionTypes.LOAD_ITINERARY_FAILURE:
+    case ProfileActionTypes.LOAD_PROFILE_FAILURE:
       return {
           ...state,
           data: action.payload,
