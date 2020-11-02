@@ -31,6 +31,23 @@ switch (action.type) {
         data: action.payload,
         loading: false
     }
+      case SessionActionTypes.DELETE_SESSION:
+        return {
+            ...state,
+            loading: true
+        };
+      case SessionActionTypes.DELETE_SESSION_SUCCESS:
+        return {
+            ...state,
+            data: action.payload,
+            loading: false
+        }
+      case SessionActionTypes.DELETE_SESSION_FAILURE:
+        return {
+            ...state,
+            data: action.payload,
+            loading: false
+        }
   default:
     return state;
 }

@@ -16,17 +16,16 @@ import { SignUpAuthAction } from './store/actions/auth.action';
 })
 export class AppComponent implements OnInit {
 
-  constructor(
-    private store: Store<AppState>
-  ){}
+  constructor(private store: Store<AppState>){}
+
 
   ngOnInit(): void {
-    // this.store.dispatch(new LoadProfileAction());
-    // this.store.dispatch(new ShowAlternateSolutionsForSpecificTour('5f5e23be306f344825352472', '5f5e23be306f344825352472'))
-    // this.store.dispatch(new ShowAlternateSolutionsForSpecificTourSearchAction('5f5e23be306f344825352472'));
-    // this.store.dispatch(new ShowAlternateSolutionsForSpecificTourSolutionsAction('5f5e23be306f344825352472'));
-    // this.store.dispatch(new LoadPutProfileAction());
-    // this.store.dispatch(new LoadSessionAction());
+    this.store.dispatch(new LoadProfileAction());
+    this.store.dispatch(new ShowAlternateSolutionsForSpecificTour('5f5e23be306f344825352472', '5f5e23be306f344825352472'))
+    this.store.dispatch(new ShowAlternateSolutionsForSpecificTourSearchAction('5f5e23be306f344825352472'));
+    this.store.dispatch(new ShowAlternateSolutionsForSpecificTourSolutionsAction('5f5e23be306f344825352472'));
+    this.store.dispatch(new LoadPutProfileAction());
+    this.store.dispatch(new LoadSessionAction());
     this.store.dispatch(new SignUpAuthAction({
       type: 'users',
       attributes: {

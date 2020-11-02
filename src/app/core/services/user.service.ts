@@ -19,4 +19,7 @@ export class UserService {
   getSession(): Observable<any> {
     return this.httpClient.get<any>(`/session`);
   }
+  deleteSession(): Observable<any> {
+    return this.httpClient.delete<any>(`/session`);
+  }
 }
