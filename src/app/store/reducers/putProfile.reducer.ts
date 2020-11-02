@@ -12,7 +12,7 @@ const initialState: ProfileState = {
   error: undefined
 };
 
-export function ProfileReducer(state: ProfileState = initialState, action: PutProfileAction) {
+export function PutProfileReducer(state: ProfileState = initialState, action: PutProfileAction) {
 switch (action.type) {
   case PutProfileActionTypes.LOAD_PROFILE:
     return {

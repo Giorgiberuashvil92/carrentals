@@ -4,16 +4,15 @@ import { map, mergeMap, catchError } from 'rxjs/operators';
 
 import { of } from 'rxjs';
 import { UserService } from 'src/app/core/services/user.service';
-import { PutProfileAction, SessionAction } from '../actions';
+import { SessionAction } from '../actions';
 import { LoadSessionFailureAction, LoadSessionSuccessAction, SessionActionTypes } from '../actions/session.action';
 
 @Injectable()
 export class SessionEffects {
-    [x: string]: any;
 
     constructor(
       private actions$: Actions,
-      private profileService: UserService
+      private userService: UserService
     ) { }
 
     @Effect() loadProfile$ = this.actions$

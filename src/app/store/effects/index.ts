@@ -4,24 +4,24 @@ export {
 
 export {
   ProfileEffects
-} from './profile.effect'
+} from './profile.effect';
 
 export {
   ItineraryAlternateToursEffects
-} from './itineraryAlternateTours.effect '
+} from './itineraryAlternateTours.effect';
 
 export {
   ItineraryToursSearchEffects
-} from './itineraryToursSearch.effect '
+} from './itineraryToursSearch.effect';
 
 export {
-ItineraryToursSolutionsEffects
-} from './itineraryToursSolutions.effect '
+  ItineraryToursSolutionsEffects
+} from './itineraryToursSolutions.effect';
 
 export {
   PutProfileEffects
-} from './putProfile.effect'
+} from './putProfile.effect';
 
 export {
   SessionEffects
-} from './session.effects'
+} from './session.effects';

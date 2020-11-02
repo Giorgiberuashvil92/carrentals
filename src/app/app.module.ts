@@ -7,10 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
-import { ItineraryAlternateToursEffects, ItineraryEffects, ItineraryToursSearchEffects, ItineraryToursSolutionsEffects, ProfileEffects } from './store/effects';
-import { ItineraryReducer, ItineraryToursSearchReducer, ItineraryToursSolutionsReducer, ProfileReducer } from './store/reducers';
+import { ItineraryAlternateToursEffects, ItineraryEffects, ItineraryToursSearchEffects, ItineraryToursSolutionsEffects, ProfileEffects, PutProfileEffects, SessionEffects } from './store/effects';
+import { ItineraryReducer, ItineraryToursSearchReducer, ItineraryToursSolutionsReducer, ProfileReducer, PutProfileReducer, ItineraryAlternateToursReducer } from './store/reducers';
 import { ApiPrefixInterceptor } from './core/interceptors/api-prefix.interceptor';
-import { ItineraryAlternateToursReducer } from './store/reducers/itineraryAlternateTours.reducer';
 @NgModule({
   declarations: [
     AppComponent
@@ -26,14 +25,17 @@ import { ItineraryAlternateToursReducer } from './store/reducers/itineraryAltern
       profile: ProfileReducer,
       itineraryTours: ItineraryAlternateToursReducer,
       itineraryToursSearch: ItineraryToursSearchReducer,
-      itineraryToursSolutions: ItineraryToursSolutionsReducer
+      itineraryToursSolutions: ItineraryToursSolutionsReducer,
+      putProfile: PutProfileReducer
     }),
     EffectsModule.forRoot([
       ItineraryEffects,
       ItineraryAlternateToursEffects,
       ProfileEffects,
       ItineraryToursSearchEffects,
-      ItineraryToursSolutionsEffects
+      ItineraryToursSolutionsEffects,
+      SessionEffects,
+      PutProfileEffects
     ])
   ],
   providers: [

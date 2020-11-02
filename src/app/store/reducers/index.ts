@@ -4,16 +4,24 @@ export {
 
 export {
   ProfileReducer
-} from './profile.reducer'
+} from './profile.reducer';
 
 export {
   ItineraryAlternateToursReducer
-} from './itineraryAlternateTours.reducer'
+} from './itineraryAlternateTours.reducer';
 
 export {
   ItineraryToursSearchReducer
-} from './itineraryToursSearch.reducer'
+} from './itineraryToursSearch.reducer';
 
 export {
   ItineraryToursSolutionsReducer
-} from './itineraryToursSolutions.reducer'
+} from './itineraryToursSolutions.reducer';
+
+export {
+    PutProfileReducer
+} from './putProfile.reducer';
+
+export {
+  SessionReducer
+} from './session.reducer';
