@@ -15,6 +15,8 @@ export interface ItineraryState {
     error: undefined
   };
 
+
+
 export function ItineraryReducer(state: ItineraryState = initialState, action: ItineraryAction) {
   switch (action.type) {
     case ItineraryActionTypes.LOAD_ITINERARY:
