@@ -17,3 +17,11 @@ export {
 export {
 ItineraryToursSolutionsEffects
 } from './itineraryToursSolutions.effect '
+
+export {
+  PutProfileEffects
+} from './putProfile.effect'
+
+export {
+  SessionEffects
+} from './session.effects'

@@ -22,3 +22,11 @@ export {
 ItinerarToursSolutionsAction,
 ItineraryToursSolutionsActionTypes
 } from './itineraryToursSolutions.action'
+
+export {
+  PutProfileAction
+} from './putProfile.action'
+
+export {
+  SessionAction
+} from './session.action'

@@ -4,11 +4,11 @@ import { map, mergeMap, catchError } from 'rxjs/operators';
 
 import { of } from 'rxjs';
 import { UserService } from 'src/app/core/services/user.service';
-import { ProfileActionTypes } from '../actions';
-import { LoadProfileAction, LoadProfileFailureAction, LoadProfileSuccessAction } from '../actions/profile.action';
+import { PutProfileAction } from '../actions';
+import { LoadPutProfileFailureAction, LoadPutProfileSuccessAction, PutProfileActionTypes } from '../actions/putProfile.action';
 
 @Injectable()
-export class ProfileEffects {
+export class PutProfileEffects {
 
     constructor(
       private actions$: Actions,
@@ -17,14 +17,14 @@ export class ProfileEffects {
 
     @Effect() loadProfile$ = this.actions$
     .pipe(
-        ofType<LoadProfileAction>(ProfileActionTypes.LOAD_PROFILE),
+        ofType<PutProfileAction>(PutProfileActionTypes.LOAD_PROFILE),
         mergeMap(
         (d) => this.userService.getProfile()
             .pipe(
             map(data => {
-                return new LoadProfileSuccessAction(data)
+                return new LoadPutProfileSuccessAction(data)
             }),
-            catchError(error => of(new LoadProfileFailureAction(error)))
+            catchError(error => of(new LoadPutProfileFailureAction(error)))
             )
         ),
     )

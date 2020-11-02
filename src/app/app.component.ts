@@ -4,6 +4,8 @@ import { ShowAlternateSolutionsForSpecificTour,} from './store/actions/itinerary
 import { ShowAlternateSolutionsForSpecificTourSearchAction } from './store/actions/itineraryToursSearch.action';
 import { ShowAlternateSolutionsForSpecificTourSolutionsAction } from './store/actions/itineraryToursSolutions.action';
 import { LoadProfileAction } from './store/actions/profile.action';
+import { LoadPutProfileAction } from './store/actions/putProfile.action';
+import { LoadSessionAction } from './store/actions/session.action';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +19,9 @@ export class AppComponent implements OnInit {
     this.Store.dispatch(new LoadProfileAction());
     this.Store.dispatch(new ShowAlternateSolutionsForSpecificTour('5f5e23be306f344825352472', '5f5e23be306f344825352472'))
     this.Store.dispatch(new ShowAlternateSolutionsForSpecificTourSearchAction('5f5e23be306f344825352472'));
-    this.Store.dispatch(new ShowAlternateSolutionsForSpecificTourSolutionsAction('5f5e23be306f344825352472'))
+    this.Store.dispatch(new ShowAlternateSolutionsForSpecificTourSolutionsAction('5f5e23be306f344825352472'));
+    this.Store.dispatch(new LoadPutProfileAction());
+    this.Store.dispatch(new LoadSessionAction());
   }
 
   title = 'grt-website-b2b';
