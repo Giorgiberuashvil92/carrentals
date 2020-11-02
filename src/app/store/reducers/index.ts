@@ -19,9 +19,13 @@ export {
 } from './itineraryToursSolutions.reducer';
 
 export {
-    PutProfileReducer
+  PutProfileReducer
 } from './putProfile.reducer';
 
 export {
   SessionReducer
 } from './session.reducer';
+
+export {
+  AuthReducer
+} from './auth.reducer';

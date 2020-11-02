@@ -8,8 +8,9 @@ import { StoreModule } from '@ngrx/store';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { ItineraryAlternateToursEffects, ItineraryEffects, ItineraryToursSearchEffects, ItineraryToursSolutionsEffects, ProfileEffects, PutProfileEffects, SessionEffects } from './store/effects';
-import { ItineraryReducer, ItineraryToursSearchReducer, ItineraryToursSolutionsReducer, ProfileReducer, PutProfileReducer, ItineraryAlternateToursReducer } from './store/reducers';
+import { ItineraryReducer, ItineraryToursSearchReducer, ItineraryToursSolutionsReducer, ProfileReducer, PutProfileReducer, ItineraryAlternateToursReducer, AuthReducer } from './store/reducers';
 import { ApiPrefixInterceptor } from './core/interceptors/api-prefix.interceptor';
+import { AuthEffects } from './store/effects/auth.effect';
 @NgModule({
   declarations: [
     AppComponent
@@ -26,7 +27,8 @@ import { ApiPrefixInterceptor } from './core/interceptors/api-prefix.interceptor
       itineraryTours: ItineraryAlternateToursReducer,
       itineraryToursSearch: ItineraryToursSearchReducer,
       itineraryToursSolutions: ItineraryToursSolutionsReducer,
-      putProfile: PutProfileReducer
+      putProfile: PutProfileReducer,
+      auth: AuthReducer
     }),
     EffectsModule.forRoot([
       ItineraryEffects,
@@ -35,7 +37,8 @@ import { ApiPrefixInterceptor } from './core/interceptors/api-prefix.interceptor
       ItineraryToursSearchEffects,
       ItineraryToursSolutionsEffects,
       SessionEffects,
-      PutProfileEffects
+      PutProfileEffects,
+      AuthEffects
     ])
   ],
   providers: [

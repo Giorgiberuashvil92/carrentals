@@ -1,32 +1,37 @@
 export {
-    ItineraryActionTypes,
-    ItineraryAction
+  ItineraryActionTypes,
+  ItineraryAction
 } from './itinerary.action';
 
 export {
   ProfileActionTypes,
   ProfileAction
-} from './profile.action'
+} from './profile.action';
 
 export {
   ItineraryAlternateToursAction,
   ItineraryAlternateToursActionTypes
-} from './itineraryAlternateTours.action'
+} from './itineraryAlternateTours.action';
 
 export {
-ItinerarToursSearchAction,
-ItineraryToursSearchActionTypes
-} from './itineraryToursSearch.action'
+  ItinerarToursSearchAction,
+  ItineraryToursSearchActionTypes
+} from './itineraryToursSearch.action';
 
 export {
-ItinerarToursSolutionsAction,
-ItineraryToursSolutionsActionTypes
-} from './itineraryToursSolutions.action'
+  ItinerarToursSolutionsAction,
+  ItineraryToursSolutionsActionTypes
+} from './itineraryToursSolutions.action';
 
 export {
   PutProfileAction
-} from './putProfile.action'
+} from './putProfile.action';
 
 export {
   SessionAction
-} from './session.action'
+} from './session.action';
+
+export {
+  AuthAction,
+  AuthActionTypes
+} from './auth.action';
