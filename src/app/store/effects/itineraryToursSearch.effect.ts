@@ -14,7 +14,7 @@ export class ItineraryToursSearchEffects {
       private itineraryService: ItineraryService
     ) { }
 
-    @Effect() loadTours$ = this.actions$
+    @Effect() loadSearchTours$ = this.actions$
     .pipe(
       ofType<ShowAlternateSolutionsForSpecificTourSearchAction>(ItineraryToursSearchActionTypes.SHOW_ALTERNATE_SOLUTIONS_FOR_SPECIFIC_TOUR_SEARCH),
         mergeMap(

@@ -14,7 +14,7 @@ export class ItineraryToursSolutionsEffects {
       private itineraryService: ItineraryService
     ) { }
 
-    @Effect() loadTours$ = this.actions$
+    @Effect() loadSolutionsTours$ = this.actions$
     .pipe(
       ofType<ShowAlternateSolutionsForSpecificTourSolutionsAction>(ItineraryToursSolutionsActionTypes.SHOW_ALTERNATE_SOLUTIONS_FOR_SPECIFIC_TOUR_SOLUTIONS),
         mergeMap(

@@ -15,7 +15,7 @@ export class PutProfileEffects {
       private userService: UserService
     ) { }
 
-    @Effect() loadProfile$ = this.actions$
+    @Effect() putProfile$ = this.actions$
     .pipe(
         ofType<PutProfileAction>(PutProfileActionTypes.LOAD_PROFILE),
         mergeMap(

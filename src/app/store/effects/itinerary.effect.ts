@@ -14,7 +14,7 @@ export class ItineraryEffects {
       private itineraryService: ItineraryService
     ) { }
 
-    @Effect() loadShopping$ = this.actions$
+    @Effect() loadItinerary$ = this.actions$
     .pipe(
         ofType<LoadItineraryAction>(ItineraryActionTypes.LOAD_ITINERARY),
         mergeMap(

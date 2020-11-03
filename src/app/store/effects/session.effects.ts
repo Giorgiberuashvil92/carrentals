@@ -15,7 +15,7 @@ export class SessionEffects {
       private userService: UserService
     ) { }
 
-    @Effect() loadProfile$ = this.actions$
+    @Effect() loadSession$ = this.actions$
     .pipe(
         ofType<SessionAction>(SessionActionTypes.LOAD_SESSION),
         mergeMap(
