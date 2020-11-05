@@ -18,7 +18,7 @@ export class ItineraryEffects {
     .pipe(
         ofType<LoadItineraryAction>(ItineraryActionTypes.LOAD_ITINERARY),
         mergeMap(
-        (d) => this.itineraryService.getItinerary(d.payload,)
+        (d) => this.itineraryService.getItinerary(d.payload)
             .pipe(
             map(data => {
                 return new LoadItinerarySuccessAction(data)

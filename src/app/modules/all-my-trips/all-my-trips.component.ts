@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { LocationPaginator } from 'src/app/core/models/location-paginator.model';
 import { DeviceDetectorService } from 'src/app/core/services/device-detector.service';
 import { DialogService } from 'src/app/core/services/dialog.service';
 import { LoadItineraryAction } from 'src/app/store/actions/itinerary.action';
 import { AppState } from 'src/app/store/models/app-state.model';
+import { ItineraryState } from 'src/app/store/reducers';
 
 @Component({
   selector: 'app-all-my-trips',
@@ -15,56 +17,6 @@ export class AllMyTripsComponent implements OnInit {
 
   locationsToVisit: string[] = ['Rome', 'Paris', 'Prague'];
   tripTime: number = 10;
-  locationPaginatorData: LocationPaginator[] = [
-    {
-      firstData: '02/12/2020',
-      secondData: 'Arrival',
-      thirdData: '',
-      icon: 'arrival-icon.svg'
-    },
-    {
-      firstData: '3 DAYS',
-      secondData: 'Rome',
-      thirdData: 'Italy',
-      icon: 'location-city-icon.svg'
-    },
-    {
-      firstData: '02/12/2020',
-      secondData: 'Air 1h 35min',
-      thirdData: '(Not Included)',
-      icon: 'location-plane-icon.svg'
-    },
-    {
-      firstData: '3 Days',
-      secondData: 'Paris',
-      thirdData: 'France',
-      icon: 'location-city-icon.svg'
-    },
-    {
-      firstData: '02/12/2020',
-      secondData: 'Air 1h 35min',
-      thirdData: '(Not Included)',
-      icon: 'location-plane-icon.svg'
-    },
-    {
-      firstData: '3 DAYS',
-      secondData: 'Prague',
-      thirdData: 'Czech Republic',
-      icon: 'location-city-icon.svg'
-    },
-    {
-      firstData: '02/12/2020',
-      secondData: 'Train',
-      thirdData: '4 Hours',
-      icon: 'location-train-icon.svg'
-    },
-    {
-      firstData: '02/12/2020',
-      secondData: 'Departure',
-      thirdData: '',
-      icon: 'departure-icon.svg'
-    }
-  ]
 
   location: string = 'Prague';
   date: string = 'December 2, 2020';
@@ -89,6 +41,8 @@ export class AllMyTripsComponent implements OnInit {
     }
   ]
   leftItemActiveIndex: number = 0;
+  itinerary$: Observable<ItineraryState>;
+
 
   constructor(
     public dialogService: DialogService,
@@ -97,8 +51,8 @@ export class AllMyTripsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.dialogService.openDialog('notInclude');
     this.store.dispatch(new LoadItineraryAction('5f5e23be306f344825352472'));
+    this.itinerary$ = this.store.select(store => store.itinerary);
   }
 
   onPageChange(page: number) {
@@ -106,7 +60,6 @@ export class AllMyTripsComponent implements OnInit {
   }
 
   onChange() {
-    console.log('aaaaaaa');
     this.dialogService.openDialog('changeActivity');
   }
 }

@@ -1,5 +1,6 @@
 export {
     ItineraryReducer,
+    ItineraryState
 } from './itinerary.reducer';
 
 export {

@@ -21,7 +21,7 @@ export class AuthEffects {
         mergeMap(
         (d) => this.authService.signUpUser$(d.payload)
             .pipe(
-            map((data: SignUpAuthActionSuccessResponse) => {
+            map(data => {
                 return new SignUpAuthSuccessAction(data)
             }),
             catchError(error => of(new SignUpAuthFailureAction(error)))
@@ -35,7 +35,7 @@ export class AuthEffects {
         mergeMap(
         (d) => this.authService.signInUser$(d.payload)
             .pipe(
-            map((data: SignInAuthActionSuccessResponse) => {
+            map(data => {
                 return new SignInAuthSuccessAction(data)
             }),
             catchError(error => of(new SignInAuthFailureAction(error)))

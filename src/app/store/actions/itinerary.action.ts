@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+import { LoadItineraryFailureActionResponse, LoadItinerarySuccessActionResponse } from '../models';
 
 export enum ItineraryActionTypes {
   LOAD_ITINERARY = '[ITINERARY] Load Itinerary',
@@ -14,12 +15,13 @@ export class LoadItineraryAction implements Action {
 export class LoadItinerarySuccessAction implements Action {
     readonly type = ItineraryActionTypes.LOAD_ITINERARY_SUCCESS;
 
-    constructor(public payload: any) {}
+    constructor(public payload: LoadItinerarySuccessActionResponse) {}
 }
+
 export class LoadItineraryFailureAction implements Action {
     readonly type = ItineraryActionTypes.LOAD_ITINERARY_FAILURE;
 
-    constructor(public payload: Error) {}
+    constructor(public payload: LoadItineraryFailureActionResponse) {}
 }
 
 

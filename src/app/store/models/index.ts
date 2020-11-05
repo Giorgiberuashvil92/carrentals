@@ -1,4 +1,8 @@
 export {
+    AppState
+} from './app-state.model';
+
+export {
     SignUpAuthActionRequest,
     SignUpAuthActionSuccessResponse,
     SignUpAuthActionFailureResponse,
@@ -6,3 +10,8 @@ export {
     SignInAuthActionSuccessResponse,
     SignInAuthActionFailureResponse
 } from './auth.model';
+
+export {
+    LoadItinerarySuccessActionResponse,
+    LoadItineraryFailureActionResponse
+} from './itinerary.model';

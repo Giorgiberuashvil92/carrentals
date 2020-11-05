@@ -2,18 +2,19 @@ import {
     ItineraryAction,
     ItineraryActionTypes
 } from '../actions';
+import { LoadItineraryFailureActionResponse, LoadItinerarySuccessActionResponse } from '../models';
 
 export interface ItineraryState {
-    data: any,
-    loading: boolean,
-    error: Error
-  }
+  data: LoadItinerarySuccessActionResponse,
+  loading: boolean,
+  error: LoadItineraryFailureActionResponse
+}
 
-  const initialState: ItineraryState = {
-    data: undefined,
-    loading: false,
-    error: undefined
-  };
+const initialState: ItineraryState = {
+  data: undefined,
+  loading: false,
+  error: undefined
+};
 
 
 

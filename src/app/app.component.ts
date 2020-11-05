@@ -26,16 +26,16 @@ export class AppComponent implements OnInit {
     // this.store.dispatch(new ShowAlternateSolutionsForSpecificTourSolutionsAction('5f5e23be306f344825352472'));
     // this.store.dispatch(new LoadPutProfileAction());
     // this.store.dispatch(new LoadSessionAction());
-    this.store.dispatch(new SignUpAuthAction({
-      type: 'users',
-      attributes: {
-        email: 'user@gre.com',
-        password: 'Paroli1',
-        phone: '123456789',
-        "first-name": 'abcd',
-        "last-name": 'efgh'
-      }
-    }));
+    // this.store.dispatch(new SignUpAuthAction({
+    //   type: 'users',
+    //   attributes: {
+    //     email: 'user@gre.com',
+    //     password: 'Paroli1',
+    //     phone: '123456789',
+    //     "first-name": 'abcd',
+    //     "last-name": 'efgh'
+    //   }
+    // }));
     // this.store.dispatch(new SignInAuthAction({
     //   type: 'users',
     //   attributes: {
