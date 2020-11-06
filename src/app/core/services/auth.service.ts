@@ -2,10 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { 
-  SignUpAuthActionFailureResponse, 
   SignUpAuthActionRequest, 
   SignUpAuthActionSuccessResponse,
-  SignInAuthActionFailureResponse, 
   SignInAuthActionRequest, 
   SignInAuthActionSuccessResponse 
 } from 'src/app/store/models';
@@ -19,11 +17,11 @@ export class AuthService {
     private httpClient: HttpClient
   ) { }
 
-  signUpUser$(payload: SignUpAuthActionRequest): Observable<SignUpAuthActionSuccessResponse | SignUpAuthActionFailureResponse> {
-    return this.httpClient.post<SignUpAuthActionSuccessResponse | SignUpAuthActionFailureResponse>('/profile', payload);
+  signUpUser$(payload: SignUpAuthActionRequest): Observable<SignUpAuthActionSuccessResponse> {
+    return this.httpClient.post<SignUpAuthActionSuccessResponse>('/profile', payload);
   }
 
-  signInUser$(payload: SignInAuthActionRequest): Observable<SignInAuthActionSuccessResponse | SignInAuthActionFailureResponse> {
-    return this.httpClient.post<SignInAuthActionSuccessResponse | SignInAuthActionFailureResponse>('/session', payload);
+  signInUser$(payload: SignInAuthActionRequest): Observable<SignInAuthActionSuccessResponse> {
+    return this.httpClient.post<SignInAuthActionSuccessResponse>('/session', payload);
   }
 }

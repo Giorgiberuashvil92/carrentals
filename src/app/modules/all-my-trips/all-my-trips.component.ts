@@ -1,94 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { LocationPaginator } from 'src/app/core/models/location-paginator.model';
+import { Observable, Subscription } from 'rxjs';
+import { filter, tap } from 'rxjs/operators';
 import { DeviceDetectorService } from 'src/app/core/services/device-detector.service';
 import { DialogService } from 'src/app/core/services/dialog.service';
-import { LoadItineraryAction } from 'src/app/store/actions/itinerary.action';
+import { LoadItineraryAction, SetDayIndexAction, SetTourIndexAction } from 'src/app/store/actions/itinerary.action';
 import { AppState } from 'src/app/store/models/app-state.model';
+import { ItineraryState } from 'src/app/store/reducers';
 
 @Component({
   selector: 'app-all-my-trips',
   templateUrl: './all-my-trips.component.html',
   styleUrls: ['./all-my-trips.component.scss']
 })
-export class AllMyTripsComponent implements OnInit {
+export class AllMyTripsComponent implements OnInit, OnDestroy {
 
-  locationsToVisit: string[] = ['Rome', 'Paris', 'Prague'];
-  tripTime: number = 10;
-  locationPaginatorData: LocationPaginator[] = [
-    {
-      firstData: '02/12/2020',
-      secondData: 'Arrival',
-      thirdData: '',
-      icon: 'arrival-icon.svg'
-    },
-    {
-      firstData: '3 DAYS',
-      secondData: 'Rome',
-      thirdData: 'Italy',
-      icon: 'location-city-icon.svg'
-    },
-    {
-      firstData: '02/12/2020',
-      secondData: 'Air 1h 35min',
-      thirdData: '(Not Included)',
-      icon: 'location-plane-icon.svg'
-    },
-    {
-      firstData: '3 Days',
-      secondData: 'Paris',
-      thirdData: 'France',
-      icon: 'location-city-icon.svg'
-    },
-    {
-      firstData: '02/12/2020',
-      secondData: 'Air 1h 35min',
-      thirdData: '(Not Included)',
-      icon: 'location-plane-icon.svg'
-    },
-    {
-      firstData: '3 DAYS',
-      secondData: 'Prague',
-      thirdData: 'Czech Republic',
-      icon: 'location-city-icon.svg'
-    },
-    {
-      firstData: '02/12/2020',
-      secondData: 'Train',
-      thirdData: '4 Hours',
-      icon: 'location-train-icon.svg'
-    },
-    {
-      firstData: '02/12/2020',
-      secondData: 'Departure',
-      thirdData: '',
-      icon: 'departure-icon.svg'
-    }
-  ]
-
-  location: string = 'Prague';
-  date: string = 'December 2, 2020';
-  leftData = [
-    {
-      img: 'https://img.traveltriangle.com/blog/wp-content/uploads/2018/11/Prague_Cover.jpg',
-      title: 'Guided walking tour of the Royal Route',
-      isSelfGuided: false,
-      timeInterval: '9:00 AM - 12:30 PM'
-    },
-    {
-      img: 'https://img.traveltriangle.com/blog/wp-content/uploads/2018/11/Prague_Cover.jpg',
-      title: 'Prague Castle',
-      isSelfGuided: true,
-      timeInterval: 'Early Afternoon'
-    },
-    {
-      img: 'https://img.traveltriangle.com/blog/wp-content/uploads/2018/11/Prague_Cover.jpg',
-      title: 'The Little Quarter',
-      isSelfGuided: true,
-      timeInterval: 'Late Afternoon'
-    }
-  ]
-  leftItemActiveIndex: number = 0;
+  itinerary$: Observable<ItineraryState>;
+  itinerary: ItineraryState;
+  itinerarySub: Subscription;
+  day: any;
+  waypoints: any[];
 
   constructor(
     public dialogService: DialogService,
@@ -97,16 +28,60 @@ export class AllMyTripsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.dialogService.openDialog('notInclude');
     this.store.dispatch(new LoadItineraryAction('5f5e23be306f344825352472'));
+    this.itinerary$ = this.store.select(store => store.itinerary);
+    this.itinerarySub = this.itinerary$
+    .pipe(
+      tap(r => this.itinerary = r),
+      filter(r => !r.loading)
+    )
+    .subscribe(res => {
+      this.generateCitiesArray(this.itinerary.data.data['relationships'].cities.data, this.itinerary.data['included']);
+      this.day = this.itinerary.data['included'].find(i => i.type === 'days' && i.id === this.itinerary.data.data['relationships'].days.data[this.itinerary.dayIndex-1].id)
+      this.waypoints = this.generateTours()[this.itinerary.tourIndex]['relationships'].pois.data.map(d => this.itinerary.data['included'].find(i => i.type === 'waypoints' && i.id === d.id));
+    });
   }
 
-  onPageChange(page: number) {
-    console.log(page);
+  onDayChange(day: number) {
+    this.store.dispatch(new SetDayIndexAction(day));
+    this.store.dispatch(new SetTourIndexAction(0));
+  }
+
+  onTourChange(tour: number) {
+    this.store.dispatch(new SetTourIndexAction(tour));
+  }
+
+  generateCitiesArray(cities: any[], included: any[]) {
+    const res: string[] = cities.map(c => included.find(i => i.type === 'cities' && i.id === c.id).attributes.name);
+    return res.length <= 3 ? res : [res[0], '...', res[res.length-1]];
+  }
+
+  findLocation(day: number) {
+    if(this.day['relationships']['starting-city'].data && this.day['relationships']['starting-city'].data.id 
+        && this.day['relationships']['ending-city'].data && this.day['relationships']['ending-city'].data.id 
+        && this.day['relationships']['starting-city'].data.id !== this.day['relationships']['ending-city'].data.id) {
+      return this.itinerary.data['included'].find(i => i.type === 'cities' && i.id === this.day['relationships']['starting-city'].data.id).attributes.name
+         + ' - ' 
+         + this.itinerary.data['included'].find(i => i.type === 'cities' && i.id === this.day['relationships']['ending-city'].data.id).attributes.name;
+    }
+    if(this.day['relationships']['starting-city'].data && this.day['relationships']['starting-city'].data.id) {
+      return this.itinerary.data['included'].find(i => i.type === 'cities' && i.id === this.day['relationships']['starting-city'].data.id).attributes.name;
+    } else if(this.day['relationships']['ending-city'].data && this.day['relationships']['ending-city'].data.id) {
+      return this.itinerary.data['included'].find(i => i.type === 'cities' && i.id === this.day['relationships']['ending-city'].data.id).attributes.name;
+    }
+    console.log(this.itinerary.data['included']);
+    return 'Location Not Found';
+  }
+
+  generateTours() {
+    return this.day['relationships']['tours'].data.map(t => this.itinerary.data['included'].find(i => i.type === 'tours' && i.id === t.id));
   }
 
   onChange() {
-    console.log('aaaaaaa');
     this.dialogService.openDialog('changeActivity');
+  }
+
+  ngOnDestroy() {
+    if(this.itinerarySub) this.itinerarySub.unsubscribe();
   }
 }

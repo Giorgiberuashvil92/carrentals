@@ -2,18 +2,23 @@ import {
     ItineraryAction,
     ItineraryActionTypes
 } from '../actions';
+import { LoadItineraryFailureActionResponse, LoadItinerarySuccessActionResponse } from '../models';
 
 export interface ItineraryState {
-    data: any,
-    loading: boolean,
-    error: Error
-  }
+  data: LoadItinerarySuccessActionResponse,
+  loading: boolean,
+  error: LoadItineraryFailureActionResponse,
+  dayIndex: number,
+  tourIndex: number
+}
 
-  const initialState: ItineraryState = {
-    data: undefined,
-    loading: false,
-    error: undefined
-  };
+const initialState: ItineraryState = {
+  data: undefined,
+  loading: false,
+  error: undefined,
+  dayIndex: 1,
+  tourIndex: 0
+};
 
 
 
@@ -35,6 +40,16 @@ export function ItineraryReducer(state: ItineraryState = initialState, action: I
           ...state,
           data: action.payload,
           loading: false
+      }
+    case ItineraryActionTypes.SET_DAY_INDEX:
+      return {
+        ...state,
+        dayIndex: action.payload
+      }
+    case ItineraryActionTypes.SET_TOUR_INDEX:
+      return {
+        ...state,
+        tourIndex: action.payload
       }
     default:
       return state;

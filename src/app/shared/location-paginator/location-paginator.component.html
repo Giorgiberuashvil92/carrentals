@@ -7,21 +7,24 @@
         <ng-container *ngFor="let d of dataToShow; let i=index">
             <div class="location-wrapper flex flex-col items-center" 
                 [ngStyle]="{ 
-                    'opacity': i === activeIndex - 1 ? '1' : '0.3',
+                    'opacity': i + leftMostIndex === activeIndex ? '1' : '0.3',
                     'transform': 'translateX(' + mobileTranslate + 'px)'
                 }"
-                (click)="changeIndex(i+1)">
+                (click)="changeIndex(i + leftMostIndex)">
                 <div class="first-data w-full text-center">
-                    {{ d.firstData }}
+                    {{ d['top-text'] }}
                 </div>
-                <div class="icon-data flex justify-center items-center" [ngClass]="{ 'icon-data__active': i === activeIndex - 1 }">
-                    <img [src]="'/assets/' + d.icon">
+                <div class="icon-data flex justify-center items-center" [ngClass]="{ 'icon-data__active': i + leftMostIndex === activeIndex }">
+                    <img [src]="'/assets/' + d.icon + '.svg'">
                 </div>
-                <div class="second-data w-full text-center" [ngClass]="{ 'second-data__active': i === activeIndex - 1 }">
-                    {{ d.secondData }}
+                <div class="second-data w-full text-center" [ngClass]="{ 'second-data__active': i + leftMostIndex === activeIndex }">
+                    {{ d['bottom-text-bold'] }}
                 </div>
                 <div class="third-data w-full text-center">
-                    {{ d.thirdData }}
+                    {{ d['bottom-text'] }}
+                </div>
+                <div *ngIf="(i !== 0) && (i + leftMostIndex !== data.length) && !d['bottom-text-bold']" class="fourth-data w-full text-center">
+                    (Not Included)
                 </div>
             </div>
     

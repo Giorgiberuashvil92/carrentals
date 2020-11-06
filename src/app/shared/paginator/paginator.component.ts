@@ -18,6 +18,7 @@ export class PaginatorComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    if(this.pagesToShow > this.pagesAmount) this.pagesToShow = this.pagesAmount;
     this.generateArray();
   }
 

@@ -1,6 +1,9 @@
 export interface LocationPaginator {
-    firstData: string;
-    secondData: string;
-    thirdData: string;
-    icon: string;
+    'step': number;
+    'type': string;
+    'icon': string;
+    'top-text': string;
+    'bottom-text': string;
+    'bottom-text-bold': string;
+    'day-index:': number;
 }

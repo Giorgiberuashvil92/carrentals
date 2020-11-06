@@ -1,6 +1,11 @@
 export {
   ItineraryActionTypes,
-  ItineraryAction
+  ItineraryAction,
+  LoadItineraryAction,
+  LoadItineraryFailureAction,
+  LoadItinerarySuccessAction,
+  SetDayIndexAction,
+  SetTourIndexAction
 } from './itinerary.action';
 
 export {
@@ -33,7 +38,13 @@ export {
 
 export {
   AuthAction,
-  AuthActionTypes
+  AuthActionTypes,
+  SignInAuthAction,
+  SignInAuthFailureAction,
+  SignInAuthSuccessAction,
+  SignUpAuthAction,
+  SignUpAuthFailureAction,
+  SignUpAuthSuccessAction
 } from './auth.action';
 
 export {

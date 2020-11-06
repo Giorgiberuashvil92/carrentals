@@ -77,6 +77,6 @@ export class LocationPaginatorComponent implements OnInit {
 
   generateArray() {
     this.dataToShow = this.data.slice(this.leftMostIndex - 1, this.leftMostIndex - 1 + this.locationsToShow);
-    console.log(this.data);
+    console.log(this.dataToShow);
   }
 }

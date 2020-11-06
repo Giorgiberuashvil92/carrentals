@@ -1,22 +1,20 @@
-<div class="wrapper">
+<div class="wrapper" *ngIf="itinerary && !itinerary.loading && itinerary.data">
     <div class="location-wrapper flex justify-between items-center">
         <div class="location-details ">
             <div class="location-names">
                 <div
-                    *ngFor="let l of (locationsToVisit.length > 3 ?
-                        [locationsToVisit[0], '...', locationsToVisit[locationsToVisit.length - 1]]
-                        : locationsToVisit)">
+                    *ngFor="let l of generateCitiesArray(itinerary.data.data.relationships.cities.data, itinerary.data.included)">
                     {{ l }}
                 </div>
             </div>
             <div class="trip-time">
-                {{ tripTime }} Day Trip
+                {{ itinerary.data.data.attributes['days-count'] }} Day Trip
             </div>
         </div>
 
         <app-location-paginator
             class="block"
-            [data]="locationPaginatorData"
+            [data]="itinerary.data.data.attributes['transportation-plan']"
             [leftMostIndex]="1"
             [locationsToShow]="8"
             [activeIndex]="2"
@@ -33,25 +31,25 @@
 
             <app-paginator
                 class="block"
-                [currentPage]="5"
+                [currentPage]="itinerary.dayIndex"
                 [leftMostPage]="1"
-                [pagesAmount]="20"
+                [pagesAmount]="itinerary.data.data.relationships.days.data.length"
                 [pagesToShow]="10"
-                (page)="onPageChange($event)"
+                (page)="onDayChange($event)"
             ></app-paginator>
 
             <div class="gt-n">
-              <div class="edit-add">
+                <div class="edit-add">
                 <button (click)="dialogService.openDialog('editTrip')">EDIT TRIP</button>
                 <button (click)="dialogService.openDialog('selectActivity')">+ ADD ACTIVITY</button>
             </div>
 
             <div class="tl-wr">
-              <div class="location">
-                {{ location }}
+                <div class="location">
+                {{ findLocation() }}
             </div>
             <div class="date">
-                {{ date }}
+                {{ day.attributes.date | date }}
             </div>
             </div>
             </div>
@@ -59,22 +57,18 @@
 
             <div class="left-list-wrapper">
                 <div class="left-item flex cursor-pointer"
-                    *ngFor="let l of leftData; let i=index"
-                    [ngClass]="{ 'left-item__active': i === leftItemActiveIndex }"
-                    (click)="leftItemActiveIndex = i">
-                    <div class="image" [style.background-image]="'url(\'' + l.img + '\')'"></div>
+                    *ngFor="let tour of generateTours(); let i=index"
+                    [ngClass]="{ 'left-item__active': i === itinerary.tourIndex }"
+                    (click)="onTourChange(i)">
+                    <div class="image" [style.background-image]="'url(\'' + tour.attributes['square-image-url'] + '\')'"></div>
 
                     <div class="detail-wrapper">
                         <div class="title">
-                            {{ l.title }}
-                        </div>
-
-                        <div class="self-guided">
-                            {{ l.isSelfGuided ? '(Self Guided)' : '' }}
+                            {{ tour.attributes.name }}
                         </div>
 
                         <div class="time-interval">
-                            {{ l.timeInterval }}
+                            {{ tour.attributes.schedule }}
                         </div>
 
                         <div class="actions flex">
@@ -84,7 +78,7 @@
                                     CHANGE
                                 </div>
                             </button>
-                            <button class="remove-button flex justify-between items-center" *ngIf="i === leftItemActiveIndex">
+                            <button class="remove-button flex justify-between items-center" *ngIf="i === itinerary.tourIndex">
                                 <img src="/assets/remove-icon.svg" alt="">
                                 <div>
                                     REMOVE
@@ -96,7 +90,7 @@
             </div>
         </div>
         <div class="right-side pd-lf">
-            <app-location-detail></app-location-detail>
+            <app-location-detail [data]="waypoints"></app-location-detail>
         </div>
     </div>
     <div class="pd-rg">
@@ -104,6 +98,6 @@
     </div>
     <div class="line2"></div>
     <div class="pr-g " style="height: 200px;">
-      <app-detail-itirenary></app-detail-itirenary>
+        <app-detail-itirenary></app-detail-itirenary>
     </div>
 </div>
