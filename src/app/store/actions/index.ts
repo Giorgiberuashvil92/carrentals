@@ -65,3 +65,11 @@ export {
   LoadInterestsFailureAction,
   LoadInterestsSuccessAction
 } from './interest.action';
+
+export {
+  PasswordAction,
+  PasswordActionTypes,
+  LoadPasswordAction,
+  LoadPasswordFailureAction,
+  LoadPasswordSuccessAction
+} from './passwords.action'

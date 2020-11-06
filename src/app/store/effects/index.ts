@@ -33,3 +33,7 @@ export {
 export {
   InterestEffects
 } from './interest.effect';
+
+export {
+  PasswordEffects
+} from './password.effect'

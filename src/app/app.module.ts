@@ -7,12 +7,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
-import { CityEffects, InterestEffects, ItineraryAlternateToursEffects, ItineraryEffects, ItineraryToursSearchEffects, ItineraryToursSolutionsEffects, ProfileEffects, PutProfileEffects, SessionEffects } from './store/effects';
+import { CityEffects, InterestEffects, ItineraryAlternateToursEffects, ItineraryEffects, ItineraryToursSearchEffects, ItineraryToursSolutionsEffects, PasswordEffects, ProfileEffects, PutProfileEffects, SessionEffects } from './store/effects';
 import { ItineraryReducer, ItineraryToursSearchReducer, ItineraryToursSolutionsReducer, ProfileReducer, PutProfileReducer, ItineraryAlternateToursReducer, AuthReducer, CityReducer, InterestReducer } from './store/reducers';
 import { ApiPrefixInterceptor } from './core/interceptors/api-prefix.interceptor';
 import { AuthEffects } from './store/effects/auth.effect';
+import { PasswordReducer } from './store/reducers/password.reducer';
+import { environment } from 'src/environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent
@@ -32,8 +33,8 @@ import { environment } from '../environments/environment';
       putProfile: PutProfileReducer,
       auth: AuthReducer,
       city: CityReducer,
-      interest: InterestReducer
-
+      interest: InterestReducer,
+      password: PasswordReducer
     }),
     EffectsModule.forRoot([
       ItineraryEffects,
@@ -45,7 +46,8 @@ import { environment } from '../environments/environment';
       PutProfileEffects,
       AuthEffects,
       CityEffects,
-      InterestEffects
+      InterestEffects,
+      PasswordEffects
     ]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
