@@ -25,3 +25,11 @@ export {
 export {
   SessionEffects
 } from './session.effects';
+
+export {
+  CityEffects
+} from './city.effect';
+
+export {
+  InterestEffects
+} from './interest.effect';

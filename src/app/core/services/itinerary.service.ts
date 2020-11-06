@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LoadItinerarySuccessActionResponse } from 'src/app/store/models';
+import { ItineraryResponse } from 'src/app/store/models';
 
 
 @Injectable({
@@ -11,8 +11,12 @@ export class ItineraryService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getItinerary(id: string): Observable<LoadItinerarySuccessActionResponse> {
-    return this.httpClient.get<LoadItinerarySuccessActionResponse>(`/itineraries/${id}`);
+  getItinerary$(id: string): Observable<ItineraryResponse> {
+    return this.httpClient.get<ItineraryResponse>(`/itineraries/${id}`);
+  }
+
+  deleteTour$(itineraryId: string, id: string): Observable<ItineraryResponse> {
+    return this.httpClient.delete<ItineraryResponse>(`/itineraries/${itineraryId}/tours/${id}`);
   }
 
   getItineraryAlternateTours(itineraryId:string,id:string){

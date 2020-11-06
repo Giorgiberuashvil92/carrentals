@@ -16,9 +16,9 @@
             Select city or cities:
         </div>
 
-        <div class="cities-wrapper flex flex-wrap">
-            <div class="city cursor-pointer" *ngFor="let c of cities" (click)="toggleCity(c)" [ngClass]="{ 'city__active': citySet.has(c)}">
-                {{ c }}
+        <div class="cities-wrapper flex flex-wrap" *ngIf="cityState$ | async as cityState">
+            <div class="city cursor-pointer" *ngFor="let c of cityState.cities.data" (click)="toggleCity(c)" [ngClass]="{ 'city__active': citySet.has(c)}">
+                {{ c.attributes['name'] }}
             </div>
         </div>
 
@@ -26,9 +26,9 @@
             You are interested in...
         </div>
 
-        <div class="interests-wrapper flex flex-wrap">
-            <div class="interest cursor-pointer" *ngFor="let i of interests" (click)="toggleInterest(i)" [ngClass]="{ 'interest__active': interestSet.has(i)}">
-                {{ i }}
+        <div class="interests-wrapper flex flex-wrap" *ngIf="interestState$ | async as interestState">
+            <div class="interest cursor-pointer" *ngFor="let i of interestState.interests.data" (click)="toggleInterest(i)" [ngClass]="{ 'interest__active': interestSet.has(i)}">
+                {{ i.attributes['name'] }}
             </div>
         </div>
 

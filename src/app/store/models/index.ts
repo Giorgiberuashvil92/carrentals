@@ -12,6 +12,14 @@ export {
 } from './auth.model';
 
 export {
-    LoadItinerarySuccessActionResponse,
-    LoadItineraryFailureActionResponse
+    ItineraryResponse,
+    FailureResponse
 } from './itinerary.model';
+
+export {
+    CitiesResponse
+} from './city.model';
+
+export {
+    InterestsResponse
+} from './interest.model';

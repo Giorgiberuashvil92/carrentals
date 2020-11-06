@@ -2,12 +2,12 @@ import {
     ItineraryAction,
     ItineraryActionTypes
 } from '../actions';
-import { LoadItineraryFailureActionResponse, LoadItinerarySuccessActionResponse } from '../models';
+import { FailureResponse, ItineraryResponse } from '../models';
 
 export interface ItineraryState {
-  data: LoadItinerarySuccessActionResponse,
+  data: ItineraryResponse,
   loading: boolean,
-  error: LoadItineraryFailureActionResponse,
+  error: FailureResponse,
   dayIndex: number,
   tourIndex: number
 }
@@ -50,6 +50,19 @@ export function ItineraryReducer(state: ItineraryState = initialState, action: I
       return {
         ...state,
         tourIndex: action.payload
+      }
+    case ItineraryActionTypes.DELETE_TOUR:
+      return {
+          ...state
+      };
+    case ItineraryActionTypes.DELETE_TOUR_SUCCESS:
+      return {
+          ...state,
+          data: action.payload
+      }
+    case ItineraryActionTypes.DELETE_TOUR_FAILURE:
+      return {
+          ...state
       }
     default:
       return state;

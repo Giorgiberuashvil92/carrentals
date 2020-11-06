@@ -7,7 +7,7 @@
 
     <div class="activity-wrapper">
         <div class="activity relative flex" 
-            *ngFor="let a of activities; let i=index" 
+            *ngFor="let d of data; let i=index" 
             [ngClass]="{ 'activity__active': i === currentIndex}"
             (click)="currentIndex = i">
             
@@ -21,17 +21,17 @@
                 </div>
             </div>
             
-            <div class="image" [style.background-image]="'url(\'' + a.img + '\')'"></div>
+            <div class="image" [style.background-image]="'url(\'' + d.attributes['square-image-url'] + '\')'"></div>
 
             <div class="detail-wrapper">
-                <div class="title-self-guided">
-                    {{ a.title }}  {{ a.isSelfGuided ? '(Self Guided)' : '' }}
+                <div class="title">
+                    {{ d.attributes.name }}
                 </div>
 
                 <div class="tags flex">
-                    <div class="tag" *ngFor="let tag of a.tags">
+                    <!-- <div class="tag" *ngFor="let tag of a.tags">
                         {{ tag }}
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

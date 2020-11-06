@@ -4,7 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
 import { DeviceDetectorService } from 'src/app/core/services/device-detector.service';
 import { DialogService } from 'src/app/core/services/dialog.service';
-import { LoadItineraryAction, SetDayIndexAction, SetTourIndexAction } from 'src/app/store/actions/itinerary.action';
+import { DeleteTourAction, LoadItineraryAction, SetDayIndexAction, SetTourIndexAction } from 'src/app/store/actions/itinerary.action';
 import { AppState } from 'src/app/store/models/app-state.model';
 import { ItineraryState } from 'src/app/store/reducers';
 
@@ -78,7 +78,11 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
   }
 
   onChange() {
-    this.dialogService.openDialog('changeActivity');
+    this.dialogService.openDialog('changeActivity', this.generateTours());
+  }
+
+  onDeleteTour(id: string) {
+    this.store.dispatch(new DeleteTourAction(this.itinerary.data.data.id, id));
   }
 
   ngOnDestroy() {

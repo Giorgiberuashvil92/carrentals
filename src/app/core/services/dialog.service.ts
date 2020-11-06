@@ -45,11 +45,12 @@ export class DialogService {
     private dialog: MatDialog
   ) { }
 
-  openDialog(dialogName: string) {
+  openDialog(dialogName: string, data?: any) {
     if(this.dialogMap.hasOwnProperty(dialogName)) {
       this.dialogRef = this.dialog.open(this.dialogMap[dialogName].component, {
         width: '90%',
-        maxWidth: this.dialogMap[dialogName].maxWidth
+        maxWidth: this.dialogMap[dialogName].maxWidth,
+        data
       });
     }
   }
