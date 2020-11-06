@@ -23,6 +23,7 @@
     "@angular/router": "~10.1.5",
     "@ngrx/effects": "^10.0.1",
     "@ngrx/store": "^10.0.1",
+    "@ngrx/store-devtools": "^10.0.1",
     "ngx-build-plus": "^10.1.1",
     "ngx-swiper-wrapper": "^10.0.0",
     "rxjs": "~6.6.0",

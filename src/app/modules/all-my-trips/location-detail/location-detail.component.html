@@ -1,28 +1,14 @@
-<!-- <div  class="swiper-container" [swiper]="config" [(index)]="index">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide">
-      Swiper slide content
-    </div>
-  </div>
-
-  <div class="swiper-scrollbar"></div>
-  <div class="swiper-pagination"></div>
-
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>
-</div> -->
-
 <swiper class="f-w swiper-wrapper" (indexChange)="onIndexChange($event)" [config]="config">
-      <div class="f-w" *ngFor="let item of array">
-        <div  class="img-tr"style="position: relative;">
-          <img [src]="item.nam" alt="">
+      <div class="f-w" *ngFor="let item of data">
+        <div class="img-tr relative">
+          <img [src]="item.attributes['image-url']" alt="">
           <div class="p-a">
-           <h1>{{item.name}}</h1>
-           <p class="p-sm">{{item.small}}</p>
+           <h1>{{ item.attributes.name }}</h1>
+           <p class="p-sm">{{ item.attributes.summary }}</p>
           </div>
         </div>
         <div>
-          {{item.description}}
+          {{ item.attributes.description }}
         </div>
 
       </div>

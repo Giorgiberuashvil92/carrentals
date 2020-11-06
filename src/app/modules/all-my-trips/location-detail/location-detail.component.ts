@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 @Component({
@@ -7,6 +7,9 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
   styleUrls: ['./location-detail.component.scss']
 })
 export class LocationDetailComponent implements OnInit {
+
+  @Input() data: any[];
+
   imgURL = "/assets/full-photo.svg"
   imgALT = "DONTWORKING"
 

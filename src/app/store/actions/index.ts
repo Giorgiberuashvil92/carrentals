@@ -3,7 +3,9 @@ export {
   ItineraryAction,
   LoadItineraryAction,
   LoadItineraryFailureAction,
-  LoadItinerarySuccessAction
+  LoadItinerarySuccessAction,
+  SetDayIndexAction,
+  SetTourIndexAction
 } from './itinerary.action';
 
 export {
