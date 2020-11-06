@@ -25,3 +25,7 @@ export {
 export {
   SessionEffects
 } from './session.effects';
+
+export {
+  PasswordEffects
+} from './password.effect'

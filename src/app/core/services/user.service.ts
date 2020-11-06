@@ -22,4 +22,5 @@ export class UserService {
   deleteSession(): Observable<any> {
     return this.httpClient.delete<any>(`/session`);
   }
+
 }

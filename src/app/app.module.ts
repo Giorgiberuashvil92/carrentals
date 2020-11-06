@@ -7,10 +7,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
-import { ItineraryAlternateToursEffects, ItineraryEffects, ItineraryToursSearchEffects, ItineraryToursSolutionsEffects, ProfileEffects, PutProfileEffects, SessionEffects } from './store/effects';
+import { ItineraryAlternateToursEffects, ItineraryEffects, ItineraryToursSearchEffects, ItineraryToursSolutionsEffects, PasswordEffects, ProfileEffects, PutProfileEffects, SessionEffects } from './store/effects';
 import { ItineraryReducer, ItineraryToursSearchReducer, ItineraryToursSolutionsReducer, ProfileReducer, PutProfileReducer, ItineraryAlternateToursReducer, AuthReducer } from './store/reducers';
 import { ApiPrefixInterceptor } from './core/interceptors/api-prefix.interceptor';
 import { AuthEffects } from './store/effects/auth.effect';
+import { PasswordReducer } from './store/reducers/password.reducer';
 @NgModule({
   declarations: [
     AppComponent
@@ -28,7 +29,8 @@ import { AuthEffects } from './store/effects/auth.effect';
       itineraryToursSearch: ItineraryToursSearchReducer,
       itineraryToursSolutions: ItineraryToursSolutionsReducer,
       putProfile: PutProfileReducer,
-      auth: AuthReducer
+      auth: AuthReducer,
+      password: PasswordReducer
     }),
     EffectsModule.forRoot([
       ItineraryEffects,
@@ -38,7 +40,8 @@ import { AuthEffects } from './store/effects/auth.effect';
       ItineraryToursSolutionsEffects,
       SessionEffects,
       PutProfileEffects,
-      AuthEffects
+      AuthEffects,
+      PasswordEffects
     ])
   ],
   providers: [

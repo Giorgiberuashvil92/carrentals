@@ -35,3 +35,8 @@ export {
   AuthAction,
   AuthActionTypes
 } from './auth.action';
+
+export {
+PasswordAction,
+PasswordActionTypes
+} from './passwords.action'
