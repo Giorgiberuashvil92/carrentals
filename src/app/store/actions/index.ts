@@ -5,7 +5,10 @@ export {
   LoadItineraryFailureAction,
   LoadItinerarySuccessAction,
   SetDayIndexAction,
-  SetTourIndexAction
+  SetTourIndexAction,
+  DeleteTourAction,
+  DeleteTourFailureAction,
+  DeleteTourSuccessAction
 } from './itinerary.action';
 
 export {
@@ -48,6 +51,25 @@ export {
 } from './auth.action';
 
 export {
-PasswordAction,
-PasswordActionTypes
+  CityAction,
+  CityActionTypes,
+  LoadCitiesAction,
+  LoadCitiesFailureAction,
+  LoadCitiesSuccessAction
+} from './city.action';
+
+export {
+  InterestAction,
+  InterestActionTypes,
+  LoadInterestsAction,
+  LoadInterestsFailureAction,
+  LoadInterestsSuccessAction
+} from './interest.action';
+
+export {
+  PasswordAction,
+  PasswordActionTypes,
+  LoadPasswordAction,
+  LoadPasswordFailureAction,
+  LoadPasswordSuccessAction
 } from './passwords.action'

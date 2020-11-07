@@ -3,7 +3,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 
 import { of } from 'rxjs';
-import { ItineraryActionTypes, LoadItineraryAction, LoadItineraryFailureAction, LoadItinerarySuccessAction} from '../actions/itinerary.action';
+import { DeleteTourAction, DeleteTourFailureAction, DeleteTourSuccessAction, ItineraryActionTypes, LoadItineraryAction, LoadItineraryFailureAction, LoadItinerarySuccessAction} from '../actions/itinerary.action';
 import { ItineraryService } from 'src/app/core/services/itinerary.service';
 
 @Injectable()
@@ -18,7 +18,7 @@ export class ItineraryEffects {
     .pipe(
         ofType<LoadItineraryAction>(ItineraryActionTypes.LOAD_ITINERARY),
         mergeMap(
-        (d) => this.itineraryService.getItinerary(d.payload)
+        (d) => this.itineraryService.getItinerary$(d.payload)
             .pipe(
             map(data => {
                 return new LoadItinerarySuccessAction(data)
@@ -28,4 +28,17 @@ export class ItineraryEffects {
         ),
     )
 
+    @Effect() deleteTour$ = this.actions$
+    .pipe(
+        ofType<DeleteTourAction>(ItineraryActionTypes.DELETE_TOUR),
+        mergeMap(
+        (d) => this.itineraryService.deleteTour$(d.itineraryId, d.id)
+            .pipe(
+            map(data => {
+                return new DeleteTourSuccessAction(data)
+            }),
+            catchError(error => of(new DeleteTourFailureAction(error)))
+            )
+        ),
+    )
 }

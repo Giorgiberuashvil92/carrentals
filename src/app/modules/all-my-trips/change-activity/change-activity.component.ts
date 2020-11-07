@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogService } from 'src/app/core/services/dialog.service';
 
 @Component({
@@ -38,10 +39,12 @@ export class ChangeActivityComponent implements OnInit {
   currentIndex = 0;
 
   constructor(
-    public dialogService: DialogService
+    public dialogService: DialogService,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   ngOnInit(): void {
+    console.log(this.data)
   }
 
 }

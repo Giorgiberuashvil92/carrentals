@@ -78,7 +78,9 @@
                                     CHANGE
                                 </div>
                             </button>
-                            <button class="remove-button flex justify-between items-center" *ngIf="i === itinerary.tourIndex">
+                            <button class="remove-button flex justify-between items-center" 
+                                *ngIf="i === itinerary.tourIndex"
+                                (click)="onDeleteTour(tour.id)">
                                 <img src="/assets/remove-icon.svg" alt="">
                                 <div>
                                     REMOVE

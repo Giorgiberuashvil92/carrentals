@@ -30,3 +30,11 @@ export {
 export {
   AuthReducer
 } from './auth.reducer';
+
+export {
+  CityReducer
+} from './city.reducer'
+
+export {
+  InterestReducer
+} from './interest.reducer';
