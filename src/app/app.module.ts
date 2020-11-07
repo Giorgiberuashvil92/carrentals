@@ -11,12 +11,9 @@ import { ItineraryAlternateToursEffects, ItineraryEffects, ItineraryToursSearchE
 import { ItineraryReducer, ItineraryToursSearchReducer, ItineraryToursSolutionsReducer, ProfileReducer, PutProfileReducer, ItineraryAlternateToursReducer, AuthReducer } from './store/reducers';
 import { ApiPrefixInterceptor } from './core/interceptors/api-prefix.interceptor';
 import { AuthEffects } from './store/effects/auth.effect';
-<<<<<<< HEAD
-import { PasswordReducer } from './store/reducers/password.reducer';
-=======
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
->>>>>>> 04d764bf64307fb19b1fc57d9f47f2b3676005fc
+import { PasswordReducer } from './store/reducers/password.reducer';
 @NgModule({
   declarations: [
     AppComponent
@@ -45,15 +42,9 @@ import { environment } from '../environments/environment';
       ItineraryToursSolutionsEffects,
       SessionEffects,
       PutProfileEffects,
-<<<<<<< HEAD
-      AuthEffects,
-      PasswordEffects
-    ])
-=======
       AuthEffects
     ]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
->>>>>>> 04d764bf64307fb19b1fc57d9f47f2b3676005fc
   ],
   providers: [
     {
