@@ -1,5 +1,6 @@
 <div class="wrapper" *ngIf="itinerary && !itinerary.loading && itinerary.data">
     <div class="location-wrapper flex justify-between items-center">
+      Bero
         <div class="location-details ">
             <div class="location-names">
                 <div
@@ -20,7 +21,6 @@
             [activeIndex]="2"
         ></app-location-paginator>
     </div>
-
     <div class="line"></div>
 
     <div class="details-wrapper flex ">
@@ -78,7 +78,7 @@
                                     CHANGE
                                 </div>
                             </button>
-                            <button class="remove-button flex justify-between items-center" 
+                            <button class="remove-button flex justify-between items-center"
                                 *ngIf="i === itinerary.tourIndex"
                                 (click)="onDeleteTour(tour.id)">
                                 <img src="/assets/remove-icon.svg" alt="">

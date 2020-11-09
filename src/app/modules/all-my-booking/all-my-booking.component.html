@@ -1,0 +1,26 @@
+<div class="wrapper" *ngIf="itinerary && !itinerary.loading && itinerary.data">
+  <div class="location-wrapper flex justify-between items-center">
+      <div class="location-details ">
+          <div class="location-names">
+              <div
+                  *ngFor="let l of generateCitiesArray(itinerary.data.data.relationships.cities.data, itinerary.data.included)">
+                  {{ l }}
+              </div>
+          </div>
+          <div class="trip-time">
+              {{ itinerary.data.data.attributes['days-count'] }} Day Trip
+          </div>
+      </div>
+
+      <app-location-paginator
+          class="block"
+          [data]="itinerary.data.data.attributes['transportation-plan']"
+          [leftMostIndex]="1"
+          [locationsToShow]="8"
+          [activeIndex]="2"
+      ></app-location-paginator>
+  </div>
+  <div class="line"></div>
+
+<app-booking-navigation></app-booking-navigation>
+
