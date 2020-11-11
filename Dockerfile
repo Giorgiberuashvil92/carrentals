@@ -6,7 +6,7 @@ FROM node:12.19-stretch as builder
 ARG BUILD_ENV
 
 COPY package.json package-lock.json ./
-COPY packages packages
+# COPY packages packages
 
 ## Storing node modules on a separate layer will prevent unnecessary npm installs at each build
 
