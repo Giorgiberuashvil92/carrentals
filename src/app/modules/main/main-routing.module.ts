@@ -20,6 +20,10 @@ const routes: Routes = [
         {
           path: 'all-my-trips',
           loadChildren: () => import('../all-my-trips/all-my-trips.module').then(m => m.AllMyTripsModule)
+        },
+        {
+          path: 'all-my-bookings',
+          loadChildren: () => import('../all-my-booking/all-my-booking.module').then(m => m.AllMyBookingModule)
         }
     ]
   }

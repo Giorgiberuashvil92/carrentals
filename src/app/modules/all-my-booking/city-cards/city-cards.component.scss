@@ -1,0 +1,83 @@
+.gr-t{
+  color:  #02A388;
+  font-size: 30px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+.wrapper{
+  font-family: 'Poppins', sans-serif;
+  padding-left: 12%;
+}
+
+.mini-wrapper{
+  width: 100%;
+  height: 200px;
+  display: flex;
+  background-color: white;
+  justify-content: space-evenly;
+  margin-top: 20px;
+}
+
+.pr-img{
+  border-right: 2px solid  #02A388;
+  height: 70%;
+}
+.parg{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  max-height: 70%;
+}
+.parg h1{
+  font-size: 15px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+.parg p{
+  font-size: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  color: #767388;
+
+}
+.clock{
+  width: 100px;
+  height: 35px;
+  border: 1px solid #02A388;
+  border-radius: 10px;
+  display: flex;
+}
+
+.fnt{
+  font-size: 8px;
+}
+
+.enhance {
+  border-top: 1px solid grey;
+  display: flex;
+  justify-content: space-between;
+}
+.tckt{
+  width: 130px;
+  height: 20px;
+  border: 1px solid #02A388;
+  margin-top: 7px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tckt p{
+  color: #02A388;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+}
+.money p {
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+  color: #C25A5A;
+}
+.money {
+  float: left;
+}

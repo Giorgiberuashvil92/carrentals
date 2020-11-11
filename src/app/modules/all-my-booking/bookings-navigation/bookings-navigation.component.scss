@@ -1,0 +1,40 @@
+.fl-x{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1350px;
+  font-size: 14;
+  justify-content: space-between;
+}
+.fl-s{
+// border: 2px solid #02A388;
+// border-radius: 9px;
+width: 100%;
+font-size: 14px;
+color: #02A388;
+display: flex;
+align-items: center;
+justify-content: space-evenly;
+border-right: 1px solid #1A1538;
+  .fl-s:last-child{
+    border: none;
+  }
+}
+
+.fl-l{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.gl-s:first-child{
+border: 2px solid #02A388;
+border-radius: 5px;
+}
+.gm-p{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.gl-s:last-child{
+  border: none;
+}
