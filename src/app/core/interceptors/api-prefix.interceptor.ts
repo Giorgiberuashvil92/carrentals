@@ -15,7 +15,7 @@ export class ApiPrefixInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
       return next.handle(request.clone({
-        url: environment.API_URL + request.url
+        url: environment.apiUrl + request.url
       }));
   }
 }
