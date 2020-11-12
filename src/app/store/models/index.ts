@@ -13,7 +13,9 @@ export {
 
 export {
     ItineraryResponse,
-    FailureResponse
+    FailureResponse,
+    ItineraryAlternateToursResponse,
+    UpdateItineraryTourOrTransportResponse
 } from './itinerary.model';
 
 export {
@@ -23,3 +25,7 @@ export {
 export {
     InterestsResponse
 } from './interest.model';
+
+export {
+    AffiliatePartnerActivitiesResponse
+} from './affiliate.model';

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ItineraryResponse } from 'src/app/store/models';
+import { ItineraryAlternateToursResponse, ItineraryResponse, UpdateItineraryTourOrTransportResponse } from 'src/app/store/models';
 
 
 @Injectable({
@@ -19,8 +19,12 @@ export class ItineraryService {
     return this.httpClient.delete<ItineraryResponse>(`/itineraries/${itineraryId}/tours/${id}`);
   }
 
-  getItineraryAlternateTours(itineraryId:string,id:string){
-    return this.httpClient.get<any>(`/itineraries/${itineraryId}/tours/${id}/alternate`);
+  getItineraryAlternateTours$(itineraryId: string, id: string): Observable<ItineraryAlternateToursResponse>{
+    return this.httpClient.get<ItineraryAlternateToursResponse>(`/itineraries/${itineraryId}/tours/${id}/alternative`);
+  }
+
+  updateItineraryTourOrTransport$(itineraryId: string, id: string, body: any): Observable<UpdateItineraryTourOrTransportResponse> {
+    return this.httpClient.put<UpdateItineraryTourOrTransportResponse>(`/itineraries/${itineraryId}/tours/${id}`, body);
   }
 
   getItineraryToursSearch(itineraryId:string){

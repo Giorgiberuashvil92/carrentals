@@ -8,18 +8,19 @@ export {
   SetTourIndexAction,
   DeleteTourAction,
   DeleteTourFailureAction,
-  DeleteTourSuccessAction
+  DeleteTourSuccessAction,
+  LoadItineraryAlternateToursAction,
+  LoadItineraryAlternateToursFailureAction,
+  LoadItineraryAlternateToursySuccessAction,
+  UpdateItineraryTourOrTransportAction,
+  UpdateItineraryTourOrTransportFailureAction,
+  UpdateItineraryTourOrTransportSuccessAction
 } from './itinerary.action';
 
 export {
   ProfileActionTypes,
   ProfileAction
 } from './profile.action';
-
-export {
-  ItineraryAlternateToursAction,
-  ItineraryAlternateToursActionTypes
-} from './itineraryAlternateTours.action';
 
 export {
   ItinerarToursSearchAction,
@@ -73,3 +74,12 @@ export {
   LoadPasswordFailureAction,
   LoadPasswordSuccessAction
 } from './passwords.action'
+
+export {
+  AffiliateAction,
+  AffiliateActionTypes,
+  LoadAffiliatePartnerActivitiesAction,
+  LoadAffiliatePartnerActivitiesSuccessAction,
+  LoadAffiliatePartnerActivitiesFailureAction,
+  SetAffiliatePartnerActivitiesAction
+} from './affiliate.action';

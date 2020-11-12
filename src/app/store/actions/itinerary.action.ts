@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { FailureResponse, ItineraryResponse } from '../models';
+import { FailureResponse, ItineraryAlternateToursResponse, ItineraryResponse, UpdateItineraryTourOrTransportResponse } from '../models';
 
 export enum ItineraryActionTypes {
   LOAD_ITINERARY = '[ITINERARY] Load Itinerary',
@@ -10,6 +10,12 @@ export enum ItineraryActionTypes {
   DELETE_TOUR = '[ITINERARY] Delete Tour',
   DELETE_TOUR_SUCCESS = '[ITINERARY] Delete Tour Failure',
   DELETE_TOUR_FAILURE = '[ITINERARY] Delete Tour Success',
+  LOAD_ITINERARY_ALTERNATE_TOURS = '[ITINERARY] Load Itinerary Alternate Tours',
+  LOAD_ITINERARY_ALTERNATE_TOURS_SUCCESS = '[ITINERARY] Load Itinerary Alternate Tours Success',
+  LOAD_ITINERARY_ALTERNATE_TOURS_FAILURE = '[ITINERARY] Load Itinerary Alternate Tours Failure',
+  UPDATE_ITINERARY_TOUR_OR_TRANSPORT = '[ITINERARY] Update Itinerary Tour Or Transport',
+  UPDATE_ITINERARY_TOUR_OR_TRANSPORT_SUCCESS = '[ITINERARY] Update Itinerary Tour Or Transport Success',
+  UPDATE_ITINERARY_TOUR_OR_TRANSPORT_FAILURE = '[ITINERARY] Update Itinerary Tour Or Transport Failure'
 }
 export class LoadItineraryAction implements Action {
   readonly type = ItineraryActionTypes.LOAD_ITINERARY;
@@ -59,6 +65,51 @@ export class DeleteTourFailureAction implements Action {
     constructor(public payload: FailureResponse) {}
 }
 
+export class LoadItineraryAlternateToursAction implements Action {
+  readonly type = ItineraryActionTypes.LOAD_ITINERARY_ALTERNATE_TOURS;
+
+  constructor(public payload: { itineraryId: string; id: string }) {}
+}
+
+export class LoadItineraryAlternateToursySuccessAction implements Action {
+    readonly type = ItineraryActionTypes.LOAD_ITINERARY_ALTERNATE_TOURS_SUCCESS;
+
+    constructor(public payload: ItineraryAlternateToursResponse) {}
+}
+
+export class LoadItineraryAlternateToursFailureAction implements Action {
+    readonly type = ItineraryActionTypes.LOAD_ITINERARY_ALTERNATE_TOURS_FAILURE;
+
+    constructor(public payload: FailureResponse) {}
+}
+
+export class UpdateItineraryTourOrTransportAction implements Action {
+  readonly type = ItineraryActionTypes.UPDATE_ITINERARY_TOUR_OR_TRANSPORT;
+
+  constructor(public payload: { 
+    itineraryId: string;
+    id: string;
+    body: {
+      type: string; 
+      attributes: { 
+        'solution-type': string; 
+        'solution-id': string; 
+      }
+    }
+  }) {}
+}
+
+export class UpdateItineraryTourOrTransportSuccessAction implements Action {
+    readonly type = ItineraryActionTypes.UPDATE_ITINERARY_TOUR_OR_TRANSPORT_SUCCESS;
+
+    constructor(public payload: UpdateItineraryTourOrTransportResponse) {}
+}
+
+export class UpdateItineraryTourOrTransportFailureAction implements Action {
+    readonly type = ItineraryActionTypes.UPDATE_ITINERARY_TOUR_OR_TRANSPORT_FAILURE;
+
+    constructor(public payload: FailureResponse) {}
+}
 
 export type ItineraryAction =
     LoadItineraryAction |
@@ -68,4 +119,10 @@ export type ItineraryAction =
     SetTourIndexAction |
     DeleteTourAction |
     DeleteTourSuccessAction |
-    DeleteTourFailureAction
+    DeleteTourFailureAction |
+    LoadItineraryAlternateToursAction |
+    LoadItineraryAlternateToursySuccessAction |
+    LoadItineraryAlternateToursFailureAction |
+    UpdateItineraryTourOrTransportAction |
+    UpdateItineraryTourOrTransportSuccessAction |
+    UpdateItineraryTourOrTransportFailureAction

@@ -7,8 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
-import { CityEffects, InterestEffects, ItineraryAlternateToursEffects, ItineraryEffects, ItineraryToursSearchEffects, ItineraryToursSolutionsEffects, PasswordEffects, ProfileEffects, PutProfileEffects, SessionEffects } from './store/effects';
-import { ItineraryReducer, ItineraryToursSearchReducer, ItineraryToursSolutionsReducer, ProfileReducer, PutProfileReducer, ItineraryAlternateToursReducer, AuthReducer, CityReducer, InterestReducer } from './store/reducers';
+import { AffiliateEffects, CityEffects, InterestEffects, ItineraryEffects, ItineraryToursSearchEffects, ItineraryToursSolutionsEffects, PasswordEffects, ProfileEffects, PutProfileEffects, SessionEffects } from './store/effects';
+import { ItineraryReducer, ItineraryToursSearchReducer, ItineraryToursSolutionsReducer, ProfileReducer, PutProfileReducer, AuthReducer, CityReducer, InterestReducer, AffiliateReducer } from './store/reducers';
 import { ApiPrefixInterceptor } from './core/interceptors/api-prefix.interceptor';
 import { AuthEffects } from './store/effects/auth.effect';
 import { PasswordReducer } from './store/reducers/password.reducer';
@@ -27,18 +27,17 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     StoreModule.forRoot({
       itinerary: ItineraryReducer,
       profile: ProfileReducer,
-      itineraryTours: ItineraryAlternateToursReducer,
       itineraryToursSearch: ItineraryToursSearchReducer,
       itineraryToursSolutions: ItineraryToursSolutionsReducer,
       putProfile: PutProfileReducer,
       auth: AuthReducer,
       city: CityReducer,
       interest: InterestReducer,
-      password: PasswordReducer
+      password: PasswordReducer,
+      affiliate: AffiliateReducer
     }),
     EffectsModule.forRoot([
       ItineraryEffects,
-      ItineraryAlternateToursEffects,
       ProfileEffects,
       ItineraryToursSearchEffects,
       ItineraryToursSolutionsEffects,
@@ -47,7 +46,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
       AuthEffects,
       CityEffects,
       InterestEffects,
-      PasswordEffects
+      PasswordEffects,
+      AffiliateEffects
     ]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],

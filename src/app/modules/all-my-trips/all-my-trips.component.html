@@ -56,7 +56,7 @@
 
             <div class="left-list-wrapper">
                 <div class="left-item flex cursor-pointer"
-                    *ngFor="let tour of generateTours(); let i=index"
+                    *ngFor="let tour of tours; let i=index"
                     [ngClass]="{ 'left-item__active': i === itinerary.tourIndex }"
                     (click)="onTourChange(i)">
                     <div class="image" [style.background-image]="'url(\'' + tour.attributes['square-image-url'] + '\')'"></div>
@@ -69,9 +69,10 @@
                         <div class="time-interval">
                             {{ tour.attributes.schedule }}
                         </div>
-
                         <div class="actions flex">
-                            <button class="change-button flex justify-between items-center" (click)="onChange()">
+                            <button class="change-button flex justify-between items-center" 
+                                *ngIf="tour.attributes['has-alternative']"
+                                (click)="onChange(tour)">
                                 <img src="/assets/change-icon.svg" alt="">
                                 <div>
                                     CHANGE
@@ -91,7 +92,7 @@
             </div>
         </div>
         <div class="right-side pd-lf">
-            <app-location-detail [data]="waypoints"></app-location-detail>
+            <app-location-detail [data]="locationDetailData" (indexChange)="onLocationDetailIndexchange($event)"></app-location-detail>
         </div>
     </div>
     <div class="pd-rg">

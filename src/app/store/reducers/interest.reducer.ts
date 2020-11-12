@@ -26,12 +26,13 @@ export function InterestReducer(state: InterestState = initialState, action: Int
       return {
           ...state,
           interests: action.payload,
+          error: null,
           loading: false
       }
     case InterestActionTypes.LOAD_INTERESTS_FAILURE:
       return {
           ...state,
-          data: action.payload,
+          error: action.payload,
           loading: false
       }
     default:

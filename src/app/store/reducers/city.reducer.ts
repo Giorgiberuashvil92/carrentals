@@ -26,12 +26,13 @@ export function CityReducer(state: CityState = initialState, action: CityAction)
       return {
           ...state,
           cities: action.payload,
+          error: null,
           loading: false
       }
     case CityActionTypes.LOAD_CITIES_FAILURE:
       return {
           ...state,
-          data: action.payload,
+          error: action.payload,
           loading: false
       }
     default:

@@ -1,14 +1,10 @@
 export {
-    ItineraryEffects
+  ItineraryEffects
 } from './itinerary.effect';
 
 export {
   ProfileEffects
 } from './profile.effect';
-
-export {
-  ItineraryAlternateToursEffects
-} from './itineraryAlternateTours.effect';
 
 export {
   ItineraryToursSearchEffects
@@ -37,3 +33,7 @@ export {
 export {
   PasswordEffects
 } from './password.effect'
+
+export {
+  AffiliateEffects
+} from './affiliate.effect';
