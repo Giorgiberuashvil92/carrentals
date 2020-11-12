@@ -73,3 +73,11 @@ export {
   LoadPasswordFailureAction,
   LoadPasswordSuccessAction
 } from './passwords.action'
+
+export {
+  AffiliateAction,
+  AffiliateActionTypes,
+  LoadAffiliatePartnerActivitiesAction,
+  LoadAffiliatePartnerActivitiesSuccessAction,
+  LoadAffiliatePartnerActivitiesFailureAction
+} from './affiliate.action';

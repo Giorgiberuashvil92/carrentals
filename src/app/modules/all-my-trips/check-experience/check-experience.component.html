@@ -1,29 +1,36 @@
-<div class="wrapper wr-p pd-rg ">
-<div class="rel">
- <h1>Book a related experience:</h1>
-</div>
-  <div class="col-sc" (click)="dialogService.openDialog('acceptDialog'); openSite()">
-   <div class="col" *ngFor="let item of array">
-    <div class="ph-t">
-      <img [src]="item.image" alt="">
+<ng-container *ngIf="affiliateState$ | async as affiliateState">
+  <div class="wrapper wr-p pd-rg " *ngIf="!affiliateState.loading">
+    <div class="rel">
+      <h1>Book a related experience:</h1>
     </div>
-    <div class="tx-t">
-    <div class="wr-2 wr-c"><h2>{{item.name}}</h2></div>
-    <div class="wr-2"><p>{{item.text}}</p></div>
+  
+    <div class="col-sc" (click)="dialogService.openDialog('acceptDialog'); openSite()">
+  
+      <div class="col" *ngFor="let item of affiliateState.partnerActivities.data">
+        <div class="ph-t">
+          <img [src]="item.attributes['image-url']" alt="">
+        </div>
+        <div class="tx-t">
+          <div class="wr-2 wr-c"><h2>{{ item.attributes['title'] }}</h2></div>
+          <div class="wr-2"><p>{{ item.attributes['description'] }}</p></div>
+        </div>
+  
+        <div class="thrd-2">
+            <div class="pdr-r">
+              <img [src]="ClockIMG" alt="">
+              Duration: {{ item.attributes['duration']['hours'] }}
+            </div>
+            <div class="pdr-r">
+              <img [src]="Dollar" alt="">
+              Price: {{ item.attributes['price'] }}$
+            </div>
+            <div class="pdr-r">
+              <img [src]="time" alt="">
+            </div>
+        </div>
+      </div>
+  
     </div>
-    <div class="thrd-2" *ngFor="let item of imgArray">
-      <div class="pdr-r">
-        <img [src]="item.clockimage" alt="">
-      </div>
-      <div class="pdr-r">
-        <img [src]="item.dollarimg" alt="">
-      </div>
-      <div class="pdr-r">
-        <img [src]="item.time" alt="">
-      </div>
-      </div>
-   </div>
-
-    </div>
-
-</div>
+  
+  </div>
+</ng-container>

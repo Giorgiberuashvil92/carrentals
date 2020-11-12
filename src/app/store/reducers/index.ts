@@ -38,3 +38,7 @@ export {
 export {
   InterestReducer
 } from './interest.reducer';
+
+export {
+  AffiliateReducer
+} from './affiliate.reducer';

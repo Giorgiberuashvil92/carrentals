@@ -33,12 +33,13 @@ export function ItineraryReducer(state: ItineraryState = initialState, action: I
       return {
           ...state,
           data: action.payload,
+          error: null,
           loading: false
       }
     case ItineraryActionTypes.LOAD_ITINERARY_FAILURE:
       return {
           ...state,
-          data: action.payload,
+          error: action.payload,
           loading: false
       }
     case ItineraryActionTypes.SET_DAY_INDEX:

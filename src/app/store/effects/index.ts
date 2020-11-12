@@ -37,3 +37,7 @@ export {
 export {
   PasswordEffects
 } from './password.effect'
+
+export {
+  AffiliateEffects
+} from './affiliate.effect';

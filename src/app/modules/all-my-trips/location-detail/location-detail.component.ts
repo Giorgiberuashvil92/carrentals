@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 @Component({
@@ -6,33 +6,10 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
   templateUrl: './location-detail.component.html',
   styleUrls: ['./location-detail.component.scss']
 })
-export class LocationDetailComponent implements OnInit {
+export class LocationDetailComponent implements OnInit, OnChanges {
 
   @Input() data: any[];
-
-  imgURL = "/assets/full-photo.svg"
-  imgALT = "DONTWORKING"
-
-  array = [
-    { 
-      name:'Prague Castle & Hradčany',
-      description:'Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards, goldsmiths, and, Throughout history, theyve been occupied by castle guards, goldsmiths, and,Throughout history, theyve been occupied by castle guards, goldsmiths, and,Throughout history, theyve been occupied by castle guards, goldsmiths, and,Throughout history, theyve been occupied by castle guards, goldsmiths, and,Throughout history, theyve been occupied by castle guards, goldsmiths, and',
-      nam: this.imgURL,
-      small:'Overview of Golden Lane'
-    },
-    { 
-      name:'Prague Castle & Hradčany',
-      description:'Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards, goldsmiths, and, Throughout history, theyve been occupied by castle guards, goldsmiths, and,Throughout history, theyve been occupied by castle guards, goldsmiths, and,Throughout history, theyve been occupied by castle guards, goldsmiths, and,Throughout history, theyve been occupied by castle guards, goldsmiths, and,Throughout history, theyve been occupied by castle guards, goldsmiths, and',
-      nam: this.imgURL,
-      small:'Overview of Golden Lane'
-    },
-    { 
-      name:'Prague Castle & Hradčany',
-      description:'Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards,Throughout history, theyve been occupied by castle guards, goldsmiths, and, Throughout history, theyve been occupied by castle guards, goldsmiths, and,Throughout history, theyve been occupied by castle guards, goldsmiths, and,Throughout history, theyve been occupied by castle guards, goldsmiths, and,Throughout history, theyve been occupied by castle guards, goldsmiths, and,Throughout history, theyve been occupied by castle guards, goldsmiths, and',
-      nam: this.imgURL,
-      small:'Overview of Golden Lane'
-    }
-  ]
+  @Output() indexChange = new EventEmitter<number>();
 
   config: SwiperConfigInterface = {
     navigation: {
@@ -46,9 +23,13 @@ export class LocationDetailComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
+  ngOnChanges() {
+    this.indexChange.emit(0);
+  }
 
-  onIndexChange(event) {
-    console.log(event);
+  onIndexChange(event: number) {
+    this.indexChange.emit(event);
   }
 
   goLeftSlider() {

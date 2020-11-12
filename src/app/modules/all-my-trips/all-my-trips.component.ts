@@ -4,6 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
 import { DeviceDetectorService } from 'src/app/core/services/device-detector.service';
 import { DialogService } from 'src/app/core/services/dialog.service';
+import { LoadAffiliatePartnerActivitiesAction } from 'src/app/store/actions';
 import { DeleteTourAction, LoadItineraryAction, SetDayIndexAction, SetTourIndexAction } from 'src/app/store/actions/itinerary.action';
 import { AppState } from 'src/app/store/models/app-state.model';
 import { ItineraryState } from 'src/app/store/reducers';
@@ -19,7 +20,9 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
   itinerary: ItineraryState;
   itinerarySub: Subscription;
   day: any;
+  tours: any[];
   waypoints: any[];
+  locationDetailData: any[];
 
   constructor(
     public dialogService: DialogService,
@@ -38,7 +41,9 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
     .subscribe(res => {
       this.generateCitiesArray(this.itinerary.data.data['relationships'].cities.data, this.itinerary.data['included']);
       this.day = this.itinerary.data['included'].find(i => i.type === 'days' && i.id === this.itinerary.data.data['relationships'].days.data[this.itinerary.dayIndex-1].id)
-      this.waypoints = this.generateTours()[this.itinerary.tourIndex]['relationships'].pois.data.map(d => this.itinerary.data['included'].find(i => i.type === 'waypoints' && i.id === d.id));
+      this.tours = this.generateTours();
+      this.waypoints = this.tours[this.itinerary.tourIndex]['relationships'].pois.data.map(d => this.itinerary.data['included'].find(i => i.type === 'waypoints' && i.id === d.id));
+      this.locationDetailData = [this.tours[this.itinerary.tourIndex], ...this.waypoints];
     });
   }
 
@@ -78,11 +83,17 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
   }
 
   onChange() {
-    this.dialogService.openDialog('changeActivity', this.generateTours());
+    this.dialogService.openDialog('changeActivity', this.tours);
   }
 
   onDeleteTour(id: string) {
     this.store.dispatch(new DeleteTourAction(this.itinerary.data.data.id, id));
+  }
+
+  onLocationDetailIndexchange(event: number) {
+    const temp: any = this.locationDetailData[event];
+    const query: string = this.locationDetailData[event].type === 'tours' ? `subject-type=tour-offer&subject-id=${temp.attributes['tour-offer-id']['$oid']}` : `subject-type=poi&subject-id=${temp.id}`;
+    this.store.dispatch(new LoadAffiliatePartnerActivitiesAction(query));
   }
 
   ngOnDestroy() {

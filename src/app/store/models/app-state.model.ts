@@ -1,3 +1,4 @@
+import { AffiliateState } from '../reducers/affiliate.reducer';
 import { CityState } from '../reducers/city.reducer';
 import { InterestState } from '../reducers/interest.reducer';
 import { ItineraryState } from '../reducers/itinerary.reducer';
@@ -8,4 +9,5 @@ export interface AppState {
     readonly profile: ProfileState;
     readonly city: CityState;
     readonly interest: InterestState;
+    readonly affiliate: AffiliateState;
 }
