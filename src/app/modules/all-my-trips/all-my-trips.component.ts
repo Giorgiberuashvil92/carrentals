@@ -84,7 +84,7 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
 
   onChange(tour: any) {
     this.store.dispatch(new LoadItineraryAlternateToursAction({ itineraryId: this.itinerary.data.data.id, id: tour.id}));
-    this.dialogService.openDialog('changeActivity');
+    this.dialogService.openDialog('changeActivity', tour.id);
   }
 
   onDeleteTour(id: string) {

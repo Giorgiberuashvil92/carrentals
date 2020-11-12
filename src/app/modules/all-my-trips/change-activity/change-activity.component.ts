@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { DialogService } from 'src/app/core/services/dialog.service';
-import { AppState, ItineraryAlternateToursResponse } from 'src/app/store/models';
+import { UpdateItineraryTourOrTransportAction } from 'src/app/store/actions';
+import { AppState } from 'src/app/store/models';
 import { ItineraryState } from 'src/app/store/reducers';
 
 @Component({
@@ -13,46 +14,32 @@ import { ItineraryState } from 'src/app/store/reducers';
 })
 export class ChangeActivityComponent implements OnInit {
 
-  activities = [
-    {
-      img: 'https://img.traveltriangle.com/blog/wp-content/uploads/2018/11/Prague_Cover.jpg',
-      title: 'Prague Castle',
-      isSelfGuided: true,
-      tags: ["FISHERMAN'S BASTION", "PLACEHOLDER"]
-    },
-    {
-      img: 'https://img.traveltriangle.com/blog/wp-content/uploads/2018/11/Prague_Cover.jpg',
-      title: 'Prague Castle',
-      isSelfGuided: true,
-      tags: ["FISHERMAN'S BASTION", "PLACEHOLDER"]
-    },
-    {
-      img: 'https://img.traveltriangle.com/blog/wp-content/uploads/2018/11/Prague_Cover.jpg',
-      title: 'Prague Castle',
-      isSelfGuided: true,
-      tags: ["FISHERMAN'S BASTION", "PLACEHOLDER"]
-    },
-    {
-      img: 'https://img.traveltriangle.com/blog/wp-content/uploads/2018/11/Prague_Cover.jpg',
-      title: 'Prague Castle',
-      isSelfGuided: true,
-      tags: ["FISHERMAN'S BASTION", "PLACEHOLDER"]
-    }
-  ]
-
   currentIndex = 0;
   itineraryState$: Observable<ItineraryState>;
 
   constructor(
     public dialogService: DialogService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    @Inject(MAT_DIALOG_DATA) public data: string
   ) { }
 
   ngOnInit(): void {
     this.itineraryState$ = this.store.select(store => store.itinerary);
   }
 
-  onOK(alternateTour: any) {
-    console.log(alternateTour);
+  onOK(itineraryState: ItineraryState) {
+    console.log(itineraryState);
+    this.store.dispatch(new UpdateItineraryTourOrTransportAction({
+      itineraryId: itineraryState.data.data.id,
+      id: this.data,
+      body: {
+        type: 'tours',
+        attributes: {
+          "solution-type": itineraryState.alternateTours.data[this.currentIndex].attributes.type,
+          "solution-id": itineraryState.alternateTours.data[this.currentIndex].id
+        }
+      }
+    }));
+    this.dialogService.closeDialog();
   }
 }
