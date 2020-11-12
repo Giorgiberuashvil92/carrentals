@@ -39,7 +39,6 @@ width: 100%;
   display: flex;
   justify-content: space-between;
 }
-
 .scnd-sv{
   background-color: white;
   width: 199px;
@@ -47,6 +46,8 @@ width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 10px 10px 20px;
+  border-radius: 10px;
 }
 .frst-sv{
   margin-top: 50px;

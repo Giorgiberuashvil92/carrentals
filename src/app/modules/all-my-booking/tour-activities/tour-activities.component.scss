@@ -38,6 +38,25 @@
   justify-content: center;
   color: white;
 }
+.search {
+  position: relative;
+
+  &::after {
+    content: "";
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: -2px;
+    left: 5px;
+    z-index: 100;
+
+  background-image: url('../../../../assets/search.svg');
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size:20px;
+  }
+
+}
 .jw-e{
   justify-content: space-evenly;
 }

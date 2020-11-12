@@ -15,7 +15,7 @@ export class BookingsNavigationComponent implements OnInit {
    option = 0;
 
   array = [
-    {name:'All My bookings', imageURL: '../../../../assets/bus.svg'},
+    {name:'All My bookings', imageURL: '../../../../assets/book.svg'},
     {name:'City Cards & Local Transport', imageURL: '../../../../assets/bus.svg'},
     {name:'Tours & Activities', imageURL: '../../../../assets/walking-man.svg'},
     {name:'Inter-City Transport', imageURL: '../../../../assets/interpoller.svg'},

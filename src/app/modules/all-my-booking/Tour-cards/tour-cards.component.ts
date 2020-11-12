@@ -10,8 +10,8 @@ export class TourCardsComponent implements OnInit {
 ngOnInit(){}
 
 musseum = [
-  {name:'parris Musseum Card', Image: '../../../../assets/musseum.svg', secImg:'../../../../assets/calendar.svg', thirdImg:'../../../../assets/location.svg', fourImg:'../../../../assets/conf.svg',description:'Enjoy direct access to more than 50 museums and monuments in paris and the surrounding area.', date:'12 FEB 2020', N:'N/A', Conf:'Conf.' , numb:'123456789'},
-  {name:'parris Musseum Card', Image: '../../../../assets/musseum.svg', secImg:'../../../../assets/calendar.svg', thirdImg:'../../../../assets/location.svg', fourImg:'../../../../assets/conf.svg',description:'Enjoy direct access to more than 50 museums and monuments in paris and the surrounding area.', date:'12 FEB 2020', N:'N/A', Conf:'Conf.' , numb:'123456789'},
-  {name:'parris Musseum Card', Image: '../../../../assets/musseum.svg', secImg:'../../../../assets/calendar.svg', thirdImg:'../../../../assets/location.svg', fourImg:'../../../../assets/conf.svg',description:'Enjoy direct access to more than 50 museums and monuments in paris and the surrounding area.', date:'12 FEB 2020', N:'N/A', Conf:'Conf.' , numb:'123456789'}
+  {nickname:'PRAGUE', name:'parris Musseum Card', Image: '../../../../assets/musseum.svg', secImg:'../../../../assets/calendar.svg', thirdImg:'../../../../assets/location.svg', fourImg:'../../../../assets/conf.svg',description:'Enjoy direct access to more than 50 museums and monuments in paris and the surrounding area.', date:'12 FEB 2020', N:'N/A', Conf:'Conf.' , numb:'123456789'},
+  {nickname:'PARIS',name:'parris Musseum Card', Image: '../../../../assets/musseum.svg', secImg:'../../../../assets/calendar.svg', thirdImg:'../../../../assets/location.svg', fourImg:'../../../../assets/conf.svg',description:'Enjoy direct access to more than 50 museums and monuments in paris and the surrounding area.', date:'12 FEB 2020', N:'N/A', Conf:'Conf.' , numb:'123456789'},
+  {nickname:'MILAN',name:'parris Musseum Card', Image: '../../../../assets/musseum.svg', secImg:'../../../../assets/calendar.svg', thirdImg:'../../../../assets/location.svg', fourImg:'../../../../assets/conf.svg',description:'Enjoy direct access to more than 50 museums and monuments in paris and the surrounding area.', date:'12 FEB 2020', N:'N/A', Conf:'Conf.' , numb:'123456789'}
 ]
 }
