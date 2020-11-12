@@ -3,8 +3,8 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 
 import { of } from 'rxjs';
-import { DeleteTourAction, DeleteTourFailureAction, DeleteTourSuccessAction, ItineraryActionTypes, LoadItineraryAction, LoadItineraryFailureAction, LoadItinerarySuccessAction} from '../actions/itinerary.action';
 import { ItineraryService } from 'src/app/core/services/itinerary.service';
+import { LoadAffiliatePartnerActivitiesFailureAction, DeleteTourAction, DeleteTourFailureAction, DeleteTourSuccessAction, ItineraryActionTypes, LoadItineraryAction, LoadItineraryAlternateToursAction, LoadItineraryAlternateToursySuccessAction, LoadItineraryFailureAction, LoadItinerarySuccessAction, UpdateItineraryTourOrTransportAction, UpdateItineraryTourOrTransportFailureAction, UpdateItineraryTourOrTransportSuccessAction } from '../actions';
 
 @Injectable()
 export class ItineraryEffects {
@@ -38,6 +38,34 @@ export class ItineraryEffects {
                 return new DeleteTourSuccessAction(data)
             }),
             catchError(error => of(new DeleteTourFailureAction(error)))
+            )
+        ),
+    )
+
+    @Effect() loadItineraryAlternateTours$ = this.actions$
+    .pipe(
+        ofType<LoadItineraryAlternateToursAction>(ItineraryActionTypes.LOAD_ITINERARY_ALTERNATE_TOURS),
+        mergeMap(
+        (d) => this.itineraryService.getItineraryAlternateTours$(d.payload.itineraryId, d.payload.id)
+            .pipe(
+            map(data => {
+                return new LoadItineraryAlternateToursySuccessAction(data)
+            }),
+            catchError(error => of(new LoadAffiliatePartnerActivitiesFailureAction(error)))
+            )
+        ),
+    )
+
+    @Effect() updateItineraryTourOrTransport$ = this.actions$
+    .pipe(
+        ofType<UpdateItineraryTourOrTransportAction>(ItineraryActionTypes.UPDATE_ITINERARY_TOUR_OR_TRANSPORT),
+        mergeMap(
+        (d) => this.itineraryService.updateItineraryTourOrTransport$(d.payload.itineraryId, d.payload.id, d.payload.body)
+            .pipe(
+            map(data => {
+                return new UpdateItineraryTourOrTransportSuccessAction(data)
+            }),
+            catchError(error => of(new UpdateItineraryTourOrTransportFailureAction(error)))
             )
         ),
     )

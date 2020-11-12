@@ -1,5 +1,5 @@
 <ng-container *ngIf="affiliateState$ | async as affiliateState">
-  <div class="wrapper wr-p pd-rg " *ngIf="!affiliateState.loading">
+  <div class="wrapper wr-p pd-rg " *ngIf="!affiliateState.loading && affiliateState.partnerActivities && affiliateState.partnerActivities.data.length > 0">
     <div class="rel">
       <h1>Book a related experience:</h1>
     </div>

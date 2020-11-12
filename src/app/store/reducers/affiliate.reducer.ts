@@ -35,6 +35,13 @@ export function AffiliateReducer(state: AffiliateState = initialState, action: A
                 error: action.payload,
                 loading: false
             }
+        case AffiliateActionTypes.SET_AFFILIATE_PARTNER_ACTIVITES:
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                partnerActivities: action.payload
+            }
         default:
             return state;
     }

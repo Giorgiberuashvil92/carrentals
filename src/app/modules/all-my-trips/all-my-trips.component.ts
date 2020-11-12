@@ -4,8 +4,8 @@ import { Observable, Subscription } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
 import { DeviceDetectorService } from 'src/app/core/services/device-detector.service';
 import { DialogService } from 'src/app/core/services/dialog.service';
-import { LoadAffiliatePartnerActivitiesAction } from 'src/app/store/actions';
-import { DeleteTourAction, LoadItineraryAction, SetDayIndexAction, SetTourIndexAction } from 'src/app/store/actions/itinerary.action';
+import { LoadAffiliatePartnerActivitiesAction, SetAffiliatePartnerActivitiesAction } from 'src/app/store/actions';
+import { DeleteTourAction, LoadItineraryAction, LoadItineraryAlternateToursAction, SetDayIndexAction, SetTourIndexAction } from 'src/app/store/actions/itinerary.action';
 import { AppState } from 'src/app/store/models/app-state.model';
 import { ItineraryState } from 'src/app/store/reducers';
 
@@ -82,8 +82,9 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
     return this.day['relationships']['tours'].data.map(t => this.itinerary.data['included'].find(i => i.type === 'tours' && i.id === t.id));
   }
 
-  onChange() {
-    this.dialogService.openDialog('changeActivity', this.tours);
+  onChange(tour: any) {
+    this.store.dispatch(new LoadItineraryAlternateToursAction({ itineraryId: this.itinerary.data.data.id, id: tour.id}));
+    this.dialogService.openDialog('changeActivity');
   }
 
   onDeleteTour(id: string) {
@@ -92,7 +93,16 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
 
   onLocationDetailIndexchange(event: number) {
     const temp: any = this.locationDetailData[event];
-    const query: string = this.locationDetailData[event].type === 'tours' ? `subject-type=tour-offer&subject-id=${temp.attributes['tour-offer-id']['$oid']}` : `subject-type=poi&subject-id=${temp.id}`;
+    let query: string;
+    if(this.locationDetailData[event].type === 'tours') {
+      if(!temp.attributes['tour-offer-id'] || !temp.attributes['tour-offer-id']['$oid']) {
+        this.store.dispatch(new SetAffiliatePartnerActivitiesAction({ data: [] }));
+        return;
+      }
+      query = `subject-type=tour-offer&subject-id=${temp.attributes['tour-offer-id']['$oid']}`;
+    } else {
+      query = `subject-type=poi&subject-id=${temp.id}`;
+    }
     this.store.dispatch(new LoadAffiliatePartnerActivitiesAction(query));
   }
 

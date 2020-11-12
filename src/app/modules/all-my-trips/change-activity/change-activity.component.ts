@@ -1,6 +1,10 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { DialogService } from 'src/app/core/services/dialog.service';
+import { AppState, ItineraryAlternateToursResponse } from 'src/app/store/models';
+import { ItineraryState } from 'src/app/store/reducers';
 
 @Component({
   selector: 'app-change-activity',
@@ -37,14 +41,18 @@ export class ChangeActivityComponent implements OnInit {
   ]
 
   currentIndex = 0;
+  itineraryState$: Observable<ItineraryState>;
 
   constructor(
     public dialogService: DialogService,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    private store: Store<AppState>
   ) { }
 
   ngOnInit(): void {
-    console.log(this.data)
+    this.itineraryState$ = this.store.select(store => store.itinerary);
   }
 
+  onOK(alternateTour: any) {
+    console.log(alternateTour);
+  }
 }

@@ -15,6 +15,7 @@ import { ArriveDayComponent } from './arrive-day/arrive-day.component';
 import { LocationDaysComponent } from './location-days/location-days.component';
 import { AcceptDialogComponent } from './accept-dialog/accept-dialog.component';
 import { NotIncludeComponent } from './not-include/not-include.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const routes: Routes = [
   {
@@ -41,7 +42,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule,
     SwiperModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule
   ]
 })
 export class AllMyTripsModule { }
