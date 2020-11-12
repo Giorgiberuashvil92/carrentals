@@ -4,7 +4,6 @@
 FROM node:12.19-stretch as builder
 
 COPY package.json package-lock.json ./
-COPY packages packages
 
 ## Storing node modules on a separate layer will prevent unnecessary npm installs at each build
 
@@ -20,10 +19,10 @@ RUN npm run ng build -- --configuration=docker --output-path=dist
 
 ### STAGE 2: Setup ###
 
-FROM nginx:1.14.1-alpine
+FROM nginx:1.19-alpine
 
 ## Copy our default nginx config
-COPY nginx/default.conf /etc/nginx/conf.d/
+COPY nginx/nginx.conf /etc/nginx/conf.d/
 
 ## Remove default nginx website
 RUN rm -rf /and/share/nginx/html/*
