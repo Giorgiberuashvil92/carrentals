@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AcceptDialogComponent } from 'src/app/modules/all-my-trips/accept-dialog/accept-dialog.component';
 import { ArriveDayComponent } from 'src/app/modules/all-my-trips/arrive-day/arrive-day.component';
 import { ChangeActivityComponent } from 'src/app/modules/all-my-trips/change-activity/change-activity.component';
+import { ChangeTransportComponent } from 'src/app/modules/all-my-trips/change-transport/change-transport.component';
 import { EditTripComponent } from 'src/app/modules/all-my-trips/edit-trip/edit-trip.component';
 import { NotIncludeComponent } from 'src/app/modules/all-my-trips/not-include/not-include.component';
 import { SelectActivityComponent } from 'src/app/modules/all-my-trips/select-activity/select-activity.component';
@@ -15,6 +16,10 @@ export class DialogService {
   dialogMap = {
     'changeActivity': {
       component: ChangeActivityComponent,
+      maxWidth: '470px'
+    },
+    'changeTransport': {
+      component: ChangeTransportComponent,
       maxWidth: '470px'
     },
     'selectActivity': {

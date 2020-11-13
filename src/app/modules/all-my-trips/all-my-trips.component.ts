@@ -4,8 +4,9 @@ import { Observable, Subscription } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
 import { DeviceDetectorService } from 'src/app/core/services/device-detector.service';
 import { DialogService } from 'src/app/core/services/dialog.service';
+import { ItineraryService } from 'src/app/core/services/itinerary.service';
 import { LoadAffiliatePartnerActivitiesAction, SetAffiliatePartnerActivitiesAction } from 'src/app/store/actions';
-import { DeleteTourAction, LoadItineraryAction, LoadItineraryAlternateToursAction, SetDayIndexAction, SetTourIndexAction } from 'src/app/store/actions/itinerary.action';
+import { DeleteTourAction, LoadItineraryAction, LoadItineraryAlternateToursAction, SetDayIndexAction, SetTourAction, SetTourIndexAction } from 'src/app/store/actions/itinerary.action';
 import { AppState } from 'src/app/store/models/app-state.model';
 import { ItineraryState } from 'src/app/store/reducers';
 
@@ -23,11 +24,13 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
   tours: any[];
   waypoints: any[];
   locationDetailData: any[];
+  location: string;
 
   constructor(
     public dialogService: DialogService,
     public deviceDetectorService: DeviceDetectorService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private itineraryService: ItineraryService
   ) { }
 
   ngOnInit(): void {
@@ -40,20 +43,23 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
     )
     .subscribe(res => {
       this.generateCitiesArray(this.itinerary.data.data['relationships'].cities.data, this.itinerary.data['included']);
-      this.day = this.itinerary.data['included'].find(i => i.type === 'days' && i.id === this.itinerary.data.data['relationships'].days.data[this.itinerary.dayIndex-1].id)
-      this.tours = this.generateTours();
-      this.waypoints = this.tours[this.itinerary.tourIndex]['relationships'].pois.data.map(d => this.itinerary.data['included'].find(i => i.type === 'waypoints' && i.id === d.id));
+      this.day = this.itineraryService.generateDay(this.itinerary);
+      this.tours = this.itineraryService.generateTours(this.itinerary, this.day);
+      this.waypoints = this.itineraryService.generateWaypoints(this.itinerary, this.tours);
       this.locationDetailData = [this.tours[this.itinerary.tourIndex], ...this.waypoints];
+      this.location = this.itineraryService.findCity(this.itinerary, this.day);
     });
   }
 
   onDayChange(day: number) {
-    this.store.dispatch(new SetDayIndexAction(day));
     this.store.dispatch(new SetTourIndexAction(0));
+    this.store.dispatch(new SetDayIndexAction(day));
+    this.store.dispatch(new SetTourAction(this.tours[day]));
   }
 
-  onTourChange(tour: number) {
-    this.store.dispatch(new SetTourIndexAction(tour));
+  onTourChange(tourIndex: number, tour: any) {
+    this.store.dispatch(new SetTourIndexAction(tourIndex));
+    this.store.dispatch(new SetTourAction(tour));
   }
 
   generateCitiesArray(cities: any[], included: any[]) {
@@ -61,30 +67,13 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
     return res.length <= 3 ? res : [res[0], '...', res[res.length-1]];
   }
 
-  findLocation(day: number) {
-    if(this.day['relationships']['starting-city'].data && this.day['relationships']['starting-city'].data.id 
-        && this.day['relationships']['ending-city'].data && this.day['relationships']['ending-city'].data.id 
-        && this.day['relationships']['starting-city'].data.id !== this.day['relationships']['ending-city'].data.id) {
-      return this.itinerary.data['included'].find(i => i.type === 'cities' && i.id === this.day['relationships']['starting-city'].data.id).attributes.name
-         + ' - ' 
-         + this.itinerary.data['included'].find(i => i.type === 'cities' && i.id === this.day['relationships']['ending-city'].data.id).attributes.name;
-    }
-    if(this.day['relationships']['starting-city'].data && this.day['relationships']['starting-city'].data.id) {
-      return this.itinerary.data['included'].find(i => i.type === 'cities' && i.id === this.day['relationships']['starting-city'].data.id).attributes.name;
-    } else if(this.day['relationships']['ending-city'].data && this.day['relationships']['ending-city'].data.id) {
-      return this.itinerary.data['included'].find(i => i.type === 'cities' && i.id === this.day['relationships']['ending-city'].data.id).attributes.name;
-    }
-    console.log(this.itinerary.data['included']);
-    return 'Location Not Found';
-  }
-
-  generateTours() {
-    return this.day['relationships']['tours'].data.map(t => this.itinerary.data['included'].find(i => i.type === 'tours' && i.id === t.id));
-  }
-
   onChange(tour: any) {
     this.store.dispatch(new LoadItineraryAlternateToursAction({ itineraryId: this.itinerary.data.data.id, id: tour.id}));
-    this.dialogService.openDialog('changeActivity', tour.id);
+    if(tour.attributes['transport-type']) {
+      this.dialogService.openDialog('changeTransport');
+    } else {
+      this.dialogService.openDialog('changeActivity');
+    }
   }
 
   onDeleteTour(id: string) {

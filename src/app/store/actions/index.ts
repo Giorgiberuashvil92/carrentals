@@ -6,6 +6,7 @@ export {
   LoadItinerarySuccessAction,
   SetDayIndexAction,
   SetTourIndexAction,
+  SetTourAction,
   DeleteTourAction,
   DeleteTourFailureAction,
   DeleteTourSuccessAction,

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ItineraryAlternateToursResponse, ItineraryResponse, UpdateItineraryTourOrTransportResponse } from 'src/app/store/models';
+import { ItineraryState } from 'src/app/store/reducers';
 
 
 @Injectable({
@@ -33,5 +34,37 @@ export class ItineraryService {
 
   getItinerarySolutions(itineraryId:string){
     return this.httpClient.get<any>(`/itineraries/${itineraryId}/tours/solutions`)
+  }
+
+  findCityById(itinerary: ItineraryState, id: string) {
+    return itinerary.data['included'].find(i => i.type === 'cities' && i.id === id);
+  }
+
+  findCity(itinerary: ItineraryState, day: any): string {
+    if(day['relationships']['starting-city'].data && day['relationships']['starting-city'].data.id 
+        && day['relationships']['ending-city'].data && day['relationships']['ending-city'].data.id 
+        && day['relationships']['starting-city'].data.id !== day['relationships']['ending-city'].data.id) {
+      return itinerary.data['included'].find(i => i.type === 'cities' && i.id === day['relationships']['starting-city'].data.id).attributes.name
+         + ' - ' 
+         + itinerary.data['included'].find(i => i.type === 'cities' && i.id === day['relationships']['ending-city'].data.id).attributes.name;
+    }
+    if(day['relationships']['starting-city'].data && day['relationships']['starting-city'].data.id) {
+      return itinerary.data['included'].find(i => i.type === 'cities' && i.id === day['relationships']['starting-city'].data.id).attributes.name;
+    } else if(day['relationships']['ending-city'].data && day['relationships']['ending-city'].data.id) {
+      return itinerary.data['included'].find(i => i.type === 'cities' && i.id === day['relationships']['ending-city'].data.id).attributes.name;
+    }
+    return 'Location Not Found';
+  }
+
+  generateDay(itinerary: ItineraryState) {
+    return itinerary.data['included'].find(i => i.type === 'days' && i.id === itinerary.data.data['relationships'].days.data[itinerary.dayIndex-1].id);
+  }
+
+  generateTours(itinerary: ItineraryState, day: any) {
+    return day['relationships']['tours'].data.map(t => itinerary.data['included'].find(i => i.type === 'tours' && i.id === t.id));
+  }
+
+  generateWaypoints(itinerary: ItineraryState, tours: any) {
+    return tours[itinerary.tourIndex]['relationships'].pois.data.map(d => itinerary.data['included'].find(i => i.type === 'waypoints' && i.id === d.id));
   }
 }

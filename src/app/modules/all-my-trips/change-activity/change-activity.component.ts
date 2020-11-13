@@ -1,7 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { DialogService } from 'src/app/core/services/dialog.service';
 import { UpdateItineraryTourOrTransportAction } from 'src/app/store/actions';
 import { AppState } from 'src/app/store/models';
@@ -19,8 +19,7 @@ export class ChangeActivityComponent implements OnInit {
 
   constructor(
     public dialogService: DialogService,
-    private store: Store<AppState>,
-    @Inject(MAT_DIALOG_DATA) public data: string
+    private store: Store<AppState>
   ) { }
 
   ngOnInit(): void {
@@ -28,14 +27,19 @@ export class ChangeActivityComponent implements OnInit {
   }
 
   onOK(itineraryState: ItineraryState) {
-    console.log(itineraryState);
+    console.log(itineraryState.alternateTours.data[this.currentIndex]);
+    if(itineraryState.alternateTours.data[this.currentIndex].attributes["transport-type"]) {
+      this.dialogService.closeDialog();
+      this.dialogService.openDialog('editTrip');
+      return;
+    }
     this.store.dispatch(new UpdateItineraryTourOrTransportAction({
       itineraryId: itineraryState.data.data.id,
-      id: this.data,
+      id: itineraryState.tour.id,
       body: {
         type: 'tours',
         attributes: {
-          "solution-type": itineraryState.alternateTours.data[this.currentIndex].attributes.type,
+          "solution-type": 'compadre',
           "solution-id": itineraryState.alternateTours.data[this.currentIndex].id
         }
       }

@@ -16,18 +16,18 @@ export class PasswordEffects {
       private passwordService: PasswordsService
     ) { }
 
-    @Effect() loadPassword$ = this.actions$
-    .pipe(
-        ofType<LoadItineraryAction>(ItineraryActionTypes.LOAD_ITINERARY),
-        mergeMap(
-        (d) => this.passwordService.postPassword()
-            .pipe(
-            map(data => {
-                return new LoadPasswordSuccessAction(data)
-            }),
-            catchError(error => of(new LoadPasswordFailureAction(error)))
-            )
-        ),
-    )
+    // @Effect() loadPassword$ = this.actions$
+    // .pipe(
+    //     ofType<LoadItineraryAction>(ItineraryActionTypes.LOAD_ITINERARY),
+    //     mergeMap(
+    //     (d) => this.passwordService.postPassword()
+    //         .pipe(
+    //         map(data => {
+    //             return new LoadPasswordSuccessAction(data)
+    //         }),
+    //         catchError(error => of(new LoadPasswordFailureAction(error)))
+    //         )
+    //     ),
+    // )
 
 }

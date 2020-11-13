@@ -16,6 +16,7 @@ import { LocationDaysComponent } from './location-days/location-days.component';
 import { AcceptDialogComponent } from './accept-dialog/accept-dialog.component';
 import { NotIncludeComponent } from './not-include/not-include.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ChangeTransportComponent } from './change-transport/change-transport.component';
 
 const routes: Routes = [
   {
@@ -35,7 +36,8 @@ const routes: Routes = [
     ArriveDayComponent,
     LocationDaysComponent,
     AcceptDialogComponent,
-    NotIncludeComponent
+    NotIncludeComponent,
+    ChangeTransportComponent
   ],
   imports: [
     CommonModule,

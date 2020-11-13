@@ -45,7 +45,7 @@
 
             <div class="tl-wr">
                 <div class="location">
-                {{ findLocation() }}
+                {{ location }}
             </div>
             <div class="date">
                 {{ day.attributes.date | date }}
@@ -58,7 +58,7 @@
                 <div class="left-item flex cursor-pointer"
                     *ngFor="let tour of tours; let i=index"
                     [ngClass]="{ 'left-item__active': i === itinerary.tourIndex }"
-                    (click)="onTourChange(i)">
+                    (click)="onTourChange(i, tour)">
                     <div class="image" [style.background-image]="'url(\'' + tour.attributes['square-image-url'] + '\')'"></div>
 
                     <div class="detail-wrapper">

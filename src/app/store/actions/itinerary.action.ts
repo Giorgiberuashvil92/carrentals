@@ -7,6 +7,7 @@ export enum ItineraryActionTypes {
   LOAD_ITINERARY_FAILURE = '[ITINERARY] Load Itinerary Failure',
   SET_DAY_INDEX = '[ITINERARY] Set Day Index',
   SET_TOUR_INDEX = '[ITINERARY] Set Tour Index',
+  SET_TOUR = '[ITINERARY] Set Tour',
   DELETE_TOUR = '[ITINERARY] Delete Tour',
   DELETE_TOUR_SUCCESS = '[ITINERARY] Delete Tour Failure',
   DELETE_TOUR_FAILURE = '[ITINERARY] Delete Tour Success',
@@ -45,6 +46,12 @@ export class SetTourIndexAction implements Action {
   readonly type = ItineraryActionTypes.SET_TOUR_INDEX;
 
   constructor(public payload: number) {}
+}
+
+export class SetTourAction implements Action {
+  readonly type = ItineraryActionTypes.SET_TOUR;
+
+  constructor(public payload: any) {}
 }
 
 export class DeleteTourAction implements Action {
@@ -125,4 +132,5 @@ export type ItineraryAction =
     LoadItineraryAlternateToursFailureAction |
     UpdateItineraryTourOrTransportAction |
     UpdateItineraryTourOrTransportSuccessAction |
-    UpdateItineraryTourOrTransportFailureAction
+    UpdateItineraryTourOrTransportFailureAction |
+    SetTourAction

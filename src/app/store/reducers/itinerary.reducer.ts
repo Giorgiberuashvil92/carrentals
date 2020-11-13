@@ -10,6 +10,7 @@ export interface ItineraryState {
   error: FailureResponse,
   dayIndex: number,
   tourIndex: number,
+  tour: any,
   alternateTours: ItineraryAlternateToursResponse
 }
 
@@ -19,6 +20,7 @@ const initialState: ItineraryState = {
   error: undefined,
   dayIndex: 1,
   tourIndex: 0,
+  tour: undefined,
   alternateTours: undefined
 };
 
@@ -53,6 +55,11 @@ export function ItineraryReducer(state: ItineraryState = initialState, action: I
       return {
         ...state,
         tourIndex: action.payload
+      }
+    case ItineraryActionTypes.SET_TOUR:
+      return {
+        ...state,
+        tour: action.payload
       }
     case ItineraryActionTypes.DELETE_TOUR:
       return {
