@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { FailureResponse, ItineraryAlternateToursResponse, ItineraryResponse, UpdateItineraryTourOrTransportResponse } from '../models';
+import { FailureResponse, ItineraryAlternateToursResponse, ItineraryResponse, ItineraryToursSearchResponse, UpdateItineraryTourOrTransportResponse } from '../models';
 
 export enum ItineraryActionTypes {
   LOAD_ITINERARY = '[ITINERARY] Load Itinerary',
@@ -16,7 +16,10 @@ export enum ItineraryActionTypes {
   LOAD_ITINERARY_ALTERNATE_TOURS_FAILURE = '[ITINERARY] Load Itinerary Alternate Tours Failure',
   UPDATE_ITINERARY_TOUR_OR_TRANSPORT = '[ITINERARY] Update Itinerary Tour Or Transport',
   UPDATE_ITINERARY_TOUR_OR_TRANSPORT_SUCCESS = '[ITINERARY] Update Itinerary Tour Or Transport Success',
-  UPDATE_ITINERARY_TOUR_OR_TRANSPORT_FAILURE = '[ITINERARY] Update Itinerary Tour Or Transport Failure'
+  UPDATE_ITINERARY_TOUR_OR_TRANSPORT_FAILURE = '[ITINERARY] Update Itinerary Tour Or Transport Failure',
+  LOAD_TOURS_SEARCH = '[ITINERARY] Load Tours Search',
+  LOAD_TOURS_SEARCH_SUCCESS = '[ITINERARY] Load Tours Search Success',
+  LOAD_TOURS_SEARCH_FAILURE = '[ITINERARY] Load Tours Search Failure'
 }
 export class LoadItineraryAction implements Action {
   readonly type = ItineraryActionTypes.LOAD_ITINERARY;
@@ -90,6 +93,24 @@ export class LoadItineraryAlternateToursFailureAction implements Action {
     constructor(public payload: FailureResponse) {}
 }
 
+export class LoadItineraryToursSearchAction implements Action {
+  readonly type = ItineraryActionTypes.LOAD_TOURS_SEARCH;
+
+  constructor(public payload: { itineraryId: string; interestIds: string[] }) {}
+}
+
+export class LoadItineraryToursSearchSuccessAction implements Action {
+    readonly type = ItineraryActionTypes.LOAD_TOURS_SEARCH_SUCCESS;
+
+    constructor(public payload: ItineraryToursSearchResponse) {}
+}
+
+export class LoadItineraryToursSearchFailureAction implements Action {
+    readonly type = ItineraryActionTypes.LOAD_TOURS_SEARCH_FAILURE;
+
+    constructor(public payload: FailureResponse) {}
+}
+
 export class UpdateItineraryTourOrTransportAction implements Action {
   readonly type = ItineraryActionTypes.UPDATE_ITINERARY_TOUR_OR_TRANSPORT;
 
@@ -133,4 +154,7 @@ export type ItineraryAction =
     UpdateItineraryTourOrTransportAction |
     UpdateItineraryTourOrTransportSuccessAction |
     UpdateItineraryTourOrTransportFailureAction |
-    SetTourAction
+    SetTourAction |
+    LoadItineraryToursSearchAction |
+    LoadItineraryToursSearchSuccessAction |
+    LoadItineraryToursSearchFailureAction

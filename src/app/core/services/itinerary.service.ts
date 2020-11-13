@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ItineraryAlternateToursResponse, ItineraryResponse, UpdateItineraryTourOrTransportResponse } from 'src/app/store/models';
+import { ItineraryAlternateToursResponse, ItineraryResponse, ItineraryToursSearchResponse, UpdateItineraryTourOrTransportResponse } from 'src/app/store/models';
 import { ItineraryState } from 'src/app/store/reducers';
 
 
@@ -28,8 +28,9 @@ export class ItineraryService {
     return this.httpClient.put<UpdateItineraryTourOrTransportResponse>(`/itineraries/${itineraryId}/tours/${id}`, body);
   }
 
-  getItineraryToursSearch(itineraryId:string){
-    return this.httpClient.get<any>(`/itineraries/${itineraryId}/tours/search`)
+  getItineraryToursSearch$(itineraryId: string, interestIds: string[]): Observable<ItineraryToursSearchResponse>{
+    const query = interestIds.reduce((a, b) => `${a}interest-ids[]=${b}&`, '');
+    return this.httpClient.get<ItineraryToursSearchResponse>(`/itineraries/${itineraryId}/tours/search?${query.substr(0, query.length - 1)}`)
   }
 
   getItinerarySolutions(itineraryId:string){

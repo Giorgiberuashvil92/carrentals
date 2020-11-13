@@ -7,10 +7,6 @@ export {
 } from './profile.effect';
 
 export {
-  ItineraryToursSearchEffects
-} from './itineraryToursSearch.effect';
-
-export {
   ItineraryToursSolutionsEffects
 } from './itineraryToursSolutions.effect';
 

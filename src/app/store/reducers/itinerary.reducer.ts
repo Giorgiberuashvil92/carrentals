@@ -2,7 +2,7 @@ import {
     ItineraryAction,
     ItineraryActionTypes
 } from '../actions';
-import { FailureResponse, ItineraryAlternateToursResponse, ItineraryResponse } from '../models';
+import { FailureResponse, ItineraryAlternateToursResponse, ItineraryResponse, ItineraryToursSearchResponse } from '../models';
 
 export interface ItineraryState {
   data: ItineraryResponse,
@@ -11,7 +11,8 @@ export interface ItineraryState {
   dayIndex: number,
   tourIndex: number,
   tour: any,
-  alternateTours: ItineraryAlternateToursResponse
+  alternateTours: ItineraryAlternateToursResponse,
+  toursSearch: ItineraryToursSearchResponse
 }
 
 const initialState: ItineraryState = {
@@ -21,7 +22,8 @@ const initialState: ItineraryState = {
   dayIndex: 1,
   tourIndex: 0,
   tour: undefined,
-  alternateTours: undefined
+  alternateTours: undefined,
+  toursSearch: undefined
 };
 
 
@@ -97,6 +99,19 @@ export function ItineraryReducer(state: ItineraryState = initialState, action: I
           ...state
       }
     case ItineraryActionTypes.UPDATE_ITINERARY_TOUR_OR_TRANSPORT_FAILURE:
+      return {
+          ...state
+      }
+    case ItineraryActionTypes.LOAD_TOURS_SEARCH:
+      return {
+          ...state
+      }
+    case ItineraryActionTypes.LOAD_TOURS_SEARCH_SUCCESS:
+      return {
+          ...state,
+          toursSearch: action.payload
+      }
+    case ItineraryActionTypes.LOAD_TOURS_SEARCH_FAILURE:
       return {
           ...state
       }

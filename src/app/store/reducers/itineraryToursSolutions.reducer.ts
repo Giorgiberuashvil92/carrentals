@@ -1,4 +1,3 @@
-import { ItinerarToursSearchAction, ItineraryToursSearchActionTypes } from '../actions/itineraryToursSearch.action';
 import { ItinerarToursSolutionsAction, ItineraryToursSolutionsActionTypes } from '../actions/itineraryToursSolutions.action';
 
 export interface ItineraryState {

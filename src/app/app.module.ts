@@ -7,8 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
-import { AffiliateEffects, CityEffects, InterestEffects, ItineraryEffects, ItineraryToursSearchEffects, ItineraryToursSolutionsEffects, PasswordEffects, ProfileEffects, PutProfileEffects, SessionEffects } from './store/effects';
-import { ItineraryReducer, ItineraryToursSearchReducer, ItineraryToursSolutionsReducer, ProfileReducer, PutProfileReducer, AuthReducer, CityReducer, InterestReducer, AffiliateReducer } from './store/reducers';
+import { AffiliateEffects, CityEffects, InterestEffects, ItineraryEffects, ItineraryToursSolutionsEffects, PasswordEffects, ProfileEffects, PutProfileEffects, SessionEffects } from './store/effects';
+import { ItineraryReducer, ItineraryToursSolutionsReducer, ProfileReducer, PutProfileReducer, AuthReducer, CityReducer, InterestReducer, AffiliateReducer } from './store/reducers';
 import { ApiPrefixInterceptor } from './core/interceptors/api-prefix.interceptor';
 import { AuthEffects } from './store/effects/auth.effect';
 import { PasswordReducer } from './store/reducers/password.reducer';
@@ -27,7 +27,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     StoreModule.forRoot({
       itinerary: ItineraryReducer,
       profile: ProfileReducer,
-      itineraryToursSearch: ItineraryToursSearchReducer,
       itineraryToursSolutions: ItineraryToursSolutionsReducer,
       putProfile: PutProfileReducer,
       auth: AuthReducer,
@@ -39,7 +38,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     EffectsModule.forRoot([
       ItineraryEffects,
       ProfileEffects,
-      ItineraryToursSearchEffects,
       ItineraryToursSolutionsEffects,
       SessionEffects,
       PutProfileEffects,

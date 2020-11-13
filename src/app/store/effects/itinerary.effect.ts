@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { map, mergeMap, catchError } from 'rxjs/operators';
+import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
 
 import { of } from 'rxjs';
 import { ItineraryService } from 'src/app/core/services/itinerary.service';
-import { LoadAffiliatePartnerActivitiesFailureAction, DeleteTourAction, DeleteTourFailureAction, DeleteTourSuccessAction, ItineraryActionTypes, LoadItineraryAction, LoadItineraryAlternateToursAction, LoadItineraryAlternateToursySuccessAction, LoadItineraryFailureAction, LoadItinerarySuccessAction, UpdateItineraryTourOrTransportAction, UpdateItineraryTourOrTransportFailureAction, UpdateItineraryTourOrTransportSuccessAction } from '../actions';
+import { LoadAffiliatePartnerActivitiesFailureAction, DeleteTourAction, DeleteTourFailureAction, DeleteTourSuccessAction, ItineraryActionTypes, LoadItineraryAction, LoadItineraryAlternateToursAction, LoadItineraryAlternateToursySuccessAction, LoadItineraryFailureAction, LoadItinerarySuccessAction, UpdateItineraryTourOrTransportAction, UpdateItineraryTourOrTransportFailureAction, UpdateItineraryTourOrTransportSuccessAction, LoadItineraryToursSearchAction, LoadItineraryToursSearchSuccessAction, LoadItineraryToursSearchFailureAction } from '../actions';
 
 @Injectable()
 export class ItineraryEffects {
@@ -66,6 +66,20 @@ export class ItineraryEffects {
                 return new UpdateItineraryTourOrTransportSuccessAction(data)
             }),
             catchError(error => of(new UpdateItineraryTourOrTransportFailureAction(error)))
+            )
+        ),
+    )
+
+    @Effect() loadItineraryToursSearch$ = this.actions$
+    .pipe(
+        ofType<LoadItineraryToursSearchAction>(ItineraryActionTypes.LOAD_TOURS_SEARCH),
+        switchMap(
+        (d) => this.itineraryService.getItineraryToursSearch$(d.payload.itineraryId, d.payload.interestIds)
+            .pipe(
+            map(data => {
+                return new LoadItineraryToursSearchSuccessAction(data)
+            }),
+            catchError(error => of(new LoadItineraryToursSearchFailureAction(error)))
             )
         ),
     )

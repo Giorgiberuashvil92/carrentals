@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { DialogService } from 'src/app/core/services/dialog.service';
-import { LoadCitiesAction, LoadInterestsAction } from 'src/app/store/actions';
-import { AppState } from 'src/app/store/models';
+import { LoadCitiesAction, LoadInterestsAction, LoadItineraryToursSearchAction } from 'src/app/store/actions';
+import { AppState, ItineraryToursSearchResponse } from 'src/app/store/models';
+import { ItineraryState } from 'src/app/store/reducers';
 import { CityState } from 'src/app/store/reducers/city.reducer';
 import { InterestState } from 'src/app/store/reducers/interest.reducer';
 
@@ -12,7 +14,7 @@ import { InterestState } from 'src/app/store/reducers/interest.reducer';
   templateUrl: './select-activity.component.html',
   styleUrls: ['./select-activity.component.scss']
 })
-export class SelectActivityComponent implements OnInit {
+export class SelectActivityComponent implements OnInit, OnDestroy {
 
   result = [
     {
@@ -37,11 +39,15 @@ export class SelectActivityComponent implements OnInit {
   
   currentlyChosenIndex = -1;
 
-  citySet = new Set<string>();
-  interestSet = new Set<string>();
+  citySet = new Set<any>();
+  interestSet = new Set<any>();
   acitivityInput: string = '';
+  itinerary: ItineraryState;
   cityState$: Observable<CityState>;
   interestState$: Observable<InterestState>
+  toursToShow: any[] = [];
+
+  itineraryStateSub: Subscription;
 
   constructor(
     public dialogService: DialogService,
@@ -53,6 +59,12 @@ export class SelectActivityComponent implements OnInit {
     this.store.dispatch(new LoadInterestsAction());
     this.cityState$ = this.store.select(store => store.city);
     this.interestState$ = this.store.select(store => store.interest);
+    this.itineraryStateSub = this.store.select(store => store.itinerary).subscribe((itineraryState: ItineraryState) => {
+      this.itinerary = itineraryState;
+      if(this.itinerary.toursSearch) {
+        this.toursToShow = this.filterByCities(this.itinerary.toursSearch);
+      }
+    });
   }
   
   toggleCity(city: string) {
@@ -61,7 +73,7 @@ export class SelectActivityComponent implements OnInit {
     } else {
       this.citySet.add(city);
     }
-    this.searchActivity();
+    this.onCityChange();
   }
 
   toggleInterest(interest: string) {
@@ -70,10 +82,41 @@ export class SelectActivityComponent implements OnInit {
     } else {
       this.interestSet.add(interest);
     }
-    this.searchActivity();
+    this.onInterestChange();
   }
 
-  searchActivity() {
-    this.currentlyChosenIndex = 0;
+  onCityChange() {
+    this.toursToShow = this.filterByCities(this.itinerary.toursSearch);
+  }
+
+  onInterestChange() {
+    // this.currentlyChosenIndex = 0;
+    if(this.interestSet.size > 0) {
+      this.store.dispatch(
+        new LoadItineraryToursSearchAction({ 
+          itineraryId: this.itinerary.data.data.id, 
+          interestIds: [...this.interestSet].map(i => i.id)
+        })
+      );
+    }
+  }
+
+  filterCities(cities: any[]): any[] {
+    return cities.filter(c => !!this.itinerary.data.data.relationships.cities.data.find(r => r.id === c.id));
+  }
+
+  filterInterests(interests: any[]): any[] {
+    return interests.filter(i => i.attributes.continent === this.itinerary.data.data.attributes.continent);
+  }
+
+  filterByCities(toursSearch: ItineraryToursSearchResponse): any[] {
+    if(this.citySet.size === 0) return toursSearch.data;
+    const cityIdsSet = new Set<string>([...this.citySet].map(c => c.id));
+
+    return toursSearch.data.filter(d => cityIdsSet.has(d.relationships.city.data.id));
+  }
+
+  ngOnDestroy() {
+    if(this.itineraryStateSub) this.itineraryStateSub.unsubscribe();
   }
 }

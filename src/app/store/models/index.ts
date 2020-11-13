@@ -15,7 +15,8 @@ export {
     ItineraryResponse,
     FailureResponse,
     ItineraryAlternateToursResponse,
-    UpdateItineraryTourOrTransportResponse
+    UpdateItineraryTourOrTransportResponse,
+    ItineraryToursSearchResponse
 } from './itinerary.model';
 
 export {

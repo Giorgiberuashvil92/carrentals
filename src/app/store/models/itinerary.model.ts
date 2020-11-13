@@ -409,3 +409,22 @@ export interface UpdateItineraryTourOrTransportResponse {
         }
     }
 }
+
+export interface ItineraryToursSearchResponse {
+  data: Array<{
+    id: string;
+    type: string;
+    attributes: {
+      'name': string;
+      'square-image-url': string;
+    }
+    relationships: {
+      'city': {
+        'data': {
+          'id': string;
+          'type': string;
+        }
+      }
+    }
+  }>
+}

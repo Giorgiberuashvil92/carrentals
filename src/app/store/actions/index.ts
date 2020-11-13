@@ -15,18 +15,16 @@ export {
   LoadItineraryAlternateToursySuccessAction,
   UpdateItineraryTourOrTransportAction,
   UpdateItineraryTourOrTransportFailureAction,
-  UpdateItineraryTourOrTransportSuccessAction
+  UpdateItineraryTourOrTransportSuccessAction,
+  LoadItineraryToursSearchAction,
+  LoadItineraryToursSearchSuccessAction,
+  LoadItineraryToursSearchFailureAction
 } from './itinerary.action';
 
 export {
   ProfileActionTypes,
   ProfileAction
 } from './profile.action';
-
-export {
-  ItinerarToursSearchAction,
-  ItineraryToursSearchActionTypes
-} from './itineraryToursSearch.action';
 
 export {
   ItinerarToursSolutionsAction,
