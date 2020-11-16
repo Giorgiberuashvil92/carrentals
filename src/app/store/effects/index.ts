@@ -7,10 +7,6 @@ export {
 } from './profile.effect';
 
 export {
-  ItineraryToursSolutionsEffects
-} from './itineraryToursSolutions.effect';
-
-export {
   PutProfileEffects
 } from './putProfile.effect';
 

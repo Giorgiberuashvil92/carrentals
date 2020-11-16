@@ -4,7 +4,7 @@ import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
 
 import { of } from 'rxjs';
 import { ItineraryService } from 'src/app/core/services/itinerary.service';
-import { LoadAffiliatePartnerActivitiesFailureAction, DeleteTourAction, DeleteTourFailureAction, DeleteTourSuccessAction, ItineraryActionTypes, LoadItineraryAction, LoadItineraryAlternateToursAction, LoadItineraryAlternateToursySuccessAction, LoadItineraryFailureAction, LoadItinerarySuccessAction, UpdateItineraryTourOrTransportAction, UpdateItineraryTourOrTransportFailureAction, UpdateItineraryTourOrTransportSuccessAction, LoadItineraryToursSearchAction, LoadItineraryToursSearchSuccessAction, LoadItineraryToursSearchFailureAction } from '../actions';
+import { LoadAffiliatePartnerActivitiesFailureAction, DeleteTourAction, DeleteTourFailureAction, DeleteTourSuccessAction, ItineraryActionTypes, LoadItineraryAction, LoadItineraryAlternateToursAction, LoadItineraryAlternateToursySuccessAction, LoadItineraryFailureAction, LoadItinerarySuccessAction, UpdateItineraryTourOrTransportAction, UpdateItineraryTourOrTransportFailureAction, UpdateItineraryTourOrTransportSuccessAction, LoadItineraryToursSearchAction, LoadItineraryToursSearchSuccessAction, LoadItineraryToursSearchFailureAction, LoadItinerarySolutionsForTourAction, LoadItinerarySolutionsForTourSuccessAction, LoadItinerarySolutionsForTourFailureAction, PostItinerarySolutionForTourAction, PostItinerarySolutionForTourSuccessAction, PostItinerarySolutionForTourFailureAction, UpdateItineraryAction, UpdateItinerarySuccessAction, UpdateItineraryFailureAction } from '../actions';
 
 @Injectable()
 export class ItineraryEffects {
@@ -80,6 +80,48 @@ export class ItineraryEffects {
                 return new LoadItineraryToursSearchSuccessAction(data)
             }),
             catchError(error => of(new LoadItineraryToursSearchFailureAction(error)))
+            )
+        ),
+    )
+
+    @Effect() loadItinerarySolutionsForTour$ = this.actions$
+    .pipe(
+        ofType<LoadItinerarySolutionsForTourAction>(ItineraryActionTypes.LOAD_TOURS_SOLUTIONS_FOR_TOUR),
+        switchMap(
+        (d) => this.itineraryService.getItinerarySolutionsForTour$(d.payload.itineraryId, d.payload.tourOfferId)
+            .pipe(
+            map(data => {
+                return new LoadItinerarySolutionsForTourSuccessAction(data)
+            }),
+            catchError(error => of(new LoadItinerarySolutionsForTourFailureAction(error)))
+            )
+        ),
+    )
+
+    @Effect() postItinerarySolutionForTour$ = this.actions$
+    .pipe(
+        ofType<PostItinerarySolutionForTourAction>(ItineraryActionTypes.POST_TOURS_SOLUTION_FOR_TOUR),
+        switchMap(
+        (d) => this.itineraryService.postItinerarySolutionForTour$(d.payload.itineraryId, d.payload.body)
+            .pipe(
+            map(data => {
+                return new PostItinerarySolutionForTourSuccessAction(data)
+            }),
+            catchError(error => of(new PostItinerarySolutionForTourFailureAction(error)))
+            )
+        ),
+    )
+
+    @Effect() updateItinerary$ = this.actions$
+    .pipe(
+        ofType<UpdateItineraryAction>(ItineraryActionTypes.UPDATE_ITINERARY),
+        switchMap(
+        (d) => this.itineraryService.updateItinerary$(d.payload.itineraryId, d.payload.body)
+            .pipe(
+            map(data => {
+                return new UpdateItinerarySuccessAction(data)
+            }),
+            catchError(error => of(new UpdateItineraryFailureAction(error)))
             )
         ),
     )

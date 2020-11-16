@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ItineraryAlternateToursResponse, ItineraryResponse, ItineraryToursSearchResponse, UpdateItineraryTourOrTransportResponse } from 'src/app/store/models';
+import { ItineraryAlternateToursResponse, ItineraryResponse, ItinerarySolutionsForTourResponse, ItineraryToursSearchResponse, PostItinerarySolutionsForTourResponse, UpdateItineraryTourOrTransportResponse } from 'src/app/store/models';
 import { ItineraryState } from 'src/app/store/reducers';
 
 
@@ -25,7 +25,7 @@ export class ItineraryService {
   }
 
   updateItineraryTourOrTransport$(itineraryId: string, id: string, body: any): Observable<UpdateItineraryTourOrTransportResponse> {
-    return this.httpClient.put<UpdateItineraryTourOrTransportResponse>(`/itineraries/${itineraryId}/tours/${id}`, body);
+    return this.httpClient.put<UpdateItineraryTourOrTransportResponse>(`/itineraries/${itineraryId}/tours/${id}`, { data: body });
   }
 
   getItineraryToursSearch$(itineraryId: string, interestIds: string[]): Observable<ItineraryToursSearchResponse>{
@@ -33,8 +33,16 @@ export class ItineraryService {
     return this.httpClient.get<ItineraryToursSearchResponse>(`/itineraries/${itineraryId}/tours/search?${query.substr(0, query.length - 1)}`)
   }
 
-  getItinerarySolutions(itineraryId:string){
-    return this.httpClient.get<any>(`/itineraries/${itineraryId}/tours/solutions`)
+  getItinerarySolutionsForTour$(itineraryId: string, tourOfferId: string): Observable<ItinerarySolutionsForTourResponse>{
+    return this.httpClient.get<ItinerarySolutionsForTourResponse>(`/itineraries/${itineraryId}/tours/solutions?tour-offer-id=${tourOfferId}`);
+  }
+
+  postItinerarySolutionForTour$(itineraryId: string, body: any): Observable<PostItinerarySolutionsForTourResponse>{
+    return this.httpClient.post<PostItinerarySolutionsForTourResponse>(`/itineraries/${itineraryId}/tours`, { data: body });
+  }
+
+  updateItinerary$(id: string, body: any): Observable<ItineraryResponse> {
+    return this.httpClient.put<ItineraryResponse>(`/itineraries/${id}`, { data: body });
   }
 
   findCityById(itinerary: ItineraryState, id: string) {

@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DialogService } from 'src/app/core/services/dialog.service';
-import { LoadCitiesAction, LoadInterestsAction, LoadItineraryToursSearchAction } from 'src/app/store/actions';
+import { LoadCitiesAction, LoadInterestsAction, LoadItinerarySolutionsForTourAction, LoadItineraryToursSearchAction, SetItineraryToursSearchAction } from 'src/app/store/actions';
 import { AppState, ItineraryToursSearchResponse } from 'src/app/store/models';
 import { ItineraryState } from 'src/app/store/reducers';
 import { CityState } from 'src/app/store/reducers/city.reducer';
@@ -55,6 +55,7 @@ export class SelectActivityComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    this.store.dispatch(new SetItineraryToursSearchAction({ data: [] }));
     this.store.dispatch(new LoadCitiesAction());
     this.store.dispatch(new LoadInterestsAction());
     this.cityState$ = this.store.select(store => store.city);
@@ -73,7 +74,9 @@ export class SelectActivityComponent implements OnInit, OnDestroy {
     } else {
       this.citySet.add(city);
     }
-    this.onCityChange();
+    if(this.itinerary.toursSearch) {
+      this.onCityChange();
+    }
   }
 
   toggleInterest(interest: string) {
@@ -99,6 +102,21 @@ export class SelectActivityComponent implements OnInit, OnDestroy {
         })
       );
     }
+  }
+
+  onNext() {
+    if(this.toursToShow.length > this.currentlyChosenIndex) {
+      this.store.dispatch(new LoadItinerarySolutionsForTourAction({ 
+        itineraryId: this.itinerary.data.data.id, 
+        tourOfferId: this.toursToShow[this.currentlyChosenIndex].id
+      }))
+      this.dialogService.closeDialog();
+      this.dialogService.openDialog('chooseNewActivity');
+    }
+  }
+
+  findCity(cities: any[], id: string): string {
+    return cities.find(c => c.id === id).attributes.name;
   }
 
   filterCities(cities: any[]): any[] {

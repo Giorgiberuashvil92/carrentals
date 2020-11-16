@@ -8,10 +8,6 @@ export {
 } from './profile.reducer';
 
 export {
-  ItineraryToursSolutionsReducer
-} from './itineraryToursSolutions.reducer';
-
-export {
   PutProfileReducer
 } from './putProfile.reducer';
 

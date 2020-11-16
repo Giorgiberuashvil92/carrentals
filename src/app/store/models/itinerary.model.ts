@@ -195,7 +195,7 @@ export interface UpdateItineraryTourOrTransportResponse {
           "continent": string;
           "days": Array<{
               "data": {
-                "type": "string";
+                "type": string;
                 "attributes": {
                   "date": string;
                   "index": number;
@@ -427,4 +427,213 @@ export interface ItineraryToursSearchResponse {
       }
     }
   }>
+}
+
+export interface ItinerarySolutionsForTourResponse {
+  data: Array<{
+    id: string;
+    type: string;
+    attributes: {
+      "type": string;
+      "name": string;
+      "description": string;
+      "image-url": string;
+      "transport-type": string;
+      "tags": Array<string>;
+      "day-id": string;
+      "day-index": number;
+      "old-day-tours": Array<{
+        "data": {
+          "type": string;
+          "attributes": {
+            "position": number;
+            "name": string;
+            "summary": string;
+            "schedule": string;
+            "landscape-image-url": string;
+            "square-image-url": string;
+            "has-alternative": boolean;
+            "transport-type": string;
+            "transport-name": string;
+            "transport-description": string;
+            "pois": Array<{
+              "data": {
+                "type": string;
+                "attributes": {
+                  "name": string;
+                  "summary": string;
+                  "description": string;
+                  "image-url": string;
+                }
+              }
+            }>
+            "city": {
+              "data": {
+                "type": string;
+                "attributes": {
+                  "name": string;
+                  "country-code": string;
+                  "country-name": string;
+                  "continent-name": string;
+                  "show-in-wizard": boolean;
+                  "wizard-order": number;
+                }
+              }
+            },
+            "tour-offer": {
+              "data": {
+                "type": string;
+                "attributes": {
+                  "name": string;
+                  "square-image-url": string;
+                  "city": {
+                    "data": {
+                      "type": string;
+                      "attributes": {
+                        "name": string;
+                        "country-code": string;
+                        "country-name": string;
+                        "continent-name": string;
+                        "show-in-wizard": boolean;
+                        "wizard-order": number;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }>
+      "new-day-tours": Array<{
+        "data": {
+          "type": string;
+          "attributes": {
+            "position": number;
+            "name": string;
+            "summary": string;
+            "schedule": string;
+            "landscape-image-url": string;
+            "square-image-url": string;
+            "has-alternative": true,
+            "transport-type": string;
+            "transport-name": string;
+            "transport-description": string;
+            "pois": Array<{
+              "data": {
+                "type": string;
+                "attributes": {
+                  "name": string;
+                  "summary": string;
+                  "description": string;
+                  "image-url": string;
+                }
+              }
+            }>
+            "city": {
+              "data": {
+                "type": string;
+                "attributes": {
+                  "name": string;
+                  "country-code": string;
+                  "country-name": string;
+                  "continent-name": string;
+                  "show-in-wizard": boolean;
+                  "wizard-order": number;
+                }
+              }
+            },
+            "tour-offer": {
+              "data": {
+                "type": string;
+                "attributes": {
+                  "name": string;
+                  "square-image-url": string;
+                  "city": {
+                    "data": {
+                      "type": string;
+                      "attributes": {
+                        "name": string;
+                        "country-code": string;
+                        "country-name": string;
+                        "continent-name": string;
+                        "show-in-wizard": boolean;
+                        "wizard-order": number;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }>
+    }
+  }>
+}
+
+export interface PostItinerarySolutionsForTourResponse {
+  "data": {
+    "type": string;
+    "attributes": {
+      "position": number;
+      "name": string;
+      "summary": string;
+      "schedule": string;
+      "landscape-image-url": string;
+      "square-image-url": string;
+      "has-alternative": true,
+      "transport-type": string;
+      "transport-name": string;
+      "transport-description": string;
+      "pois": [
+        {
+          "data": {
+            "type": string;
+            "attributes": {
+              "name": string;
+              "summary": string;
+              "description": string;
+              "image-url": string;
+            }
+          }
+        }
+      ],
+      "city": {
+        "data": {
+          "type": string;
+          "attributes": {
+            "name": string;
+            "country-code": string;
+            "country-name": string;
+            "continent-name": string;
+            "show-in-wizard": boolean;
+            "wizard-order": number;
+          }
+        }
+      },
+      "tour-offer": {
+        "data": {
+          "type": string;
+          "attributes": {
+            "name": string;
+            "square-image-url": string;
+            "city": {
+              "data": {
+                "type": string;
+                "attributes": {
+                  "name": string;
+                  "country-code": string;
+                  "country-name": string;
+                  "continent-name": string;
+                  "show-in-wizard": boolean;
+                  "wizard-order": number;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
