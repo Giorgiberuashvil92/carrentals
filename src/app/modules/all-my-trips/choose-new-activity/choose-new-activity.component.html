@@ -4,31 +4,29 @@
         <img class="close-dialog-btn absolute cursor-pointer" src="/assets/close-dialog-icon.svg" alt="" (click)="dialogService.closeDialog()">
         <!-- compadre -->
         <ng-container *ngSwitchCase="'compadre'">
-            
             <div class="replace-day">
-                How about we replace <span class="replace-day-number">blaaa</span> with <span class="replace-day-number">bluuu</span>
+                How about we replace <span class="replace-day-number">{{ findOriginalTour().attributes.name }}</span> with <span class="replace-day-number">{{ itineraryState.tourSolutions.data[sortedArrayIndexes[activeSolutionIndex]].attributes.name }}</span>
             </div>
         
             
             <div class="current-new flex justify-between">
                 <div class="activity-wrapper">
                     <div class="current">
-                        Current - Day 5
+                        Current - Day {{ itineraryState.tourSolutions.data[sortedArrayIndexes[activeSolutionIndex]].attributes['day-index'] }}
                     </div>
         
                     <div class="activity relative flex cursor-pointer" 
-                        *ngFor="let r of result; let i=index" 
-                        (click)="currentIndex = i">
+                        *ngFor="let oldTour of itineraryState.tourSolutions.data[sortedArrayIndexes[activeSolutionIndex]].attributes['old-day-tours'].data; let i=index">
                         
-                        <div class="image" [style.background-image]="'url(\'' + r.img + '\')'"></div>
+                        <div class="image" [style.background-image]="'url(\'' + oldTour.attributes['square-image-url'] + '\')'"></div>
             
                         <div class="detail-wrapper">
                             <div class="city-detail">
-                                {{ r.city }}
+                                {{ itineraryService.findCityById(itineraryState, oldTour.relationships.city.data.id).attributes.name }}
                             </div>
             
-                            <div class="title-self-guided">
-                                {{ r.title }}  {{ r.isSelfGuided ? '(Self Guided)' : '' }}
+                            <div class="city-detail">
+                                {{ oldTour.attributes['name'] }}
                             </div>
                         </div>
                     </div>
@@ -40,18 +38,17 @@
                     </div>
         
                     <div class="activity relative flex cursor-pointer" 
-                        *ngFor="let r of result; let i=index" 
-                        (click)="newIndex = i">
+                        *ngFor="let newTour of itineraryState.tourSolutions.data[sortedArrayIndexes[activeSolutionIndex]].attributes['new-day-tours'].data; let i=index">
                         
-                        <div class="image" [style.background-image]="'url(\'' + r.img + '\')'"></div>
+                        <div class="image" [style.background-image]="'url(\'' + newTour.attributes['square-image-url'] + '\')'"></div>
             
                         <div class="detail-wrapper">
                             <div class="city-detail">
-                                {{ r.city }}
+                                {{ itineraryService.findCityById(itineraryState, newTour.relationships.city.data.id).attributes.name }}
                             </div>
             
-                            <div class="title-self-guided">
-                                {{ r.title }}  {{ r.isSelfGuided ? '(Self Guided)' : '' }}
+                            <div class="city-detail">
+                                {{ newTour.attributes['name'] }}
                             </div>
                         </div>
                     </div>

@@ -1,49 +1,53 @@
-<div class="wrapper relative">
-    <img class="close-dialog-btn absolute cursor-pointer" src="/assets/close-dialog-icon.svg" alt="" (click)="dialogService.closeDialog()">
-    
-    <div class="arrive-day-question">
-        What day do you want to arrive ?
-    </div>
-
-    <div class="arrive-day-text">
-        Remember, this is the day you ARRIVE in Europe.
-        Most intercontinental flights will depart one day BEFORE arrival in Europe!
-    </div>
-
-    <div class="calendars-wrapper">
-        <div class="from">
-            <div class="title">FROM:</div>
-            <app-calendar></app-calendar>
-        </div>
-
-        <div class="to">
-            <div class="title">TO:</div>
-            <app-calendar></app-calendar>
-        </div>
-    </div>
+<mat-dialog-content *ngIf="itineraryState && !itineraryState.loading && itineraryState.data">
+    <div class="wrapper relative">
+        <img class="close-dialog-btn absolute cursor-pointer" src="/assets/close-dialog-icon.svg" alt="" (click)="dialogService.closeDialog()">
         
-    <div class="least-days-error">
-        <img src="/assets/warning-icon.svg" alt="">
-        <div class="text">
-            Sorry, for the cities you are visiting, you need at least
-            <div class="days">
-                9 days.
+        <div class="arrive-day-question">
+            What day do you want to arrive ?
+        </div>
+    
+        <div class="arrive-day-text">
+            Remember, this is the day you ARRIVE in {{ itineraryState.data.data.attributes.continent | titlecase }}.
+            Most intercontinental flights will depart one day BEFORE arrival in {{ itineraryState.data.data.attributes.continent | titlecase }}!
+        </div>
+    
+        <div class="calendars-wrapper">
+            <div class="from">
+                <div class="title">FROM:</div>
+                <app-calendar></app-calendar>
+            </div>
+    
+            <div class="to">
+                <div class="title">TO:</div>
+                <app-calendar></app-calendar>
             </div>
         </div>
-    </div>
+            
+        <div class="least-days-error">
+            <img src="/assets/warning-icon.svg" alt="">
+            <div class="text">
+                Sorry, for the cities you are visiting, you need at least
+                <div class="days">
+                    9 days.
+                </div>
+            </div>
+        </div>
+        
+        <div class="days-wrapper">
+            <app-location-days [data]="itineraryState.data.data.relationships['grouped-days'].data[0]"></app-location-days>
+            <ng-container *ngFor="let gd of itineraryState.data.data.relationships['grouped-days'].data | slice:1">
+                <div class="spacing"></div>
+                <app-location-days [data]="gd"></app-location-days>
+            </ng-container>
+        </div>
     
-    <div class="days-wrapper">
-        <app-location-days [city]="'Prague'" [days]="days1"></app-location-days>
-        <div class="spacing"></div>
-        <app-location-days [city]="'Paris'"  [days]="days2"></app-location-days>
+        <div class="actions absolute flex justify-between">
+            <button class="cancel-button" (click)="dialogService.closeDialog()">
+                CANCEL
+            </button>
+            <button class="ok-button">
+                OK
+            </button>
+        </div>
     </div>
-
-    <div class="actions absolute flex justify-between">
-        <button class="cancel-button" (click)="dialogService.closeDialog()">
-            CANCEL
-        </button>
-        <button class="ok-button">
-            OK
-        </button>
-    </div>
-</div>
+</mat-dialog-content>

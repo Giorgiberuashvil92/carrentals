@@ -96,6 +96,12 @@ export class ChooseNewActivityComponent implements OnInit {
     }
   }
 
+  findOriginalTour(): any {
+    return this.itineraryState.tourSolutions.data[this.sortedArrayIndexes[this.activeSolutionIndex]].attributes["old-day-tours"].data[
+      this.itineraryState.tourSolutions.data[this.sortedArrayIndexes[this.activeSolutionIndex]].attributes["new-day-tours"].data
+      .findIndex(r => r.attributes.name === this.itineraryState.tourSolutions.data[this.sortedArrayIndexes[this.activeSolutionIndex]].attributes.name)];
+  }
+
   onYes() {
     this.store.dispatch(new PostItinerarySolutionForTourAction({ 
       itineraryId: this.itineraryState.data.data.id,

@@ -10,6 +10,11 @@
         display: flex;
         justify-content: space-between;
         margin-top: 5px;
+
+        .days-inner-wrapper {
+            display: flex;
+            justify-content: flex-start;
+        }
         
         .day-and-x {
             display: flex;

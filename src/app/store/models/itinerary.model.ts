@@ -229,159 +229,52 @@ export interface UpdateItineraryTourOrTransportResponse {
                       }
                     }
                   },
-                  "tours": [
-                    {
-                      "data": {
-                        "type": string;
-                        "attributes": {
-                          "position": boolean;
-                          "name": string;
-                          "summary": string;
-                          "schedule": string;
-                          "landscape-image-url": string;
-                          "square-image-url": string;
-                          "has-alternative": boolean;
-                          "transport-type": string;
-                          "transport-name": string;
-                          "transport-description": string;
-                          "pois": [
-                            {
-                              "data": {
-                                "type": string;
-                                "attributes": {
-                                  "name": string;
-                                  "summary": string;
-                                  "description": string;
-                                  "image-url": string;
-                                }
-                              }
+                  "tours": Array<{
+                    "data": {
+                      "type": string;
+                      "attributes": {
+                        "position": boolean;
+                        "name": string;
+                        "summary": string;
+                        "schedule": string;
+                        "landscape-image-url": string;
+                        "square-image-url": string;
+                        "has-alternative": boolean;
+                        "transport-type": string;
+                        "transport-name": string;
+                        "transport-description": string;
+                        "pois": Array<{
+                          "data": {
+                            "type": string;
+                            "attributes": {
+                              "name": string;
+                              "summary": string;
+                              "description": string;
+                              "image-url": string;
                             }
-                          ],
-                          "city": {
-                            "data": {
-                              "type": string;
-                              "attributes": {
-                                "name": string;
-                                "country-code": string;
-                                "country-name": string;
-                                "continent-name": string;
-                                "show-in-wizard": boolean;
-                                "wizard-order": number;
-                              }
+                          }
+                        }>
+                        "city": {
+                          "data": {
+                            "type": string;
+                            "attributes": {
+                              "name": string;
+                              "country-code": string;
+                              "country-name": string;
+                              "continent-name": string;
+                              "show-in-wizard": boolean;
+                              "wizard-order": number;
                             }
                           }
                         }
                       }
                     }
-                  ]
+                  }>
                 }
             }
           }>,
-          "grouped-days": [
-            {
-              "city": {
-                "data": {
-                  "type": string;
-                  "attributes": {
-                    "name": string;
-                    "country-code": string;
-                    "country-name": string;
-                    "continent-name": string;
-                    "show-in-wizard": boolean;
-                    "wizard-order": number;
-                  }
-                }
-              },
-              "days": [
-                {
-                  "data": {
-                    "type": string;
-                    "attributes": {
-                      "date": string;
-                      "index": number;
-                      "first-day": boolean;
-                      "last-day": boolean;
-                      "half-day": boolean;
-                      "removable": boolean;
-                      "starting-city": {
-                        "data": {
-                          "type": string;
-                          "attributes": {
-                            "name": string;
-                            "country-code": string;
-                            "country-name": string;
-                            "continent-name": string;
-                            "show-in-wizard": boolean;
-                            "wizard-order": number;
-                          }
-                        }
-                      },
-                      "ending-city": {
-                        "data": {
-                          "type": string;
-                          "attributes": {
-                            "name": string;
-                            "country-code": string;
-                            "country-name": string;
-                            "continent-name": string;
-                            "show-in-wizard": boolean;
-                            "wizard-order": number;
-                          }
-                        }
-                      },
-                      "tours": [
-                        {
-                          "data": {
-                            "type": string;
-                            "attributes": {
-                              "position": number;
-                              "name": string;
-                              "summary": string;
-                              "schedule": string;
-                              "landscape-image-url": string;
-                              "square-image-url": string;
-                              "has-alternative": true,
-                              "transport-type": string;
-                              "transport-name": string;
-                              "transport-description": string;
-                              "pois": [
-                                {
-                                  "data": {
-                                    "type": string;
-                                    "attributes": {
-                                      "name": string;
-                                      "summary": string;
-                                      "description": string;
-                                      "image-url": string;
-                                    }
-                                  }
-                                }
-                              ],
-                              "city": {
-                                "data": {
-                                  "type": string;
-                                  "attributes": {
-                                    "name": string;
-                                    "country-code": string;
-                                    "country-name": string;
-                                    "continent-name": string;
-                                    "show-in-wizard": boolean;
-                                    "wizard-order": number;
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              ]
-            }
-          ],
-          "cities": [
-            {
+          "grouped-days": Array<{
+            "city": {
               "data": {
                 "type": string;
                 "attributes": {
@@ -393,19 +286,110 @@ export interface UpdateItineraryTourOrTransportResponse {
                   "wizard-order": number;
                 }
               }
-            }
-          ],
-          "transportation-plan": [
-            {
-              "step": number;
+            },
+            "days": Array<{
+              "data": {
+                "type": string;
+                "attributes": {
+                  "date": string;
+                  "index": number;
+                  "first-day": boolean;
+                  "last-day": boolean;
+                  "half-day": boolean;
+                  "removable": boolean;
+                  "starting-city": {
+                    "data": {
+                      "type": string;
+                      "attributes": {
+                        "name": string;
+                        "country-code": string;
+                        "country-name": string;
+                        "continent-name": string;
+                        "show-in-wizard": boolean;
+                        "wizard-order": number;
+                      }
+                    }
+                  },
+                  "ending-city": {
+                    "data": {
+                      "type": string;
+                      "attributes": {
+                        "name": string;
+                        "country-code": string;
+                        "country-name": string;
+                        "continent-name": string;
+                        "show-in-wizard": boolean;
+                        "wizard-order": number;
+                      }
+                    }
+                  },
+                  "tours": Array<{
+                    "data": {
+                      "type": string;
+                      "attributes": {
+                        "position": number;
+                        "name": string;
+                        "summary": string;
+                        "schedule": string;
+                        "landscape-image-url": string;
+                        "square-image-url": string;
+                        "has-alternative": true,
+                        "transport-type": string;
+                        "transport-name": string;
+                        "transport-description": string;
+                        "pois": Array<{
+                          "data": {
+                            "type": string;
+                            "attributes": {
+                              "name": string;
+                              "summary": string;
+                              "description": string;
+                              "image-url": string;
+                            }
+                          }
+                        }>
+                        "city": {
+                          "data": {
+                            "type": string;
+                            "attributes": {
+                              "name": string;
+                              "country-code": string;
+                              "country-name": string;
+                              "continent-name": string;
+                              "show-in-wizard": boolean;
+                              "wizard-order": number;
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }>
+                }
+              }
+            }>
+          }>
+          "cities": Array<{
+            "data": {
               "type": string;
-              "icon": string;
-              "top-text": string;
-              "bottom-text": string;
-              "bottom-text-bold": string;
-              "day-index": number;
+              "attributes": {
+                "name": string;
+                "country-code": string;
+                "country-name": string;
+                "continent-name": string;
+                "show-in-wizard": boolean;
+                "wizard-order": number;
+              }
             }
-          ]
+          }>
+          "transportation-plan": Array<{
+            "step": number;
+            "type": string;
+            "icon": string;
+            "top-text": string;
+            "bottom-text": string;
+            "bottom-text-bold": string;
+            "day-index": number;
+          }>
         }
     }
 }
@@ -442,8 +426,8 @@ export interface ItinerarySolutionsForTourResponse {
       "tags": Array<string>;
       "day-id": string;
       "day-index": number;
-      "old-day-tours": Array<{
-        "data": {
+      "old-day-tours": {
+        "data": Array<{
           "type": string;
           "attributes": {
             "position": number;
@@ -503,10 +487,10 @@ export interface ItinerarySolutionsForTourResponse {
               }
             }
           }
-        }
-      }>
-      "new-day-tours": Array<{
-        "data": {
+        }>
+      }
+      "new-day-tours": {
+        "data": Array<{
           "type": string;
           "attributes": {
             "position": number;
@@ -566,8 +550,8 @@ export interface ItinerarySolutionsForTourResponse {
               }
             }
           }
-        }
-      }>
+        }>
+      }
     }
   }>
 }
@@ -586,19 +570,17 @@ export interface PostItinerarySolutionsForTourResponse {
       "transport-type": string;
       "transport-name": string;
       "transport-description": string;
-      "pois": [
-        {
-          "data": {
-            "type": string;
-            "attributes": {
-              "name": string;
-              "summary": string;
-              "description": string;
-              "image-url": string;
-            }
+      "pois": Array<{
+        "data": {
+          "type": string;
+          "attributes": {
+            "name": string;
+            "summary": string;
+            "description": string;
+            "image-url": string;
           }
         }
-      ],
+      }>
       "city": {
         "data": {
           "type": string;

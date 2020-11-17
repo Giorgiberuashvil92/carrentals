@@ -49,6 +49,10 @@ export class ItineraryService {
     return itinerary.data['included'].find(i => i.type === 'cities' && i.id === id);
   }
 
+  findDayById(itinerary: ItineraryState, id: string) {
+    return itinerary.data['included'].find(i => i.type === 'days' && i.id === id);
+  }
+
   findCity(itinerary: ItineraryState, day: any): string {
     if(day['relationships']['starting-city'].data && day['relationships']['starting-city'].data.id 
         && day['relationships']['ending-city'].data && day['relationships']['ending-city'].data.id 

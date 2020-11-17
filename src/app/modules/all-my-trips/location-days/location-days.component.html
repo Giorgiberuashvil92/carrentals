@@ -1,25 +1,27 @@
 <div class="wrapper">
     <div class="city">
-        {{ city }}
+        {{ city.attributes.name }}
     </div>
 
-    <div class="days-wrapper" *ngIf="days">
-        <div class="day-and-x"
-            *ngFor="let d of days">
-            <div [class]="'day-wrapper day-wrapper__fill--' + d.fill" 
-                [ngClass]="{
-                    'day-wrapper__hasX': d.hasX
-                }">
+    <div class="days-wrapper" *ngIf="daysArr">
+        <div class="days-inner-wrapper">
+            <div class="day-and-x"
+                *ngFor="let d of daysArr">
+                <div [class]="'day-wrapper day-wrapper__fill--' + 0" 
+                    [ngClass]="{
+                        'day-wrapper__hasX': d.attributes.removable
+                    }">
+        
+                    <div class="day-text">DAY</div>
+                    <div class="num">{{ d.attributes.index }}</div>
+                    <div class="name-dd-month">{{ d.attributes.date | date }}</div>
+                    
+                    <div class="half-filler" *ngIf="d.attributes['half-day']"></div>
+                </div>
     
-                <div class="day-text">DAY</div>
-                <div class="num">{{ d.num }}</div>
-                <div class="name-dd-month">{{ d.name }}, {{ d.dd }} {{ d.month }}</div>
-                
-                <div class="half-filler" *ngIf="d.fill === 1"></div>
-            </div>
-
-            <div class="x-icon-wrapper" *ngIf="d.hasX">
-                <img src="/assets/location-day-x-icon.svg" alt="">
+                <div class="x-icon-wrapper" *ngIf="d.attributes.removable">
+                    <img src="/assets/location-day-x-icon.svg" alt="">
+                </div>
             </div>
         </div>
 
