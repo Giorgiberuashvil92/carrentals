@@ -18,18 +18,23 @@ export {
   UpdateItineraryTourOrTransportSuccessAction,
   LoadItineraryToursSearchAction,
   LoadItineraryToursSearchSuccessAction,
-  LoadItineraryToursSearchFailureAction
+  LoadItineraryToursSearchFailureAction,
+  LoadItinerarySolutionsForTourAction,
+  LoadItinerarySolutionsForTourSuccessAction,
+  LoadItinerarySolutionsForTourFailureAction,
+  SetItineraryToursSearchAction,
+  PostItinerarySolutionForTourAction,
+  PostItinerarySolutionForTourSuccessAction,
+  PostItinerarySolutionForTourFailureAction,
+  UpdateItineraryAction,
+  UpdateItinerarySuccessAction,
+  UpdateItineraryFailureAction
 } from './itinerary.action';
 
 export {
   ProfileActionTypes,
   ProfileAction
 } from './profile.action';
-
-export {
-  ItinerarToursSolutionsAction,
-  ItineraryToursSolutionsActionTypes
-} from './itineraryToursSolutions.action';
 
 export {
   PutProfileAction

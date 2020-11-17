@@ -17,6 +17,7 @@ import { AcceptDialogComponent } from './accept-dialog/accept-dialog.component';
 import { NotIncludeComponent } from './not-include/not-include.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ChangeTransportComponent } from './change-transport/change-transport.component';
+import { ChooseNewActivityComponent } from './choose-new-activity/choose-new-activity.component';
 
 const routes: Routes = [
   {
@@ -37,7 +38,8 @@ const routes: Routes = [
     LocationDaysComponent,
     AcceptDialogComponent,
     NotIncludeComponent,
-    ChangeTransportComponent
+    ChangeTransportComponent,
+    ChooseNewActivityComponent
   ],
   imports: [
     CommonModule,

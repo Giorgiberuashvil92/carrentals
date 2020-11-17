@@ -2,7 +2,7 @@ import {
     ItineraryAction,
     ItineraryActionTypes
 } from '../actions';
-import { FailureResponse, ItineraryAlternateToursResponse, ItineraryResponse, ItineraryToursSearchResponse } from '../models';
+import { FailureResponse, ItineraryAlternateToursResponse, ItineraryResponse, ItinerarySolutionsForTourResponse, ItineraryToursSearchResponse, PostItinerarySolutionsForTourResponse } from '../models';
 
 export interface ItineraryState {
   data: ItineraryResponse,
@@ -12,7 +12,9 @@ export interface ItineraryState {
   tourIndex: number,
   tour: any,
   alternateTours: ItineraryAlternateToursResponse,
-  toursSearch: ItineraryToursSearchResponse
+  toursSearch: ItineraryToursSearchResponse,
+  tourSolutions: ItinerarySolutionsForTourResponse,
+  tourSolutionPostResponse: PostItinerarySolutionsForTourResponse
 }
 
 const initialState: ItineraryState = {
@@ -23,7 +25,9 @@ const initialState: ItineraryState = {
   tourIndex: 0,
   tour: undefined,
   alternateTours: undefined,
-  toursSearch: undefined
+  toursSearch: undefined,
+  tourSolutions: undefined,
+  tourSolutionPostResponse: undefined
 };
 
 
@@ -114,6 +118,56 @@ export function ItineraryReducer(state: ItineraryState = initialState, action: I
     case ItineraryActionTypes.LOAD_TOURS_SEARCH_FAILURE:
       return {
           ...state
+      }
+    case ItineraryActionTypes.SET_TOURS_SEARCH:
+      return {
+          ...state,
+          toursSearch: action.payload
+      }
+    case ItineraryActionTypes.LOAD_TOURS_SOLUTIONS_FOR_TOUR:
+      return {
+          ...state
+      }
+    case ItineraryActionTypes.LOAD_TOURS_SOLUTIONS_FOR_TOUR_SUCCESS:
+      return {
+          ...state,
+          tourSolutions: action.payload
+      }
+    case ItineraryActionTypes.LOAD_TOURS_SOLUTIONS_FOR_TOUR_FAILURE:
+      return {
+          ...state
+      }
+    case ItineraryActionTypes.POST_TOURS_SOLUTION_FOR_TOUR:
+      return {
+          ...state,
+          tourSolutionPostResponse: undefined
+      }
+    case ItineraryActionTypes.POST_TOURS_SOLUTION_FOR_TOUR_SUCCESS:
+      return {
+          ...state,
+          tourSolutionPostResponse: action.payload
+      }
+    case ItineraryActionTypes.POST_TOURS_SOLUTION_FOR_TOUR_FAILURE:
+      return {
+          ...state
+      }
+    case ItineraryActionTypes.UPDATE_ITINERARY:
+      return {
+          ...state,
+          loading: true
+      }
+    case ItineraryActionTypes.UPDATE_ITINERARY_SUCCESS:
+      return {
+          ...state,
+          data: action.payload,
+          error: null,
+          loading: false
+      }
+    case ItineraryActionTypes.UPDATE_ITINERARY_FAILURE:
+      return {
+          ...state,
+          error: action.payload,
+          loading: false
       }
     default:
       return state;

@@ -1,4 +1,4 @@
-<mat-dialog-content>
+<mat-dialog-content *ngIf="{ cityState: cityState$ | async, interestState: interestState$ | async } as cityInterest">
     <div class="wrapper relative">
         <img class="close-dialog-btn absolute cursor-pointer" src="/assets/close-dialog-icon.svg" alt="" (click)="dialogService.closeDialog()">
         
@@ -17,7 +17,7 @@
                 Select city or cities:
             </div>
     
-            <ng-container *ngIf="cityState$ | async as cityState">
+            <ng-container *ngIf="cityInterest.cityState as cityState">
                 <div class="cities-wrapper flex flex-wrap" *ngIf="!cityState.loading">
                     <div class="city cursor-pointer" *ngFor="let c of filterCities(cityState.cities.data)" (click)="toggleCity(c)" [ngClass]="{ 'city__active': citySet.has(c)}">
                         {{ c.attributes['name'] }}
@@ -29,7 +29,7 @@
                 You are interested in...
             </div>
     
-            <ng-container *ngIf="interestState$ | async as interestState">
+            <ng-container *ngIf="cityInterest.interestState as interestState">
                 <div class="interests-wrapper flex flex-wrap" *ngIf="!interestState.loading">
                     <div class="interest cursor-pointer" *ngFor="let i of filterInterests(interestState.interests.data)" (click)="toggleInterest(i)" [ngClass]="{ 'interest__active': interestSet.has(i)}">
                         {{ i.attributes['name'] }}
@@ -67,7 +67,7 @@
             
                         <div class="detail-wrapper">
                             <div class="city-detail">
-                                {{ r.attributes.name }}
+                                {{ findCity(cityInterest.cityState.cities.data, r.relationships.city.data.id) }}
                             </div>
     
                             <div class="title-self-guided">
@@ -84,7 +84,7 @@
             <button class="cancel-button" (click)="dialogService.closeDialog()">
                 CANCEL
             </button>
-            <button class="next-button" (click)="dialogService.closeDialog(); dialogService.openDialog('arriveDay')">
+            <button class="next-button" (click)="onNext()">
                 NEXT
             </button>
         </div>
