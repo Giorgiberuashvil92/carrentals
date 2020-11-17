@@ -3,9 +3,9 @@
     <div class="rel">
       <h1>Book a related experience:</h1>
     </div>
-  
+
     <div class="col-sc" (click)="dialogService.openDialog('acceptDialog'); openSite()">
-  
+
       <div class="col" *ngFor="let item of affiliateState.partnerActivities.data">
         <div class="ph-t">
           <img [src]="item.attributes['image-url']" alt="">
@@ -14,7 +14,7 @@
           <div class="wr-2 wr-c"><h2>{{ item.attributes['title'] }}</h2></div>
           <div class="wr-2"><p>{{ item.attributes['description'] }}</p></div>
         </div>
-  
+
         <div class="thrd-2">
             <div class="pdr-r">
               <img [src]="ClockIMG" alt="">
@@ -29,8 +29,8 @@
             </div>
         </div>
       </div>
-  
+
     </div>
-  
+
   </div>
 </ng-container>

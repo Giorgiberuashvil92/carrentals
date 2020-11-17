@@ -1,9 +1,10 @@
 .wrapper {
+  padding-left: 4%;
     .location-wrapper {
         color: #767388;
         width: 100px;
         margin-top: 35px;
-    
+
         .icon-data {
             width: 35px;
             height: 35px;
@@ -15,22 +16,22 @@
                 border-radius: 50%;
             }
         }
-        
+
         .first-data {
             font-size: 12px;
             font-weight: 700;
             width: 105%;
         }
-        
+
         .second-data {
             font-size: 14px;
             font-weight: 700;
-            
+
             &__active {
                 color: #000000;
             }
         }
-        
+
         .third-data {
             font-size: 14px;
             font-weight: 700;
@@ -41,7 +42,7 @@
             font-weight: 600;
         }
     }
-    
+
     .lower-than, .higher-than {
         width: 15px;
     }
