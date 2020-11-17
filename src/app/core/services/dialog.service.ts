@@ -17,7 +17,7 @@ export class DialogService {
   dialogMap = {
     'changeActivity': {
       component: ChangeActivityComponent,
-      maxWidth: '470px'
+      maxWidth: '520px'
     },
     'changeTransport': {
       component: ChangeTransportComponent,
