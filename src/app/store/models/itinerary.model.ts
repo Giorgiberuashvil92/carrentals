@@ -67,7 +67,6 @@ export interface ItineraryResponse {
             'position'?: number;
             'summary'?: string;
             'schedule'?: string;
-            'has-alternative'?: boolean;
             'transport-type'?: string;
             'transport-name'?: string;
             'transport-description'?: string;
@@ -239,7 +238,6 @@ export interface UpdateItineraryTourOrTransportResponse {
                         "schedule": string;
                         "landscape-image-url": string;
                         "square-image-url": string;
-                        "has-alternative": boolean;
                         "transport-type": string;
                         "transport-name": string;
                         "transport-description": string;
@@ -333,7 +331,6 @@ export interface UpdateItineraryTourOrTransportResponse {
                         "schedule": string;
                         "landscape-image-url": string;
                         "square-image-url": string;
-                        "has-alternative": true,
                         "transport-type": string;
                         "transport-name": string;
                         "transport-description": string;
@@ -436,7 +433,6 @@ export interface ItinerarySolutionsForTourResponse {
             "schedule": string;
             "landscape-image-url": string;
             "square-image-url": string;
-            "has-alternative": boolean;
             "transport-type": string;
             "transport-name": string;
             "transport-description": string;
@@ -499,7 +495,6 @@ export interface ItinerarySolutionsForTourResponse {
             "schedule": string;
             "landscape-image-url": string;
             "square-image-url": string;
-            "has-alternative": true,
             "transport-type": string;
             "transport-name": string;
             "transport-description": string;
@@ -566,7 +561,6 @@ export interface PostItinerarySolutionsForTourResponse {
       "schedule": string;
       "landscape-image-url": string;
       "square-image-url": string;
-      "has-alternative": true,
       "transport-type": string;
       "transport-name": string;
       "transport-description": string;
