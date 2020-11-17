@@ -78,6 +78,9 @@ export class ItineraryService {
   }
 
   generateWaypoints(itinerary: ItineraryState, tours: any) {
-    return tours[itinerary.tourIndex]['relationships'].pois.data.map(d => itinerary.data['included'].find(i => i.type === 'waypoints' && i.id === d.id));
+    if(tours && tours.length > itinerary.tourIndex) {
+      return tours[itinerary.tourIndex]['relationships'].pois.data.map(d => itinerary.data['included'].find(i => i.type === 'waypoints' && i.id === d.id));
+    }
+    return [];
   }
 }

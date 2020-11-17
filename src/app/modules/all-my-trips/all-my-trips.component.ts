@@ -21,9 +21,9 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
   itinerary: ItineraryState;
   itinerarySub: Subscription;
   day: any;
-  tours: any[];
-  waypoints: any[];
-  locationDetailData: any[];
+  tours: any[] = [];
+  waypoints: any[] = [];
+  locationDetailData: any[] = [];
   location: string;
 
   constructor(
@@ -42,12 +42,13 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
       filter(r => !r.loading)
     )
     .subscribe(res => {
-      this.generateCitiesArray(this.itinerary.data.data['relationships'].cities.data, this.itinerary.data['included']);
       this.day = this.itineraryService.generateDay(this.itinerary);
       this.tours = this.itineraryService.generateTours(this.itinerary, this.day);
       this.waypoints = this.itineraryService.generateWaypoints(this.itinerary, this.tours);
-      this.locationDetailData = [this.tours[this.itinerary.tourIndex], ...this.waypoints];
-      this.location = this.itineraryService.findCity(this.itinerary, this.day);
+      if(this.itinerary.tourIndex < this.tours.length) {
+        this.locationDetailData = [this.tours[this.itinerary.tourIndex], ...this.waypoints];
+        this.location = this.itineraryService.findCity(this.itinerary, this.day);
+      }
     });
   }
 
@@ -81,6 +82,7 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
   }
 
   onLocationDetailIndexchange(event: number) {
+    if(event >= this.locationDetailData.length) return;
     const temp: any = this.locationDetailData[event];
     let query: string;
     if(this.locationDetailData[event].type === 'tours') {
