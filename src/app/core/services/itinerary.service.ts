@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { ItineraryAlternateToursResponse, ItineraryResponse, ItinerarySolutionsForTourResponse, ItineraryToursSearchResponse, PostItinerarySolutionsForTourResponse, UpdateItineraryTourOrTransportResponse } from 'src/app/store/models';
@@ -32,7 +32,7 @@ export class ItineraryService {
   }
 
   updateItineraryTourOrTransport$(itineraryId: string, id: string, body: any): Observable<UpdateItineraryTourOrTransportResponse> {
-    return this.httpClient.put<UpdateItineraryTourOrTransportResponse>(`/itineraries/${itineraryId}/tours/${id}`, { data: body });
+    return this.httpClient.put<UpdateItineraryTourOrTransportResponse>(`/itineraries/${itineraryId}/tours/${id}`, { data: body }, { headers: new HttpHeaders({'Content-Type': 'application/vnd.api+json'})});
   }
 
   getItineraryToursSearch$(itineraryId: string, interestIds: string[]): Observable<ItineraryToursSearchResponse>{
@@ -45,11 +45,11 @@ export class ItineraryService {
   }
 
   postItinerarySolutionForTour$(itineraryId: string, body: any): Observable<PostItinerarySolutionsForTourResponse>{
-    return this.httpClient.post<PostItinerarySolutionsForTourResponse>(`/itineraries/${itineraryId}/tours`, { data: body });
+    return this.httpClient.post<PostItinerarySolutionsForTourResponse>(`/itineraries/${itineraryId}/tours`, { data: body }, { headers: new HttpHeaders({'Content-Type': 'application/vnd.api+json'})});
   }
 
   updateItinerary$(id: string, body: any): Observable<ItineraryResponse> {
-    return this.httpClient.put<ItineraryResponse>(`/itineraries/${id}`, { data: body });
+    return this.httpClient.put<ItineraryResponse>(`/itineraries/${id}`, { data: body }, { headers: new HttpHeaders({'Content-Type': 'application/vnd.api+json'})});
   }
 
   findCityById(itinerary: ItineraryState, id: string) {

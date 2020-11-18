@@ -105,7 +105,8 @@ export function ItineraryReducer(state: ItineraryState = initialState, action: I
       }
     case ItineraryActionTypes.UPDATE_ITINERARY_TOUR_OR_TRANSPORT_SUCCESS:
       return {
-          ...state
+          ...state,
+          data: action.payload
       }
     case ItineraryActionTypes.UPDATE_ITINERARY_TOUR_OR_TRANSPORT_FAILURE:
       return {

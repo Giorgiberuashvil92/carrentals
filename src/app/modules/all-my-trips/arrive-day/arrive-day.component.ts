@@ -58,13 +58,20 @@ export class ArriveDayComponent implements OnInit, OnDestroy {
           }
         }
       }
+      const addedDaysNum: number = daysArr.reduce((a, b) => {
+        if(b['_destroy']) return a-1;
+        else if(!b.id) return a+1;
+        return a;
+      }, 0);
+      const endDate = new Date(this.itineraryState.data.data.attributes["end-date"]);
+      endDate.setDate(endDate.getDate() + addedDaysNum);
       this.store.dispatch(new UpdateItineraryAction({ 
         itineraryId: this.itineraryState.data.data.id,
         body: {
           type: 'itineraries',
           attributes: {
             "start-date": this.itineraryState.data.data.attributes["start-date"],
-            "end-date": this.itineraryState.data.data.attributes["end-date"],
+            "end-date": `${endDate.getFullYear()}-${endDate.getMonth() + 1 < 10 ? '0' + (endDate.getMonth() + 1) : endDate.getMonth() + 1}-${endDate.getDate()}`,
             days: daysArr
           }
         }

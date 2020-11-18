@@ -126,12 +126,13 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
     if(event >= this.locationDetailData.length) return;
     const temp: any = this.locationDetailData[event];
     let query: string;
-    if(this.locationDetailData[event].type === 'tours') {
-      if(!temp.attributes['tour-offer-id'] || !temp.attributes['tour-offer-id']['$oid']) {
+    if(temp.type === 'tours') {
+      console.log(temp)
+      if(!temp.relationships['tour-offer'] || !temp.relationships['tour-offer'].data || !temp.relationships['tour-offer'].data.id) {
         this.store.dispatch(new SetAffiliatePartnerActivitiesAction({ data: [] }));
         return;
       }
-      query = `subject-type=tour-offer&subject-id=${temp.attributes['tour-offer-id']['$oid']}`;
+      query = `subject-type=tour-offer&subject-id=${temp.relationships['tour-offer'].data.id}`;
     } else {
       query = `subject-type=poi&subject-id=${temp.id}`;
     }
