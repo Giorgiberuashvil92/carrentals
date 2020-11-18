@@ -1,7 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
+import { LocationPaginator } from 'src/app/core/models/location-paginator.model';
 import { DeviceDetectorService } from 'src/app/core/services/device-detector.service';
 import { DialogService } from 'src/app/core/services/dialog.service';
 import { ItineraryService } from 'src/app/core/services/itinerary.service';
@@ -25,13 +26,19 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
   waypoints: any[] = [];
   locationDetailData: any[] = [];
   location: string;
+  dataToShow: LocationPaginator[];
+  @Input() data: LocationPaginator[];
+  @Input() leftMostIndex: number = 1;
+  @Input() locationsToShow: number = 5;
+  @Input() activeIndex: number = 1;
+  @Output() locationChange: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(
     public dialogService: DialogService,
     public deviceDetectorService: DeviceDetectorService,
     private store: Store<AppState>,
     private itineraryService: ItineraryService
-  ) { }
+    ) { }
 
   ngOnInit(): void {
     this.store.dispatch(new LoadItineraryAction('5f5e23be306f344825352472'));
@@ -77,6 +84,28 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
     }
   }
 
+  onLeft() {
+    if(this.leftMostIndex > 1) {
+      this.leftMostIndex--;
+      this.generateArray();
+    }
+    if(this.activeIndex > 1) {
+      this.activeIndex--;
+      this.locationChange.emit(this.activeIndex);
+    }
+  }
+
+  onRight() {
+    if(this.leftMostIndex + this.locationsToShow <= this.data.length) {
+      this.leftMostIndex++;
+      this.generateArray();
+    }
+    if(this.activeIndex < this.data.length) {
+      this.activeIndex++;
+      this.locationChange.emit(this.activeIndex);
+    }
+  }
+
   onDeleteTour(id: string) {
     this.store.dispatch(new DeleteTourAction(this.itinerary.data.data.id, id));
   }
@@ -99,5 +128,9 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     if(this.itinerarySub) this.itinerarySub.unsubscribe();
+  }
+  generateArray() {
+    this.dataToShow = this.data.slice(this.leftMostIndex - 1, this.leftMostIndex - 1 + this.locationsToShow);
+    console.log(this.dataToShow);
   }
 }

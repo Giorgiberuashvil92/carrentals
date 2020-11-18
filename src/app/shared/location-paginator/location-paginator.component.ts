@@ -18,7 +18,6 @@ export class LocationPaginatorComponent implements OnInit {
   @Output() locationChange: EventEmitter<number> = new EventEmitter<number>();
 
   dataToShow: LocationPaginator[];
-
   mobileTranslate: number = 0;
   isTouched = false;
   initialTouchX: number = 0;
