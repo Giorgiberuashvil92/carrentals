@@ -2,7 +2,6 @@
   margin-top: 1%;
   display: flex;
   justify-content: space-between;
-  height: 100%;
   max-height: 207px;
 }
 
@@ -15,4 +14,18 @@
   float: right;
   display: flex;
   justify-content: space-evenly;
+}
+
+.dwn-l {
+  width: 100px;
+
+  img {
+    display: block;
+    height: 18px;
+    margin-right: 5px;
+  }
+  
+  div {
+    color: #02A388;
+  }
 }

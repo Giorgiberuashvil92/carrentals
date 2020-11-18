@@ -16,6 +16,7 @@ export interface ItineraryResponse {
                 'bottom-text-bold': string;
                 'day-index': number;
             }>
+          'summary-pdf-url': string
         }
         relationships: {
             'cities': {
