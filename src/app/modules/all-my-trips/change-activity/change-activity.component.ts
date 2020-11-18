@@ -27,8 +27,10 @@ export class ChangeActivityComponent implements OnInit {
   }
 
   onOK(itineraryState: ItineraryState) {
-    console.log(itineraryState.alternateTours.data[this.currentIndex]);
-    if(itineraryState.alternateTours.data[this.currentIndex].attributes["transport-type"]) {
+    if(this.currentIndex === 0) {
+      return;
+    }
+    if(itineraryState.alternateTours.data[this.currentIndex-1].attributes["transport-type"]) {
       this.dialogService.closeDialog();
       this.dialogService.openDialog('editTrip');
       return;
@@ -40,7 +42,7 @@ export class ChangeActivityComponent implements OnInit {
         type: 'tours',
         attributes: {
           "solution-type": 'compadre',
-          "solution-id": itineraryState.alternateTours.data[this.currentIndex].id
+          "solution-id": itineraryState.alternateTours.data[this.currentIndex-1].id
         }
       }
     }));

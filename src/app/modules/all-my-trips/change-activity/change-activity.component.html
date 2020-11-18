@@ -8,20 +8,33 @@
             </div>
         
             <div class="activity-wrapper">
-                <div class="activity relative flex" 
-                    *ngFor="let d of itineraryState.alternateTours.data; let i=index" 
-                    [ngClass]="{ 'activity__active': i === currentIndex}"
-                    (click)="currentIndex = i">
+                <div class="activity relative flex"
+                    [ngClass]="{ 'activity__active': 0 === currentIndex}"
+                    (click)="currentIndex = 0">
                     
-                    <div class="current absolute flex items-center" *ngIf="i === currentIndex">
+                    <div class="current absolute flex items-center">
                         <div class="current-text">
                             Current
                         </div>
+                    </div>
+                    
+                    <div class="image" [style.background-image]="'url(\'' + itineraryState.tour.attributes['square-image-url'] + '\')'"></div>
         
-                        <div class="current-icon">
-                            <img src="/assets/tick-circle-icon.svg" alt="">
+                    <div class="detail-wrapper">
+                        <div class="title">
+                            {{ itineraryState.tour.attributes['transport-type'] |titlecase }}
+                        </div>
+
+                        <div class="description">
+                            {{ itineraryState.tour.attributes['transport-name'] }}
                         </div>
                     </div>
+                </div>
+
+                <div class="activity relative flex" 
+                    *ngFor="let d of itineraryState.alternateTours.data; let i=index" 
+                    [ngClass]="{ 'activity__active': i === currentIndex - 1}"
+                    (click)="currentIndex = i+1">
                     
                     <div class="image" [style.background-image]="'url(\'' + d.attributes['image-url'] + '\')'"></div>
         

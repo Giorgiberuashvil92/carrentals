@@ -12,6 +12,7 @@ export interface ItineraryState {
   tourIndex: number,
   tour: any,
   alternateTours: ItineraryAlternateToursResponse,
+  alternateToursLoading: boolean,
   toursSearch: ItineraryToursSearchResponse,
   tourSolutions: ItinerarySolutionsForTourResponse,
   tourSolutionPostResponse: PostItinerarySolutionsForTourResponse
@@ -25,6 +26,7 @@ const initialState: ItineraryState = {
   tourIndex: 0,
   tour: undefined,
   alternateTours: undefined,
+  alternateToursLoading: false,
   toursSearch: undefined,
   tourSolutions: undefined,
   tourSolutionPostResponse: undefined
@@ -83,16 +85,19 @@ export function ItineraryReducer(state: ItineraryState = initialState, action: I
     case ItineraryActionTypes.LOAD_ITINERARY_ALTERNATE_TOURS:
       return {
           ...state,
-          alternateTours: { data: [] }
+          alternateTours: { data: [] },
+          alternateToursLoading: true
       }
     case ItineraryActionTypes.LOAD_ITINERARY_ALTERNATE_TOURS_SUCCESS:
       return {
           ...state,
-          alternateTours: action.payload
+          alternateTours: action.payload,
+          alternateToursLoading: false
       }
     case ItineraryActionTypes.LOAD_ITINERARY_ALTERNATE_TOURS_FAILURE:
       return {
-          ...state
+          ...state,
+          alternateToursLoading: false
       }
     case ItineraryActionTypes.UPDATE_ITINERARY_TOUR_OR_TRANSPORT:
       return {

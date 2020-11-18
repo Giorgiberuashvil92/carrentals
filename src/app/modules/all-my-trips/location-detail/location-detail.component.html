@@ -1,19 +1,30 @@
-<swiper class="f-w swiper-wrapper" (indexChange)="onIndexChange($event)" [config]="config">
-      <div class="f-w" *ngFor="let item of data">
-        <div class="img-tr relative">
-          <img [src]="item.type === 'tours' ? item.attributes['landscape-image-url'] : item.attributes['image-url']" alt="">
-          <div class="p-a">
-           <h1>{{ item.attributes.name }}</h1>
-           <p class="p-sm">{{ item.type === 'tours' ? item.attributes.schedule : item.attributes.summary }}</p>
+<div class="relative" *ngIf="!watch && data && data.length > 0">
+  <swiper class="f-w swiper-wrapper relative" (indexChange)="onIndexChange($event)" [config]="config" [index]="currentIndex">
+        <div class="f-w relative swiper-slide" *ngFor="let item of data">
+          <div class="img-tr relative">
+            <img [src]="item.type === 'tours' ? item.attributes['landscape-image-url'] : item.attributes['image-url']" alt="">
+            <div class="p-a">
+             <h1>
+              {{ item.type === 'tours' ? item.attributes['descriptive-name'] : item.attributes.summary }}
+             </h1>
+             <p class="p-sm">{{ item.type === 'tours' ? item.attributes.schedule : item.attributes.summary }}</p>
+            </div>
+            <div class="absolute shading"></div>
           </div>
+          <div class="p-description">
+            {{ item.type === 'tours' ? item.attributes.summary : item.attributes.description }}
+          </div>
+  
         </div>
-        <div class="p-description">
-          {{ item.type === 'tours' ? item.attributes.summary : item.attributes.description }}
-        </div>
+  
+  </swiper>
+  <img class="absolute left-arrow" src="/assets/slider-left-arrow-icon.svg" alt="" (click)="goLeftSlider()">
+  <img class="absolute right-arrow" src="/assets/slider-right-arrow-icon.svg" alt="" (click)="goRightSlider()">
+  <div class="absolute dots-wrapper">
+    <div class="dot" *ngFor="let item of data; let i=index" [ngClass]="{ 'dot__active': i === currentIndex }"></div>
+  </div>
+</div>
 
-      </div>
-
-</swiper>
 
 <div class="horizontal-arrows">
   <div class="swiper-button-prev" (click)="goLeftSlider()">

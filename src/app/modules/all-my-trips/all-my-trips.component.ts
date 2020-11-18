@@ -26,6 +26,8 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
   locationDetailData: any[] = [];
   location: string;
 
+  alternateToursLoading = false;
+
   constructor(
     public dialogService: DialogService,
     public deviceDetectorService: DeviceDetectorService,
@@ -44,11 +46,20 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
     .subscribe(res => {
       this.day = this.itineraryService.generateDay(this.itinerary);
       this.tours = this.itineraryService.generateTours(this.itinerary, this.day);
+      this.tours.sort((a, b) => a.attributes.position - b.attributes.position);
       this.waypoints = this.itineraryService.generateWaypoints(this.itinerary, this.tours);
       if(this.itinerary.tourIndex < this.tours.length) {
         this.locationDetailData = [this.tours[this.itinerary.tourIndex], ...this.waypoints];
         this.location = this.itineraryService.findCity(this.itinerary, this.day);
       }
+      if(!this.itinerary.alternateToursLoading && this.alternateToursLoading) {
+        this.alternateToursLoading = false;
+        if(this.itinerary.alternateTours.data.length === 0) {
+          this.dialogService.closeDialog();
+          this.dialogService.openDialog('selectActivity');
+        }
+      }
+      console.log(this.tours);
     });
   }
 
@@ -69,6 +80,7 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
   }
 
   onChange(tour: any) {
+    this.alternateToursLoading = true;
     this.store.dispatch(new LoadItineraryAlternateToursAction({ itineraryId: this.itinerary.data.data.id, id: tour.id}));
     if(tour.attributes['transport-type']) {
       this.dialogService.openDialog('changeTransport');
@@ -95,6 +107,10 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
       query = `subject-type=poi&subject-id=${temp.id}`;
     }
     this.store.dispatch(new LoadAffiliatePartnerActivitiesAction(query));
+  }
+
+  onLoactionChange(index: number) {
+    this.onDayChange(this.itinerary.data.data.attributes["transportation-plan"][index]["day-index"]);
   }
 
   ngOnDestroy() {

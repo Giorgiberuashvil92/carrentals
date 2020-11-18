@@ -18,6 +18,7 @@
             [leftMostIndex]="1"
             [locationsToShow]="8"
             [activeIndex]="2"
+            (locationChange)="onLoactionChange($event)"
         ></app-location-paginator>
     </div>
     <div class="line"></div>
@@ -59,7 +60,9 @@
                     *ngFor="let tour of tours; let i=index"
                     [ngClass]="{ 'left-item__active': i === itinerary.tourIndex }"
                     (click)="onTourChange(i, tour)">
-                    <div class="image" [style.background-image]="'url(\'' + tour.attributes['square-image-url'] + '\')'"></div>
+                    <div class="image" 
+                    [style.background-image]="'url(\'' + tour.attributes['square-image-url'] + '\')'"
+                    [ngClass]="{ 'transport-background': !!tour.attributes['transport-type'] }"></div>
 
                     <div class="detail-wrapper">
                         <div class="title">
