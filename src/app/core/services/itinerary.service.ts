@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { ItineraryAlternateToursResponse, ItineraryResponse, ItinerarySolutionsForTourResponse, ItineraryToursSearchResponse, PostItinerarySolutionsForTourResponse, UpdateItineraryTourOrTransportResponse } from 'src/app/store/models';
 import { ItineraryState } from 'src/app/store/reducers';
 
@@ -9,6 +9,13 @@ import { ItineraryState } from 'src/app/store/reducers';
   providedIn: 'root'
 })
 export class ItineraryService {
+
+  dayChange = new Subject<{action: string; index: number; cityName: string; deletedDay?: any}>();
+  editTripOKClicked = new Subject<boolean>();
+  daysObj = {
+    old: [],
+    new: []
+  }
 
   constructor(private httpClient: HttpClient) { }
 

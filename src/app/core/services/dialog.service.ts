@@ -33,7 +33,7 @@ export class DialogService {
     },
     'arriveDay': {
       component: ArriveDayComponent,
-      maxWidth: '470px'
+      maxWidth: '550px'
     },
     'acceptDialog': {
       component: AcceptDialogComponent,

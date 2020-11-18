@@ -89,3 +89,7 @@
         }
     }
 }
+
+::ng-deep .mat-dialog-content {
+    // overflow-x: hidden !important;
+}

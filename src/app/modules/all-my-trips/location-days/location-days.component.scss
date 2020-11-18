@@ -73,7 +73,7 @@
                         background-color: #02A388;
     
                         .day-text {
-                            color: #1A1538;
+                            color: #74D6B5;
                         }
     
                         .num {
@@ -105,7 +105,7 @@
                 }
     
                 .name-dd-month {
-                    font-size: 12px;
+                    font-size: 11px;
                     z-index: 1;
                     font-weight: 600;
                 }
@@ -134,6 +134,7 @@
                 justify-content: center;
                 align-items: center;
                 background-color: #FFFFFF;
+                cursor: pointer;
     
                 img {
                     display: block;
@@ -155,6 +156,10 @@
                 color: #02A388;
                 font-size: 14px;
                 font-weight: 600;
+            }
+
+            img {
+                cursor: pointer;
             }
         }
     }
