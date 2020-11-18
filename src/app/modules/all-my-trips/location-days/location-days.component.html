@@ -6,8 +6,8 @@
     <div class="days-wrapper" *ngIf="daysArr">
         <div class="days-inner-wrapper">
             <div class="day-and-x"
-                *ngFor="let d of daysArr">
-                <div [class]="'day-wrapper day-wrapper__fill--' + 0" 
+                *ngFor="let d of daysArr; let i=index">
+                <div [class]="'day-wrapper day-wrapper__fill--' + (d.attributes['half-day'] ? 1 : 2)" 
                     [ngClass]="{
                         'day-wrapper__hasX': d.attributes.removable
                     }">
@@ -19,7 +19,7 @@
                     <div class="half-filler" *ngIf="d.attributes['half-day']"></div>
                 </div>
     
-                <div class="x-icon-wrapper" *ngIf="d.attributes.removable">
+                <div class="x-icon-wrapper" *ngIf="d.attributes.removable" (click)="onDelete(i)">
                     <img src="/assets/location-day-x-icon.svg" alt="">
                 </div>
             </div>
@@ -30,7 +30,7 @@
                 Add Day
             </div>
 
-            <img src="/assets/add-day-icon.svg" alt="">
+            <img src="/assets/add-day-icon.svg" alt="" (click)="onAddDay()">
         </div>
     </div>
 </div>

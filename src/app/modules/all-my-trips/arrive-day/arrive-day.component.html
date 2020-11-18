@@ -14,12 +14,12 @@
         <div class="calendars-wrapper">
             <div class="from">
                 <div class="title">FROM:</div>
-                <app-calendar></app-calendar>
+                <app-calendar [date]="itineraryState.data.data.attributes['start-date']"></app-calendar>
             </div>
     
             <div class="to">
                 <div class="title">TO:</div>
-                <app-calendar></app-calendar>
+                <app-calendar [date]="itineraryState.data.data.attributes['end-date']"></app-calendar>
             </div>
         </div>
             
@@ -45,7 +45,7 @@
             <button class="cancel-button" (click)="dialogService.closeDialog()">
                 CANCEL
             </button>
-            <button class="ok-button">
+            <button class="ok-button" (click)="onOK()">
                 OK
             </button>
         </div>

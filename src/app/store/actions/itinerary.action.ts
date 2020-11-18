@@ -212,9 +212,9 @@ export class UpdateItineraryAction implements Action {
         'start-date': string; 
         'end-date': string;
         'days': Array<{
-          'id': string;
-          'index': number;
-          '_destroy': boolean;
+          'id'?: string;
+          'index'?: number;
+          '_destroy'?: boolean;
         }> 
       }
     }
