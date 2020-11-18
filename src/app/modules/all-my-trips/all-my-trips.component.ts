@@ -105,6 +105,10 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
       this.activeIndex--;
       this.locationChange.emit(this.activeIndex);
     }
+
+    //marcxniv
+    // this.store.dispatch(new SetTourIndexAction(this.itinerary.tourIndex - 1));
+    // this.store.dispatch(new SetTourAction(this.tours[this.itinerary.tourIndex - 1]));
   }
 
   onRight() {

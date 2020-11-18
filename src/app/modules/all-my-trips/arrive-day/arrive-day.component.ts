@@ -27,6 +27,10 @@ export class ArriveDayComponent implements OnInit, OnDestroy {
     this.itineraryStateSub = this.store.select(store => store.itinerary).subscribe(res => {
       this.itineraryState = res;
     });
+    this.itineraryService.daysObj = {
+      old: [],
+      new: []
+    }
   }
 
   onOK() {
@@ -36,6 +40,7 @@ export class ArriveDayComponent implements OnInit, OnDestroy {
       let daysArr = [];
       this.itineraryService.daysObj.old = [...new Set(this.itineraryService.daysObj.old)];
       this.itineraryService.daysObj.new = [...new Set(this.itineraryService.daysObj.new)];
+      console.log(this.itineraryService.daysObj);
       for(let i=0; i<this.itineraryService.daysObj.old.length; i++) {
         if(!this.itineraryService.daysObj.new.find(r => r.id === this.itineraryService.daysObj.old[i].id)) {
           daysArr.push({
@@ -63,6 +68,8 @@ export class ArriveDayComponent implements OnInit, OnDestroy {
         else if(!b.id) return a+1;
         return a;
       }, 0);
+      console.log(addedDaysNum);
+      console.log(daysArr);
       const endDate = new Date(this.itineraryState.data.data.attributes["end-date"]);
       endDate.setDate(endDate.getDate() + addedDaysNum);
       this.store.dispatch(new UpdateItineraryAction({ 
@@ -71,7 +78,7 @@ export class ArriveDayComponent implements OnInit, OnDestroy {
           type: 'itineraries',
           attributes: {
             "start-date": this.itineraryState.data.data.attributes["start-date"],
-            "end-date": `${endDate.getFullYear()}-${endDate.getMonth() + 1 < 10 ? '0' + (endDate.getMonth() + 1) : endDate.getMonth() + 1}-${endDate.getDate()}`,
+            "end-date": "2021-06-16",
             days: daysArr
           }
         }
