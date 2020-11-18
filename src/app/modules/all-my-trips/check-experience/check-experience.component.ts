@@ -27,16 +27,6 @@ export class CheckExperienceComponent implements OnInit {
   ngOnInit(): void {
     this.affiliateState$ = this.store.select(store => store.affiliate);
   }
-  array = [
-      {image:this.imgURL,name:'Golden Lane Stuff 1', text:'Enjoy different dishes and drinks surrounded by the best castle atmosphere. One of the most delicious stakes as quoted by our food specialists. Eat, drink, get full, dance, enjoy, Eat, drink, get full, dance, enjoy, Eat, drink, get full. dance, enjoy,  '},
-      {image:this.imgURL,name:'Golden Lane Stuff 1', text:'Enjoy different dishes and drinks surrounded by the best castle atmosphere. One of the most delicious stakes as quoted by our food specialists. Eat, drink, get full, dance, enjoy, Eat, drink, get full, dance, enjoy, Eat, drink, get full. dance, enjoy,  '},
-      {image:this.imgURL,name:'Golden Lane Stuff 1', text:'Enjoy different dishes and drinks surrounded by the best castle atmosphere. One of the most delicious stakes as quoted by our food specialists. Eat, drink, get full, dance, enjoy, Eat, drink, get full, dance, enjoy, Eat, drink, get full. dance, enjoy,  '},
-      {image:this.imgURL,name:'Golden Lane Stuff 1', text:'Enjoy different dishes and drinks surrounded by the best castle atmosphere. One of the most delicious stakes as quoted by our food specialists. Eat, drink, get full, dance, enjoy, Eat, drink, get full, dance, enjoy, Eat, drink, get full. dance, enjoy,  '},
-      {image:this.imgURL,name:'Golden Lane Stuff 1', text:'Enjoy different dishes and drinks surrounded by the best castle atmosphere. One of the most delicious stakes as quoted by our food specialists. Eat, drink, get full, dance, enjoy, Eat, drink, get full, dance, enjoy, Eat, drink, get full. dance, enjoy,  '},
-      {image:this.imgURL,name:'Golden Lane Stuff 1', text:'Enjoy different dishes and drinks surrounded by the best castle atmosphere. One of the most delicious stakes as quoted by our food specialists. Eat, drink, get full, dance, enjoy, Eat, drink, get full, dance, enjoy, Eat, drink, get full. dance, enjoy,  '},
-      {image:this.imgURL,name:'Golden Lane Stuff 1', text:'Enjoy different dishes and drinks surrounded by the best castle atmosphere. One of the most delicious stakes as quoted by our food specialists. Eat, drink, get full, dance, enjoy, Eat, drink, get full, dance, enjoy, Eat, drink, get full. dance, enjoy,  '},
-
-  ]
 
   openSite() {
     window.open("https://www.google.com" , '_blank');

@@ -10,7 +10,7 @@
     
             <div class="text-field flex justify-around align-center">
                 <img class="cursor-pointer" src="/assets/search-icon.svg" alt="">
-                <input type="text" [(ngModel)]="acitivityInput">
+                <input type="text" [(ngModel)]="activityInput" (input)="onInput($event)">
             </div>
     
             <div class="select-city">
@@ -37,7 +37,7 @@
                 </div>
             </ng-container>
     
-            <ng-container *ngIf="toursToShow.length === 0; else elseBlock">
+            <ng-container *ngIf="itinerary.toursSearchLoading">
                 <div class="line"></div>
         
                 <div class="searching-for-activities text-center">
@@ -45,7 +45,7 @@
                 </div>
             </ng-container>
     
-            <ng-template #elseBlock>
+            <ng-container *ngIf="!itinerary.toursSearchLoading && toursToShow.length > 0">
                 <div class="recommended-for">
                     Recommended for <span class="recommended-for-value">CASTLE</span>
                 </div>
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                 </div>
-            </ng-template>
+            </ng-container>
     
         </div>
     

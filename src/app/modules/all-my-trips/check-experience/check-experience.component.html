@@ -18,7 +18,7 @@
         <div class="thrd-2">
             <div class="pdr-r">
               <img [src]="ClockIMG" alt="">
-              Duration: {{ item.attributes['duration']['hours'] }}
+              Duration: {{ item.attributes.duration ? item.attributes.duration['hours'] : '' }}
             </div>
             <div class="pdr-r">
               <img [src]="Dollar" alt="">

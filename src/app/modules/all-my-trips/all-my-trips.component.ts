@@ -3,10 +3,11 @@ import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
 import { LocationPaginator } from 'src/app/core/models/location-paginator.model';
+import { CityService } from 'src/app/core/services/city.service';
 import { DeviceDetectorService } from 'src/app/core/services/device-detector.service';
 import { DialogService } from 'src/app/core/services/dialog.service';
 import { ItineraryService } from 'src/app/core/services/itinerary.service';
-import { LoadAffiliatePartnerActivitiesAction, SetAffiliatePartnerActivitiesAction } from 'src/app/store/actions';
+import { LoadAffiliatePartnerActivitiesAction, SetAffiliatePartnerActivitiesAction, SetCitiesAction } from 'src/app/store/actions';
 import { DeleteTourAction, LoadItineraryAction, LoadItineraryAlternateToursAction, SetDayIndexAction, SetTourAction, SetTourIndexAction } from 'src/app/store/actions/itinerary.action';
 import { AppState } from 'src/app/store/models/app-state.model';
 import { ItineraryState } from 'src/app/store/reducers';
@@ -39,7 +40,8 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
     public dialogService: DialogService,
     public deviceDetectorService: DeviceDetectorService,
     private store: Store<AppState>,
-    private itineraryService: ItineraryService
+    private itineraryService: ItineraryService,
+    private cityService: CityService
     ) { }
 
   ngOnInit(): void {
@@ -66,6 +68,7 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
           this.dialogService.openDialog('selectActivity');
         }
       }
+      this.store.dispatch(new SetCitiesAction(this.cityService.generateCities(this.itinerary)));
       console.log(this.tours);
     });
   }
