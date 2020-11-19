@@ -61,7 +61,7 @@
                     *ngFor="let tour of tours; let i=index"
                     [ngClass]="{ 'left-item__active': i === itinerary.tourIndex }"
                     (click)="onTourChange(i, tour)">
-                    <div class="image" 
+                    <div class="image"
                     [style.background-image]="'url(\'' + tour.attributes['square-image-url'] + '\')'"
                     [ngClass]="{ 'transport-background': !!tour.attributes['transport-type'] }"></div>
 

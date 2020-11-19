@@ -15,10 +15,11 @@
 }
 .p-a{
   position: absolute;
-  bottom: 40px;
+  bottom: 30px;
   left: 80px;
-  font-size: 35px;
+  font-size: 27px;
   color: white;
+  padding-right: 106px;
 }
 .p-description{
   margin-top: 20px;
@@ -72,7 +73,7 @@ img {
     margin: 0 2px;
     border-radius: 50%;
     background-color: rgba(255,255,255, 0.4);
-  
+
     &__active {
         background-color: rgba(255,255,255,1);
     }

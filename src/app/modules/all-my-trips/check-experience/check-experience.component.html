@@ -7,8 +7,8 @@
     <div class="col-sc" (click)="dialogService.openDialog('acceptDialog'); openSite()">
 
       <div class="col" *ngFor="let item of affiliateState.partnerActivities.data">
-        <div class="ph-t">
-          <img [src]="item.attributes['image-url']" alt="">
+        <div class="ph-t-2">
+          <img [src]="item.attributes['image-url']" alt="" class="photo-flex">
         </div>
         <div class="tx-t">
           <div class="wr-2 wr-c"><h2>{{ item.attributes['title'] }}</h2></div>
@@ -18,11 +18,18 @@
         <div class="thrd-2">
             <div class="pdr-r">
               <img [src]="ClockIMG" alt="">
-              Duration: {{ item.attributes.duration ? item.attributes.duration['hours'] : '' }}
+              <div class="flex flex-column">
+              <span class="spn-d">Duration:</span>
+              <span class="spn-col">{{ item.attributes.duration ? item.attributes.duration['hours'] : '' }}</span>
+              </div>
+
             </div>
             <div class="pdr-r">
               <img [src]="Dollar" alt="">
-              Price: ${{ item.attributes['price'] }}
+              <div class="flex flex-column">
+                <span class="spn-d">Price:</span>
+                <span class="spn-col">${{ item.attributes['price']}}</span>
+                </div>
             </div>
             <div class="pdr-r">
               <img [src]="time" alt="">
