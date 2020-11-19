@@ -124,7 +124,7 @@ export class LoadItinerarySolutionsForTourFailureAction implements Action {
 export class LoadItineraryToursSearchAction implements Action {
   readonly type = ItineraryActionTypes.LOAD_TOURS_SEARCH;
 
-  constructor(public payload: { itineraryId: string; interestIds: string[] }) {}
+  constructor(public payload: { itineraryId: string; interestIds: string[], text: string }) {}
 }
 
 export class LoadItineraryToursSearchSuccessAction implements Action {

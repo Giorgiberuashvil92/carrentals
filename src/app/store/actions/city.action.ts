@@ -7,6 +7,7 @@ export enum CityActionTypes {
   LOAD_CITIES = '[CITY] Load Cities',
   LOAD_CITIES_SUCCESS = '[CITY] Load Cities Success',
   LOAD_CITIES_FAILURE = '[CITY] Load Cities Failure',
+  SET_CITIES = '[CITY] Set Cities'
 }
 
 export class LoadCitiesAction implements Action {
@@ -25,8 +26,15 @@ export class LoadCitiesFailureAction implements Action {
     constructor(public payload: Error) {}
 }
 
+export class SetCitiesAction implements Action {
+    readonly type = CityActionTypes.SET_CITIES;
+
+    constructor(public payload: CitiesResponse) {}
+}
+
 
 export type CityAction =
     LoadCitiesAction |
     LoadCitiesSuccessAction |
-    LoadCitiesFailureAction
+    LoadCitiesFailureAction |
+    SetCitiesAction

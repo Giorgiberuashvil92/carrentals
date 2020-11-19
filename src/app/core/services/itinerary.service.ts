@@ -35,8 +35,11 @@ export class ItineraryService {
     return this.httpClient.put<UpdateItineraryTourOrTransportResponse>(`/itineraries/${itineraryId}/tours/${id}`, { data: body }, { headers: new HttpHeaders({'Content-Type': 'application/vnd.api+json'})});
   }
 
-  getItineraryToursSearch$(itineraryId: string, interestIds: string[]): Observable<ItineraryToursSearchResponse>{
-    const query = interestIds.reduce((a, b) => `${a}interest-ids[]=${b}&`, '');
+  getItineraryToursSearch$(itineraryId: string, interestIds: string[], text: string): Observable<ItineraryToursSearchResponse>{
+    let query = interestIds.reduce((a, b) => `${a}interest-ids[]=${b}&`, '');
+    if(text) {
+      query += `&text=${text}`
+    }
     return this.httpClient.get<ItineraryToursSearchResponse>(`/itineraries/${itineraryId}/tours/search?${query.substr(0, query.length - 1)}`)
   }
 

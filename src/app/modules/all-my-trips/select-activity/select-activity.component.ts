@@ -15,37 +15,17 @@ import { InterestState } from 'src/app/store/reducers/interest.reducer';
   styleUrls: ['./select-activity.component.scss']
 })
 export class SelectActivityComponent implements OnInit, OnDestroy {
-
-  result = [
-    {
-      img: 'https://img.traveltriangle.com/blog/wp-content/uploads/2018/11/Prague_Cover.jpg',
-      title: 'Prague Castle',
-      city: 'Prague',
-      isSelfGuided: true
-    },
-    {
-      img: 'https://img.traveltriangle.com/blog/wp-content/uploads/2018/11/Prague_Cover.jpg',
-      title: 'Prague Castle',
-      city: 'Prague',
-      isSelfGuided: true
-    },
-    {
-      img: 'https://img.traveltriangle.com/blog/wp-content/uploads/2018/11/Prague_Cover.jpg',
-      title: 'Prague Castle',
-      city: 'Prague',
-      isSelfGuided: true
-    }
-  ]
   
   currentlyChosenIndex = -1;
 
   citySet = new Set<any>();
   interestSet = new Set<any>();
-  acitivityInput: string = '';
+  activityInput: string = '';
   itinerary: ItineraryState;
   cityState$: Observable<CityState>;
   interestState$: Observable<InterestState>
   toursToShow: any[] = [];
+  loadInterestIds = true;
 
   itineraryStateSub: Subscription;
 
@@ -56,7 +36,7 @@ export class SelectActivityComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.store.dispatch(new SetItineraryToursSearchAction({ data: [] }));
-    this.store.dispatch(new LoadCitiesAction());
+    // this.store.dispatch(new LoadCitiesAction());
     this.store.dispatch(new LoadInterestsAction());
     this.cityState$ = this.store.select(store => store.city);
     this.interestState$ = this.store.select(store => store.interest);
@@ -64,6 +44,16 @@ export class SelectActivityComponent implements OnInit, OnDestroy {
       this.itinerary = itineraryState;
       if(this.itinerary.toursSearch) {
         this.toursToShow = this.filterByCities(this.itinerary.toursSearch);
+      }
+      if(this.loadInterestIds) {
+        this.loadInterestIds = false;
+        this.store.dispatch(
+          new LoadItineraryToursSearchAction({ 
+            itineraryId: this.itinerary.data.data.id, 
+            interestIds: [...this.interestSet].map(i => i.id),
+            text: this.activityInput
+          })
+        );
       }
     });
   }
@@ -94,14 +84,23 @@ export class SelectActivityComponent implements OnInit, OnDestroy {
 
   onInterestChange() {
     // this.currentlyChosenIndex = 0;
-    if(this.interestSet.size > 0) {
-      this.store.dispatch(
-        new LoadItineraryToursSearchAction({ 
-          itineraryId: this.itinerary.data.data.id, 
-          interestIds: [...this.interestSet].map(i => i.id)
-        })
-      );
-    }
+    this.store.dispatch(
+      new LoadItineraryToursSearchAction({ 
+        itineraryId: this.itinerary.data.data.id, 
+        interestIds: [...this.interestSet].map(i => i.id),
+        text: this.activityInput
+      })
+    );
+  }
+
+  onInput(event) {
+    this.store.dispatch(
+      new LoadItineraryToursSearchAction({ 
+        itineraryId: this.itinerary.data.data.id, 
+        interestIds: [...this.interestSet].map(i => i.id),
+        text: event.target.value
+      })
+    );
   }
 
   onNext() {

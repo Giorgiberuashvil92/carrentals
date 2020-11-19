@@ -60,7 +60,8 @@ export {
   CityActionTypes,
   LoadCitiesAction,
   LoadCitiesFailureAction,
-  LoadCitiesSuccessAction
+  LoadCitiesSuccessAction,
+  SetCitiesAction
 } from './city.action';
 
 export {

@@ -35,6 +35,13 @@ export function CityReducer(state: CityState = initialState, action: CityAction)
           error: action.payload,
           loading: false
       }
+    case CityActionTypes.SET_CITIES:
+      return {
+          ...state,
+          cities: action.payload,
+          error: null,
+          loading: false
+      }
     default:
       return state;
   }

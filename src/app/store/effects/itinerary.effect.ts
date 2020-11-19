@@ -74,7 +74,7 @@ export class ItineraryEffects {
     .pipe(
         ofType<LoadItineraryToursSearchAction>(ItineraryActionTypes.LOAD_TOURS_SEARCH),
         switchMap(
-        (d) => this.itineraryService.getItineraryToursSearch$(d.payload.itineraryId, d.payload.interestIds)
+        (d) => this.itineraryService.getItineraryToursSearch$(d.payload.itineraryId, d.payload.interestIds, d.payload.text)
             .pipe(
             map(data => {
                 return new LoadItineraryToursSearchSuccessAction(data)
