@@ -17,7 +17,7 @@
             [data]="itinerary.data.data.attributes['transportation-plan']"
             [leftMostIndex]="1"
             [locationsToShow]="8"
-            [activeIndex]="2"
+            [activeIndex]="locationPaginatorActiveIndex"
             (locationChange)="onLoactionChange($event)"
         ></app-location-paginator>
     </div>

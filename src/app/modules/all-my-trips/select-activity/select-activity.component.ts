@@ -28,6 +28,7 @@ export class SelectActivityComponent implements OnInit, OnDestroy {
   loadInterestIds = true;
 
   itineraryStateSub: Subscription;
+  recommendedFor: string = '';
 
   constructor(
     public dialogService: DialogService,
@@ -84,13 +85,15 @@ export class SelectActivityComponent implements OnInit, OnDestroy {
 
   onInterestChange() {
     // this.currentlyChosenIndex = 0;
+    const interestArr = [...this.interestSet];
     this.store.dispatch(
       new LoadItineraryToursSearchAction({ 
         itineraryId: this.itinerary.data.data.id, 
-        interestIds: [...this.interestSet].map(i => i.id),
+        interestIds: interestArr.map(i => i.id),
         text: this.activityInput
       })
     );
+    this.recommendedFor = [...this.interestSet].reduce((a, b) => `${a}, ${b.attributes.name}`, '').substr(1);
   }
 
   onInput(event) {

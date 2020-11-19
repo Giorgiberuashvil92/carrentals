@@ -47,7 +47,7 @@
     
             <ng-container *ngIf="!itinerary.toursSearchLoading && toursToShow.length > 0">
                 <div class="recommended-for">
-                    Recommended for <span class="recommended-for-value">CASTLE</span>
+                    Recommended for <span class="recommended-for-value">{{ recommendedFor || 'Everything' }}</span>
                 </div>
         
         
@@ -80,11 +80,11 @@
     
         </div>
     
-        <div class="actions absolute flex justify-between" *ngIf="currentlyChosenIndex >= 0">
+        <div class="actions absolute flex justify-between">
             <button class="cancel-button" (click)="dialogService.closeDialog()">
                 CANCEL
             </button>
-            <button class="next-button" (click)="onNext()">
+            <button class="next-button" (click)="onNext()" [disabled]="currentlyChosenIndex < 0">
                 NEXT
             </button>
         </div>

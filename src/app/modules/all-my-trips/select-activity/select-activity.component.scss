@@ -76,12 +76,13 @@
             .activity {
                 padding: 4px;
                 border-radius: 10px;
+                border-width: 1px;
+                border-color: rgba(0,0,0,0);
                 margin: 10px 0px;
-                border-color: #02A388;
-                width: 30%;
+                width: 32%;
                 
                 &__active {
-                    border-width: 1px;
+                    border-color: #02A388;
                 }
     
                 .current {
@@ -101,7 +102,7 @@
                 .detail-wrapper {
                     position: relative;
                     margin-left: 20px;
-                    max-width: 130px;
+                    max-width: calc(100% - 100px);
 
                     .city-detail {
                         color: #868B9B;

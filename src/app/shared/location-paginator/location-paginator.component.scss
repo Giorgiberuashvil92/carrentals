@@ -9,11 +9,12 @@
             width: 35px;
             height: 35px;
             margin: 5px 0;
+            border-width: 1px;
+            border-radius: 50%;
+            border-color: rgba(0,0,0,0);
 
             &__active {
                 border-color: #02A388;
-                border-width: 1px;
-                border-radius: 50%;
             }
         }
 

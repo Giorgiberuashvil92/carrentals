@@ -19,7 +19,7 @@
             margin: 10px auto;
             border-color: #757575;
             
-            &__active {
+            &__active, &:hover {
                 border-color: #02A388;
             }
 

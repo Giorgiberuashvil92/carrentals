@@ -29,7 +29,7 @@ export enum ItineraryActionTypes {
   POST_TOURS_SOLUTION_FOR_TOUR_FAILURE = '[ITINERARY] Post Tours Solution For Tour Failure',
   UPDATE_ITINERARY = '[ITINERARY] Update Itinerary',
   UPDATE_ITINERARY_SUCCESS = '[ITINERARY] Update Itinerary Success',
-  UPDATE_ITINERARY_FAILURE = '[ITINERARY] Update Itinerary Failure',
+  UPDATE_ITINERARY_FAILURE = '[ITINERARY] Update Itinerary Failure'
 }
 export class LoadItineraryAction implements Action {
   readonly type = ItineraryActionTypes.LOAD_ITINERARY;

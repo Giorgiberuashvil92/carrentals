@@ -1,22 +1,25 @@
 <div class="relative" *ngIf="!watch && data && data.length > 0">
   <swiper class="f-w swiper-wrapper relative" (indexChange)="onIndexChange($event)" [config]="config" [index]="currentIndex">
-        <div class="f-w relative swiper-slide" *ngFor="let item of data">
-          <div class="img-tr relative">
-            <img [src]="item.type === 'tours' ? item.attributes['landscape-image-url'] : item.attributes['image-url']" alt="">
-            <div class="p-a">
-             <h1>
-              {{ item.type === 'tours' ? item.attributes['descriptive-name'] : item.attributes.summary }}
-             </h1>
-             <p class="p-sm">{{ item.type === 'tours' ? item.attributes.schedule : item.attributes.summary }}</p>
-            </div>
-            <div class="absolute shading"></div>
-          </div>
-          <div class="p-description">
-            {{ item.type === 'tours' ? item.attributes.summary : item.attributes.description }}
-          </div>
-  
+    <div class="f-w relative swiper-slide" *ngFor="let item of data">
+      <div class="img-tr relative">
+        <img [src]="item.type === 'tours' ? item.attributes['landscape-image-url'] : item.attributes['image-url']" alt="">
+        <div class="p-a">
+          <h1>
+          {{ item.type === 'tours' ? item.attributes['descriptive-name'] : item.attributes.name }}
+          </h1>
+          <p class="p-sm">{{ item.type === 'tours' ? 'Overview' : 'Highlight of ' + data[0].attributes.name }}</p>
         </div>
-  
+        <div class="absolute shading"></div>
+      </div>
+
+      <div class="p-summary" *ngIf="item.type !== 'tours'">
+        {{ item.attributes.summary }}
+      </div>
+      <div class="p-description">
+        {{ item.type === 'tours' ? item.attributes.summary : item.attributes.description }}
+      </div>
+
+    </div>
   </swiper>
   <ng-container *ngIf="data.length > 1">
     <img class="absolute left-arrow" src="/assets/slider-left-arrow-icon.svg" alt="" (click)="goLeftSlider()">

@@ -35,6 +35,7 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
   @Output() locationChange: EventEmitter<number> = new EventEmitter<number>();
 
   alternateToursLoading = false;
+  locationPaginatorActiveIndex = 1;
 
   constructor(
     public dialogService: DialogService,
@@ -58,7 +59,11 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
       this.tours.sort((a, b) => a.attributes.position - b.attributes.position);
       this.waypoints = this.itineraryService.generateWaypoints(this.itinerary, this.tours);
       if(this.itinerary.tourIndex < this.tours.length) {
-        this.locationDetailData = [this.tours[this.itinerary.tourIndex], ...this.waypoints];
+        const tempLocationData = [this.tours[this.itinerary.tourIndex], ...this.waypoints];
+        if(!tempLocationData.every(r => !!this.locationDetailData.find(e => r.id === e.id))
+          || !this.locationDetailData.every(r => !!tempLocationData.find(e => r.id === e.id))) {
+            this.locationDetailData = tempLocationData;
+          }
         this.location = this.itineraryService.findCity(this.itinerary, this.day);
       }
       if(!this.itinerary.alternateToursLoading && this.alternateToursLoading) {
@@ -77,6 +82,17 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
     this.store.dispatch(new SetTourIndexAction(0));
     this.store.dispatch(new SetDayIndexAction(day));
     this.store.dispatch(new SetTourAction(this.tours[day]));
+    const tempTransportationPlan = [...this.itinerary.data.data.attributes['transportation-plan']];
+    tempTransportationPlan.sort((a, b) => a["day-index"] - b["day-index"]);
+    for(let i=0; i<tempTransportationPlan.length; i++) {
+      if(day === tempTransportationPlan[i]["day-index"]) {
+        this.locationPaginatorActiveIndex = i;
+        break;
+      } else if(day < tempTransportationPlan[i]["day-index"]) {
+        this.locationPaginatorActiveIndex = i-1;
+        break;
+      }
+    }
   }
 
   onTourChange(tourIndex: number, tour: any) {

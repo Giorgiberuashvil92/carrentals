@@ -25,7 +25,7 @@ export class DialogService {
     },
     'selectActivity': {
       component: SelectActivityComponent,
-      maxWidth: '832px'
+      maxWidth: '932px'
     },
     'editTrip': {
       component: EditTripComponent,
