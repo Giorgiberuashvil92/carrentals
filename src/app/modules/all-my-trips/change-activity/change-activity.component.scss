@@ -65,9 +65,11 @@
                   color: #757575;
                 }
                 .tags {
-                    margin-top: 20px;
+                    flex-wrap: wrap;
+                    margin-top: 5px;
 
                     .tag {
+                        margin-top: 10px;
                         font-size: 8px;
                         background: #eae7e7;
                         color: #757575;
@@ -76,6 +78,7 @@
                         padding: 5px 8px;
                         font-weight: 700;
                         margin-right: 8px;
+                        white-space: nowrap;
                     }
                 }
             }

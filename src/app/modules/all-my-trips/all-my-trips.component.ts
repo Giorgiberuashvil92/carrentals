@@ -83,16 +83,19 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
     this.store.dispatch(new SetDayIndexAction(day));
     this.store.dispatch(new SetTourAction(this.tours[day]));
     const tempTransportationPlan = [...this.itinerary.data.data.attributes['transportation-plan']];
+    console.log(day)
+    console.log(tempTransportationPlan)
     tempTransportationPlan.sort((a, b) => a["day-index"] - b["day-index"]);
     for(let i=0; i<tempTransportationPlan.length; i++) {
       if(day === tempTransportationPlan[i]["day-index"]) {
-        this.locationPaginatorActiveIndex = i;
+        this.locationPaginatorActiveIndex = i+1;
         break;
       } else if(day < tempTransportationPlan[i]["day-index"]) {
-        this.locationPaginatorActiveIndex = i-1;
+        this.locationPaginatorActiveIndex = i;
         break;
       }
     }
+    console.log(this.locationPaginatorActiveIndex);
   }
 
   onTourChange(tourIndex: number, tour: any) {
@@ -160,15 +163,15 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
     this.store.dispatch(new LoadAffiliatePartnerActivitiesAction(query));
   }
 
-  onLoactionChange(index: number) {
-    this.onDayChange(this.itinerary.data.data.attributes["transportation-plan"][index]["day-index"]);
+  onLocationChange(index: number) {
+    this.onDayChange(this.itinerary.data.data.attributes["transportation-plan"][index-1]["day-index"]);
+  }
+
+  generateArray() {
+    this.dataToShow = this.data.slice(this.leftMostIndex - 1, this.leftMostIndex - 1 + this.locationsToShow);
   }
 
   ngOnDestroy() {
     if(this.itinerarySub) this.itinerarySub.unsubscribe();
-  }
-  generateArray() {
-    this.dataToShow = this.data.slice(this.leftMostIndex - 1, this.leftMostIndex - 1 + this.locationsToShow);
-    console.log(this.dataToShow);
   }
 }

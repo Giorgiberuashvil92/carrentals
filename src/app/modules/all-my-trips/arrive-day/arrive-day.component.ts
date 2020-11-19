@@ -42,7 +42,9 @@ export class ArriveDayComponent implements OnInit, OnDestroy {
       this.itineraryService.daysObj.new = [...new Set(this.itineraryService.daysObj.new)];
       console.log(this.itineraryService.daysObj);
       for(let i=0; i<this.itineraryService.daysObj.old.length; i++) {
+        console.log(this.itineraryService.daysObj.old[i]);
         if(!this.itineraryService.daysObj.new.find(r => r.id === this.itineraryService.daysObj.old[i].id)) {
+          console.log('_DESTROY')
           daysArr.push({
             id: this.itineraryService.daysObj.old[i].id,
             '_destroy': 1
@@ -69,16 +71,16 @@ export class ArriveDayComponent implements OnInit, OnDestroy {
         return a;
       }, 0);
       console.log(addedDaysNum);
-      console.log(daysArr);
       const endDate = new Date(this.itineraryState.data.data.attributes["end-date"]);
       endDate.setDate(endDate.getDate() + addedDaysNum);
+      this.itineraryService.daysObj.new = [];
       this.store.dispatch(new UpdateItineraryAction({ 
         itineraryId: this.itineraryState.data.data.id,
         body: {
           type: 'itineraries',
           attributes: {
             "start-date": this.itineraryState.data.data.attributes["start-date"],
-            "end-date": "2021-06-16",
+            "end-date": `${endDate.getFullYear()}-${endDate.getMonth() + 1}-${endDate.getDate()}`,
             days: daysArr
           }
         }

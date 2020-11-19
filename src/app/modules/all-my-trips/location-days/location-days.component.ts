@@ -66,7 +66,6 @@ export class LocationDaysComponent implements OnInit, OnDestroy {
             })
           }
           this.sortDays();
-          console.log(this.daysArr);
           break;
         case 'delete':
           if(this.city.attributes.name === res.cityName) {
@@ -74,7 +73,6 @@ export class LocationDaysComponent implements OnInit, OnDestroy {
           }
           this.daysArr = this.daysArr.map(d => this.dayDeleteMapFn(d, res.index));
           this.sortDays();
-          console.log(this.daysArr);
           break;
         default:
           break;
@@ -82,7 +80,12 @@ export class LocationDaysComponent implements OnInit, OnDestroy {
     });
 
     this.okClickSub = this.itineraryService.editTripOKClicked.subscribe((res) => {
-      this.itineraryService.daysObj.new = [...this.itineraryService.daysObj.new, ...this.daysArr];
+      for(let i=0; i<this.daysArr.length; i++) {
+        if(this.daysArr[i].id === 'newDay' || !this.itineraryService.daysObj.new.find(r => r.id === this.daysArr[i].id)) {
+          this.itineraryService.daysObj.new.push(this.daysArr[i]);
+        }
+      }
+      // this.itineraryService.daysObj.new = [...this.itineraryService.daysObj.new, ...this.daysArr];
     })
   }
 
@@ -106,6 +109,8 @@ export class LocationDaysComponent implements OnInit, OnDestroy {
   }
 
   onDelete(index: number) {
+    console.log(index);
+    console.log(this.daysArr[index])
     this.deletedDaysArr.push(this.daysArr[index]);
     this.deletedDaysArr.sort((a, b) => a.attributes.index - b.attributes.index);
     this.itineraryService.dayChange.next({
@@ -113,6 +118,7 @@ export class LocationDaysComponent implements OnInit, OnDestroy {
       index: this.daysArr[index].attributes.index,
       cityName: this.city.attributes.name
     })
+    console.log(this.deletedDaysArr);
   }
 
   dayAddMapFn(day: any, index: number) {
