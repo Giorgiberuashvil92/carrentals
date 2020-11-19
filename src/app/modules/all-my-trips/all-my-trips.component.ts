@@ -97,29 +97,27 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
   }
 
   onLeft() {
-    if(this.leftMostIndex > 1) {
-      this.leftMostIndex--;
-      this.generateArray();
-    }
-    if(this.activeIndex > 1) {
-      this.activeIndex--;
-      this.locationChange.emit(this.activeIndex);
-    }
+    // if(this.leftMostIndex > 1) {
+    //   this.store.dispatch(new SetTourIndexAction(this.itinerary.tourIndex - 1));
+    //   this.store.dispatch(new SetTourAction(this.tours[this.itinerary.tourIndex - 1]));
+    // }
+    // if(this.activeIndex > 1) {
+    //   this.activeIndex--;
+    //   this.locationChange.emit(this.activeIndex);
+    // }
 
     //marcxniv
-    // this.store.dispatch(new SetTourIndexAction(this.itinerary.tourIndex - 1));
-    // this.store.dispatch(new SetTourAction(this.tours[this.itinerary.tourIndex - 1]));
+    if(this.itinerary.tourIndex > 0){
+      console.log(this.tours.length);
+      this.store.dispatch(new SetTourIndexAction(this.itinerary.tourIndex - 1));
+      this.store.dispatch(new SetTourAction(this.tours[this.itinerary.tourIndex - 1]));
+    }
+
   }
 
   onRight() {
-    if(this.leftMostIndex + this.locationsToShow <= this.data.length) {
-      this.leftMostIndex++;
-      this.generateArray();
-    }
-    if(this.activeIndex < this.data.length) {
-      this.activeIndex++;
-      this.locationChange.emit(this.activeIndex);
-    }
+    this.store.dispatch(new SetTourIndexAction(this.itinerary.tourIndex + 1));
+    this.store.dispatch(new SetTourAction(this.tours[this.itinerary.tourIndex + 1]));
   }
 
   onDeleteTour(id: string) {
