@@ -22,12 +22,12 @@
             border-radius: 10px;
             padding: 15px 15px;
             margin: 10px auto;
-            border-color: #757575;
+            border-color: #c3c1c1;
             position: relative;
             &__active, &:hover {
                 border-color: #02A388;
             }
-            
+
 
             .current {
                 top: 5px;
