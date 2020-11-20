@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
+import { map, mergeMap, catchError, switchMap, debounceTime } from 'rxjs/operators';
 
 import { of } from 'rxjs';
 import { ItineraryService } from 'src/app/core/services/itinerary.service';
@@ -73,6 +73,7 @@ export class ItineraryEffects {
     @Effect() loadItineraryToursSearch$ = this.actions$
     .pipe(
         ofType<LoadItineraryToursSearchAction>(ItineraryActionTypes.LOAD_TOURS_SEARCH),
+        debounceTime(300),
         switchMap(
         (d) => this.itineraryService.getItineraryToursSearch$(d.payload.itineraryId, d.payload.interestIds, d.payload.text)
             .pipe(

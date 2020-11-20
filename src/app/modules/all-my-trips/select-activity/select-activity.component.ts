@@ -74,6 +74,7 @@ export class SelectActivityComponent implements OnInit, OnDestroy {
     if(this.interestSet.has(interest)) {
       this.interestSet.delete(interest);
     } else {
+      this.interestSet.clear();
       this.interestSet.add(interest);
     }
     this.onInterestChange();
@@ -101,7 +102,7 @@ export class SelectActivityComponent implements OnInit, OnDestroy {
       new LoadItineraryToursSearchAction({ 
         itineraryId: this.itinerary.data.data.id, 
         interestIds: [...this.interestSet].map(i => i.id),
-        text: event.target.value
+        text: this.activityInput
       })
     );
   }

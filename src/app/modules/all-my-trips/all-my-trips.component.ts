@@ -74,7 +74,6 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
         }
       }
       this.store.dispatch(new SetCitiesAction(this.cityService.generateCities(this.itinerary)));
-      console.log(this.tours);
     });
   }
 

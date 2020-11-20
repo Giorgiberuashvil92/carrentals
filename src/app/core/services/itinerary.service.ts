@@ -40,7 +40,7 @@ export class ItineraryService {
     if(text) {
       query += `&text=${text}`
     }
-    return this.httpClient.get<ItineraryToursSearchResponse>(`/itineraries/${itineraryId}/tours/search?${query.substr(0, query.length - 1)}`)
+    return this.httpClient.get<ItineraryToursSearchResponse>(`/itineraries/${itineraryId}/tours/search?${query.includes('text') ? query : query.substr(0, query.length - 1)}`)
   }
 
   getItinerarySolutionsForTour$(itineraryId: string, tourOfferId: string): Observable<ItinerarySolutionsForTourResponse>{
