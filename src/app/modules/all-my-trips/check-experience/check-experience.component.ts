@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { AffiliateService } from 'src/app/core/services/affiliate.service';
 import { DialogService } from 'src/app/core/services/dialog.service';
 import { AppState } from 'src/app/store/models';
 import { AffiliateState } from 'src/app/store/reducers/affiliate.reducer';
@@ -21,7 +22,8 @@ export class CheckExperienceComponent implements OnInit {
 
   constructor(
     public dialogService: DialogService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private affiliateService: AffiliateService
   ) { }
 
   ngOnInit(): void {
@@ -29,7 +31,14 @@ export class CheckExperienceComponent implements OnInit {
   }
 
   openSite() {
-    window.open("https://www.google.com" , '_blank');
+  }
+
+  onClick(partnerActivity: any) {
+    this.dialogService.openDialog('acceptDialog', {
+      question: `Did you book ${partnerActivity.attributes.title}?`,
+      yesFn: this.affiliateService.test
+    }); 
+    window.open(partnerActivity.attributes.url , '_blank');
   }
 
 }

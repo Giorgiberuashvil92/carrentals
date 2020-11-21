@@ -4,9 +4,10 @@
       <h1>Book a related experience:</h1>
     </div>
 
-    <div class="col-sc" (click)="dialogService.openDialog('acceptDialog'); openSite()">
+    <div class="col-sc">
 
-      <div class="col" *ngFor="let item of affiliateState.partnerActivities.data">
+      <div class="col" *ngFor="let item of affiliateState.partnerActivities.data" 
+        (click)="onClick(item)">
         <div class="ph-t-2">
           <img [src]="item.attributes['image-url']" alt="" class="photo-flex">
         </div>

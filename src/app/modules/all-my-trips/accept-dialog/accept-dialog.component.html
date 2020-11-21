@@ -1,10 +1,10 @@
 <div class="wrapper">
     <div class="question">
-        Did you like?
+        {{ data.question }}
     </div>
 
     <div class="actions flex justify-between">
-        <button class="yes-button">
+        <button class="yes-button" (click)="data.yesFn()">
             YES
         </button>
         <button class="no-button">

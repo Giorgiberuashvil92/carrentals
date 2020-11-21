@@ -15,4 +15,8 @@ export class AffiliateService {
   getAffiliatePartnerActivities$(query: string): Observable<AffiliatePartnerActivitiesResponse> {
     return this.httpClient.get<AffiliatePartnerActivitiesResponse>(`/affiliate/partner-activities?${query}`);
   }
+
+  test() {
+    console.log('test');
+  }
 }
