@@ -98,13 +98,15 @@ export class SelectActivityComponent implements OnInit, OnDestroy {
   }
 
   onInput(event) {
-    this.store.dispatch(
-      new LoadItineraryToursSearchAction({ 
-        itineraryId: this.itinerary.data.data.id, 
-        interestIds: [...this.interestSet].map(i => i.id),
-        text: this.activityInput
-      })
-    );
+    if(this.activityInput.length >= 3) {
+      this.store.dispatch(
+        new LoadItineraryToursSearchAction({ 
+          itineraryId: this.itinerary.data.data.id, 
+          interestIds: [...this.interestSet].map(i => i.id),
+          text: this.activityInput
+        })
+      );
+    }
   }
 
   onNext() {
