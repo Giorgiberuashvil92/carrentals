@@ -1,16 +1,22 @@
 import { AffiliateAction, AffiliateActionTypes } from '../actions';
-import { AffiliatePartnerActivitiesResponse, FailureResponse } from '../models';
+import { AffiliatePartnerActivitiesLiveSearchResponse, AffiliatePartnerActivitiesResponse, FailureResponse } from '../models';
 
 export interface AffiliateState {
     partnerActivities: AffiliatePartnerActivitiesResponse,
-    loading: boolean,
-    error: FailureResponse
+    partnerActivitiesLoading: boolean,
+    partnerActivitiesError: FailureResponse
+    partnerActivitiesLiveSearch: AffiliatePartnerActivitiesLiveSearchResponse,
+    partnerActivitiesLiveSearchLoading: boolean,
+    partnerActivitiesLiveSearchError: FailureResponse
 }
 
 const initialState: AffiliateState = {
     partnerActivities: undefined,
-    loading: false,
-    error: undefined
+    partnerActivitiesLoading: false,
+    partnerActivitiesError: undefined,
+    partnerActivitiesLiveSearch: undefined,
+    partnerActivitiesLiveSearchLoading: false,
+    partnerActivitiesLiveSearchError: undefined
 };
 
 
@@ -20,27 +26,45 @@ export function AffiliateReducer(state: AffiliateState = initialState, action: A
         case AffiliateActionTypes.LOAD_AFFILIATE_PARTNER_ACTIVITIES:
             return {
                 ...state,
-                loading: true
+                partnerActivitiesLoading: true
             };
         case AffiliateActionTypes.LOAD_AFFILIATE_PARTNER_ACTIVITIES_SUCCESS:
             return {
                 ...state,
                 partnerActivities: action.payload,
-                error: null,
-                loading: false
+                partnerActivitiesError: null,
+                partnerActivitiesLoading: false
             }
         case AffiliateActionTypes.LOAD_AFFILIATE_PARTNER_ACTIVITIES_FAILURE:
             return {
                 ...state,
-                error: action.payload,
-                loading: false
+                partnerActivitiesError: action.payload,
+                partnerActivitiesLoading: false
             }
         case AffiliateActionTypes.SET_AFFILIATE_PARTNER_ACTIVITES:
             return {
                 ...state,
-                loading: false,
-                error: null,
+                partnerActivitiesLoading: false,
+                partnerActivitiesError: null,
                 partnerActivities: action.payload
+            }
+        case AffiliateActionTypes.LOAD_AFFILIATE_PARTNER_ACTIVITIES:
+            return {
+                ...state,
+                partnerActivitiesLiveSearchLoading: true
+            };
+        case AffiliateActionTypes.LOAD_AFFILIATE_PARTNER_ACTIVITIES_SUCCESS:
+            return {
+                ...state,
+                partnerActivitiesLiveSearch: action.payload,
+                partnerActivitiesLiveSearchError: null,
+                partnerActivitiesLiveSearchLoading: false
+            }
+        case AffiliateActionTypes.LOAD_AFFILIATE_PARTNER_ACTIVITIES_FAILURE:
+            return {
+                ...state,
+                partnerActivitiesLiveSearchError: action.payload,
+                partnerActivitiesLiveSearchLoading: false
             }
         default:
             return state;

@@ -30,5 +30,6 @@ export {
 } from './interest.model';
 
 export {
-    AffiliatePartnerActivitiesResponse
+    AffiliatePartnerActivitiesResponse,
+    AffiliatePartnerActivitiesLiveSearchResponse
 } from './affiliate.model';

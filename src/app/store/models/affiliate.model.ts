@@ -26,3 +26,36 @@ export interface AffiliatePartnerActivitiesResponse {
         }
     }>
 }
+
+export interface AffiliatePartnerActivitiesLiveSearchResponse {
+    data: Array<{
+        type: string;
+        attributes: {
+            "title": string;
+            "url": string;
+            "image-url": string;
+            "partner-name": string;
+            "description": string;
+            "price": number;
+            "currency": string;
+            "duration": {
+                "years": number;
+                "months": number;
+                "weeks": number;
+                "days": number;
+                "hours": number;
+                "minutes": number;
+                "seconds": number;
+            },
+            "position": number;
+            "activity-types": Array<{
+                "data": {
+                    "type": string;
+                    "attributes": {
+                        "name": string;
+                    }
+                }
+            }>
+        }
+    }>
+}
