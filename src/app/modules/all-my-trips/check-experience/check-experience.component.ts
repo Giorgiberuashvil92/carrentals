@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { DeviceDetectorService } from 'src/app/core/services/device-detector.service';
+import { AffiliateService } from 'src/app/core/services/affiliate.service';
 import { DialogService } from 'src/app/core/services/dialog.service';
 import { SetTourIndexAction, SetTourAction } from 'src/app/store/actions';
 import { AppState } from 'src/app/store/models';
@@ -27,7 +28,8 @@ export class CheckExperienceComponent implements OnInit {
   constructor(
     public dialogService: DialogService,
     private store: Store<AppState>,
-    public deviceDetectorService : DeviceDetectorService
+    public deviceDetectorService : DeviceDetectorService,
+    private affiliateService: AffiliateService
   ) { }
 
   ngOnInit(): void {
@@ -44,7 +46,14 @@ export class CheckExperienceComponent implements OnInit {
     this.store.dispatch(new SetTourAction(this.tours[this.itinerary.tourIndex + 1]));
   }
   openSite() {
-    window.open("https://www.google.com" , '_blank');
+  }
+
+  onClick(partnerActivity: any) {
+    this.dialogService.openDialog('acceptDialog', {
+      question: `Did you book ${partnerActivity.attributes.title}?`,
+      yesFn: this.affiliateService.test
+    });
+    window.open(partnerActivity.attributes.url , '_blank');
   }
 
 }

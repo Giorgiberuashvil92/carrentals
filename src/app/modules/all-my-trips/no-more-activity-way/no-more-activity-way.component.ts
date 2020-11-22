@@ -1,13 +1,13 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogService } from 'src/app/core/services/dialog.service';
 
 @Component({
-  selector: 'app-accept-dialog',
-  templateUrl: './accept-dialog.component.html',
-  styleUrls: ['./accept-dialog.component.scss']
+  selector: 'app-no-more-activity-way',
+  templateUrl: './no-more-activity-way.component.html',
+  styleUrls: ['./no-more-activity-way.component.scss']
 })
-export class AcceptDialogComponent implements OnInit {
+export class NoMoreActivityWayComponent implements OnInit {
 
   constructor(
     public dialogService: DialogService,
@@ -16,5 +16,4 @@ export class AcceptDialogComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

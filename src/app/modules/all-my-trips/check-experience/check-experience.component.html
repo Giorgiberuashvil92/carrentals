@@ -1,12 +1,13 @@
 <ng-container *ngIf="affiliateState$ | async as affiliateState">
-  <div class="wrapper wr-p pd-rg " *ngIf="!affiliateState.loading && affiliateState.partnerActivities && affiliateState.partnerActivities.data.length > 0">
+  <div class="wrapper wr-p pd-rg " *ngIf="!affiliateState.partnerActivitiesLoading && affiliateState.partnerActivities && affiliateState.partnerActivities.data.length > 0">
     <div class="rel">
       <h1>Book a related experience:</h1>
     </div>
 
-  <div class="col-sc" >
-    <img class="lower-than cursor-pointer" *ngIf="deviceDetectorService.isMobile" (click)="onLeft()" src="/assets/lower-than-icon.svg">
-      <div class="col" *ngFor="let item of affiliateState.partnerActivities.data" (click)="dialogService.openDialog('acceptDialog'); openSite()">
+    <div class="col-sc">
+      <img class="lower-than cursor-pointer" *ngIf="deviceDetectorService.isMobile" (click)="onLeft()" src="/assets/lower-than-icon.svg">
+      <div class="col" *ngFor="let item of affiliateState.partnerActivities.data"
+        (click)="onClick(item)">
         <div class="ph-t-2">
           <img [src]="item.attributes['image-url']" alt="" class="photo-flex">
         </div>

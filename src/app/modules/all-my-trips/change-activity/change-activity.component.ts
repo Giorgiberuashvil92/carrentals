@@ -12,10 +12,14 @@ import { ItineraryState } from 'src/app/store/reducers';
   templateUrl: './change-activity.component.html',
   styleUrls: ['./change-activity.component.scss']
 })
-export class ChangeActivityComponent implements OnInit {
+export class ChangeActivityComponent implements OnInit, OnDestroy {
 
   currentIndex = 0;
-  itineraryState$: Observable<ItineraryState>;
+  isSubmitted = false;
+  isLoaded = false;
+  
+  itineraryState: ItineraryState;
+  itineraryStateSub: Subscription;
 
   constructor(
     public dialogService: DialogService,
@@ -23,29 +27,44 @@ export class ChangeActivityComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.itineraryState$ = this.store.select(store => store.itinerary);
+    this.dialogService.updateSize('250px');
+    this.itineraryStateSub = this.store.select(store => store.itinerary).subscribe(res => {
+      this.itineraryState = res;
+      this.isLoaded = this.itineraryState.alternateTours && this.itineraryState.alternateTours.data && this.itineraryState.alternateTours.data.length > 0;
+      if(this.isSubmitted && !this.itineraryState.updateTourOrTransportLoading) {
+        this.dialogService.closeDialog();
+      }
+      if(this.isLoaded) {
+        this.dialogService.updateSize('600px');
+      }
+    });
   }
 
-  onOK(itineraryState: ItineraryState) {
+  onOK() {
     if(this.currentIndex === 0) {
       return;
     }
-    if(itineraryState.alternateTours.data[this.currentIndex-1].attributes["transport-type"]) {
+    if(this.itineraryState.alternateTours.data[this.currentIndex-1].attributes["transport-type"]) {
       this.dialogService.closeDialog();
       this.dialogService.openDialog('editTrip');
       return;
     }
     this.store.dispatch(new UpdateItineraryTourOrTransportAction({
-      itineraryId: itineraryState.data.data.id,
-      id: itineraryState.tour.id,
+      itineraryId: this.itineraryState.data.data.id,
+      id: this.itineraryState.tour.id,
       body: {
         type: 'tours',
         attributes: {
           "solution-type": 'compadre',
-          "solution-id": itineraryState.alternateTours.data[this.currentIndex-1].id
+          "solution-id": this.itineraryState.alternateTours.data[this.currentIndex-1].id
         }
       }
     }));
-    this.dialogService.closeDialog();
+    this.isSubmitted = true;
+    this.dialogService.updateSize('250px');
+  }
+
+  ngOnDestroy() {
+    if(this.itineraryStateSub) this.itineraryStateSub.unsubscribe();
   }
 }
