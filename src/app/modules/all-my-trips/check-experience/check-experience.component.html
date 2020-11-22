@@ -4,15 +4,15 @@
       <h1>Book a related experience:</h1>
     </div>
 
-    <div class="col-sc" (click)="dialogService.openDialog('acceptDialog'); openSite()">
-
-      <div class="col" *ngFor="let item of affiliateState.partnerActivities.data">
+  <div class="col-sc" >
+    <img class="lower-than cursor-pointer" *ngIf="deviceDetectorService.isMobile" (click)="onLeft()" src="/assets/lower-than-icon.svg">
+      <div class="col" *ngFor="let item of affiliateState.partnerActivities.data" (click)="dialogService.openDialog('acceptDialog'); openSite()">
         <div class="ph-t-2">
           <img [src]="item.attributes['image-url']" alt="" class="photo-flex">
         </div>
         <div class="tx-t">
-          <div class="wr-2 wr-c"><h2>{{ item.attributes['title'] }}</h2></div>
-          <div class="wr-2"><p>{{ item.attributes['description'] }}</p></div>
+          <div class="wr-2 wr-c text-slice"><h2>{{ item.attributes['title'] }}</h2></div>
+          <div class="wr-2 text-slice"><p>{{ item.attributes['description'] }}</p></div>
         </div>
 
         <div class="thrd-2">
@@ -36,6 +36,7 @@
             </div>
         </div>
       </div>
+    <img class="arrow-right cursor-pointer" *ngIf="deviceDetectorService.isMobile" (click)="onRight()" src="/assets/higher-than-icon.svg">
 
     </div>
 

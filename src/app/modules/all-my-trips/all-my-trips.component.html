@@ -57,7 +57,8 @@
 
             <div class="left-list-wrapper">
               <img class="lower-than cursor-pointer" *ngIf="deviceDetectorService.isMobile" (click)="onLeft()" src="/assets/lower-than-icon.svg">
-                <div class="left-item flex cursor-pointer"
+                <div class="left-item flex cursor-pointer">
+                  <div class="left-item flex cursor-pointer"
                     *ngFor="let tour of tours; let i=index"
                     [ngClass]="{ 'left-item__active': i === itinerary.tourIndex }"
                     (click)="onTourChange(i, tour)">
@@ -91,6 +92,7 @@
                             </button>
                         </div>
                     </div>
+                </div>
                 </div>
                 <img class="higher-than cursor-pointer" *ngIf="deviceDetectorService.isMobile" (click)="onRight()" src="/assets/higher-than-icon.svg">
             </div>

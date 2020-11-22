@@ -5,6 +5,9 @@
         width: 100;
         margin-top: 35px;
 
+        .items-center{
+          overflow: hidden;
+        }
         .icon-data {
             width: 35px;
             height: 35px;
@@ -17,7 +20,11 @@
                 border-color: #02A388;
             }
         }
+        .higher-than{
+          position: relative;
+          z-index: 100;
 
+        }
         .first-data {
             font-size: 12px;
             font-weight: 700;
@@ -39,7 +46,6 @@
             font-weight: 700;
             white-space: nowrap;
         }
-
         .fourth-data {
             font-size: 14px;
             font-weight: 600;
@@ -53,6 +59,11 @@
       transform: translateY(5px);
     }
 }
+.overflow-calc{
+  overflow: hidden;
+  width: calc(100% - 107px);
+  position: relative;
+}
 
 @media only screen and (max-width: 768px) {
     .wrapper {
@@ -62,6 +73,17 @@
             margin-top: 70px;
         }
     }
+}
+@media only screen and (max-width: 992px) {
+  .wrapper {
+    padding-left: 0px;
+     .third-data{
+       white-space: normal !important;
+     }
+  }
+  .overflow-calc{
+    width: 100%;
+  }
 }
 
 @media only screen and (min-width: 1250px) {

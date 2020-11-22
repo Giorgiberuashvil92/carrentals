@@ -3,10 +3,10 @@
             (touchmove)="onTouchMove($event)">
     <img class="lower-than cursor-pointer" *ngIf="deviceDetectorService.isDesktop" (click)="onLeft()" src="/assets/lower-than-icon.svg">
 
-    <div class="locations-wrapper w-full flex justify-between" #wrapper>
+    <div class="locations-wrapper w-full flex justify-between overflow-calc" #wrapper>
         <ng-container *ngFor="let d of dataToShow; let i=index">
-            <div class="location-wrapper flex flex-col items-center" 
-                [ngStyle]="{ 
+            <div class="location-wrapper flex flex-col items-center"
+                [ngStyle]="{
                     'opacity': i + leftMostIndex === activeIndex ? '1' : '0.3',
                     'transform': 'translateX(' + mobileTranslate + 'px)'
                 }"
@@ -24,18 +24,17 @@
                     {{ d['bottom-text'] }}
                 </div>
             </div>
-    
-            <img 
-                *ngIf="i !== dataToShow.length - 1" 
+
+            <img
+                *ngIf="i !== dataToShow.length - 1"
                 [ngStyle]="{
                     'transform': 'translateX(' + mobileTranslate + 'px)'
                 }"
-                class="block" 
-                src="/assets/location-line-icon.svg" 
+                class="block"
+                src="/assets/location-line-icon.svg"
                 alt=""
             >
         </ng-container>
     </div>
-
     <img class="higher-than cursor-pointer" *ngIf="deviceDetectorService.isDesktop" (click)="onRight()" src="/assets/higher-than-icon.svg">
 </div>
