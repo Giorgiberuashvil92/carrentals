@@ -116,7 +116,7 @@ export class SelectActivityComponent implements OnInit, OnDestroy {
         tourOfferId: this.toursToShow[this.currentlyChosenIndex].id
       }))
       this.dialogService.closeDialog();
-      this.dialogService.openDialog('chooseNewActivity');
+      this.dialogService.openDialog('chooseNewActivity', { tour: this.toursToShow[this.currentlyChosenIndex] });
     }
   }
 

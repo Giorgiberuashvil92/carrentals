@@ -11,11 +11,13 @@ export interface ItineraryState {
   dayIndex: number,
   tourIndex: number,
   tour: any,
+  updateTourOrTransportLoading: boolean,
   alternateTours: ItineraryAlternateToursResponse,
   alternateToursLoading: boolean,
   toursSearch: ItineraryToursSearchResponse,
   toursSearchLoading: boolean,
   tourSolutions: ItinerarySolutionsForTourResponse,
+  tourSolutionsLoading: boolean,
   tourSolutionPostResponse: PostItinerarySolutionsForTourResponse
 }
 
@@ -26,11 +28,13 @@ const initialState: ItineraryState = {
   dayIndex: 1,
   tourIndex: 0,
   tour: undefined,
+  updateTourOrTransportLoading: false,
   alternateTours: undefined,
   alternateToursLoading: false,
   toursSearch: undefined,
   toursSearchLoading: false,
   tourSolutions: undefined,
+  tourSolutionsLoading: false,
   tourSolutionPostResponse: undefined
 };
 
@@ -103,16 +107,19 @@ export function ItineraryReducer(state: ItineraryState = initialState, action: I
       }
     case ItineraryActionTypes.UPDATE_ITINERARY_TOUR_OR_TRANSPORT:
       return {
-          ...state
+          ...state,
+          updateTourOrTransportLoading: true,
       }
     case ItineraryActionTypes.UPDATE_ITINERARY_TOUR_OR_TRANSPORT_SUCCESS:
       return {
           ...state,
-          data: action.payload
+          data: action.payload,
+          updateTourOrTransportLoading: false
       }
     case ItineraryActionTypes.UPDATE_ITINERARY_TOUR_OR_TRANSPORT_FAILURE:
       return {
-          ...state
+          ...state,
+          updateTourOrTransportLoading: false
       }
     case ItineraryActionTypes.LOAD_TOURS_SEARCH:
       return {
@@ -137,16 +144,19 @@ export function ItineraryReducer(state: ItineraryState = initialState, action: I
       }
     case ItineraryActionTypes.LOAD_TOURS_SOLUTIONS_FOR_TOUR:
       return {
-          ...state
+          ...state,
+          tourSolutionsLoading: true
       }
     case ItineraryActionTypes.LOAD_TOURS_SOLUTIONS_FOR_TOUR_SUCCESS:
       return {
           ...state,
-          tourSolutions: action.payload
+          tourSolutions: action.payload,
+          tourSolutionsLoading: false
       }
     case ItineraryActionTypes.LOAD_TOURS_SOLUTIONS_FOR_TOUR_FAILURE:
       return {
-          ...state
+          ...state,
+          tourSolutionsLoading: false
       }
     case ItineraryActionTypes.POST_TOURS_SOLUTION_FOR_TOUR:
       return {

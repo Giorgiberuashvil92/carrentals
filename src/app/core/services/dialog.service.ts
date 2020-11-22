@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AcceptDialogComponent } from 'src/app/modules/all-my-trips/accept-dialog/accept-dialog.component';
 import { ArriveDayComponent } from 'src/app/modules/all-my-trips/arrive-day/arrive-day.component';
 import { ChangeActivityComponent } from 'src/app/modules/all-my-trips/change-activity/change-activity.component';
 import { ChangeTransportComponent } from 'src/app/modules/all-my-trips/change-transport/change-transport.component';
 import { ChooseNewActivityComponent } from 'src/app/modules/all-my-trips/choose-new-activity/choose-new-activity.component';
 import { EditTripComponent } from 'src/app/modules/all-my-trips/edit-trip/edit-trip.component';
+import { NoMoreActivityWayComponent } from 'src/app/modules/all-my-trips/no-more-activity-way/no-more-activity-way.component';
 import { NotIncludeComponent } from 'src/app/modules/all-my-trips/not-include/not-include.component';
 import { SelectActivityComponent } from 'src/app/modules/all-my-trips/select-activity/select-activity.component';
 
@@ -47,9 +48,13 @@ export class DialogService {
       component: ChooseNewActivityComponent,
       maxWidth: '762px'
     },
+    'noMoreActivityWay': {
+      component: NoMoreActivityWayComponent,
+      maxWidth: '700px'
+    }
   }
 
-  private dialogRef;
+  public dialogRef: MatDialogRef<any>;
 
   constructor(
     private dialog: MatDialog
@@ -69,6 +74,12 @@ export class DialogService {
     if(this.dialogRef) {
       this.dialogRef.close();
       this.dialogRef = null;
+    }
+  }
+
+  updateSize(width?: string, height?: string) {
+    if(this.dialogRef) {
+      this.dialogRef.updateSize(width, height);
     }
   }
 }

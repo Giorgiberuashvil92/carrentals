@@ -1,6 +1,6 @@
-<ng-container *ngIf="itineraryState$ | async as itineraryState">
-    <mat-dialog-content>
-        <div class="wrapper relative" *ngIf="itineraryState.alternateTours && itineraryState.alternateTours.data && itineraryState.alternateTours.data.length > 0">
+<ng-container *ngIf="itineraryState">
+    <mat-dialog-content *ngIf="!itineraryState.updateTourOrTransportLoading && isLoaded; else elseBlock">
+        <div class="wrapper relative">
             <img class="close-dialog-btn absolute cursor-pointer" src="/assets/close-dialog-icon.svg" alt="" (click)="dialogService.closeDialog()">
 
             <div class="change-activity">
@@ -60,10 +60,17 @@
                 <button class="cancel-button" (click)="dialogService.closeDialog()">
                     CANCEL
                 </button>
-                <button class="ok-button" (click)="onOK(itineraryState)">
+                <button class="ok-button" (click)="onOK()">
                     OK
                 </button>
             </div>
         </div>
     </mat-dialog-content>
+
+    <ng-template #elseBlock>
+        <div class="loader">
+            <mat-spinner [diameter]="25"></mat-spinner>
+            Please wait ...
+        </div>
+    </ng-template>
 </ng-container>

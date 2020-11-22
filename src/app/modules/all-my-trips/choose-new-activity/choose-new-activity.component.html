@@ -1,22 +1,21 @@
-<ng-container *ngIf="itineraryState && itineraryState.tourSolutions && itineraryState.tourSolutions.data.length > 0">
-    <div class="wrapper relative" [ngSwitch]="itineraryState.tourSolutions.data[sortedArrayIndexes[activeSolutionIndex]].attributes.type">
-
+<ng-container *ngIf="itineraryState && sortedArrayIndexesToUse.length > 0">
+    <div class="wrapper relative" [ngSwitch]="itineraryState.tourSolutions.data[sortedArrayIndexesToUse[activeSolutionIndex]].attributes.type">
         <img class="close-dialog-btn absolute cursor-pointer" src="/assets/close-dialog-icon.svg" alt="" (click)="dialogService.closeDialog()">
         <!-- compadre -->
         <ng-container *ngSwitchCase="'compadre'">
             <div class="replace-day">
-                How about we replace <span class="replace-day-number">{{ findOriginalTour().attributes.name }}</span> with <span class="replace-day-number">{{ itineraryState.tourSolutions.data[sortedArrayIndexes[activeSolutionIndex]].attributes.name }}</span>
+                How about we replace <span class="replace-day-number">{{ findOriginalTour().attributes.name }}</span> with <span class="replace-day-number">{{ itineraryState.tourSolutions.data[sortedArrayIndexesToUse[activeSolutionIndex]].attributes.name }}</span>
             </div>
         
             
             <div class="current-new flex justify-between">
                 <div class="activity-wrapper">
                     <div class="current">
-                        Current - Day {{ itineraryState.tourSolutions.data[sortedArrayIndexes[activeSolutionIndex]].attributes['day-index'] }}
+                        Current - Day {{ itineraryState.tourSolutions.data[sortedArrayIndexesToUse[activeSolutionIndex]].attributes['day-index'] }}
                     </div>
         
                     <div class="activity relative flex cursor-pointer" 
-                        *ngFor="let oldTour of itineraryState.tourSolutions.data[sortedArrayIndexes[activeSolutionIndex]].attributes['old-day-tours'].data; let i=index">
+                        *ngFor="let oldTour of itineraryState.tourSolutions.data[sortedArrayIndexesToUse[activeSolutionIndex]].attributes['old-day-tours'].data; let i=index">
                         
                         <div class="image" [style.background-image]="'url(\'' + oldTour.attributes['square-image-url'] + '\')'"></div>
             
@@ -38,7 +37,7 @@
                     </div>
         
                     <div class="activity relative flex cursor-pointer" 
-                        *ngFor="let newTour of itineraryState.tourSolutions.data[sortedArrayIndexes[activeSolutionIndex]].attributes['new-day-tours'].data; let i=index">
+                        *ngFor="let newTour of itineraryState.tourSolutions.data[sortedArrayIndexesToUse[activeSolutionIndex]].attributes['new-day-tours'].data; let i=index">
                         
                         <div class="image" [style.background-image]="'url(\'' + newTour.attributes['square-image-url'] + '\')'"></div>
             
@@ -59,18 +58,18 @@
         <!-- component-group -->
         <ng-container *ngSwitchCase="'component-group'">
             <div class="replace-day">
-                Do you want to <span class="replace-day-number">replace day {{ itineraryState.tourSolutions.data[sortedArrayIndexes[activeSolutionIndex]].attributes['day-index'] }}</span> with new activity?
+                Do you want to <span class="replace-day-number">replace day {{ itineraryState.tourSolutions.data[sortedArrayIndexesToUse[activeSolutionIndex]].attributes['day-index'] }}</span> with new activity?
             </div>
         
             
             <div class="current-new flex justify-between">
                 <div class="activity-wrapper">
                     <div class="current">
-                        Current - Day {{ itineraryState.tourSolutions.data[sortedArrayIndexes[activeSolutionIndex]].attributes['day-index'] }}
+                        Current - Day {{ itineraryState.tourSolutions.data[sortedArrayIndexesToUse[activeSolutionIndex]].attributes['day-index'] }}
                     </div>
         
                     <div class="activity relative flex cursor-pointer" 
-                        *ngFor="let oldTour of itineraryState.tourSolutions.data[sortedArrayIndexes[activeSolutionIndex]].attributes['old-day-tours'].data; let i=index">
+                        *ngFor="let oldTour of itineraryState.tourSolutions.data[sortedArrayIndexesToUse[activeSolutionIndex]].attributes['old-day-tours'].data; let i=index">
                         
                         <div class="image" [style.background-image]="'url(\'' + oldTour.attributes['square-image-url'] + '\')'"></div>
             
@@ -92,7 +91,7 @@
                     </div>
         
                     <div class="activity relative flex cursor-pointer" 
-                        *ngFor="let newTour of itineraryState.tourSolutions.data[sortedArrayIndexes[activeSolutionIndex]].attributes['new-day-tours'].data; let i=index">
+                        *ngFor="let newTour of itineraryState.tourSolutions.data[sortedArrayIndexesToUse[activeSolutionIndex]].attributes['new-day-tours'].data; let i=index">
                         
                         <div class="image" [style.background-image]="'url(\'' + newTour.attributes['square-image-url'] + '\')'"></div>
             
@@ -123,7 +122,7 @@
                     </div>
         
                     <div class="activity relative flex cursor-pointer" 
-                        *ngFor="let newTour of itineraryState.tourSolutions.data[sortedArrayIndexes[activeSolutionIndex]].attributes['new-day-tours'].data; let i=index">
+                        *ngFor="let newTour of itineraryState.tourSolutions.data[sortedArrayIndexesToUse[activeSolutionIndex]].attributes['new-day-tours'].data; let i=index">
                         
                         <div class="image" [style.background-image]="'url(\'' + newTour.attributes['square-image-url'] + '\')'"></div>
             
@@ -154,7 +153,7 @@
                     </div>
         
                     <div class="activity relative flex cursor-pointer" 
-                        *ngFor="let newTour of itineraryState.tourSolutions.data[sortedArrayIndexes[activeSolutionIndex]].attributes['new-day-tours'].data; let i=index">
+                        *ngFor="let newTour of itineraryState.tourSolutions.data[sortedArrayIndexesToUse[activeSolutionIndex]].attributes['new-day-tours'].data; let i=index">
                         
                         <div class="image" [style.background-image]="'url(\'' + newTour.attributes['square-image-url'] + '\')'"></div>
             
@@ -173,7 +172,7 @@
         </ng-container>
 
         <div class="actions absolute flex justify-between">
-            <button class="cancel-button" (click)="dialogService.closeDialog()">
+            <button class="cancel-button" (click)="onCancel()">
                 CANCEL
             </button>
             <button class="next-button" (click)="onYes()">
@@ -183,7 +182,7 @@
 
         <div class="counter-wrapper">
             <div class="dot" 
-                *ngFor="let item of sortedArrayIndexes; let i=index"
+                *ngFor="let item of sortedArrayIndexesToUse; let i=index"
                 [ngClass]="{ 'dot__active': i === activeSolutionIndex }"
             ></div>
         </div>

@@ -16,8 +16,10 @@ import { LocationDaysComponent } from './location-days/location-days.component';
 import { AcceptDialogComponent } from './accept-dialog/accept-dialog.component';
 import { NotIncludeComponent } from './not-include/not-include.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ChangeTransportComponent } from './change-transport/change-transport.component';
 import { ChooseNewActivityComponent } from './choose-new-activity/choose-new-activity.component';
+import { NoMoreActivityWayComponent } from './no-more-activity-way/no-more-activity-way.component';
 
 const routes: Routes = [
   {
@@ -39,7 +41,8 @@ const routes: Routes = [
     AcceptDialogComponent,
     NotIncludeComponent,
     ChangeTransportComponent,
-    ChooseNewActivityComponent
+    ChooseNewActivityComponent,
+    NoMoreActivityWayComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +50,8 @@ const routes: Routes = [
     SharedModule,
     SwiperModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressSpinnerModule
   ]
 })
 export class AllMyTripsModule { }
