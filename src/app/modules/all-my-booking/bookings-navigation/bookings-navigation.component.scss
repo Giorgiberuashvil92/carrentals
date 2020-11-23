@@ -127,3 +127,11 @@
 
 }
 
+@media only screen and (max-width: 1181px) {
+  .flex-column-rips{
+    flex-direction: column;
+  }
+  .flex-column-rips-second{
+    display: flex;
+  }
+  }
