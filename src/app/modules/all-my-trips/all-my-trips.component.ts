@@ -11,6 +11,7 @@ import { LoadAffiliatePartnerActivitiesAction, SetAffiliatePartnerActivitiesActi
 import { DeleteTourAction, LoadItineraryAction, LoadItineraryAlternateToursAction, SetDayIndexAction, SetTourAction, SetTourIndexAction } from 'src/app/store/actions/itinerary.action';
 import { AppState } from 'src/app/store/models/app-state.model';
 import { ItineraryState } from 'src/app/store/reducers';
+import { NavigationDialogComponent } from '../all-my-booking/navigation-dialog/navigation-dialog.component';
 
 @Component({
   selector: 'app-all-my-trips',

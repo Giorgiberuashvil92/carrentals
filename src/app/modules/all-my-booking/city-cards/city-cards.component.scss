@@ -24,7 +24,7 @@
     margin-right: 20px;
     border-radius: 10px;
     padding-bottom: 20px;
-    
+
     .img {
       width: 300px;
       height: 170px;
@@ -35,6 +35,7 @@
     }
 }
 .parg{
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -94,3 +95,29 @@
 .money {
   float: left;
 }
+
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    padding-left: 0;
+    }
+  .gr-t {
+    margin-top: 15px;
+    h1{
+      font-size: 14px;
+    }
+  .pr-img {
+    .img{
+      width: 200px;
+    }
+  }
+
+  }
+  .mini-wrapper{
+    // width: 100%;
+    // height: 200px;
+    // display: flex;
+    background-color: white;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  }

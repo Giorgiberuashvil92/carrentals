@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
+import { DeviceDetectorService } from 'src/app/core/services/device-detector.service';
 import { DialogService } from 'src/app/core/services/dialog.service';
 import { LoadAffiliatePartnerActivitiesAction } from 'src/app/store/actions';
 import { AppState } from 'src/app/store/models';
@@ -20,7 +21,8 @@ export class BookingsNavigationComponent implements OnInit, OnDestroy {
 
   constructor(
     public dialogService: DialogService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    public deviceDetectorService : DeviceDetectorService
   ) { }
 
   array = [
@@ -30,7 +32,7 @@ export class BookingsNavigationComponent implements OnInit, OnDestroy {
     {name:'Inter-City Transport', imageURL: '/assets/interpoller.svg'},
     {name:'Hotels & Apartments', imageURL: '/assets/bed.svg'},
   ]
-  
+
   ngOnInit(): void {
     this.cityStateSub = this.store.select(store => store.city).subscribe(res => {
       this.cityState = res;
@@ -45,6 +47,10 @@ export class BookingsNavigationComponent implements OnInit, OnDestroy {
     const query: string = `subject-type=city&subject-id=${city.id}`;
     this.store.dispatch(new LoadAffiliatePartnerActivitiesAction(query));
     console.log(city);
+  }
+
+  openDialog(){
+    this.dialogService.openDialog('navigationDialog');
   }
 
   ngOnDestroy() {

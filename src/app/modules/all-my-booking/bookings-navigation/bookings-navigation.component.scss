@@ -61,6 +61,24 @@
   padding: 3px 20px;
   border-radius: 5px;
 }
+.my-3{
+  display: flex;
+  min-width: 180px;
+  max-width: 250px;
+  border: 2px solid #7FD0C3;
+  padding: 3px 20px;
+  border-radius: 5px;
+  background-color: #02A388;
+  img{
+    width: 24px;
+  }
+   div{
+     padding-left: 10px;
+      font-weight: 700;
+    color: white;
+   }
+}
+
 
 .gl-s:last-child{
   border: none;
@@ -78,3 +96,33 @@
   color:white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+@media only screen and (max-width: 768px) {
+.wrapper {
+  flex-direction: column;
+  .my-1{
+    display: flex;
+    overflow: scroll;
+    justify-content: space-between;
+  }
+  .grid-col{
+    width: 150px;
+    height: 50px;
+    border-radius: 3px;
+    border: 2px solid white;
+    object-fit: cover;
+  }
+  .relative{
+    img{
+      width: 100%;
+      object-fit: cover;
+    };
+    .nav-img{
+      margin-right: 78px;
+    }
+  }
+}
+
+
+}
+

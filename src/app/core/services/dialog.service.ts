@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { NavigationDialogComponent } from 'src/app/modules/all-my-booking/navigation-dialog/navigation-dialog.component';
 import { AcceptDialogComponent } from 'src/app/modules/all-my-trips/accept-dialog/accept-dialog.component';
 import { ArriveDayComponent } from 'src/app/modules/all-my-trips/arrive-day/arrive-day.component';
 import { ChangeActivityComponent } from 'src/app/modules/all-my-trips/change-activity/change-activity.component';
@@ -51,6 +52,10 @@ export class DialogService {
     'noMoreActivityWay': {
       component: NoMoreActivityWayComponent,
       maxWidth: '700px'
+    },
+    'navigationDialog': {
+      component: NavigationDialogComponent,
+      maxWidth: '582px'
     }
   }
 
