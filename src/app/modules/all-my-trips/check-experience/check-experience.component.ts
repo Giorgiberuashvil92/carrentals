@@ -24,6 +24,7 @@ export class CheckExperienceComponent implements OnInit {
   itinerary: any;
   tours: any;
   index = 0;
+  affiliateStateOne: any;
 
   constructor(
     public dialogService: DialogService,
@@ -36,14 +37,13 @@ export class CheckExperienceComponent implements OnInit {
     this.affiliateState$ = this.store.select(store => store.affiliate);
   }
 
-  onLeft() {
-      this.store.dispatch(new SetTourIndexAction(this.itinerary.tourIndex - 1));
-      this.store.dispatch(new SetTourAction(this.tours[this.itinerary.tourIndex - 1]));
+  onLeft(affiliateState: { partnerActivities: { data: any; }; }) {
+    let affiliateStateOne  = affiliateState
+
     }
 
   onRight() {
-    this.store.dispatch(new SetTourIndexAction(this.itinerary.tourIndex + 1));
-    this.store.dispatch(new SetTourAction(this.tours[this.itinerary.tourIndex + 1]));
+
   }
   openSite() {
   }

@@ -5,7 +5,7 @@
     </div>
 
     <div class="col-sc">
-      <img class="lower-than cursor-pointer" *ngIf="deviceDetectorService.isMobile" (click)="onLeft()" src="/assets/lower-than-icon.svg">
+      <img class="lower-than cursor-pointer" *ngIf="deviceDetectorService.isMobile" (click)="onLeft(affiliateState.partnerActivities.data)" src="/assets/lower-than-icon.svg">
       <div class="col" *ngFor="let item of affiliateState.partnerActivities.data"
         (click)="onClick(item)">
         <div class="ph-t-2">
@@ -37,7 +37,7 @@
             </div>
         </div>
       </div>
-    <img class="arrow-right cursor-pointer" *ngIf="deviceDetectorService.isMobile" (click)="onRight()" src="/assets/higher-than-icon.svg">
+    <img class="arrow-right cursor-pointer" *ngIf="deviceDetectorService.isMobile" (click)="onRight(affiliateState.partnerActivities.data)" src="/assets/higher-than-icon.svg">
 
     </div>
 
