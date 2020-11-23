@@ -29,10 +29,10 @@
     }
 
     .higher-than{
-          transform: translateY(-50%);
-          position: absolute;
-          top: 50%;
-          right: 0;
+      transform: translateY(-50%);
+      top: 50%;
+      margin-top: 75px;
+      padding-left: 20px;
     }
     .line {
         margin-top: 25px;
@@ -87,10 +87,15 @@
                 font-size: 20px;
                 font-weight: 700;
             }
-
+            .flex-padding{
+              padding: 10px;
+            }
             .left-list-wrapper {
-              position: relative;
+
                 .left-item {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
                     margin-left: -10px;
                     padding: 15px 10px;
                     width: 300px;
@@ -200,7 +205,6 @@
         opacity: 1000;
         box-shadow: 4px 6px 15px -4px rgba(0,0,0,0.1);
     }
-
     }
 
 }
@@ -222,11 +226,23 @@
         width: 100% !important
     }
 
-
+    .flex-padding{
+      display: flex;
+      flex-direction: none;
+    }
     .gt-n{
       display: flex;
       align-items: center;
 
+    }
+    .left-item {
+      display: flex;
+      flex-direction: unset !important;
+      margin-left: -10px;
+      padding: 15px 10px;
+      width: 100%;
+      overflow: hidden;
+      opacity: 0.4;
     }
 
     .tl-wr{
