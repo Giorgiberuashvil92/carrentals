@@ -6,8 +6,9 @@
   color: red;
 }
 .btm{
-  bottom: 32px;
-  right:25px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   color:white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -17,8 +18,8 @@
   color: #02A388;
 }
 .pd-r{
-padding-left: 5%;
-width: 100%;
+  padding-left: 5%;
+  width: 100%;
 }
 
 .sav-inf{
@@ -112,6 +113,6 @@ width: 100%;
 }
 
 .pd-f{
-right: -100px;
-margin-bottom: 20px;
+  right: -100px;
+  margin-bottom: 20px;
 }

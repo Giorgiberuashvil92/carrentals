@@ -13,12 +13,13 @@
       </div>
 
       <app-location-paginator
-          class="block"
-          [data]="itinerary.data.data.attributes['transportation-plan']"
-          [leftMostIndex]="1"
-          [locationsToShow]="8"
-          [activeIndex]="2"
-      ></app-location-paginator>
+            class="block"
+            [data]="itinerary.data.data.attributes['transportation-plan']"
+            [leftMostIndex]="1"
+            [locationsToShow]="8"
+            [activeIndex]="locationPaginatorActiveIndex"
+            (locationChange)="onLocationChange($event)"
+        ></app-location-paginator>
   </div>
   <div class="line"></div>
 

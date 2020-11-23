@@ -29,7 +29,7 @@
               <img [src]="Dollar" alt="">
               <div class="flex flex-column">
                 <span class="spn-d">Price:</span>
-                <span class="spn-col">${{ item.attributes['price']}}</span>
+                <span class="spn-col">{{ item.attributes['price'] | currency : item.attributes.currency }}</span>
                 </div>
             </div>
             <div class="pdr-r">

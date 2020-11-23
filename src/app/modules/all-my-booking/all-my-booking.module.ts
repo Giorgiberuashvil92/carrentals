@@ -4,7 +4,7 @@ import { AllMyBookingsComponent } from './all-my-booking.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SwiperModule } from 'ngx-swiper-wrapper';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BookingsNavigationComponent } from './bookings-navigation/bookings-navigation.component';
 import { MyBookingsComponent } from './my-bookings/my-bookings.component';
 import { CityCardsComponent } from './city-cards/city-cards.component';
@@ -31,7 +31,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule,
     SwiperModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AllMyBookingModule { }

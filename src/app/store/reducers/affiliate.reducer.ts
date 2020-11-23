@@ -1,13 +1,16 @@
 import { AffiliateAction, AffiliateActionTypes } from '../actions';
-import { AffiliatePartnerActivitiesLiveSearchResponse, AffiliatePartnerActivitiesResponse, FailureResponse } from '../models';
+import { AffiliateActivityTypesResponse, AffiliatePartnerActivitiesLiveSearchResponse, AffiliatePartnerActivitiesResponse, FailureResponse } from '../models';
 
 export interface AffiliateState {
     partnerActivities: AffiliatePartnerActivitiesResponse,
     partnerActivitiesLoading: boolean,
-    partnerActivitiesError: FailureResponse
+    partnerActivitiesError: FailureResponse,
     partnerActivitiesLiveSearch: AffiliatePartnerActivitiesLiveSearchResponse,
     partnerActivitiesLiveSearchLoading: boolean,
-    partnerActivitiesLiveSearchError: FailureResponse
+    partnerActivitiesLiveSearchError: FailureResponse,
+    activityTypes: AffiliateActivityTypesResponse,
+    activityTypesLoading: boolean,
+    activityTypesError: FailureResponse
 }
 
 const initialState: AffiliateState = {
@@ -16,7 +19,10 @@ const initialState: AffiliateState = {
     partnerActivitiesError: undefined,
     partnerActivitiesLiveSearch: undefined,
     partnerActivitiesLiveSearchLoading: false,
-    partnerActivitiesLiveSearchError: undefined
+    partnerActivitiesLiveSearchError: undefined,
+    activityTypes: undefined,
+    activityTypesLoading: false,
+    activityTypesError: undefined
 };
 
 
@@ -65,6 +71,24 @@ export function AffiliateReducer(state: AffiliateState = initialState, action: A
                 ...state,
                 partnerActivitiesLiveSearchError: action.payload,
                 partnerActivitiesLiveSearchLoading: false
+            }
+        case AffiliateActionTypes.LOAD_AFFILIATE_ACTIVITY_TYPES:
+            return {
+                ...state,
+                activityTypesLoading: true
+            };
+        case AffiliateActionTypes.LOAD_AFFILIATE_ACTIVITY_TYPES_SUCCESS:
+            return {
+                ...state,
+                activityTypes: action.payload,
+                activityTypesError: null,
+                activityTypesLoading: false
+            }
+        case AffiliateActionTypes.LOAD_AFFILIATE_ACTIVITY_TYPES_FAILURE:
+            return {
+                ...state,
+                activityTypesError: action.payload,
+                activityTypesLoading: false
             }
         default:
             return state;
