@@ -89,5 +89,8 @@ export {
   SetAffiliatePartnerActivitiesAction,
   LoadAffiliatePartnerActivitiesLiveSearchAction,
   LoadAffiliatePartnerActivitiesLiveSearchSuccessAction,
-  LoadAffiliatePartnerActivitiesLiveSearchFailureAction
+  LoadAffiliatePartnerActivitiesLiveSearchFailureAction,
+  LoadAffiliateActivityTypesAction,
+  LoadAffiliateActivityTypesSuccessAction,
+  LoadAffiliateActivityTypesFailureAction
 } from './affiliate.action';

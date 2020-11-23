@@ -31,5 +31,6 @@ export {
 
 export {
     AffiliatePartnerActivitiesResponse,
-    AffiliatePartnerActivitiesLiveSearchResponse
+    AffiliatePartnerActivitiesLiveSearchResponse,
+    AffiliateActivityTypesResponse
 } from './affiliate.model';

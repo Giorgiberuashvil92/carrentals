@@ -1,17 +1,21 @@
 import { Action } from '@ngrx/store';
 import { 
+    AffiliateActivityTypesResponse,
     AffiliatePartnerActivitiesLiveSearchResponse,
     AffiliatePartnerActivitiesResponse, FailureResponse
 } from '../models';
 
 export enum AffiliateActionTypes {
-  LOAD_AFFILIATE_PARTNER_ACTIVITIES = '[AFFILIATE] Load Affiliate Partner Activities',
-  LOAD_AFFILIATE_PARTNER_ACTIVITIES_SUCCESS = '[AFFILIATE] Load Affiliate Partner Activities Success',
-  LOAD_AFFILIATE_PARTNER_ACTIVITIES_FAILURE = '[AFFILIATE] Load Affiliate Partner Activities Failure',
-  SET_AFFILIATE_PARTNER_ACTIVITES = '[AFFILIATE] Set Affiliate Partner Activities',
-  LOAD_AFFILIATE_PARTNER_ACTIVITIES_LIVE_SEARCH = '[AFFILIATE] Load Affiliate Partner Activities Live Search',
-  LOAD_AFFILIATE_PARTNER_ACTIVITIES_LIVE_SEARCH_SUCCESS = '[AFFILIATE] Load Affiliate Partner Activities Live Search Success',
-  LOAD_AFFILIATE_PARTNER_ACTIVITIES_LIVE_SEARCH_FAILURE = '[AFFILIATE] Load Affiliate Partner Activities Live Search Failure'
+    LOAD_AFFILIATE_PARTNER_ACTIVITIES = '[AFFILIATE] Load Affiliate Partner Activities',
+    LOAD_AFFILIATE_PARTNER_ACTIVITIES_SUCCESS = '[AFFILIATE] Load Affiliate Partner Activities Success',
+    LOAD_AFFILIATE_PARTNER_ACTIVITIES_FAILURE = '[AFFILIATE] Load Affiliate Partner Activities Failure',
+    SET_AFFILIATE_PARTNER_ACTIVITES = '[AFFILIATE] Set Affiliate Partner Activities',
+    LOAD_AFFILIATE_PARTNER_ACTIVITIES_LIVE_SEARCH = '[AFFILIATE] Load Affiliate Partner Activities Live Search',
+    LOAD_AFFILIATE_PARTNER_ACTIVITIES_LIVE_SEARCH_SUCCESS = '[AFFILIATE] Load Affiliate Partner Activities Live Search Success',
+    LOAD_AFFILIATE_PARTNER_ACTIVITIES_LIVE_SEARCH_FAILURE = '[AFFILIATE] Load Affiliate Partner Activities Live Search Failure',
+    LOAD_AFFILIATE_ACTIVITY_TYPES = '[AFFILIATE] Load Affiliate Activity Types',
+    LOAD_AFFILIATE_ACTIVITY_TYPES_SUCCESS = '[AFFILIATE] Load Affiliate Activity Types Success',
+    LOAD_AFFILIATE_ACTIVITY_TYPES_FAILURE = '[AFFILIATE] Load Affiliate Activity Types Failure'
 }
 
 export class LoadAffiliatePartnerActivitiesAction implements Action {
@@ -43,8 +47,8 @@ export class LoadAffiliatePartnerActivitiesLiveSearchAction implements Action {
 
     constructor(public payload: {
         cityId: string;
-        activityTypeIds: string[];
-        text: string;
+        activityTypeId?: string;
+        text?: string;
     }) {}
 }
 
@@ -60,6 +64,21 @@ export class LoadAffiliatePartnerActivitiesLiveSearchFailureAction implements Ac
     constructor(public payload: FailureResponse) {}
 }
 
+export class LoadAffiliateActivityTypesAction implements Action {
+    readonly type = AffiliateActionTypes.LOAD_AFFILIATE_ACTIVITY_TYPES;
+}
+
+export class LoadAffiliateActivityTypesSuccessAction implements Action {
+    readonly type = AffiliateActionTypes.LOAD_AFFILIATE_ACTIVITY_TYPES_SUCCESS;
+
+    constructor(public payload: AffiliateActivityTypesResponse) {}
+}
+
+export class LoadAffiliateActivityTypesFailureAction implements Action {
+    readonly type = AffiliateActionTypes.LOAD_AFFILIATE_ACTIVITY_TYPES_FAILURE;
+
+    constructor(public payload: Error) {}
+}
 
 export type AffiliateAction =
     LoadAffiliatePartnerActivitiesAction |
@@ -68,4 +87,7 @@ export type AffiliateAction =
     SetAffiliatePartnerActivitiesAction |
     LoadAffiliatePartnerActivitiesLiveSearchAction |
     LoadAffiliatePartnerActivitiesLiveSearchSuccessAction |
-    LoadAffiliatePartnerActivitiesLiveSearchFailureAction
+    LoadAffiliatePartnerActivitiesLiveSearchFailureAction |
+    LoadAffiliateActivityTypesAction |
+    LoadAffiliateActivityTypesSuccessAction |
+    LoadAffiliateActivityTypesFailureAction

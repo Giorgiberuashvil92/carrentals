@@ -59,3 +59,13 @@ export interface AffiliatePartnerActivitiesLiveSearchResponse {
         }
     }>
 }
+
+export interface AffiliateActivityTypesResponse {
+    data: Array<{
+        id: string;
+        type: string;
+        attributes: {
+            name: string;
+        }
+    }>
+}

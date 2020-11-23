@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { DialogService } from 'src/app/core/services/dialog.service';
+import { AppState } from 'src/app/store/models';
+import { CityState } from 'src/app/store/reducers/city.reducer';
 
 @Component({
   selector: 'app-my-bookings',
@@ -8,7 +12,12 @@ import { DialogService } from 'src/app/core/services/dialog.service';
 })
 export class MyBookingsComponent implements OnInit {
 
-  constructor(public dialogService: DialogService) { }
+  cityState$: Observable<CityState>;
+
+  constructor(
+    public dialogService: DialogService,
+    private store: Store<AppState>
+  ) { }
   items = [
     {name:'prague', imageURL: '../../../../assets/prague.svg'},
     {name:'ROME', imageURL: '../../../../assets/rome.svg'},
@@ -21,6 +30,7 @@ export class MyBookingsComponent implements OnInit {
   ]
 
   ngOnInit(): void {
+    this.cityState$ = this.store.select(store => store.city);
   }
 
 }

@@ -1,29 +1,28 @@
 <div class="wrapperHead gr">
   <div>
-    <h1>Tours and Activities</h1>
+    <h1>Tour Activities in {{ city.attributes.name }}</h1>
   </div>
-  <div class="wrapper">
+  <form class="wrapper" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
     <div>
-        <label class="search">
-          <input class="border-2 tr bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
-          type="search" name="search">
-        </label>
-      <button type="submit" class="absolute rg">
-      </button>
+      <label class="search">
+        <input class="border-2 tr bg-white h-10 px-8 rounded-lg text-sm focus:outline-none"
+          type="search" name="search" formControlName="text">
+      </label>
     </div>
 
     <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 flex jw-e">
       <div class="relative">
-        <select class="block appearance-none w-full td py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-          <option>Category</option>
-          <option>Travel</option>
-          <option>Travel</option>
-        </select>
+        <ng-container *ngIf="affiliateState && affiliateState.activityTypes && affiliateState.activityTypes.data && affiliateState.activityTypes.data.length > 0">
+          <select class="block appearance-none w-full td py-1 px-1 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
+            id="grid-state" formControlName="category">
+            <option></option>
+            <option *ngFor="let item of affiliateState.activityTypes.data" [ngValue]="item">{{ item.attributes.name }}</option>
+          </select>
+        </ng-container>
       </div>
+
       <div class="butt">
-        <button>Search</button>
-       </div>
+        <button type="submit">Search</button>
+      </div>
   </div>
-
-
-</div>
+</form>
