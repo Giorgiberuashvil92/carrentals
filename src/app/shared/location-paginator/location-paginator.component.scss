@@ -69,8 +69,14 @@
     .wrapper {
         margin-top: -40px;
 
-        .location-wrapper {
-            margin-top: 70px;
+        .locations-wrapper {
+          .location-wrapper {
+              margin-top: 70px;
+          }
+
+          >img {
+            margin-top: 22px;
+          }
         }
     }
 }

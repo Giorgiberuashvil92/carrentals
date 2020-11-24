@@ -1,5 +1,7 @@
-<mat-dialog-content *ngIf="itineraryState && !itineraryState.loading && itineraryState.data">
-    <div class="wrapper relative">
+<ng-container *ngIf="itineraryState && !itineraryState.loading && itineraryState.data">
+    <div class="wrapper relative" [ngStyle]="{
+        'height': itineraryState.updateItineraryError ? '750px' : '640px'
+    }">
         <img class="close-dialog-btn absolute cursor-pointer" src="/assets/close-dialog-icon.svg" alt="" (click)="dialogService.closeDialog()">
         
         <div class="arrive-day-question">
@@ -23,13 +25,14 @@
             </div>
         </div>
             
-        <div class="least-days-error">
+        <div class="least-days-error" *ngIf="itineraryState.updateItineraryError">
             <img src="/assets/warning-icon.svg" alt="">
             <div class="text">
-                Sorry, for the cities you are visiting, you need at least
+                <!-- Sorry, for the cities you are visiting, you need at least
                 <div class="days">
                     9 days.
-                </div>
+                </div> -->
+                {{ itineraryState.updateItineraryError.error.errors[0].title }}
             </div>
         </div>
         
@@ -41,7 +44,7 @@
             </ng-container>
         </div>
     
-        <div class="actions absolute flex justify-between">
+        <div class="absolute actions flex justify-between">
             <button class="cancel-button" (click)="dialogService.closeDialog()">
                 CANCEL
             </button>
@@ -50,4 +53,4 @@
             </button>
         </div>
     </div>
-</mat-dialog-content>
+</ng-container>

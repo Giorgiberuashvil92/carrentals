@@ -6,7 +6,10 @@
     <div class="days-wrapper" *ngIf="daysArr">
         <div class="days-inner-wrapper">
             <div class="day-and-x"
-                *ngFor="let d of daysArr; let i=index">
+                *ngFor="let d of daysArr; let i=index"
+                [ngStyle]="{
+                    'margin-top': i >= 5 || (deviceDetectorService.isMobile && i >= 4) ? '16px' : '2px'
+                }">
                 <div [class]="'day-wrapper day-wrapper__fill--' + (d.attributes['half-day'] ? 1 : 2)" 
                     [ngClass]="{
                         'day-wrapper__hasX': d.attributes.removable

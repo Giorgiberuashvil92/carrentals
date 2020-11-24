@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-paginator',
   templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.scss']
 })
-export class PaginatorComponent implements OnInit {
+export class PaginatorComponent implements OnInit, OnChanges {
 
   @Input() currentPage: number;
   @Input() pagesAmount: number;
@@ -20,6 +20,16 @@ export class PaginatorComponent implements OnInit {
   ngOnInit(): void {
     if(this.pagesToShow > this.pagesAmount) this.pagesToShow = this.pagesAmount;
     this.generateArray();
+  }
+
+  ngOnChanges() {
+    if(this.leftMostPage + this.pagesToShow < this.currentPage) {
+      this.leftMostPage = this.currentPage - this.pagesToShow + 1;
+      this.generateArray();
+    } else if(this.leftMostPage > this.currentPage) {
+      this.leftMostPage = this.currentPage;
+      this.generateArray();
+    }
   }
 
   onLeft() {

@@ -56,11 +56,14 @@
 
 
             <div class="left-list-wrapper">
-              <img class="lower-than cursor-pointer" *ngIf="deviceDetectorService.isMobile" (click)="onLeft()" src="/assets/lower-than-icon.svg">
+                <img class="lower-than cursor-pointer" *ngIf="deviceDetectorService.isMobile" (click)="onLeft()" src="/assets/lower-than-icon.svg">
                 <div class="left-item flex cursor-pointer">
-                  <div class="flex flex-padding"
+                  <div class="flex flex-padding left-inner-item"
                     *ngFor="let tour of tours; let i=index"
-                    [ngClass]="{ 'left-item__active': i === itinerary.tourIndex }"
+                    [ngClass]="{ 'left-inner-item__active': i === itinerary.tourIndex }"
+                    [ngStyle]="{
+                        'transform': deviceDetectorService.isMobile ? 'translateX(' + (itinerary.tourIndex * (-280)) + 'px)' : ''
+                    }"
                     (click)="onTourChange(i, tour)">
                     <div class="image"
                     [style.background-image]="'url(\'' + tour.attributes['square-image-url'] + '\')'"
@@ -89,6 +92,9 @@
                                 <div>
                                     REMOVE
                                 </div>
+                            </button>
+                            <button class="remove-button flex justify-between items-center"
+                                *ngIf="deviceDetectorService.isMobile && (i !== itinerary.tourIndex || !tour.attributes.removable)">
                             </button>
                         </div>
                     </div>

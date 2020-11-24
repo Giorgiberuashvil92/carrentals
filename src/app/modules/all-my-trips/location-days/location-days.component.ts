@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import { DeviceDetectorService } from 'src/app/core/services/device-detector.service';
 import { ItineraryService } from 'src/app/core/services/itinerary.service';
 import { AppState } from 'src/app/store/models';
 import { ItineraryState } from 'src/app/store/reducers';
@@ -26,14 +27,17 @@ export class LocationDaysComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<AppState>,
-    public itineraryService: ItineraryService
+    public itineraryService: ItineraryService,
+    public deviceDetectorService: DeviceDetectorService
   ) { }
 
   ngOnInit(): void {
     this.itineraryStateSub = this.store.select(store => store.itinerary).subscribe(res => {
       this.itineraryState = res;
       this.city = this.itineraryService.findCityById(this.itineraryState, this.data.city.data.id);
-      this.daysArr = this.data.days.data.map(d => this.itineraryService.findDayById(this.itineraryState, d.id));
+      if(!this.itineraryState.updateItineraryLoading) {
+        this.daysArr = this.data.days.data.map(d => this.itineraryService.findDayById(this.itineraryState, d.id));
+      }
       this.oldDaysArr = this.daysArr;
       this.itineraryService.daysObj.old = [...this.itineraryService.daysObj.old, ...this.oldDaysArr];
       let tempArr = [];

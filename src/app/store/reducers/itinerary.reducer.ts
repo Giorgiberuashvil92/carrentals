@@ -18,7 +18,9 @@ export interface ItineraryState {
   toursSearchLoading: boolean,
   tourSolutions: ItinerarySolutionsForTourResponse,
   tourSolutionsLoading: boolean,
-  tourSolutionPostResponse: PostItinerarySolutionsForTourResponse
+  tourSolutionPostResponse: PostItinerarySolutionsForTourResponse,
+  updateItineraryLoading: boolean,
+  updateItineraryError: any
 }
 
 const initialState: ItineraryState = {
@@ -35,7 +37,9 @@ const initialState: ItineraryState = {
   toursSearchLoading: false,
   tourSolutions: undefined,
   tourSolutionsLoading: false,
-  tourSolutionPostResponse: undefined
+  tourSolutionPostResponse: undefined,
+  updateItineraryLoading: false,
+  updateItineraryError: undefined
 };
 
 
@@ -175,20 +179,21 @@ export function ItineraryReducer(state: ItineraryState = initialState, action: I
     case ItineraryActionTypes.UPDATE_ITINERARY:
       return {
           ...state,
-          loading: true
+          updateItineraryError: null,
+          updateItineraryLoading: true
       }
     case ItineraryActionTypes.UPDATE_ITINERARY_SUCCESS:
       return {
           ...state,
           data: action.payload,
-          error: null,
-          loading: false
+          updateItineraryError: null,
+          updateItineraryLoading: false
       }
     case ItineraryActionTypes.UPDATE_ITINERARY_FAILURE:
       return {
           ...state,
-          error: action.payload,
-          loading: false
+          updateItineraryError: action.payload,
+          updateItineraryLoading: false
       }
     default:
       return state;

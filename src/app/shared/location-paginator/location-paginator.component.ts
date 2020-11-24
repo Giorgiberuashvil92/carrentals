@@ -27,7 +27,12 @@ export class LocationPaginatorComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.generateArray();
+    if(this.deviceDetectorService.isDesktop) {
+      this.generateArray();
+    } else {
+      this.dataToShow = this.data;
+    }
+    console.log(this.data);
   }
 
   onLeft() {
@@ -58,6 +63,7 @@ export class LocationPaginatorComponent implements OnInit {
   }
 
   onTouchStart(event) {
+    console.log('touchStart');
     if(this.deviceDetectorService.isMobile) {
       this.initialTouchX = event.touches[0].clientX;
     }

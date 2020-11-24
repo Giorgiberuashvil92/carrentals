@@ -76,6 +76,7 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
       }
       this.store.dispatch(new SetCitiesAction(this.cityService.generateCities(this.itinerary)));
     });
+    this.dialogService.openDialog('arriveDay');
   }
 
   onDayChange(day: number) {
@@ -119,27 +120,17 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
   }
 
   onLeft() {
-    // if(this.leftMostIndex > 1) {
-    //   this.store.dispatch(new SetTourIndexAction(this.itinerary.tourIndex - 1));
-    //   this.store.dispatch(new SetTourAction(this.tours[this.itinerary.tourIndex - 1]));
-    // }
-    // if(this.activeIndex > 1) {
-    //   this.activeIndex--;
-    //   this.locationChange.emit(this.activeIndex);
-    // }
-
-    //marcxniv
     if(this.itinerary.tourIndex > 0){
-      console.log(this.tours.length);
       this.store.dispatch(new SetTourIndexAction(this.itinerary.tourIndex - 1));
       this.store.dispatch(new SetTourAction(this.tours[this.itinerary.tourIndex - 1]));
     }
-
   }
 
   onRight() {
-    this.store.dispatch(new SetTourIndexAction(this.itinerary.tourIndex + 1));
-    this.store.dispatch(new SetTourAction(this.tours[this.itinerary.tourIndex + 1]));
+    if(this.itinerary.tourIndex < this.tours.length - 1) {
+      this.store.dispatch(new SetTourIndexAction(this.itinerary.tourIndex + 1));
+      this.store.dispatch(new SetTourAction(this.tours[this.itinerary.tourIndex + 1]));
+    }
   }
 
   onDeleteTour(id: string) {

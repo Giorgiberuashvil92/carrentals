@@ -99,13 +99,17 @@
                     margin-left: -10px;
                     padding: 15px 10px;
                     width: 300px;
-                    opacity: 0.4;
-
-                    &__active {
-                        border-radius: 10px;
-                        opacity: 1;
-                        box-shadow: 4px 6px 15px -4px rgba(0,0,0,0.1);
+                    
+                    .left-inner-item {
+                        opacity: 0.4;
+                        
+                        &__active {
+                            border-radius: 10px;
+                            opacity: 1;
+                            box-shadow: 4px 6px 15px -4px rgba(0,0,0,0.1);
+                        }
                     }
+
 
                     .image {
                         width: 90px;
@@ -160,7 +164,7 @@
 
                             .remove-button {
                                 color: #D15A5A;
-                                margin-left: 30px;
+                                margin-left: 20px;
                                 width: 50px;
                             }
                         }
@@ -191,22 +195,31 @@
     width: calc(100%-50px);
   }
   .lower-than{
-    padding:10px;
+    padding: 0 10px 0 0;
+    margin-top: -5px;
   }
-  .left-item {
-    margin-left: -10px;
-    padding: 15px;
-    width: 300px;
-    opacity: 0.4;
-    overflow: hidden;
 
-    &__active {
-        border-radius: 10px;
-        opacity: 1000;
-        box-shadow: 4px 6px 15px -4px rgba(0,0,0,0.1);
-    }
-    }
+  .left-list-wrapper {
+    justify-content: space-between;
 
+    .left-item {
+        padding: 15px;
+        width: 490px !important;
+        overflow: hidden;
+        margin-left: 0px !important;
+    
+        &__active {
+            border-radius: 10px;
+            opacity: 1;
+            box-shadow: 4px 6px 15px -4px rgba(0,0,0,0.1);
+        }
+
+        .left-inner-item {
+            .image {
+            }
+        }
+    }
+  }
 }
 
 
@@ -238,11 +251,9 @@
     .left-item {
       display: flex;
       flex-direction: unset !important;
-      margin-left: -10px;
       padding: 15px 10px;
       width: 100%;
       overflow: hidden;
-      opacity: 0.4;
     }
 
     .tl-wr{
@@ -256,7 +267,7 @@
       overflow: hidden;
     }
     .left-item{
-        flex: 0 0 300px;
+        // flex: 0 0 300px;
     }
 
     .location-wrapper{

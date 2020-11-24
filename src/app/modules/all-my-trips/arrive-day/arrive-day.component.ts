@@ -17,6 +17,8 @@ export class ArriveDayComponent implements OnInit, OnDestroy {
   itineraryState: ItineraryState;
   itineraryStateSub: Subscription;
 
+  updateItineraryLoading
+
   constructor(
     public dialogService: DialogService,
     private store: Store<AppState>,
@@ -26,6 +28,12 @@ export class ArriveDayComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.itineraryStateSub = this.store.select(store => store.itinerary).subscribe(res => {
       this.itineraryState = res;
+      if(this.updateItineraryLoading && !this.itineraryState.updateItineraryLoading) {
+        this.updateItineraryLoading = false;
+        if(!this.itineraryState.updateItineraryError) {
+          this.dialogService.closeDialog();
+        }
+      }
     });
     this.itineraryService.daysObj = {
       old: [],
@@ -42,7 +50,6 @@ export class ArriveDayComponent implements OnInit, OnDestroy {
       this.itineraryService.daysObj.new = [...new Set(this.itineraryService.daysObj.new)];
       console.log(this.itineraryService.daysObj);
       for(let i=0; i<this.itineraryService.daysObj.old.length; i++) {
-        console.log(this.itineraryService.daysObj.old[i]);
         if(!this.itineraryService.daysObj.new.find(r => r.id === this.itineraryService.daysObj.old[i].id)) {
           console.log('_DESTROY')
           daysArr.push({
@@ -70,7 +77,6 @@ export class ArriveDayComponent implements OnInit, OnDestroy {
         else if(!b.id) return a+1;
         return a;
       }, 0);
-      console.log(addedDaysNum);
       const endDate = new Date(this.itineraryState.data.data.attributes["end-date"]);
       endDate.setDate(endDate.getDate() + addedDaysNum);
       this.itineraryService.daysObj.new = [];
@@ -81,11 +87,12 @@ export class ArriveDayComponent implements OnInit, OnDestroy {
           attributes: {
             "start-date": this.itineraryState.data.data.attributes["start-date"],
             "end-date": `${endDate.getFullYear()}-${endDate.getMonth() + 1}-${endDate.getDate()}`,
+            // "end-date": "2000-10-10",
             days: daysArr
           }
         }
       }));
-      this.dialogService.closeDialog();
+      this.updateItineraryLoading = true;
     }, 0);
   }
 

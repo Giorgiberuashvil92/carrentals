@@ -18,14 +18,13 @@
 }
 .ph-t-2{
   .photo-flex{
-    width: 100%;
-    flex: 0 0 201px;
-    max-width: 203px;
-    height: 133px;
-    object-fit: cover;
-  /* margin-right: 10px; */
-  /* display: inline-block; */
-    padding-right: 15px;
+    width: 183px;
+    height: 103px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin-top: 20px;
+    margin-right: 10px;
   }
 
 }
@@ -36,9 +35,10 @@
 }
 .col-sc{
   overflow:auto;
-  max-height: 390px;
+  max-height: 395px;
   padding-right: 30px;
   padding-left: 20px;
+  padding-bottom: 8px;
 }
 .col {
     margin-top: 3%;
@@ -48,6 +48,7 @@
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.14);
     padding: 9px 10px;
     border-radius: 10px;
+
 }
 .ph-t{
         width: 100%;

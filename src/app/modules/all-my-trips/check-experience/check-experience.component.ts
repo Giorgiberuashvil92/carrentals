@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { DeviceDetectorService } from 'src/app/core/services/device-detector.service';
 import { AffiliateService } from 'src/app/core/services/affiliate.service';
 import { DialogService } from 'src/app/core/services/dialog.service';
@@ -15,7 +15,11 @@ import { AffiliateState } from 'src/app/store/reducers/affiliate.reducer';
 })
 export class CheckExperienceComponent implements OnInit {
 
-  affiliateState$: Observable<AffiliateState>;
+  affiliateState: AffiliateState;
+  affiliateStateSub: Subscription;
+
+  dataToShow: any[] = [];
+  leftIndex = 0;
 
   imgURL = "/assets/ph-t.svg"
   ClockIMG = "/assets/time.svg"
@@ -34,18 +38,27 @@ export class CheckExperienceComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.affiliateState$ = this.store.select(store => store.affiliate);
+    this.affiliateStateSub = this.store.select(store => store.affiliate).subscribe(res => {
+      this.affiliateState = res;
+      if(this.affiliateState.partnerActivities && this.affiliateState.partnerActivities.data 
+        && this.affiliateState.partnerActivities.data.length > 0 && !this.affiliateState.partnerActivitiesLoading) {
+          this.generateDataToShow();
+      }
+    });
   }
 
-  onLeft(affiliateState: { partnerActivities: { data: any; }; }) {
-    let affiliateStateOne  = affiliateState
-
+  onLeft() {
+    if(this.leftIndex > 0) {
+      this.leftIndex--;
+      this.generateDataToShow();
     }
+  }
 
   onRight() {
-
-  }
-  openSite() {
+    if(this.leftIndex < this.affiliateState.partnerActivities.data.length - 2) {
+      this.leftIndex++;
+      this.generateDataToShow();
+    }
   }
 
   onClick(partnerActivity: any) {
@@ -56,4 +69,8 @@ export class CheckExperienceComponent implements OnInit {
     window.open(partnerActivity.attributes.url , '_blank');
   }
 
+  generateDataToShow() {
+    this.dataToShow = this.deviceDetectorService.isDesktop ? this.affiliateState.partnerActivities.data
+       : this.affiliateState.partnerActivities.data.slice(this.leftIndex, this.leftIndex + 2);
+  }
 }
