@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { FailureResponse, ItineraryAlternateToursResponse, ItineraryResponse, ItinerarySolutionsForTourResponse, ItineraryToursSearchResponse, PostItinerarySolutionsForTourResponse, UpdateItineraryTourOrTransportResponse } from '../models';
+import { FailureResponse, ItineraryAlternateToursResponse, ItinerarySolutionsForTourResponse, ItineraryToursSearchResponse, ItineraryResponse, UpdateItineraryTourOrTransportResponse } from '../models';
 
 export enum ItineraryActionTypes {
   LOAD_ITINERARY = '[ITINERARY] Load Itinerary',
@@ -192,7 +192,7 @@ export class PostItinerarySolutionForTourAction implements Action {
 export class  PostItinerarySolutionForTourSuccessAction implements Action {
     readonly type = ItineraryActionTypes.POST_TOURS_SOLUTION_FOR_TOUR_SUCCESS;
 
-    constructor(public payload: PostItinerarySolutionsForTourResponse) {}
+    constructor(public payload: ItineraryResponse) {}
 }
 
 export class  PostItinerarySolutionForTourFailureAction implements Action {

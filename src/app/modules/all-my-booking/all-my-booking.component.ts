@@ -55,7 +55,7 @@ export class AllMyBookingsComponent implements OnInit, OnDestroy {
     )
     .subscribe(res => {
       this.day = this.itineraryService.generateDay(this.itinerary);
-      this.tours = this.itineraryService.generateTours(this.itinerary, this.day);
+      this.tours = this.itineraryService.generateTours(this.itinerary.data, this.day);
       this.tours.sort((a, b) => a.attributes.position - b.attributes.position);
       this.waypoints = this.itineraryService.generateWaypoints(this.itinerary, this.tours);
       this.store.dispatch(new SetCitiesAction(this.cityService.generateCities(this.itinerary)));

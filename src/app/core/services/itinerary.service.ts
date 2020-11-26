@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { ItineraryAlternateToursResponse, ItineraryResponse, ItinerarySolutionsForTourResponse, ItineraryToursSearchResponse, PostItinerarySolutionsForTourResponse, UpdateItineraryTourOrTransportResponse } from 'src/app/store/models';
+import { ItineraryAlternateToursResponse, ItinerarySolutionsForTourResponse, ItineraryToursSearchResponse, ItineraryResponse, UpdateItineraryTourOrTransportResponse } from 'src/app/store/models';
 import { ItineraryState } from 'src/app/store/reducers';
 
 
@@ -12,6 +12,7 @@ export class ItineraryService {
 
   dayChange = new Subject<{action: string; index: number; cityName: string; deletedDay?: any}>();
   editTripOKClicked = new Subject<boolean>();
+  setLocationPaginatorIndex = new Subject<number>();
   daysObj = {
     old: [],
     new: []
@@ -47,8 +48,8 @@ export class ItineraryService {
     return this.httpClient.get<ItinerarySolutionsForTourResponse>(`/itineraries/${itineraryId}/tours/solutions?tour-offer-id=${tourOfferId}`);
   }
 
-  postItinerarySolutionForTour$(itineraryId: string, body: any): Observable<PostItinerarySolutionsForTourResponse>{
-    return this.httpClient.post<PostItinerarySolutionsForTourResponse>(`/itineraries/${itineraryId}/tours`, { data: body }, { headers: new HttpHeaders({'Content-Type': 'application/vnd.api+json'})});
+  postItinerarySolutionForTour$(itineraryId: string, body: any): Observable<ItineraryResponse>{
+    return this.httpClient.post<ItineraryResponse>(`/itineraries/${itineraryId}/tours`, { data: body }, { headers: new HttpHeaders({'Content-Type': 'application/vnd.api+json'})});
   }
 
   updateItinerary$(id: string, body: any): Observable<ItineraryResponse> {
@@ -83,8 +84,12 @@ export class ItineraryService {
     return itinerary.data['included'].find(i => i.type === 'days' && i.id === itinerary.data.data['relationships'].days.data[itinerary.dayIndex-1].id);
   }
 
-  generateTours(itinerary: ItineraryState, day: any) {
-    return day['relationships']['tours'].data.map(t => itinerary.data['included'].find(i => i.type === 'tours' && i.id === t.id));
+  generateAllDays(itinerary: ItineraryResponse): any[] {
+    return itinerary.included.filter(i => i.type === 'days');
+  }
+
+  generateTours(itinerary: ItineraryResponse, day: any) {
+    return day['relationships']['tours'].data.map(t => itinerary['included'].find(i => i.type === 'tours' && i.id === t.id));
   }
 
   generateWaypoints(itinerary: ItineraryState, tours: any) {

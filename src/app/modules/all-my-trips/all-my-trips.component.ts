@@ -23,6 +23,7 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
   itinerary$: Observable<ItineraryState>;
   itinerary: ItineraryState;
   itinerarySub: Subscription;
+  setLocationPaginatorIndexSub: Subscription;
   day: any;
   tours: any[] = [];
   waypoints: any[] = [];
@@ -56,7 +57,7 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
     )
     .subscribe(res => {
       this.day = this.itineraryService.generateDay(this.itinerary);
-      this.tours = this.itineraryService.generateTours(this.itinerary, this.day);
+      this.tours = this.itineraryService.generateTours(this.itinerary.data, this.day);
       this.tours.sort((a, b) => a.attributes.position - b.attributes.position);
       this.waypoints = this.itineraryService.generateWaypoints(this.itinerary, this.tours);
       if(this.itinerary.tourIndex < this.tours.length) {
@@ -76,26 +77,31 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
       }
       this.store.dispatch(new SetCitiesAction(this.cityService.generateCities(this.itinerary)));
     });
+
+    this.setLocationPaginatorIndexSub = this.itineraryService.setLocationPaginatorIndex.subscribe(res => {
+      this.setLocationPaginatorActiveIndex(res);
+    });
   }
 
   onDayChange(day: number) {
     this.store.dispatch(new SetTourIndexAction(0));
     this.store.dispatch(new SetDayIndexAction(day));
     this.store.dispatch(new SetTourAction(this.tours[day]));
+    this.setLocationPaginatorActiveIndex(day);
+  }
+
+  setLocationPaginatorActiveIndex(dayIndex: number) {
     const tempTransportationPlan = [...this.itinerary.data.data.attributes['transportation-plan']];
-    console.log(day)
-    console.log(tempTransportationPlan)
     tempTransportationPlan.sort((a, b) => a["day-index"] - b["day-index"]);
     for(let i=0; i<tempTransportationPlan.length; i++) {
-      if(day === tempTransportationPlan[i]["day-index"]) {
+      if(dayIndex === tempTransportationPlan[i]["day-index"]) {
         this.locationPaginatorActiveIndex = i+1;
         break;
-      } else if(day < tempTransportationPlan[i]["day-index"]) {
+      } else if(dayIndex < tempTransportationPlan[i]["day-index"]) {
         this.locationPaginatorActiveIndex = i;
         break;
       }
     }
-    console.log(this.locationPaginatorActiveIndex);
   }
 
   onTourChange(tourIndex: number, tour: any) {
@@ -163,5 +169,6 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     if(this.itinerarySub) this.itinerarySub.unsubscribe();
+    if(this.setLocationPaginatorIndexSub) this.setLocationPaginatorIndexSub.unsubscribe();
   }
 }

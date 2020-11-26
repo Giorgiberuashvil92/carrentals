@@ -4,8 +4,8 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { DialogService } from 'src/app/core/services/dialog.service';
 import { ItineraryService } from 'src/app/core/services/itinerary.service';
-import { PostItinerarySolutionForTourAction } from 'src/app/store/actions';
-import { AppState, ItinerarySolutionsForTourResponse } from 'src/app/store/models';
+import { PostItinerarySolutionForTourAction, SetDayIndexAction, SetTourAction, SetTourIndexAction } from 'src/app/store/actions';
+import { AppState, ItineraryResponse, ItinerarySolutionsForTourResponse } from 'src/app/store/models';
 import { ItineraryState } from 'src/app/store/reducers';
 
 @Component({
@@ -29,6 +29,8 @@ export class ChooseNewActivityComponent implements OnInit, OnDestroy {
   sortedArrayIndexes: number[] = [];
   sortedArrayIndexesToUse: number[] = [];
   activeSolutionIndex = 0;
+  tourPostLoading = false;
+  itineraryPrevData: ItineraryResponse;
 
   itineraryStateSub: Subscription;
 
@@ -42,12 +44,46 @@ export class ChooseNewActivityComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.itineraryStateSub = this.store.select(store => store.itinerary).subscribe((itineraryState: ItineraryState) => {
       this.itineraryState = itineraryState;
+
+      if(this.tourPostLoading && !this.itineraryState.tourSolutionPostLoading) {
+        if(this.itineraryState.error) {
+          this.dialogService.closeDialog();
+        }
+        console.table(this.itineraryPrevData.data.relationships.days.data);
+        console.table(this.itineraryState.data.data.relationships.days.data);
+
+        let oldDays: any[] = this.itineraryService.generateAllDays(this.itineraryPrevData);
+        let newDays: any[] = this.itineraryService.generateAllDays(this.itineraryState.data);
+        let dayToJump;
+        if(oldDays.length === newDays.length) {
+          let oldDaysTours: any[] = oldDays.map(r => this.itineraryService.generateTours(this.itineraryPrevData, r));
+          let newDaysTours: any[] = newDays.map(r => this.itineraryService.generateTours(this.itineraryState.data, r));
+          for(let i=0; i<newDaysTours.length; i++) {
+            let shouldBreak = false;
+            for(let j=0; j<newDaysTours[i].length; j++) {
+              if(!oldDaysTours[i].find(r => r.id === newDaysTours[i][j].id)) {
+                dayToJump = newDays[i];
+                shouldBreak = true;
+                break;
+              }
+            }
+            if(shouldBreak) break;
+          }
+        } else {
+          dayToJump = newDays.filter(r => !oldDays.find(e => e.id === r.id))[0];
+        }
+        setTimeout(() => {
+          this.store.dispatch(new SetTourIndexAction(0));
+          this.store.dispatch(new SetDayIndexAction(dayToJump.attributes.index));
+          this.store.dispatch(new SetTourAction(this.itineraryService.generateTours(this.itineraryState.data, dayToJump)[dayToJump.attributes.index]));
+          this.itineraryService.setLocationPaginatorIndex.next(dayToJump.attributes.index);
+        }, 0);
+        this.dialogService.closeDialog();
+      }
+
       if(!this.itineraryState.tourSolutionsLoading && this.itineraryState.tourSolutions) {
         this.fillSortedArrayIndexes();
         this.generateSortedArrayIndexesToUse('compadre');
-        console.log(this.sortedArrayIndexes);
-        console.log(this.sortedArrayIndexesToUse);
-        console.log(this.itineraryState.tourSolutions);
       }
     });
   }
@@ -99,8 +135,10 @@ export class ChooseNewActivityComponent implements OnInit, OnDestroy {
           "day-id": this.itineraryState.tourSolutions.data[this.sortedArrayIndexesToUse[this.activeSolutionIndex]].attributes["day-id"]
         }
       }
-    }))
-    this.dialogService.closeDialog();
+    }));
+    this.itineraryPrevData = {...this.itineraryState.data};
+    this.tourPostLoading = true;
+    this.dialogService.updateSize('270px');
   }
 
   onCancel() {
