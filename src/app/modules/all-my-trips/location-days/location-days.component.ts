@@ -14,6 +14,7 @@ import { ItineraryState } from 'src/app/store/reducers';
 export class LocationDaysComponent implements OnInit, OnDestroy {
 
   @Input() data: any;
+  @Input() counter: number;
 
   city: any;
   daysArr: any[];
@@ -32,6 +33,7 @@ export class LocationDaysComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    console.log(this.counter);
     this.itineraryStateSub = this.store.select(store => store.itinerary).subscribe(res => {
       this.itineraryState = res;
       this.city = this.itineraryService.findCityById(this.itineraryState, this.data.city.data.id);

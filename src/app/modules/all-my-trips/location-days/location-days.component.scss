@@ -41,7 +41,7 @@
                 overflow: hidden;
                 
                 &__fill {
-                    &--0 {
+                    &--clear {
                         border-color: #9C9C9C;
     
                         .day-text {
@@ -57,7 +57,7 @@
                         }
                     }
                     
-                    &--1 {
+                    &--half {
                         border-color: #02A388;
     
                         .day-text {
@@ -73,7 +73,7 @@
                         }
                     }
                     
-                    &--2 {
+                    &--full {
                         border-color: #02A388;
                         background-color: #02A388;
     
@@ -115,7 +115,7 @@
                     font-weight: 600;
                 }
     
-                .half-filler {
+                .fill-top {
                     position: absolute;
                     background-color: #02A388;
                     width: 142%;
@@ -123,6 +123,13 @@
                     transform: translate(-35%, -35%) rotate(45deg);
                 }
     
+                .fill-bottom {
+                    position: absolute;
+                    background-color: #02A388;
+                    width: 142%;
+                    height: 142%;
+                    transform: translate(35%, 35%) rotate(45deg);
+                }
             }
     
             .x-icon-wrapper {

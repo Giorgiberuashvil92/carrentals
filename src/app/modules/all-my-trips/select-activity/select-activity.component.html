@@ -44,12 +44,19 @@
                     Searching for activities for you...
                 </div>
             </ng-container>
+            
+            <ng-container *ngIf="!itinerary.toursSearchLoading && toursToShow.length === 0">
+                <div class="line"></div>
+                
+                <div class="no-results text-center">
+                    We're sorry, there were no results found. Please adjust your search and try again.
+                </div>
+            </ng-container>
     
             <ng-container *ngIf="!itinerary.toursSearchLoading && toursToShow.length > 0">
                 <div class="recommended-for">
                     Recommended for <span class="recommended-for-value">{{ recommendedFor || 'Everything' }}</span>
                 </div>
-        
         
                 <div class="activity-wrapper flex justify-between flex-wrap">
                     <div class="activity relative flex cursor-pointer" 

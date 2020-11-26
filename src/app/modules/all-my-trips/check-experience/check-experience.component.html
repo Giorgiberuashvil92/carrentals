@@ -6,7 +6,7 @@
 
     <div class="col-sc">
       <img class="lower-than cursor-pointer" *ngIf="deviceDetectorService.isMobile" (click)="onLeft()" src="/assets/lower-than-icon.svg">
-      <div class="col" *ngFor="let item of dataToShow"
+      <div class="col" *ngFor="let item of dataToShow; let i=index"
         (click)="onClick(item)">
         <div class="ph-t-2">
           <!-- <div [src]="item.attributes['image-url']" alt="" class="photo-flex"> -->
@@ -19,22 +19,30 @@
 
         <div class="thrd-2">
             <div class="pdr-r">
-              <img [src]="ClockIMG" alt="">
+              <img src="/assets/clock.svg" alt="">
               <div class="flex flex-column">
-              <span class="spn-d">Duration:</span>
-              <span class="spn-col">{{ item.attributes.duration ? item.attributes.duration['hours'] : '' }}</span>
+                <span class="spn-d">Duration</span>
+                <span class="spn-col">
+                  {{ item.attributes.duration ? item.attributes.duration[keysOfDuration[i]] + keysOfDuration[i][0] : '' }}
+                </span>
               </div>
-
             </div>
             <div class="pdr-r">
-              <img [src]="Dollar" alt="">
+              <img src="/assets/dollar.svg" alt="">
               <div class="flex flex-column">
-                <span class="spn-d">Price:</span>
-                <span class="spn-col">{{ item.attributes['price'] | currency : item.attributes.currency }}</span>
-                </div>
+                <span class="spn-d">Price</span>
+                <span class="spn-col">
+                  {{ item.attributes['price'] | currency : item.attributes.currency }}~
+                </span>
+              </div>
             </div>
             <div class="pdr-r">
-              <img [src]="time" alt="">
+              <img *ngIf="true" src="/assets/exit.svg" alt="">
+              <img *ngIf="false" src="/assets/tick.svg" alt="">
+              <div class="booked flex flex-column">
+                <span class="spn-d">Booked</span>
+                <span class="spn-col">NO</span>
+              </div>
             </div>
         </div>
       </div>

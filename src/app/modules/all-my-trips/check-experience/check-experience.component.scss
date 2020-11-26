@@ -87,6 +87,7 @@ margin-right: 40px;
 .pdr-r{
   display: flex;
   padding-left: 16%;
+  font-weight: 700;
 }
 .flex-column{
   display: flex;
@@ -94,6 +95,14 @@ margin-right: 40px;
     padding-left: 20px;
     justify-content: center;
     align-items: center;
+}
+
+.booked {
+  padding-left: 28px;
+
+  .spn-col {
+    color: #C25A5A;
+  }
 }
 
 @media only screen and (min-width: 992px) {

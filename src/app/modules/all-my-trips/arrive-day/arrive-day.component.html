@@ -37,10 +37,10 @@
         </div>
         
         <div class="days-wrapper">
-            <app-location-days [data]="itineraryState.data.data.relationships['grouped-days'].data[0]"></app-location-days>
-            <ng-container *ngFor="let gd of itineraryState.data.data.relationships['grouped-days'].data | slice:1">
+            <app-location-days [data]="itineraryState.data.data.relationships['grouped-days'].data[0]" [counter]="0"></app-location-days>
+            <ng-container *ngFor="let gd of itineraryState.data.data.relationships['grouped-days'].data | slice:1; let i=index">
                 <div class="spacing"></div>
-                <app-location-days [data]="gd"></app-location-days>
+                <app-location-days [data]="gd" [counter]="i+1"></app-location-days>
             </ng-container>
         </div>
     
