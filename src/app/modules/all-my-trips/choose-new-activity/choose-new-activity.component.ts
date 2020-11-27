@@ -58,10 +58,12 @@ export class ChooseNewActivityComponent implements OnInit, OnDestroy {
         if(oldDays.length === newDays.length) {
           let oldDaysTours: any[] = oldDays.map(r => this.itineraryService.generateTours(this.itineraryPrevData, r));
           let newDaysTours: any[] = newDays.map(r => this.itineraryService.generateTours(this.itineraryState.data, r));
+          console.log(oldDaysTours);
+          console.log(newDaysTours);
           for(let i=0; i<newDaysTours.length; i++) {
             let shouldBreak = false;
             for(let j=0; j<newDaysTours[i].length; j++) {
-              if(!oldDaysTours[i].find(r => r.id === newDaysTours[i][j].id)) {
+              if(!oldDaysTours[i].find(r => r.id === newDaysTours[i][j].id && r.attributes.name === newDaysTours[i][j].attributes.name)) {
                 dayToJump = newDays[i];
                 shouldBreak = true;
                 break;
@@ -72,6 +74,7 @@ export class ChooseNewActivityComponent implements OnInit, OnDestroy {
         } else {
           dayToJump = newDays.filter(r => !oldDays.find(e => e.id === r.id))[0];
         }
+        console.log(dayToJump);
         setTimeout(() => {
           this.store.dispatch(new SetTourIndexAction(0));
           this.store.dispatch(new SetDayIndexAction(dayToJump.attributes.index));
@@ -81,7 +84,7 @@ export class ChooseNewActivityComponent implements OnInit, OnDestroy {
         this.dialogService.closeDialog();
       }
 
-      if(!this.itineraryState.tourSolutionsLoading && this.itineraryState.tourSolutions) {
+      if(!this.itineraryState.tourSolutionsLoading && this.itineraryState.tourSolutions && !this.tourPostLoading) {
         this.fillSortedArrayIndexes();
         this.generateSortedArrayIndexesToUse('compadre');
       }
@@ -103,7 +106,9 @@ export class ChooseNewActivityComponent implements OnInit, OnDestroy {
     if(this.itineraryState.tourSolutions.data.length === 1 
       && this.itineraryState.tourSolutions.data[0].attributes.type === 'component-group') {
         this.activeSolutionIndex = 0;
-        this.onYes();
+        setTimeout(() => {
+          this.onConfirm();
+        }, 0);
     }
     for(const elem in this.priorityObj) {
       for(let i=0; i<this.itineraryState.tourSolutions.data.length; i++) {
@@ -124,7 +129,12 @@ export class ChooseNewActivityComponent implements OnInit, OnDestroy {
       .findIndex(r => r.attributes.name === this.itineraryState.tourSolutions.data[this.sortedArrayIndexesToUse[this.activeSolutionIndex]].attributes.name)];
   }
 
-  onYes() {
+  onConfirm() {
+    console.log(this.itineraryState.tourSolutions.data);
+    console.log(this.activeSolutionIndex);
+    console.log(this.sortedArrayIndexesToUse);
+    console.log(this.sortedArrayIndexes);
+    console.log(this.itineraryState.tourSolutions.data[this.sortedArrayIndexesToUse[this.activeSolutionIndex]]);
     this.store.dispatch(new PostItinerarySolutionForTourAction({ 
       itineraryId: this.itineraryState.data.data.id,
       body: {
@@ -138,10 +148,10 @@ export class ChooseNewActivityComponent implements OnInit, OnDestroy {
     }));
     this.itineraryPrevData = {...this.itineraryState.data};
     this.tourPostLoading = true;
-    this.dialogService.updateSize('270px');
+    this.dialogService.updateSize('250px');
   }
 
-  onCancel() {
+  onMoreOptions() {
     // this.dialogService.closeDialog();
     const nextTourIndex = this.typeArr.findIndex(r => r === this.itineraryState.tourSolutions.data[this.sortedArrayIndexesToUse[this.activeSolutionIndex]].attributes.type) + 1;
     if(nextTourIndex >= this.typeArr.length) {

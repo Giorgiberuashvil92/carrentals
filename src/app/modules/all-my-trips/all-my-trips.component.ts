@@ -111,7 +111,7 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
 
   generateCitiesArray(cities: any[], included: any[]) {
     const res: string[] = cities.map(c => included.find(i => i.type === 'cities' && i.id === c.id).attributes.name);
-    return res.length <= 3 ? res : [res[0], '...', res[res.length-1]];
+    return res;
   }
 
   onChange(tour: any) {
@@ -139,7 +139,7 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
   }
 
   onDeleteTour(id: string) {
-    this.store.dispatch(new DeleteTourAction(this.itinerary.data.data.id, id));
+    this.dialogService.openDialog('removeAccept', { id });
   }
 
   onLocationDetailIndexchange(event: number) {
@@ -147,7 +147,6 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
     const temp: any = this.locationDetailData[event];
     let query: string;
     if(temp.type === 'tours') {
-      console.log(temp)
       if(!temp.relationships['tour-offer'] || !temp.relationships['tour-offer'].data || !temp.relationships['tour-offer'].data.id) {
         this.store.dispatch(new SetAffiliatePartnerActivitiesAction({ data: [] }));
         return;

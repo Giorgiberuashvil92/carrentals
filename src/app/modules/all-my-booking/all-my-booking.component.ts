@@ -67,8 +67,6 @@ export class AllMyBookingsComponent implements OnInit, OnDestroy {
     this.store.dispatch(new SetDayIndexAction(day));
     this.store.dispatch(new SetTourAction(this.tours[day]));
     const tempTransportationPlan = [...this.itinerary.data.data.attributes['transportation-plan']];
-    console.log(day)
-    console.log(tempTransportationPlan)
     tempTransportationPlan.sort((a, b) => a["day-index"] - b["day-index"]);
     for(let i=0; i<tempTransportationPlan.length; i++) {
       if(day === tempTransportationPlan[i]["day-index"]) {
@@ -79,7 +77,6 @@ export class AllMyBookingsComponent implements OnInit, OnDestroy {
         break;
       }
     }
-    console.log(this.locationPaginatorActiveIndex);
   }
 
   generateCitiesArray(cities: any[], included: any[]) {

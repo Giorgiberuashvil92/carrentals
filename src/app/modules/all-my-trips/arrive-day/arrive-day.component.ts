@@ -32,6 +32,8 @@ export class ArriveDayComponent implements OnInit, OnDestroy {
         this.updateItineraryLoading = false;
         if(!this.itineraryState.updateItineraryError) {
           this.dialogService.closeDialog();
+        } else {
+          this.dialogService.updateSize(this.dialogService.dialogMap[this.dialogService.currentDialogName].maxWidth);
         }
       }
     });
@@ -48,10 +50,8 @@ export class ArriveDayComponent implements OnInit, OnDestroy {
       let daysArr = [];
       this.itineraryService.daysObj.old = [...new Set(this.itineraryService.daysObj.old)];
       this.itineraryService.daysObj.new = [...new Set(this.itineraryService.daysObj.new)];
-      console.log(this.itineraryService.daysObj);
       for(let i=0; i<this.itineraryService.daysObj.old.length; i++) {
         if(!this.itineraryService.daysObj.new.find(r => r.id === this.itineraryService.daysObj.old[i].id)) {
-          console.log('_DESTROY')
           daysArr.push({
             id: this.itineraryService.daysObj.old[i].id,
             '_destroy': 1
@@ -93,6 +93,7 @@ export class ArriveDayComponent implements OnInit, OnDestroy {
         }
       }));
       this.updateItineraryLoading = true;
+      this.dialogService.updateSize('250px');
     }, 0);
   }
 

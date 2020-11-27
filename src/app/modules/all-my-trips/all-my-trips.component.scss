@@ -4,7 +4,7 @@
 
     .location-wrapper {
         .location-details {
-            .location-names {
+            .location-names-vertical {
                 color: #02A388;
                 font-size: 25px;
                 font-weight: 700;
@@ -13,6 +13,13 @@
                     height: 22px;
                     text-align: justify;
                 }
+            }
+
+            .location-names-horizontal {
+                color: #02A388;
+                font-size: 25px;
+                font-weight: 700;
+                display: none;
             }
 
             .trip-time {
@@ -175,7 +182,7 @@
 
         .right-side {
             width: calc(100% - 400px);
-            margin-left: 30px;
+            margin-left: auto;
         }
 
         .pr-g{
@@ -186,18 +193,63 @@
     }
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (min-width: 1500px) {
+    .wrapper {
 
-  .location-wrapper{
-    display: block;
-  }
-  .wrapper{
-    width: calc(100%-50px);
-  }
-  .lower-than{
-    padding: 0 10px 0 0;
-    margin-top: -5px;
-  }
+        .details-wrapper {
+
+            .right-side {
+                width: calc(100% - 550px);
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    
+    .wrapper{
+        width: calc(100%-50px);
+        .location-wrapper{
+            display: block;
+
+            .location-details {
+                .location-names-vertical {
+                    display: none;
+                }
+
+                .location-names-horizontal {
+                    display: flex;
+                    align-items: center;
+                    flex-wrap: wrap;
+
+                    >div {
+                        display: flex;
+                        align-items: center;
+
+                        .location-name-horizontal-name {
+                        }
+    
+                        .location-name-horizontal-line {
+                            background-color: #02A388;
+                            width: 20px;
+                            height: 7px;
+                            margin: 0 10px;
+                        }
+                    }
+
+                }
+            }
+
+            app-location-paginator {
+                width: 100% !important;
+            }
+        }
+    }
+
+    .lower-than{
+        padding: 0 10px 0 0;
+        margin-top: -5px;
+    }
 
   .left-list-wrapper {
     justify-content: space-between;
@@ -274,7 +326,7 @@
       display: block;
       margin-top: 15px;
     }
-    .location-names > div{
+    .location-names-vertical > div{
       display: inline-block;
       margin-right: 10px;
     }

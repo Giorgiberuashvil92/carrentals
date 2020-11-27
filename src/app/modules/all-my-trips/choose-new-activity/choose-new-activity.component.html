@@ -60,7 +60,7 @@
             <!-- component-group -->
             <ng-container *ngSwitchCase="'component-group'">
                 <div class="replace-day">
-                    Do you want to <span class="replace-day-number">replace day {{ itineraryState.tourSolutions.data[sortedArrayIndexesToUse[activeSolutionIndex]].attributes['day-index'] }}</span> with new activity?
+                    Do you want to <span class="replace-day-number">change day {{ itineraryState.tourSolutions.data[sortedArrayIndexesToUse[activeSolutionIndex]].attributes['day-index'] }}</span> as suggested below?
                 </div>
             
                 
@@ -114,7 +114,7 @@
             <!-- new-day-group -->
             <ng-container *ngSwitchCase="'new-day-group'">
                 <div class="replace-day">
-                    Do you want to add new day to your trip?
+                    Do you want to add a new day to your trip?
                 </div>
             
                 <div class="current-new flex justify-center">
@@ -145,7 +145,7 @@
             <!-- new-day-component -->
             <ng-container *ngSwitchCase="'new-day-component'">
                 <div class="replace-day">
-                    Do you want to add new day to your trip?
+                    Do you want to add a new day to your trip?
                 </div>
             
                 <div class="current-new flex justify-center">
@@ -174,11 +174,14 @@
             </ng-container>
     
             <div class="actions absolute flex justify-between">
-                <button class="cancel-button" (click)="onCancel()">
+                <button class="confirm-button" (click)="onConfirm()">
+                    CONFIRM
+                </button>
+                <button class="cancel-button" (click)="dialogService.closeDialog()">
                     CANCEL
                 </button>
-                <button class="next-button" (click)="onYes()">
-                    YES
+                <button class="more-options-button" (click)="onMoreOptions()">
+                    MORE OPTIONS
                 </button>
             </div>
     
@@ -195,9 +198,6 @@
     </ng-container>
 
     <ng-template #elseBlock>
-        <div class="loader">
-            <mat-spinner [diameter]="25"></mat-spinner>
-            Please wait ...
-        </div>
+        <app-loader></app-loader>
     </ng-template>
 </ng-container>

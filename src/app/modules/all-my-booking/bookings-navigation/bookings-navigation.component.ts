@@ -46,7 +46,6 @@ export class BookingsNavigationComponent implements OnInit, OnDestroy {
     this.activeCityIndex = index;
     const query: string = `subject-type=city&subject-id=${city.id}`;
     this.store.dispatch(new LoadAffiliatePartnerActivitiesAction(query));
-    console.log(city);
   }
 
   openDialog(){

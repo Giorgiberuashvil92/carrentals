@@ -20,7 +20,8 @@ export interface ItineraryState {
   tourSolutionsLoading: boolean,
   tourSolutionPostLoading: boolean,
   updateItineraryLoading: boolean,
-  updateItineraryError: any
+  updateItineraryError: any,
+  deleteTourLoading: boolean
 }
 
 const initialState: ItineraryState = {
@@ -39,7 +40,8 @@ const initialState: ItineraryState = {
   tourSolutionsLoading: false,
   tourSolutionPostLoading: false,
   updateItineraryLoading: false,
-  updateItineraryError: undefined
+  updateItineraryError: undefined,
+  deleteTourLoading: false
 };
 
 
@@ -81,16 +83,19 @@ export function ItineraryReducer(state: ItineraryState = initialState, action: I
       }
     case ItineraryActionTypes.DELETE_TOUR:
       return {
-          ...state
+          ...state,
+          deleteTourLoading: true
       };
     case ItineraryActionTypes.DELETE_TOUR_SUCCESS:
       return {
           ...state,
-          data: action.payload
+          data: action.payload,
+          deleteTourLoading: false
       }
     case ItineraryActionTypes.DELETE_TOUR_FAILURE:
       return {
-          ...state
+          ...state,
+          deleteTourLoading: false
       }
     case ItineraryActionTypes.LOAD_ITINERARY_ALTERNATE_TOURS:
       return {

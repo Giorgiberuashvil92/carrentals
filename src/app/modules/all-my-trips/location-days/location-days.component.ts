@@ -33,7 +33,6 @@ export class LocationDaysComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.counter);
     this.itineraryStateSub = this.store.select(store => store.itinerary).subscribe(res => {
       this.itineraryState = res;
       this.city = this.itineraryService.findCityById(this.itineraryState, this.data.city.data.id);
@@ -104,7 +103,6 @@ export class LocationDaysComponent implements OnInit, OnDestroy {
     } else {
       index = this.daysArr[this.daysArr.length - 1].attributes.index;
     }
-    console.log(deletedDay);
 
     this.itineraryService.dayChange.next({
       action: 'add',
@@ -115,8 +113,6 @@ export class LocationDaysComponent implements OnInit, OnDestroy {
   }
 
   onDelete(index: number) {
-    console.log(index);
-    console.log(this.daysArr[index])
     this.deletedDaysArr.push(this.daysArr[index]);
     this.deletedDaysArr.sort((a, b) => a.attributes.index - b.attributes.index);
     this.itineraryService.dayChange.next({
@@ -124,7 +120,6 @@ export class LocationDaysComponent implements OnInit, OnDestroy {
       index: this.daysArr[index].attributes.index,
       cityName: this.city.attributes.name
     })
-    console.log(this.deletedDaysArr);
   }
 
   dayAddMapFn(day: any, index: number) {

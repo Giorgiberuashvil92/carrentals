@@ -32,7 +32,6 @@ export class LocationPaginatorComponent implements OnInit {
     } else {
       this.dataToShow = this.data;
     }
-    console.log(this.data);
   }
 
   onLeft() {
@@ -63,7 +62,6 @@ export class LocationPaginatorComponent implements OnInit {
   }
 
   onTouchStart(event) {
-    console.log('touchStart');
     if(this.deviceDetectorService.isMobile) {
       this.initialTouchX = event.touches[0].clientX;
     }
@@ -82,6 +80,5 @@ export class LocationPaginatorComponent implements OnInit {
 
   generateArray() {
     this.dataToShow = this.data.slice(this.leftMostIndex - 1, this.leftMostIndex - 1 + this.locationsToShow);
-    console.log(this.dataToShow);
   }
 }

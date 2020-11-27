@@ -20,6 +20,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ChangeTransportComponent } from './change-transport/change-transport.component';
 import { ChooseNewActivityComponent } from './choose-new-activity/choose-new-activity.component';
 import { NoMoreActivityWayComponent } from './no-more-activity-way/no-more-activity-way.component';
+import { RemoveAcceptComponent } from './remove-accept/remove-accept.component';
 
 const routes: Routes = [
   {
@@ -42,7 +43,8 @@ const routes: Routes = [
     NotIncludeComponent,
     ChangeTransportComponent,
     ChooseNewActivityComponent,
-    NoMoreActivityWayComponent
+    NoMoreActivityWayComponent,
+    RemoveAcceptComponent
   ],
   imports: [
     CommonModule,
@@ -50,8 +52,7 @@ const routes: Routes = [
     SharedModule,
     SwiperModule,
     FormsModule,
-    MatDialogModule,
-    MatProgressSpinnerModule
+    MatDialogModule
   ]
 })
 export class AllMyTripsModule { }
