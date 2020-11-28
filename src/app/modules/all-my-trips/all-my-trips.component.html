@@ -92,9 +92,7 @@
                         </div>
                         <div class="actions flex">
                             <button class="change-button flex justify-between items-center"
-                                (click)="onChange(tour)"
                                 [disabled]="i != itinerary.tourIndex"
-                                >
                                 *ngIf="!tour.attributes.transportation || (tour.attributes.transportation && tour.attributes['has-alternative'])"
                                 (click)="onChange(tour)">
                                 <img src="/assets/change-icon.svg" alt="">
