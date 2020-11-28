@@ -33,9 +33,8 @@ export class ChangeActivityComponent implements OnInit, OnDestroy {
       this.isLoaded = this.itineraryState.alternateTours && this.itineraryState.alternateTours.data && this.itineraryState.alternateTours.data.length > 0;
       if(this.isSubmitted && !this.itineraryState.updateTourOrTransportLoading) {
         this.dialogService.closeDialog();
-      }
-      if(this.isLoaded) {
-        this.dialogService.updateSize('600px');
+      } else if(this.isLoaded) {
+        this.dialogService.updateSize(this.dialogService.dialogMap[this.dialogService.currentDialogName].maxWidth);
       }
     });
   }

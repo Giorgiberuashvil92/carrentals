@@ -8,11 +8,11 @@
             </div>
 
             <div class="activity-wrapper">
-                <div class="activity relative flex"
+                <div class="activity relative flex cursor-pointer"
                     [ngClass]="{ 'activity__active': 0 === currentIndex}"
                     (click)="currentIndex = 0">
 
-                  <div class="current-icon">
+                  <div class="current-icon" *ngIf="0 === currentIndex">
                       <img src="/assets/tick-circle-icon.svg" alt="">
                   </div>
 
@@ -35,10 +35,14 @@
                     </div>
                 </div>
 
-                <div class="activity relative flex"
+                <div class="activity relative flex cursor-pointer"
                     *ngFor="let d of itineraryState.alternateTours.data; let i=index"
                     [ngClass]="{ 'activity__active': i === currentIndex - 1}"
                     (click)="currentIndex = i+1">
+
+                    <div class="current-icon" *ngIf=" i === currentIndex-1">
+                        <img src="/assets/tick-circle-icon.svg" alt="">
+                    </div>
 
                     <div class="image" [style.background-image]="'url(\'' + d.attributes['image-url'] + '\')'"></div>
 
@@ -68,9 +72,6 @@
     </mat-dialog-content>
 
     <ng-template #elseBlock>
-        <div class="loader">
-            <mat-spinner [diameter]="25"></mat-spinner>
-            Please wait ...
-        </div>
+        <app-loader></app-loader>
     </ng-template>
 </ng-container>

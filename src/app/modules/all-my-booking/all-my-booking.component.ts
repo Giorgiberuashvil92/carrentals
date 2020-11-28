@@ -55,7 +55,7 @@ export class AllMyBookingsComponent implements OnInit, OnDestroy {
     )
     .subscribe(res => {
       this.day = this.itineraryService.generateDay(this.itinerary);
-      this.tours = this.itineraryService.generateTours(this.itinerary, this.day);
+      this.tours = this.itineraryService.generateTours(this.itinerary.data, this.day);
       this.tours.sort((a, b) => a.attributes.position - b.attributes.position);
       this.waypoints = this.itineraryService.generateWaypoints(this.itinerary, this.tours);
       this.store.dispatch(new SetCitiesAction(this.cityService.generateCities(this.itinerary)));
@@ -67,8 +67,6 @@ export class AllMyBookingsComponent implements OnInit, OnDestroy {
     this.store.dispatch(new SetDayIndexAction(day));
     this.store.dispatch(new SetTourAction(this.tours[day]));
     const tempTransportationPlan = [...this.itinerary.data.data.attributes['transportation-plan']];
-    console.log(day)
-    console.log(tempTransportationPlan)
     tempTransportationPlan.sort((a, b) => a["day-index"] - b["day-index"]);
     for(let i=0; i<tempTransportationPlan.length; i++) {
       if(day === tempTransportationPlan[i]["day-index"]) {
@@ -79,7 +77,6 @@ export class AllMyBookingsComponent implements OnInit, OnDestroy {
         break;
       }
     }
-    console.log(this.locationPaginatorActiveIndex);
   }
 
   generateCitiesArray(cities: any[], included: any[]) {

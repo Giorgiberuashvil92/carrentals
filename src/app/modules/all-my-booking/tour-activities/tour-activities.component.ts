@@ -40,7 +40,6 @@ export class TourActivitiesComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     if(!this.formGroup.valid) return;
-    console.log(this.formGroup.value)
     let params = { cityId: this.city.id };
     if(this.formGroup.value.category) params['activityTypeId'] = this.formGroup.value.category.id;
     if(this.formGroup.value.text) params['text'] = this.formGroup.value.text;

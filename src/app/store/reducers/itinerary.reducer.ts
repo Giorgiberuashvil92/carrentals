@@ -2,7 +2,7 @@ import {
     ItineraryAction,
     ItineraryActionTypes
 } from '../actions';
-import { FailureResponse, ItineraryAlternateToursResponse, ItineraryResponse, ItinerarySolutionsForTourResponse, ItineraryToursSearchResponse, PostItinerarySolutionsForTourResponse } from '../models';
+import { FailureResponse, ItineraryAlternateToursResponse, ItinerarySolutionsForTourResponse, ItineraryToursSearchResponse, ItineraryResponse } from '../models';
 
 export interface ItineraryState {
   data: ItineraryResponse,
@@ -18,9 +18,10 @@ export interface ItineraryState {
   toursSearchLoading: boolean,
   tourSolutions: ItinerarySolutionsForTourResponse,
   tourSolutionsLoading: boolean,
-  tourSolutionPostResponse: PostItinerarySolutionsForTourResponse,
+  tourSolutionPostLoading: boolean,
   updateItineraryLoading: boolean,
-  updateItineraryError: any
+  updateItineraryError: any,
+  deleteTourLoading: boolean
 }
 
 const initialState: ItineraryState = {
@@ -37,9 +38,10 @@ const initialState: ItineraryState = {
   toursSearchLoading: false,
   tourSolutions: undefined,
   tourSolutionsLoading: false,
-  tourSolutionPostResponse: undefined,
+  tourSolutionPostLoading: false,
   updateItineraryLoading: false,
-  updateItineraryError: undefined
+  updateItineraryError: undefined,
+  deleteTourLoading: false
 };
 
 
@@ -81,16 +83,19 @@ export function ItineraryReducer(state: ItineraryState = initialState, action: I
       }
     case ItineraryActionTypes.DELETE_TOUR:
       return {
-          ...state
+          ...state,
+          deleteTourLoading: true
       };
     case ItineraryActionTypes.DELETE_TOUR_SUCCESS:
       return {
           ...state,
-          data: action.payload
+          data: action.payload,
+          deleteTourLoading: false
       }
     case ItineraryActionTypes.DELETE_TOUR_FAILURE:
       return {
-          ...state
+          ...state,
+          deleteTourLoading: false
       }
     case ItineraryActionTypes.LOAD_ITINERARY_ALTERNATE_TOURS:
       return {
@@ -165,16 +170,19 @@ export function ItineraryReducer(state: ItineraryState = initialState, action: I
     case ItineraryActionTypes.POST_TOURS_SOLUTION_FOR_TOUR:
       return {
           ...state,
-          tourSolutionPostResponse: undefined
+          tourSolutionPostLoading: true
       }
     case ItineraryActionTypes.POST_TOURS_SOLUTION_FOR_TOUR_SUCCESS:
       return {
           ...state,
-          tourSolutionPostResponse: action.payload
+          tourSolutionPostLoading: false,
+          data: action.payload
       }
     case ItineraryActionTypes.POST_TOURS_SOLUTION_FOR_TOUR_FAILURE:
       return {
-          ...state
+          ...state,
+          tourSolutionPostLoading: false,
+          error: action.payload
       }
     case ItineraryActionTypes.UPDATE_ITINERARY:
       return {

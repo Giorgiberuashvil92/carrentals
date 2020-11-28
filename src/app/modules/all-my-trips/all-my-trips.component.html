@@ -1,10 +1,23 @@
 <div class="wrapper" *ngIf="itinerary && !itinerary.loading && itinerary.data">
     <div class="location-wrapper flex justify-between items-center">
         <div class="location-details ">
-            <div class="location-names">
+            <div class="location-names-vertical">
                 <div
-                    *ngFor="let l of generateCitiesArray(itinerary.data.data.relationships.cities.data, itinerary.data.included)">
+                    *ngFor="let l of
+                        (generateCitiesArray(itinerary.data.data.relationships.cities.data, itinerary.data.included).length > 3
+                            ? [generateCitiesArray(itinerary.data.data.relationships.cities.data, itinerary.data.included)[0], '...', generateCitiesArray(itinerary.data.data.relationships.cities.data, itinerary.data.included)[generateCitiesArray(itinerary.data.data.relationships.cities.data, itinerary.data.included).length - 1]]
+                            : generateCitiesArray(itinerary.data.data.relationships.cities.data, itinerary.data.included))">
                     {{ l }}
+                </div>
+            </div>
+
+            <div class="location-names-horizontal">
+                <div
+                    *ngFor="let l of generateCitiesArray(itinerary.data.data.relationships.cities.data, itinerary.data.included); let i=index">
+                    <div class="location-name-horizontal-name">
+                        {{ l }}
+                    </div>
+                    <div class="location-name-horizontal-line" *ngIf="i !== generateCitiesArray(itinerary.data.data.relationships.cities.data, itinerary.data.included).length - 1"></div>
                 </div>
             </div>
             <div class="trip-time">
@@ -82,6 +95,8 @@
                                 (click)="onChange(tour)"
                                 [disabled]="i != itinerary.tourIndex"
                                 >
+                                *ngIf="!tour.attributes.transportation || (tour.attributes.transportation && tour.attributes['has-alternative'])"
+                                (click)="onChange(tour)">
                                 <img src="/assets/change-icon.svg" alt="">
                                 <div>
                                     CHANGE

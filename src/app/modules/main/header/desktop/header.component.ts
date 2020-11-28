@@ -41,12 +41,10 @@ export class HeaderComponent implements OnInit {
   }
 
   onMouseEnter(event) {
-    console.log('enter');
     this.isOpen = true;
   }
 
   onMouseLeave(event) {
-    console.log('leave');
     this.isOpen = false;
   }
 }

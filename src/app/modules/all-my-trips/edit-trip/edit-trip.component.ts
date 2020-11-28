@@ -26,11 +26,9 @@ export class EditTripComponent implements OnInit {
 
   ngOnInit(): void {
     this.itineraryState$ = this.store.select(store => store.itinerary);
-    console.log(this.data);
   }
 
   onOK(itineraryState: ItineraryState) {
-    console.log(itineraryState);
     this.store.dispatch(new UpdateItineraryTourOrTransportAction({
       itineraryId: itineraryState.data.data.id,
       id: itineraryState.tour.id,

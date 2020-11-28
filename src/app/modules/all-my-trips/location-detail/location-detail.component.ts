@@ -27,7 +27,6 @@ export class LocationDetailComponent implements OnInit, OnChanges {
   }
   
   ngOnChanges() {
-    console.log(this.data);
     this.indexChange.emit(0);
     this.currentIndex = 0;
     this.watch = true;

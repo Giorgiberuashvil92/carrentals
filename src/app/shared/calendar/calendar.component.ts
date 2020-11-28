@@ -14,7 +14,6 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
     this.dateObj = new Date(this.date);
-    console.log(this.dateObj);
   }
 
 }

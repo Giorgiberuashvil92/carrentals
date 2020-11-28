@@ -9,6 +9,7 @@ import { ChooseNewActivityComponent } from 'src/app/modules/all-my-trips/choose-
 import { EditTripComponent } from 'src/app/modules/all-my-trips/edit-trip/edit-trip.component';
 import { NoMoreActivityWayComponent } from 'src/app/modules/all-my-trips/no-more-activity-way/no-more-activity-way.component';
 import { NotIncludeComponent } from 'src/app/modules/all-my-trips/not-include/not-include.component';
+import { RemoveAcceptComponent } from 'src/app/modules/all-my-trips/remove-accept/remove-accept.component';
 import { SelectActivityComponent } from 'src/app/modules/all-my-trips/select-activity/select-activity.component';
 
 @Injectable({
@@ -19,15 +20,15 @@ export class DialogService {
   dialogMap = {
     'changeActivity': {
       component: ChangeActivityComponent,
-      maxWidth: '600px'
+      maxWidth: '800px'
     },
     'changeTransport': {
       component: ChangeTransportComponent,
-      maxWidth: '470px'
+      maxWidth: '800px'
     },
     'selectActivity': {
       component: SelectActivityComponent,
-      maxWidth: '932px'
+      maxWidth: '1400px'
     },
     'editTrip': {
       component: EditTripComponent,
@@ -56,10 +57,16 @@ export class DialogService {
     'navigationDialog': {
       component: NavigationDialogComponent,
       maxWidth: '582px'
-    }
+    },
+    'removeAccept': {
+      component: RemoveAcceptComponent,
+      maxWidth: '450px'
+    },
   }
 
   public dialogRef: MatDialogRef<any>;
+
+  currentDialogName: string;
 
   constructor(
     private dialog: MatDialog
@@ -68,10 +75,11 @@ export class DialogService {
   openDialog(dialogName: string, data?: any) {
     if(this.dialogMap.hasOwnProperty(dialogName)) {
       this.dialogRef = this.dialog.open(this.dialogMap[dialogName].component, {
-        width: '90%',
+        width: '95%',
         maxWidth: this.dialogMap[dialogName].maxWidth,
         data
       });
+      this.currentDialogName = dialogName;
     }
   }
 
@@ -79,6 +87,7 @@ export class DialogService {
     if(this.dialogRef) {
       this.dialogRef.close();
       this.dialogRef = null;
+      this.currentDialogName = null;
     }
   }
 
