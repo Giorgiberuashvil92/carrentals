@@ -79,7 +79,9 @@
                         </div>
                         <div class="actions flex">
                             <button class="change-button flex justify-between items-center"
-                                (click)="onChange(tour)">
+                                (click)="onChange(tour)"
+                                [disabled]="i != itinerary.tourIndex"
+                                >
                                 <img src="/assets/change-icon.svg" alt="">
                                 <div>
                                     CHANGE

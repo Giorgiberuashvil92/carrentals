@@ -72,7 +72,7 @@
     display: block;
     margin-top: 5px;
   }
-  
+
   .lower-than, .higher-than {
     margin-top: 8px;
   }
@@ -84,7 +84,7 @@
     display: block;
     margin-top: 10px;
   }
-  
+
   .lower-than, .higher-than {
     margin-top: 10px;
   }
@@ -138,5 +138,10 @@
           margin-top: 22px;
         }
       }
+  }
+}
+@media only screen and (max-width: 1100px) {
+  .third-data {
+     white-space: unset !important;
   }
 }
