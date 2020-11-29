@@ -30,6 +30,7 @@ export class ChooseNewActivityComponent implements OnInit, OnDestroy {
   sortedArrayIndexesToUse: number[] = [];
   activeSolutionIndex = 0;
   tourPostLoading = false;
+  isMoreOptionsVisible = true;
   itineraryPrevData: ItineraryResponse;
 
   itineraryStateSub: Subscription;
@@ -49,8 +50,6 @@ export class ChooseNewActivityComponent implements OnInit, OnDestroy {
         if(this.itineraryState.error) {
           this.dialogService.closeDialog();
         }
-        console.table(this.itineraryPrevData.data.relationships.days.data);
-        console.table(this.itineraryState.data.data.relationships.days.data);
 
         let oldDays: any[] = this.itineraryService.generateAllDays(this.itineraryPrevData);
         let newDays: any[] = this.itineraryService.generateAllDays(this.itineraryState.data);
@@ -58,8 +57,6 @@ export class ChooseNewActivityComponent implements OnInit, OnDestroy {
         if(oldDays.length === newDays.length) {
           let oldDaysTours: any[] = oldDays.map(r => this.itineraryService.generateTours(this.itineraryPrevData, r));
           let newDaysTours: any[] = newDays.map(r => this.itineraryService.generateTours(this.itineraryState.data, r));
-          console.log(oldDaysTours);
-          console.log(newDaysTours);
           for(let i=0; i<newDaysTours.length; i++) {
             let shouldBreak = false;
             for(let j=0; j<newDaysTours[i].length; j++) {
@@ -74,7 +71,6 @@ export class ChooseNewActivityComponent implements OnInit, OnDestroy {
         } else {
           dayToJump = newDays.filter(r => !oldDays.find(e => e.id === r.id))[0];
         }
-        console.log(dayToJump);
         setTimeout(() => {
           this.store.dispatch(new SetTourIndexAction(0));
           this.store.dispatch(new SetDayIndexAction(dayToJump.attributes.index));
@@ -86,7 +82,10 @@ export class ChooseNewActivityComponent implements OnInit, OnDestroy {
 
       if(!this.itineraryState.tourSolutionsLoading && this.itineraryState.tourSolutions && !this.tourPostLoading) {
         this.fillSortedArrayIndexes();
-        this.generateSortedArrayIndexesToUse('compadre');
+        this.sortedArrayIndexesToUse = this.generateSortedArrayIndexesToUse(this.typeArr[0]);
+        if(this.generateSortedArrayIndexesToUse(this.typeArr[1]).length === 0) {
+          this.isMoreOptionsVisible = false;
+        }
       }
     });
   }
@@ -130,11 +129,6 @@ export class ChooseNewActivityComponent implements OnInit, OnDestroy {
   }
 
   onConfirm() {
-    console.log(this.itineraryState.tourSolutions.data);
-    console.log(this.activeSolutionIndex);
-    console.log(this.sortedArrayIndexesToUse);
-    console.log(this.sortedArrayIndexes);
-    console.log(this.itineraryState.tourSolutions.data[this.sortedArrayIndexesToUse[this.activeSolutionIndex]]);
     this.store.dispatch(new PostItinerarySolutionForTourAction({ 
       itineraryId: this.itineraryState.data.data.id,
       body: {
@@ -159,7 +153,17 @@ export class ChooseNewActivityComponent implements OnInit, OnDestroy {
       this.dialogService.openDialog('noMoreActivityWay', {...this.data, toursExist: this.sortedArrayIndexes.length > 0 });
     }
     this.activeSolutionIndex = 0;
-    this.generateSortedArrayIndexesToUse(this.typeArr[nextTourIndex]);
+    this.sortedArrayIndexesToUse = this.generateSortedArrayIndexesToUse(this.typeArr[nextTourIndex]);
+    if(nextTourIndex === 2 || nextTourIndex === 3 || this.generateSortedArrayIndexesToUse(this.typeArr[nextTourIndex + 1]).length === 0) {
+      this.isMoreOptionsVisible = false;
+    }
+  }
+
+  onCancel() {
+    this.dialogService.closeDialog();
+    if(!this.isMoreOptionsVisible) {
+      this.dialogService.openDialog('noMoreActivityWay', {...this.data, toursExist: this.sortedArrayIndexes.length > 0 });
+    }
   }
 
   generateSortedArrayIndexesToUse(solutionType: string) {
@@ -169,13 +173,18 @@ export class ChooseNewActivityComponent implements OnInit, OnDestroy {
       if(isAfterSolution) {
         const tempArr = this.sortedArrayIndexes.filter(r => this.itineraryState.tourSolutions.data[r].attributes.type === elem);
         if(tempArr.length !== 0) {
-          this.sortedArrayIndexesToUse = tempArr;
-          return;
+          return tempArr;
         }
       }
     }
     this.dialogService.closeDialog();
     this.dialogService.openDialog('noMoreActivityWay', {...this.data, toursExist: this.sortedArrayIndexes.length > 0 });
+    return [];
+  }
+
+  determineMoreOptionsVisibility() {
+    const nextTourIndex = this.typeArr.findIndex(r => r === this.itineraryState.tourSolutions.data[this.sortedArrayIndexesToUse[this.activeSolutionIndex]].attributes.type) + 1;
+    this.isMoreOptionsVisible =  nextTourIndex < this.typeArr.length;
   }
 
   ngOnDestroy() {

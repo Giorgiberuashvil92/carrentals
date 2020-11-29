@@ -77,6 +77,10 @@
         bottom: -100px;
         width: 100%;
         padding: 0 16%;
+
+        &__more-invisible {
+            padding: 0 27%;
+        }
     
         button {
             font-size: 15px;

@@ -173,14 +173,14 @@
                 </div>
             </ng-container>
     
-            <div class="actions absolute flex justify-between">
+            <div class="actions absolute flex justify-between" [ngClass]="{ 'actions__more-invisible': !isMoreOptionsVisible }">
                 <button class="confirm-button" (click)="onConfirm()">
                     CONFIRM
                 </button>
-                <button class="cancel-button" (click)="dialogService.closeDialog()">
+                <button class="cancel-button" (click)="onCancel()">
                     CANCEL
                 </button>
-                <button class="more-options-button" (click)="onMoreOptions()">
+                <button class="more-options-button" *ngIf="isMoreOptionsVisible" (click)="onMoreOptions()">
                     MORE OPTIONS
                 </button>
             </div>
