@@ -43,11 +43,22 @@
             </div>
 
             <app-paginator
+                *ngIf="deviceDetectorService.width < 1500"
                 class="block"
                 [currentPage]="itinerary.dayIndex"
                 [leftMostPage]="1"
                 [pagesAmount]="itinerary.data.data.relationships.days.data.length"
                 [pagesToShow]="10"
+                (page)="onDayChange($event)"
+            ></app-paginator>
+
+            <app-paginator
+                *ngIf="deviceDetectorService.width >= 1500"
+                class="block"
+                [currentPage]="itinerary.dayIndex"
+                [leftMostPage]="1"
+                [pagesAmount]="itinerary.data.data.relationships.days.data.length"
+                [pagesToShow]="15"
                 (page)="onDayChange($event)"
             ></app-paginator>
 
