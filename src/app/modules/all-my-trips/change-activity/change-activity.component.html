@@ -29,8 +29,10 @@
                             {{ itineraryState.tour.attributes['name'] }}
                         </div>
 
-                        <div class="description">
-                            <!-- {{ itineraryState.tour.attributes['transport-name'] }} -->
+                        <div class="tags flex">
+                            <div class="tag" *ngFor="let tag of tourTags">
+                                {{ tag }}
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { DialogService } from 'src/app/core/services/dialog.service';
+import { ItineraryService } from 'src/app/core/services/itinerary.service';
 import { UpdateItineraryTourOrTransportAction } from 'src/app/store/actions';
 import { AppState } from 'src/app/store/models';
 import { ItineraryState } from 'src/app/store/reducers';
@@ -17,19 +18,24 @@ export class ChangeActivityComponent implements OnInit, OnDestroy {
   currentIndex = 0;
   isSubmitted = false;
   isLoaded = false;
+  tourTags: string[] = [];
   
   itineraryState: ItineraryState;
   itineraryStateSub: Subscription;
 
   constructor(
     public dialogService: DialogService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private itineraryService: ItineraryService
   ) { }
 
   ngOnInit(): void {
     this.dialogService.updateSize('250px');
     this.itineraryStateSub = this.store.select(store => store.itinerary).subscribe(res => {
       this.itineraryState = res;
+      if(this.itineraryState.tour) {
+        this.generateTourTags();
+      }
       this.isLoaded = this.itineraryState.alternateTours && this.itineraryState.alternateTours.data && this.itineraryState.alternateTours.data.length > 0;
       if(this.isSubmitted && !this.itineraryState.updateTourOrTransportLoading) {
         this.dialogService.closeDialog();
@@ -61,6 +67,10 @@ export class ChangeActivityComponent implements OnInit, OnDestroy {
     }));
     this.isSubmitted = true;
     this.dialogService.updateSize('250px');
+  }
+
+  generateTourTags() {
+    this.tourTags = this.itineraryState.tour.relationships.pois.data.map(r => this.itineraryService.generateWaypoint(this.itineraryState.data, r.id).attributes.name);
   }
 
   ngOnDestroy() {

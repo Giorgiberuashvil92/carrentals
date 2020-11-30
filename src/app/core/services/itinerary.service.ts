@@ -98,4 +98,8 @@ export class ItineraryService {
     }
     return [];
   }
+
+  generateWaypoint(itineraryResponse: ItineraryResponse, id: string) {
+    return itineraryResponse.included.find(i => i.type === 'waypoints' && i.id === id);
+  }
 }
