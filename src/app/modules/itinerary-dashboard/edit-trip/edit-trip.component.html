@@ -16,7 +16,8 @@
                 <div class="activity relative flex cursor-pointer" 
                     *ngFor="let oldTour of data.attributes['old-day-tours'].data; let i=index">
                     
-                    <div class="image" [style.background-image]="'url(\'' + oldTour.attributes['square-image-url'] + '\')'"></div>
+                    <div class="image" [style.background-image]="'url(\'' + oldTour.attributes['square-image-url'] + '\')'"
+                        [ngClass]="{ 'image__transport' : oldTour.attributes['square-image-url'].includes('transport-icons') }"></div>
         
                     <div class="detail-wrapper">
                         <div class="city-detail">
@@ -38,7 +39,8 @@
                 <div class="activity relative flex cursor-pointer" 
                     *ngFor="let newTour of data.attributes['new-day-tours'].data; let i=index">
                     
-                    <div class="image" [style.background-image]="'url(\'' + newTour.attributes['square-image-url'] + '\')'"></div>
+                    <div class="image" [style.background-image]="'url(\'' + newTour.attributes['square-image-url'] + '\')'"
+                        [ngClass]="{ 'image__transport' : newTour.attributes['square-image-url'].includes('transport-icons') }"></div>
         
                     <div class="detail-wrapper">
                         <div class="city-detail">

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AllMyTripsComponent } from './all-my-trips.component';
+import { ItineraryDashboardComponent } from './itinerary-dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { LocationDetailComponent } from './location-detail/location-detail.component';
@@ -23,13 +23,13 @@ import { RemoveAcceptComponent } from './remove-accept/remove-accept.component';
 
 const routes: Routes = [
   {
-    path: '', component: AllMyTripsComponent
+    path: '', component: ItineraryDashboardComponent
   }
 ]
 
 @NgModule({
   declarations: [
-    AllMyTripsComponent,
+    ItineraryDashboardComponent,
     LocationDetailComponent,
     ChangeActivityComponent,
     SelectActivityComponent,
@@ -54,4 +54,4 @@ const routes: Routes = [
     MatDialogModule
   ]
 })
-export class AllMyTripsModule { }
+export class ItineraryDashboardModule { }

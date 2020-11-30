@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
@@ -11,14 +12,13 @@ import { LoadAffiliatePartnerActivitiesAction, SetAffiliatePartnerActivitiesActi
 import { DeleteTourAction, LoadItineraryAction, LoadItineraryAlternateToursAction, SetDayIndexAction, SetTourAction, SetTourIndexAction } from 'src/app/store/actions/itinerary.action';
 import { AppState } from 'src/app/store/models/app-state.model';
 import { ItineraryState } from 'src/app/store/reducers';
-import { NavigationDialogComponent } from '../all-my-booking/navigation-dialog/navigation-dialog.component';
 
 @Component({
-  selector: 'app-all-my-trips',
-  templateUrl: './all-my-trips.component.html',
-  styleUrls: ['./all-my-trips.component.scss']
+  selector: 'app-itinerary-dashboard',
+  templateUrl: './itinerary-dashboard.component.html',
+  styleUrls: ['./itinerary-dashboard.component.scss']
 })
-export class AllMyTripsComponent implements OnInit, OnDestroy {
+export class ItineraryDashboardComponent implements OnInit, OnDestroy {
 
   itinerary$: Observable<ItineraryState>;
   itinerary: ItineraryState;
@@ -44,11 +44,12 @@ export class AllMyTripsComponent implements OnInit, OnDestroy {
     public deviceDetectorService: DeviceDetectorService,
     private store: Store<AppState>,
     private itineraryService: ItineraryService,
-    private cityService: CityService
+    private cityService: CityService,
+    private route: ActivatedRoute
     ) { }
 
   ngOnInit(): void {
-    this.store.dispatch(new LoadItineraryAction('5f5e23be306f344825352472'));
+    this.store.dispatch(new LoadItineraryAction(this.route.snapshot.params.itineraryId));
     this.itinerary$ = this.store.select(store => store.itinerary);
     this.itinerarySub = this.itinerary$
     .pipe(

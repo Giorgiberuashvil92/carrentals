@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AllMyBookingsComponent } from './all-my-booking.component';
+import { ItineraryBookingsComponent } from './itinerary-bookings.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SwiperModule } from 'ngx-swiper-wrapper';
@@ -10,18 +10,18 @@ import { MyBookingsComponent } from './my-bookings/my-bookings.component';
 import { CityCardsComponent } from './city-cards/city-cards.component';
 import { TourActivitiesComponent } from './tour-activities/tour-activities.component';
 import { TourCardsComponent } from './Tour-cards/tour-cards.component';
-import {NavigationDialogComponent} from '../all-my-booking/navigation-dialog/navigation-dialog.component';
+import { NavigationDialogComponent } from './navigation-dialog/navigation-dialog.component';
 import { InterCityComponent } from './inter-city/inter-city.component'
 
 const routes: Routes = [
   {
-    path: '', component: AllMyBookingsComponent
+    path: '', component: ItineraryBookingsComponent
   }
 ]
 
 @NgModule({
   declarations: [
-    AllMyBookingsComponent,
+    ItineraryBookingsComponent,
     BookingsNavigationComponent,
     MyBookingsComponent,
     CityCardsComponent,
@@ -40,4 +40,4 @@ const routes: Routes = [
     ReactiveFormsModule
   ]
 })
-export class AllMyBookingModule { }
+export class ItineraryBookingsModule { }

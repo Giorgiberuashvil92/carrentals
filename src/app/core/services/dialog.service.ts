@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { NavigationDialogComponent } from 'src/app/modules/all-my-booking/navigation-dialog/navigation-dialog.component';
-import { AcceptDialogComponent } from 'src/app/modules/all-my-trips/accept-dialog/accept-dialog.component';
-import { ArriveDayComponent } from 'src/app/modules/all-my-trips/arrive-day/arrive-day.component';
-import { ChangeActivityComponent } from 'src/app/modules/all-my-trips/change-activity/change-activity.component';
-import { ChangeTransportComponent } from 'src/app/modules/all-my-trips/change-transport/change-transport.component';
-import { ChooseNewActivityComponent } from 'src/app/modules/all-my-trips/choose-new-activity/choose-new-activity.component';
-import { EditTripComponent } from 'src/app/modules/all-my-trips/edit-trip/edit-trip.component';
-import { NoMoreActivityWayComponent } from 'src/app/modules/all-my-trips/no-more-activity-way/no-more-activity-way.component';
-import { NotIncludeComponent } from 'src/app/modules/all-my-trips/not-include/not-include.component';
-import { RemoveAcceptComponent } from 'src/app/modules/all-my-trips/remove-accept/remove-accept.component';
-import { SelectActivityComponent } from 'src/app/modules/all-my-trips/select-activity/select-activity.component';
+import { NavigationDialogComponent } from 'src/app/modules/itinerary-bookings/navigation-dialog/navigation-dialog.component';
+import { AcceptDialogComponent } from 'src/app/modules/itinerary-dashboard/accept-dialog/accept-dialog.component';
+import { ArriveDayComponent } from 'src/app/modules/itinerary-dashboard/arrive-day/arrive-day.component';
+import { ChangeActivityComponent } from 'src/app/modules/itinerary-dashboard/change-activity/change-activity.component';
+import { ChangeTransportComponent } from 'src/app/modules/itinerary-dashboard/change-transport/change-transport.component';
+import { ChooseNewActivityComponent } from 'src/app/modules/itinerary-dashboard/choose-new-activity/choose-new-activity.component';
+import { EditTripComponent } from 'src/app/modules/itinerary-dashboard/edit-trip/edit-trip.component';
+import { NoMoreActivityWayComponent } from 'src/app/modules/itinerary-dashboard/no-more-activity-way/no-more-activity-way.component';
+import { NotIncludeComponent } from 'src/app/modules/itinerary-dashboard/not-include/not-include.component';
+import { RemoveAcceptComponent } from 'src/app/modules/itinerary-dashboard/remove-accept/remove-accept.component';
+import { SelectActivityComponent } from 'src/app/modules/itinerary-dashboard/select-activity/select-activity.component';
 
 @Injectable({
   providedIn: 'root'

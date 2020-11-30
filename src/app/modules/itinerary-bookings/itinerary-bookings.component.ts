@@ -1,4 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { tap, filter } from 'rxjs/operators';
@@ -14,11 +15,11 @@ import { ItineraryState } from 'src/app/store/reducers';
 import { CityState } from 'src/app/store/reducers/city.reducer';
 
 @Component({
-  selector: 'app-all-my-bookings',
-  templateUrl: './all-my-booking.component.html',
-  styleUrls: ['./all-my-booking.component.scss']
+  selector: 'app-itinerary-bookings',
+  templateUrl: './itinerary-bookings.component.html',
+  styleUrls: ['./itinerary-bookings.component.scss']
 })
-export class AllMyBookingsComponent implements OnInit, OnDestroy {
+export class ItineraryBookingsComponent implements OnInit, OnDestroy {
 
   itinerary$: Observable<ItineraryState>;
   cityState$: Observable<CityState>;
@@ -42,11 +43,12 @@ export class AllMyBookingsComponent implements OnInit, OnDestroy {
     public deviceDetectorService: DeviceDetectorService,
     private store: Store<AppState>,
     private itineraryService: ItineraryService,
-    private cityService: CityService
+    private cityService: CityService,
+    private route: ActivatedRoute
     ) { }
 
   ngOnInit(): void {
-    this.store.dispatch(new LoadItineraryAction('5f5e23be306f344825352472'));
+    this.store.dispatch(new LoadItineraryAction(this.route.snapshot.params.itineraryId));
     this.itinerary$ = this.store.select(store => store.itinerary);
     this.itinerarySub = this.itinerary$
     .pipe(

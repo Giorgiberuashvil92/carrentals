@@ -18,12 +18,12 @@ const routes: Routes = [
     //     loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
     //   }
         {
-          path: 'all-my-trips',
-          loadChildren: () => import('../all-my-trips/all-my-trips.module').then(m => m.AllMyTripsModule)
+          path: 'trips/:itineraryId',
+          loadChildren: () => import('../itinerary-dashboard/itinerary-dashboard.module').then(m => m.ItineraryDashboardModule)
         },
         {
-          path: 'all-my-bookings',
-          loadChildren: () => import('../all-my-booking/all-my-booking.module').then(m => m.AllMyBookingModule)
+          path: 'trips/:itineraryId/bookings',
+          loadChildren: () => import('../itinerary-bookings/itinerary-bookings.module').then(m => m.ItineraryBookingsModule)
         }
     ]
   }

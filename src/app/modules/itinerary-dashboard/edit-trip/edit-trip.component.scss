@@ -50,6 +50,11 @@
                     background-size: cover;
                     background-position: center;
                     border-radius: 10px;
+
+                    &__transport {
+                        background-color: #02A388;
+                        background-size: 40px;
+                    }
                 }
     
                 .detail-wrapper {
