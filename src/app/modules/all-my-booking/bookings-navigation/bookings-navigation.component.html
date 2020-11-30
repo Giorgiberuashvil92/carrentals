@@ -25,7 +25,7 @@
       <ng-container *ngIf="cityState && cityState.cities && cityState.cities.data">
         <div class="gm-d cursor-pointer" *ngFor="let item of cityState.cities.data; let i=index"
           [ngStyle]="{ 'opacity': activeCityIndex === i ? '1' : '0.5' }"
-          (click)="onCityClick(item, i)">
+          (click)="onCityClick(i)">
           <div class="rounded-full h-16 w-16 flex items-center justify-center bg-col"
           [ngClass]="{'grid-col': deviceDetectorService.isMobile}">
             <div class="relative">
@@ -43,6 +43,7 @@
   <!-- <app-my-bookings></app-my-bookings> -->
   <app-city-cards *ngIf="option === 1" [city]="cityState.cities.data[activeCityIndex]"></app-city-cards>
   <app-tour-activities *ngIf="option === 2" [city]="cityState.cities.data[activeCityIndex]"></app-tour-activities>
+  <app-inter-city *ngIf="option === 3" [city]="cityState.cities.data[activeCityIndex]"></app-inter-city>
   <!-- <app-tour-cards *ngIf="option === 2"></app-tour-cards> -->
 </div>
 

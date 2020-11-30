@@ -3,8 +3,9 @@ import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { DeviceDetectorService } from 'src/app/core/services/device-detector.service';
 import { DialogService } from 'src/app/core/services/dialog.service';
-import { LoadAffiliatePartnerActivitiesAction } from 'src/app/store/actions';
+import { LoadAffiliatePartnerActivitiesAction, LoadAffiliatePartnerTransportsAction } from 'src/app/store/actions';
 import { AppState } from 'src/app/store/models';
+import { ItineraryState } from 'src/app/store/reducers';
 import { CityState } from 'src/app/store/reducers/city.reducer';
 
 @Component({
@@ -14,7 +15,9 @@ import { CityState } from 'src/app/store/reducers/city.reducer';
 })
 export class BookingsNavigationComponent implements OnInit, OnDestroy {
 
+  itineraryState: ItineraryState;
   cityState: CityState;
+  itineraryStateSub: Subscription
   cityStateSub: Subscription;
   activeCityIndex = 0;
   option = 1;
@@ -36,16 +39,26 @@ export class BookingsNavigationComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.cityStateSub = this.store.select(store => store.city).subscribe(res => {
       this.cityState = res;
-      if(this.cityState.cities && this.cityState.cities.data && this.cityState.cities.data.length > 0) {
-        this.onCityClick(this.cityState.cities.data[0], 0);
-      }
+      this.onCityClick(0);
     });
+
+    this.itineraryStateSub = this.store.select(store => store.itinerary).subscribe(res => {
+      this.itineraryState = res;
+      this.onCityClick(0);
+      console.log(res)
+    })
   }
 
-  onCityClick(city: any, index: number) {
+  onCityClick(index: number) {
     this.activeCityIndex = index;
-    const query: string = `subject-type=city&subject-id=${city.id}`;
-    this.store.dispatch(new LoadAffiliatePartnerActivitiesAction(query));
+    if(this.cityState && this.cityState.cities && this.cityState.cities.data && this.cityState.cities.data.length > this.activeCityIndex) {
+      this.store.dispatch(new LoadAffiliatePartnerActivitiesAction(`subject-type=city&subject-id=${this.cityState.cities.data[index].id}`));
+    }
+    if(this.itineraryState && this.itineraryState.data && this.itineraryState.data.data && this.itineraryState.data.data.id
+      && this.cityState && this.cityState.cities && this.cityState.cities.data && this.cityState.cities.data.length > this.activeCityIndex) {
+        console.log({ itineraryId: this.itineraryState.data.data.id, cityId: this.cityState.cities.data[index].id });
+        // this.store.dispatch(new LoadAffiliatePartnerTransportsAction({ itineraryId: this.itineraryState.data.data.id, cityId: this.cityState.cities.data[index].id }));
+    }
   }
 
   openDialog(){
@@ -54,5 +67,6 @@ export class BookingsNavigationComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     if(this.cityStateSub) this.cityStateSub.unsubscribe();
+    if(this.itineraryStateSub) this.itineraryStateSub.unsubscribe();
   }
 }

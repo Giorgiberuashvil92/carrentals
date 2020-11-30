@@ -17,7 +17,7 @@ export class ItineraryEffects {
     @Effect() loadItinerary$ = this.actions$
     .pipe(
         ofType<LoadItineraryAction>(ItineraryActionTypes.LOAD_ITINERARY),
-        mergeMap(
+        switchMap(
         (d) => this.itineraryService.getItinerary$(d.payload)
             .pipe(
             map(data => {
@@ -45,7 +45,7 @@ export class ItineraryEffects {
     @Effect() loadItineraryAlternateTours$ = this.actions$
     .pipe(
         ofType<LoadItineraryAlternateToursAction>(ItineraryActionTypes.LOAD_ITINERARY_ALTERNATE_TOURS),
-        mergeMap(
+        switchMap(
         (d) => this.itineraryService.getItineraryAlternateTours$(d.payload.itineraryId, d.payload.id)
             .pipe(
             map(data => {

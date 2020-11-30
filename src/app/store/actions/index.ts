@@ -92,5 +92,8 @@ export {
   LoadAffiliatePartnerActivitiesLiveSearchFailureAction,
   LoadAffiliateActivityTypesAction,
   LoadAffiliateActivityTypesSuccessAction,
-  LoadAffiliateActivityTypesFailureAction
+  LoadAffiliateActivityTypesFailureAction,
+  LoadAffiliatePartnerTransportsAction,
+  LoadAffiliatePartnerTransportsSuccessAction,
+  LoadAffiliatePartnerTransportsFailureAction
 } from './affiliate.action';

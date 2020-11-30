@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 import { 
     AffiliateActivityTypesResponse,
     AffiliatePartnerActivitiesLiveSearchResponse,
-    AffiliatePartnerActivitiesResponse, FailureResponse
+    AffiliatePartnerActivitiesResponse, AffiliatePartnerTransportsResponse, FailureResponse
 } from '../models';
 
 export enum AffiliateActionTypes {
@@ -15,7 +15,10 @@ export enum AffiliateActionTypes {
     LOAD_AFFILIATE_PARTNER_ACTIVITIES_LIVE_SEARCH_FAILURE = '[AFFILIATE] Load Affiliate Partner Activities Live Search Failure',
     LOAD_AFFILIATE_ACTIVITY_TYPES = '[AFFILIATE] Load Affiliate Activity Types',
     LOAD_AFFILIATE_ACTIVITY_TYPES_SUCCESS = '[AFFILIATE] Load Affiliate Activity Types Success',
-    LOAD_AFFILIATE_ACTIVITY_TYPES_FAILURE = '[AFFILIATE] Load Affiliate Activity Types Failure'
+    LOAD_AFFILIATE_ACTIVITY_TYPES_FAILURE = '[AFFILIATE] Load Affiliate Activity Types Failure',
+    LOAD_AFFILIATE_PARTNER_TRANSPORTS = '[AFFILIATE] Load Affiliate Partner Transports',
+    LOAD_AFFILIATE_PARTNER_TRANSPORTS_SUCCESS = '[AFFILIATE] Load Affiliate Partner Transports',
+    LOAD_AFFILIATE_PARTNER_TRANSPORTS_FAILURE = '[AFFILIATE] Load Affiliate Partner Transports'
 }
 
 export class LoadAffiliatePartnerActivitiesAction implements Action {
@@ -80,6 +83,27 @@ export class LoadAffiliateActivityTypesFailureAction implements Action {
     constructor(public payload: Error) {}
 }
 
+export class LoadAffiliatePartnerTransportsAction implements Action {
+    readonly type = AffiliateActionTypes.LOAD_AFFILIATE_PARTNER_TRANSPORTS;
+
+    constructor(public payload: {
+        itineraryId: string;
+        cityId: string;
+    }) {}
+}
+
+export class LoadAffiliatePartnerTransportsSuccessAction implements Action {
+    readonly type = AffiliateActionTypes.LOAD_AFFILIATE_PARTNER_TRANSPORTS_SUCCESS;
+
+    constructor(public payload: AffiliatePartnerTransportsResponse) {}
+}
+
+export class LoadAffiliatePartnerTransportsFailureAction implements Action {
+    readonly type = AffiliateActionTypes.LOAD_AFFILIATE_PARTNER_TRANSPORTS_FAILURE;
+
+    constructor(public payload: FailureResponse) {}
+}
+
 export type AffiliateAction =
     LoadAffiliatePartnerActivitiesAction |
     LoadAffiliatePartnerActivitiesSuccessAction |
@@ -90,4 +114,7 @@ export type AffiliateAction =
     LoadAffiliatePartnerActivitiesLiveSearchFailureAction |
     LoadAffiliateActivityTypesAction |
     LoadAffiliateActivityTypesSuccessAction |
-    LoadAffiliateActivityTypesFailureAction
+    LoadAffiliateActivityTypesFailureAction |
+    LoadAffiliatePartnerTransportsAction |
+    LoadAffiliatePartnerTransportsSuccessAction |
+    LoadAffiliatePartnerTransportsFailureAction

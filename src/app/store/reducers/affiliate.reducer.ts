@@ -1,5 +1,5 @@
 import { AffiliateAction, AffiliateActionTypes } from '../actions';
-import { AffiliateActivityTypesResponse, AffiliatePartnerActivitiesLiveSearchResponse, AffiliatePartnerActivitiesResponse, FailureResponse } from '../models';
+import { AffiliateActivityTypesResponse, AffiliatePartnerActivitiesLiveSearchResponse, AffiliatePartnerActivitiesResponse, AffiliatePartnerTransportsResponse, FailureResponse } from '../models';
 
 export interface AffiliateState {
     partnerActivities: AffiliatePartnerActivitiesResponse,
@@ -10,7 +10,10 @@ export interface AffiliateState {
     partnerActivitiesLiveSearchError: FailureResponse,
     activityTypes: AffiliateActivityTypesResponse,
     activityTypesLoading: boolean,
-    activityTypesError: FailureResponse
+    activityTypesError: FailureResponse,
+    partnerTransports: AffiliatePartnerTransportsResponse,
+    partnerTransportsLoading: boolean,
+    partnerTransportsError: FailureResponse
 }
 
 const initialState: AffiliateState = {
@@ -22,7 +25,10 @@ const initialState: AffiliateState = {
     partnerActivitiesLiveSearchError: undefined,
     activityTypes: undefined,
     activityTypesLoading: false,
-    activityTypesError: undefined
+    activityTypesError: undefined,
+    partnerTransports: undefined,
+    partnerTransportsLoading: false,
+    partnerTransportsError: undefined
 };
 
 
@@ -89,6 +95,24 @@ export function AffiliateReducer(state: AffiliateState = initialState, action: A
                 ...state,
                 activityTypesError: action.payload,
                 activityTypesLoading: false
+            }
+        case AffiliateActionTypes.LOAD_AFFILIATE_PARTNER_TRANSPORTS:
+            return {
+                ...state,
+                partnerTransportsLoading: true
+            };
+        case AffiliateActionTypes.LOAD_AFFILIATE_PARTNER_TRANSPORTS_SUCCESS:
+            return {
+                ...state,
+                partnerTransports: action.payload,
+                partnerTransportsError: null,
+                partnerTransportsLoading: false
+            }
+        case AffiliateActionTypes.LOAD_AFFILIATE_PARTNER_TRANSPORTS_FAILURE:
+            return {
+                ...state,
+                partnerTransportsError: action.payload,
+                partnerTransportsLoading: false
             }
         default:
             return state;

@@ -69,3 +69,27 @@ export interface AffiliateActivityTypesResponse {
         }
     }>
 }
+
+export interface AffiliatePartnerTransportsResponse {
+    data: Array<{
+        type: string;
+        attributes: {
+            "title": string;
+            "url": string;
+            "image-url": string;
+            "partner-name": string;
+            "description": string;
+            "transport-type": string;
+            "date": string;
+            "duration": {
+                "years": number;
+                "months": number;
+                "weeks": number;
+                "days": number;
+                "hours": number;
+                "minutes": number;
+                "seconds": number;
+            }
+        }
+    }>
+}

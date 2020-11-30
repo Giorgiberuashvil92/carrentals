@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { act } from '@ngrx/effects';
-import { Observable } from 'rxjs';
-import { AffiliateActivityTypesResponse, AffiliatePartnerActivitiesLiveSearchResponse, AffiliatePartnerActivitiesResponse } from 'src/app/store/models';
+import { Observable, of } from 'rxjs';
+import { AffiliateActivityTypesResponse, AffiliatePartnerActivitiesLiveSearchResponse, AffiliatePartnerActivitiesResponse, AffiliatePartnerTransportsResponse } from 'src/app/store/models';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +26,13 @@ export class AffiliateService {
 
   getAffiliateActivityTypes$(): Observable<AffiliateActivityTypesResponse> {
     return this.httpClient.get<AffiliateActivityTypesResponse>('/affiliate/activity-types');
+  }
+
+  getAffiliatePartnerTransports$(itineraryId: string, cityId: string): Observable<AffiliatePartnerTransportsResponse> {
+    console.log(itineraryId, cityId)
+    // return of();
+    return this.httpClient.get<AffiliatePartnerTransportsResponse>(`/affiliate/partner-transports`);
+    // return this.httpClient.get<AffiliatePartnerTransportsResponse>(`/affiliate/partner-transports?itinerary-id=${itineraryId}&city-id=${cityId}`);
   }
 
   test() {

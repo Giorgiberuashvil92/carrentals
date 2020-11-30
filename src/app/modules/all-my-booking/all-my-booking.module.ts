@@ -10,7 +10,8 @@ import { MyBookingsComponent } from './my-bookings/my-bookings.component';
 import { CityCardsComponent } from './city-cards/city-cards.component';
 import { TourActivitiesComponent } from './tour-activities/tour-activities.component';
 import { TourCardsComponent } from './Tour-cards/tour-cards.component';
-import {NavigationDialogComponent} from '../all-my-booking/navigation-dialog/navigation-dialog.component'
+import {NavigationDialogComponent} from '../all-my-booking/navigation-dialog/navigation-dialog.component';
+import { InterCityComponent } from './inter-city/inter-city.component'
 
 const routes: Routes = [
   {
@@ -26,7 +27,8 @@ const routes: Routes = [
     CityCardsComponent,
     TourActivitiesComponent,
     TourCardsComponent,
-    NavigationDialogComponent
+    NavigationDialogComponent,
+    InterCityComponent
 
   ],
   imports: [

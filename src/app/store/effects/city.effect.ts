@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { map, mergeMap, catchError, withLatestFrom } from 'rxjs/operators';
+import { map, mergeMap, catchError, withLatestFrom, switchMap } from 'rxjs/operators';
 
 import { of } from 'rxjs';
 import { CityService } from 'src/app/core/services/city.service';
@@ -21,7 +21,7 @@ export class CityEffects {
     .pipe(
         ofType<LoadCitiesAction>(CityActionTypes.LOAD_CITIES),
         withLatestFrom(this.store.select(store => store.city)),
-        mergeMap(
+        switchMap(
         (state) =>
             (state[1].cities ? of(state[1].cities) : this.cityService.getCities$())
             .pipe(
