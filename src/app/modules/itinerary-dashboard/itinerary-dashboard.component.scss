@@ -244,62 +244,62 @@
             .left-side {
                 .day {
                 }
-    
+
                 app-paginator {
-                    width: 460px;
+                    width: 408px;
                 }
-    
+
                 .edit-add {
                     button {
                     }
-    
+
                     :first-child {
                         margin-right: 50px;
                     }
                 }
-    
+
                 .location {
                 }
-    
+
                 .date {
                 }
                 .flex-padding{
                 }
-    
+
                 .left-list-wrapper {
-    
+
                     .left-item {
                         width: 440px;
 
                         .left-inner-item {
-    
+
                             &__active {
                             }
                         }
-    
-    
+
+
                         .image {
                             height: 110px;
                             width: 110px;
                         }
-    
+
                         .transport-background {
                             background-size: 50px;
                         }
-    
+
                         .detail-wrapper {
                             margin-left: 25px;
-    
+
                             .title {
                                 max-width: 210px;
                                 font-size: 15px;
                             }
-    
+
                             .time-interval {
                                 margin-top: 8px;
                                 font-size: 13px;
                             }
-    
+
                             .actions {
                                 margin-top: 13px;
 
@@ -307,7 +307,7 @@
                                     padding: 4px 15px !important;
                                     width: 90px !important;
                                 }
-    
+
                                 .change-button {
                                 }
 
@@ -316,7 +316,7 @@
 
                                 .change-button:active{
                                 }
-    
+
                                 .remove-button {
                                     padding-left: 24px !important;
                                 }

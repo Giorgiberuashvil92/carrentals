@@ -4,7 +4,7 @@
 }
 .pd-rg{
     width: 100%;
-    margin-top: 6%;
+    margin-top: 2%;
 }
 .rel {
   padding-left: 24px;
@@ -37,6 +37,7 @@
     color: #02A388;
 }
 .col-sc{
+  max-width: 1109px;
   overflow:auto;
   max-height: 395px;
   padding-right: 30px;
@@ -118,6 +119,7 @@ margin-right: 40px;
     //margin-left: auto;
     // margin-top: 3%;
     max-width: calc(100% - 380px) !important;
+    margin-left: 27.5% !important;
   }
 
 }
