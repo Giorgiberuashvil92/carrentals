@@ -135,6 +135,13 @@ margin-right: 40px;
   flex-direction: column;
 }
 }
+
+@media only screen and (max-width: 992px ) {
+  .pd-rg{
+    max-width: 100%;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .details-wrapper {
     display: block;

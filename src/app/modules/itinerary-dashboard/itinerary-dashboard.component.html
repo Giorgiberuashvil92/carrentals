@@ -87,7 +87,7 @@
                     *ngFor="let tour of tours; let i=index"
                     [ngClass]="{ 'left-inner-item__active': i === itinerary.tourIndex }"
                     [ngStyle]="{
-                        'transform': deviceDetectorService.isMobile ? 'translateX(' + (itinerary.tourIndex * (-280)) + 'px)' : ''
+                        'transform': deviceDetectorService.isMobile ? 'translateX(' + (itinerary.tourIndex * (-300)) + 'px)' : ''
                     }"
                     (click)="onTourChange(i, tour)">
                     <div class="image"

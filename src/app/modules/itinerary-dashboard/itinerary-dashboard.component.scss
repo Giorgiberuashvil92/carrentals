@@ -446,6 +446,9 @@
       width: 100% !important;
       overflow: hidden;
 
+      .left-inner-item {
+          min-width: 300px;
+      }
     }
 
     .tl-wr{
