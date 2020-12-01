@@ -25,18 +25,84 @@
     width: 100%;
 
 }
-
-.sav-inf{
-  background-color: white;
+.column-div{
   display: flex;
+  justify-content: space-between;
+}
+.sz-f{
+  font-size: 12px;
+  font-weight: 200;
+  color: #767388;
+}
+.mini-plane{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  width: 140px;
-  height: 140px;
-  border-bottom: 1px solid whitesmoke;
+}
+.booked{
+  display: flex;
+  justify-content: space-between;
+}
+.plane{
+  box-shadow: #767388;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid gray;
+  border-radius: 4px;
+  width: 350px;
+  height: 285px;
+  box-shadow: 0px 10px -14px 14px #FFF;
+}
+.booked-img{
+  margin-top: 20px;
+  padding-left: 12px;
+}
+.booked-pdf{
+  padding-right: 11px;
+}
+.location-right{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 5px;
+}
+.location-left{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 5px;
+}
+.location-img{
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.location-texts{
+  padding-right: 58px;
+  padding-left: 5px;
+  font-size: 10px;
+  font-weight: 200;
+  color: #767388;
+}
+.flight{
+  padding-left: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 3%;
+  color: #02A388;
+}
+.sav-inf{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    width: 142px;
+    height: 121px;
+    border-bottom: 1px solid whitesmoke;
 }
 .pd-c{
   color: #02A388;
-  font-size: 13px;
+  font-weight: 600;
 }
 .sv-div{
   width: 100%;
