@@ -15,7 +15,7 @@
       <div class="p-summary rounded-md" *ngIf="item.type !== 'tours'">
         {{ item.attributes.summary }}
       </div>
-      <div class="p-description">
+      <div class="p-description" [style.margin-top]="item.type === 'tours' ? '15px' : '10px'">
         {{ item.type === 'tours' ? item.attributes.summary : item.attributes.description }}
       </div>
 

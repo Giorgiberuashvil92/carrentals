@@ -29,7 +29,7 @@
           <div class="rounded-full h-16 w-16 flex items-center justify-center bg-col"
           [ngClass]="{'grid-col': deviceDetectorService.isMobile}">
             <div class="relative">
-              <img src="/assets/prague.svg" alt="" class="nav-img">
+              <img [src]="item.attributes['image-url']" alt="" class="nav-img">
               <div class="absolute btm">
                 {{item.attributes.name}}
               </div>
