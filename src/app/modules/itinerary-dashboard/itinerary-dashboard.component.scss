@@ -5,7 +5,7 @@
     .location-wrapper {
         display: block;
         margin-top: 15px;
-        
+
         .location-details {
             // .location-names-vertical {
             //     color: #02A388;
@@ -31,14 +31,25 @@
                     align-items: center;
 
                     .location-name-horizontal-name {
+                      padding-left: 5px;
                     }
 
                     .location-name-horizontal-line {
                         background-color: #02A388;
                         width: 20px;
-                        height: 7px;
-                        margin: 0 10px;
+                        height: 2.5px;
+                        margin: 0 8px;
                     }
+                  .arrow {
+                    border: solid #02A388;
+                    border-width: 0 3px 3px 0;
+                    display: inline-block;
+                    padding: 3px;
+                  }
+                  .right {
+                    transform: rotate(-45deg);
+                    -webkit-transform: rotate(-45deg);
+                  }
                 }
             }
 
@@ -69,7 +80,7 @@
     }
     .line2 {
       width: 100%;
-      margin-top: 19%;
+      margin-top: 4%;
       height: 1px;
       background-color: #707070;
   }
@@ -214,7 +225,7 @@
 
         .right-side {
             width: calc(100% - 400px);
-            margin-left: auto;
+            margin: 0 auto;
         }
 
         .pr-g{
@@ -231,14 +242,14 @@
         .details-wrapper {
 
             .right-side {
-                width: calc(100% - 550px);
+                width: calc(100% - 450px);
             }
         }
     }
 }
 
 @media only screen and (max-width: 992px) {
-    
+
     // .wrapper{
     //     width: calc(100%-50px);
     //     .location-wrapper{
@@ -260,7 +271,7 @@
 
     //                     .location-name-horizontal-name {
     //                     }
-    
+
     //                     .location-name-horizontal-line {
     //                         background-color: #02A388;
     //                         width: 20px;
@@ -372,7 +383,7 @@
     }
     .location-names-vertical > div{
       display: inline-block;
-      margin-right: 10px;
+      margin-right: 5px;
     }
 }
 

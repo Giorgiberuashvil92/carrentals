@@ -18,6 +18,7 @@
                         {{ l }}
                     </div>
                     <div class="location-name-horizontal-line" *ngIf="i !== generateCitiesArray(itinerary.data.data.relationships.cities.data, itinerary.data.included).length - 1"></div>
+                    <div class="arrow right" *ngIf="i !== generateCitiesArray(itinerary.data.data.relationships.cities.data, itinerary.data.included).length - 1"></div>
                 </div>
             </div>
             <div class="trip-time">
@@ -53,8 +54,8 @@
 
             <div class="gt-n">
                 <div class="edit-add">
-                <button (click)="dialogService.openDialog('arriveDay')">EDIT TRIP</button>
-                <button (click)="dialogService.openDialog('selectActivity')">+ ADD ACTIVITY</button>
+                <button (click)="dialogService.openDialog('arriveDay')" class="outline-none">EDIT TRIP</button>
+                <button (click)="dialogService.openDialog('selectActivity')" class="outline-none">+ ADD ACTIVITY</button>
             </div>
 
             <div class="tl-wr">
@@ -91,7 +92,7 @@
                             {{ tour.attributes.schedule }}
                         </div>
                         <div class="actions flex">
-                            <button class="change-button flex justify-between items-center"
+                            <button class="change-button flex justify-between items-center "
                                 [disabled]="i != itinerary.tourIndex"
                                 *ngIf="!tour.attributes.transportation || (tour.attributes.transportation && tour.attributes['has-alternative'])"
                                 (click)="onChange(tour)">
