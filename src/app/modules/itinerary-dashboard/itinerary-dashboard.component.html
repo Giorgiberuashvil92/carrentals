@@ -12,6 +12,9 @@
             </div> -->
 
             <div class="location-names-horizontal">
+              <div class="trip-time">
+                {{ itinerary.data.data.attributes['days-count'] }} Day Trip
+            </div>
                 <div
                     *ngFor="let l of generateCitiesArray(itinerary.data.data.relationships.cities.data, itinerary.data.included); let i=index">
                     <div class="location-name-horizontal-name">
@@ -22,9 +25,7 @@
                     <span class="location-name-horizontal-arrow" *ngIf="i !== generateCitiesArray(itinerary.data.data.relationships.cities.data, itinerary.data.included).length - 1">&#8594;</span>
                 </div>
             </div>
-            <div class="trip-time">
-                {{ itinerary.data.data.attributes['days-count'] }} Day Trip
-            </div>
+
         </div>
 
         <app-location-paginator
