@@ -1,5 +1,38 @@
-.wrapper {
+.location-details {
 
+  .location-names-horizontal {
+      color: #02A388;
+      font-size: 25px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+
+      >div {
+          display: flex;
+          align-items: center;
+
+          .location-name-horizontal-name {
+            padding-left: 5px;
+          }
+
+          .location-name-horizontal-arrow {
+              margin: -5px 8px 0px;
+              font-size: 30px;
+          }
+      }
+  }
+
+  .trip-time {
+      color: #767388;
+      font-size: 20px;
+      font-weight: 700;
+      padding-right: 15px;
+
+  }
+}
+
+.wrapper {
     .location-wrapper {
         color: #767388;
         width: 100;

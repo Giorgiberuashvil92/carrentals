@@ -102,4 +102,9 @@ export class ItineraryService {
   generateWaypoint(itineraryResponse: ItineraryResponse, id: string) {
     return itineraryResponse.included.find(i => i.type === 'waypoints' && i.id === id);
   }
+
+  generateCitiesArray(itineraryResponse: ItineraryResponse) {
+    const res: string[] = itineraryResponse.data.relationships.cities.data.map(c => itineraryResponse.included.find(i => i.type === 'cities' && i.id === c.id).attributes.name);
+    return res;
+  }
 }

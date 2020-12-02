@@ -110,11 +110,6 @@ export class ItineraryDashboardComponent implements OnInit, OnDestroy {
     this.store.dispatch(new SetTourAction(tour));
   }
 
-  generateCitiesArray(cities: any[], included: any[]) {
-    const res: string[] = cities.map(c => included.find(i => i.type === 'cities' && i.id === c.id).attributes.name);
-    return res;
-  }
-
   onChange(tour: any) {
     this.alternateToursLoading = true;
     this.store.dispatch(new LoadItineraryAlternateToursAction({ itineraryId: this.itinerary.data.data.id, id: tour.id}));

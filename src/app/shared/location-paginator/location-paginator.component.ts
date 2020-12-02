@@ -1,13 +1,18 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 import { LocationPaginator } from 'src/app/core/models/location-paginator.model';
 import { DeviceDetectorService } from 'src/app/core/services/device-detector.service';
+import { ItineraryService } from 'src/app/core/services/itinerary.service';
+import { AppState } from 'src/app/store/models';
+import { ItineraryState } from 'src/app/store/reducers';
 
 @Component({
   selector: 'app-location-paginator',
   templateUrl: './location-paginator.component.html',
   styleUrls: ['./location-paginator.component.scss']
 })
-export class LocationPaginatorComponent implements OnInit {
+export class LocationPaginatorComponent implements OnInit, OnDestroy {
 
   @ViewChild('wrapper', { static: false }) wrapper: ElementRef;
 
@@ -22,11 +27,20 @@ export class LocationPaginatorComponent implements OnInit {
   isTouched = false;
   initialTouchX: number = 0;
 
+  itineraryState: ItineraryState;
+  itineraryStateSub: Subscription;
+
   constructor(
-    public deviceDetectorService: DeviceDetectorService
+    public deviceDetectorService: DeviceDetectorService,
+    private store: Store<AppState>,
+    public itineraryService: ItineraryService
   ) { }
 
   ngOnInit(): void {
+    this.itineraryStateSub = this.store.select(store => store.itinerary).subscribe(res => {
+      this.itineraryState = res;
+    });
+
     if(this.deviceDetectorService.isDesktop) {
       this.generateArray();
     } else {
@@ -80,5 +94,9 @@ export class LocationPaginatorComponent implements OnInit {
 
   generateArray() {
     this.dataToShow = this.data.slice(this.leftMostIndex - 1, this.leftMostIndex - 1 + this.locationsToShow);
+  }
+
+  ngOnDestroy() {
+    if(this.itineraryStateSub) this.itineraryStateSub.unsubscribe();
   }
 }
