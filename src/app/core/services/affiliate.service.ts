@@ -29,6 +29,9 @@ export class AffiliateService {
   }
 
   getAffiliatePartnerTransports$(itineraryId: string, subjectId: string, subjectType: string): Observable<AffiliatePartnerTransportsResponse> {
+    itineraryId = '5f5e23be306f344825352472';
+    subjectId = '51a35e733052ab6bcca9d64a';
+    subjectType = 'city';
     return this.httpClient.get<AffiliatePartnerTransportsResponse>(`/affiliate/partner-transports?itinerary-id=${itineraryId}&subject-id=${subjectId}&subject-type=${subjectType}`);
   }
 

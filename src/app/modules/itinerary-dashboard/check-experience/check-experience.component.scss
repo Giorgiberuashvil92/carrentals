@@ -1,12 +1,13 @@
 .wr-p{
     width: 100%;
-    max-width: 765px;
+    // max-width: 765px;
+    margin-top: 30px;
 }
 .pd-rg{
     width: 100%;
 }
 .rel {
-  padding-left: 24px;
+  padding-left: 4px;
 }
 .spn-col{
   font-size: 14px;
@@ -38,8 +39,8 @@
 .col-sc{
   overflow:auto;
   max-height: 500px;
-  padding-right: 30px;
-  padding-left: 20px;
+  // padding-right: 30px;
+  // padding-left: 20px;
   padding-bottom: 8px;
 }
 .col {
@@ -114,9 +115,9 @@ margin-right: 40px;
 
 .transportation {
   margin-top: 30px;
+  margin-left: 5px;
   display: flex;
   height: 190px;
-  max-width: 815px;
 
   .left-wrapper {
     margin-top: 10px;
@@ -166,7 +167,7 @@ margin-right: 40px;
   .right-wrapper {
     position: relative;
     margin-left: 30px;
-    width: 564px;
+    width: calc(100% - 275px);
 
     .title {
       font-size: 18px;
@@ -232,16 +233,16 @@ margin-right: 40px;
   .pd-rg{
     //margin-left: auto;
     // margin-top: 3%;
-    max-width: calc(100% - 417px) !important;
+    // max-width: calc(100% - 417px) !important;
     //margin-left: 28.5% !important;
   }
 
 }
 @media only screen and (min-width: 992px ) ,(max-width: 1500px) {
 .pd-rg{
-  margin-left: auto;
+  // margin-left: auto;
   // margin-top: 3%;
-  max-width: calc(100% - 354px);
+  // max-width: calc(100% - 354px);
 }
 .tx-t{
   padding-right: 15px;

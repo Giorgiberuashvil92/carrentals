@@ -1,6 +1,6 @@
 <div class="relative" *ngIf="!watch && data && data.length > 0">
   <swiper class="f-w swiper-wrapper relative" (indexChange)="onIndexChange($event)" [config]="config" [index]="currentIndex">
-    <div class="f-w relative swiper-slide" *ngFor="let item of data">
+    <div class="f-w relative swiper-slide" *ngFor="let item of data" style="overflow: hidden;">
       <div class="img-tr relative rounded-md">
         <img [src]="item.type === 'tours' ? item.attributes['landscape-image-url'] : item.attributes['image-url']" alt="" class="rounded-md">
         <div class="p-a">
@@ -19,6 +19,7 @@
         {{ item.type === 'tours' ? item.attributes.summary : item.attributes.description }}
       </div>
 
+      <app-check-experience></app-check-experience>
     </div>
   </swiper>
   <ng-container *ngIf="data.length > 1">
