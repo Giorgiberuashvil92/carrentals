@@ -20,7 +20,7 @@
 </div>
 
 <div class="wrapper flex flex-column-rips">
-  <div class="flex flex-wrap -mx-2 overflow-hidden sm:-mx-2 md:-mx-2 lg:-mx-2 xl:-mx-2 ">
+  <div class="flex flex-wrap -mx-2 overflow-hidden sm:-mx-2 md:-mx-2 lg:-mx-2 xl:-mx-2 fl-g">
     <div class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 md:my-1 md:px-1 lg:my-1 lg:px-1 xl:my-1 xl:px-1 flex-column-rips-second">
       <ng-container *ngIf="cityState && cityState.cities && cityState.cities.data">
         <div class="gm-d cursor-pointer" *ngFor="let item of cityState.cities.data; let i=index"
@@ -29,7 +29,7 @@
           <div class="rounded-full h-16 w-16 flex items-center justify-center bg-col"
           [ngClass]="{'grid-col': deviceDetectorService.isMobile}">
             <div class="relative">
-              <img [src]="item.attributes['image-url']" alt="" class="nav-img">
+              <div class="image" [style.background-image]="'url(\'' + item.attributes['image-url'] + '\')'"></div>
               <div class="absolute btm">
                 {{item.attributes.name}}
               </div>

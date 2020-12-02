@@ -22,9 +22,6 @@
             input {
                 width: 95%;
             }
-
-            img {
-            }
         }
 
         .select-city, .interested-in, .recommended-for {
@@ -72,13 +69,13 @@
         .no-results {
             font-weight: 400;
             font-size: 16px;
-            margin-top: 20px;  
+            margin-top: 20px;
         }
 
         .activity-wrapper {
             margin-bottom: 100px;
             font-weight: 700;
-    
+
             .activity {
                 padding: 4px;
                 border-radius: 10px;
@@ -86,16 +83,16 @@
                 border-color: rgba(0,0,0,0);
                 margin: 10px 0px;
                 width: 32%;
-                
+
                 &__active {
                     border-color: #02A388;
                 }
-    
+
                 .current {
                     top: 5px;
                     right: 5px;
                 }
-    
+
                 .image {
                     width: 80px;
                     height: 80px;
@@ -104,7 +101,7 @@
                     background-position: center;
                     border-radius: 10px;
                 }
-    
+
                 .detail-wrapper {
                     position: relative;
                     margin-left: 20px;
@@ -115,7 +112,7 @@
                         font-size: 12px;
                         font-weight: 600;
                     }
-    
+
                     .title-self-guided {
                         font-size: 16px;
                         color: #02A388;
@@ -130,20 +127,20 @@
         bottom: -100px;
         width: 100%;
         padding: 0 30%;
-    
+
         button {
             font-size: 17px;
             width: 138px;
             height: 50px;
             border-radius: 10px;
         }
-        
+
         .cancel-button {
             border-color: #02A388;
             border-width: 3px;
             color: #02A388;
         }
-    
+
         .next-button {
             color: #fff;
             background-color: #02A388;

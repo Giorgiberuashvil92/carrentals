@@ -15,7 +15,7 @@
       <div class="pd-c"><p>Save a Booking what <br>You have Made</p></div>
     </div>
     </div>
-    <div class="plane">
+    <div class="plane shadow-lg">
       <div class="mini-plane">
         <div class="sz-f">Date:21 FEB</div>
         <div><img src="../../../../assets/airplane.svg" alt=""></div>
@@ -27,9 +27,9 @@
         </div>
         <div class="location-texts">
           <div >Depart Times</div>
-          <div style="color :#D15A5A">11:25(11:25AM)</div>
+          <div style="color :#D15A5A; font-size: 10px;">11:25(11:25AM)</div>
           <div>Departing Airport</div>
-          <div style="color:#D15A5A">New York JFK</div>
+          <div style="color :#D15A5A; font-size: 10px;">New York JFK</div>
         </div>
       </div>
       <div class="location-left">
@@ -73,7 +73,7 @@
       </div>
 
       <div class="vertical-line"></div>
-      
+
       <div class="right-wrapper">
         <div class="title">
           {{ item.attributes.title }}
@@ -84,7 +84,7 @@
         </div>
 
         <div class="horizontal-line"></div>
-        
+
         <div class="tags">
           <div class="tag" *ngFor="let tag of ['Plane', 'Tickets']">
             {{ tag }}
