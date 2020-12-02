@@ -9,6 +9,7 @@ export interface CitiesResponse {
             'continent-name': string;
             'show-in-wizard': boolean;
             'wizard-order': number;
+            'image-url': string;
         }
     }>
 }

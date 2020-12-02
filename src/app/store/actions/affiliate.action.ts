@@ -17,8 +17,9 @@ export enum AffiliateActionTypes {
     LOAD_AFFILIATE_ACTIVITY_TYPES_SUCCESS = '[AFFILIATE] Load Affiliate Activity Types Success',
     LOAD_AFFILIATE_ACTIVITY_TYPES_FAILURE = '[AFFILIATE] Load Affiliate Activity Types Failure',
     LOAD_AFFILIATE_PARTNER_TRANSPORTS = '[AFFILIATE] Load Affiliate Partner Transports',
-    LOAD_AFFILIATE_PARTNER_TRANSPORTS_SUCCESS = '[AFFILIATE] Load Affiliate Partner Transports',
-    LOAD_AFFILIATE_PARTNER_TRANSPORTS_FAILURE = '[AFFILIATE] Load Affiliate Partner Transports'
+    LOAD_AFFILIATE_PARTNER_TRANSPORTS_SUCCESS = '[AFFILIATE] Load Affiliate Partner Transports Success',
+    LOAD_AFFILIATE_PARTNER_TRANSPORTS_FAILURE = '[AFFILIATE] Load Affiliate Partner Transports Failure',
+    SET_AFFILIATE_PARTNER_TRANSPORTS = '[AFFILIATE] Set Affiliate Partner Transports'
 }
 
 export class LoadAffiliatePartnerActivitiesAction implements Action {
@@ -88,7 +89,8 @@ export class LoadAffiliatePartnerTransportsAction implements Action {
 
     constructor(public payload: {
         itineraryId: string;
-        cityId: string;
+        subjectId: string;
+        subjectType: string;
     }) {}
 }
 
@@ -104,6 +106,12 @@ export class LoadAffiliatePartnerTransportsFailureAction implements Action {
     constructor(public payload: FailureResponse) {}
 }
 
+export class SetAffiliatePartnerTransportsAction implements Action {
+    readonly type = AffiliateActionTypes.SET_AFFILIATE_PARTNER_TRANSPORTS;
+
+    constructor(public payload: AffiliatePartnerTransportsResponse) {}
+}
+
 export type AffiliateAction =
     LoadAffiliatePartnerActivitiesAction |
     LoadAffiliatePartnerActivitiesSuccessAction |
@@ -117,4 +125,5 @@ export type AffiliateAction =
     LoadAffiliateActivityTypesFailureAction |
     LoadAffiliatePartnerTransportsAction |
     LoadAffiliatePartnerTransportsSuccessAction |
-    LoadAffiliatePartnerTransportsFailureAction
+    LoadAffiliatePartnerTransportsFailureAction |
+    SetAffiliatePartnerTransportsAction

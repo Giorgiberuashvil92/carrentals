@@ -20,7 +20,7 @@ export class BookingsNavigationComponent implements OnInit, OnDestroy {
   itineraryStateSub: Subscription
   cityStateSub: Subscription;
   activeCityIndex = 0;
-  option = 1;
+  option = 3;
 
   constructor(
     public dialogService: DialogService,
@@ -45,7 +45,6 @@ export class BookingsNavigationComponent implements OnInit, OnDestroy {
     this.itineraryStateSub = this.store.select(store => store.itinerary).subscribe(res => {
       this.itineraryState = res;
       this.onCityClick(0);
-      console.log(res)
     })
   }
 
@@ -56,8 +55,7 @@ export class BookingsNavigationComponent implements OnInit, OnDestroy {
     }
     if(this.itineraryState && this.itineraryState.data && this.itineraryState.data.data && this.itineraryState.data.data.id
       && this.cityState && this.cityState.cities && this.cityState.cities.data && this.cityState.cities.data.length > this.activeCityIndex) {
-        console.log({ itineraryId: this.itineraryState.data.data.id, cityId: this.cityState.cities.data[index].id });
-        // this.store.dispatch(new LoadAffiliatePartnerTransportsAction({ itineraryId: this.itineraryState.data.data.id, cityId: this.cityState.cities.data[index].id }));
+        this.store.dispatch(new LoadAffiliatePartnerTransportsAction({ itineraryId: this.itineraryState.data.data.id, subjectId: this.cityState.cities.data[index].id, subjectType: 'city' }));
     }
   }
 

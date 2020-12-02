@@ -95,5 +95,6 @@ export {
   LoadAffiliateActivityTypesFailureAction,
   LoadAffiliatePartnerTransportsAction,
   LoadAffiliatePartnerTransportsSuccessAction,
-  LoadAffiliatePartnerTransportsFailureAction
+  LoadAffiliatePartnerTransportsFailureAction,
+  SetAffiliatePartnerTransportsAction
 } from './affiliate.action';

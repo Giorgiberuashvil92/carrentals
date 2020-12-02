@@ -17,8 +17,9 @@
                     <div class="location-name-horizontal-name">
                         {{ l }}
                     </div>
-                    <div class="location-name-horizontal-line" *ngIf="i !== generateCitiesArray(itinerary.data.data.relationships.cities.data, itinerary.data.included).length - 1"></div>
-                    <div class="arrow right" *ngIf="i !== generateCitiesArray(itinerary.data.data.relationships.cities.data, itinerary.data.included).length - 1"></div>
+                    <!-- <div class="location-name-horizontal-line" *ngIf="i !== generateCitiesArray(itinerary.data.data.relationships.cities.data, itinerary.data.included).length - 1"></div>
+                    <div class="arrow right" *ngIf="i !== generateCitiesArray(itinerary.data.data.relationships.cities.data, itinerary.data.included).length - 1"></div> -->
+                    <span class="location-name-horizontal-arrow" *ngIf="i !== generateCitiesArray(itinerary.data.data.relationships.cities.data, itinerary.data.included).length - 1">&#8594;</span>
                 </div>
             </div>
             <div class="trip-time">
@@ -87,7 +88,7 @@
                     *ngFor="let tour of tours; let i=index"
                     [ngClass]="{ 'left-inner-item__active': i === itinerary.tourIndex }"
                     [ngStyle]="{
-                        'transform': deviceDetectorService.isMobile ? 'translateX(' + (itinerary.tourIndex * (-280)) + 'px)' : ''
+                        'transform': deviceDetectorService.isMobile ? 'translateX(' + (itinerary.tourIndex * (-300)) + 'px)' : ''
                     }"
                     (click)="onTourChange(i, tour)">
                     <div class="image"
@@ -134,9 +135,9 @@
             <app-location-detail [data]="locationDetailData" (indexChange)="onLocationDetailIndexchange($event)"></app-location-detail>
         </div>
     </div>
-    <div class="pd-rg">
+    <!-- <div class="pd-rg">
         <app-check-experience></app-check-experience>
-    </div>
+    </div> -->
     <div class="line2"></div>
     <div class="pr-g " style="height: 200px;">
         <app-detail-itirenary></app-detail-itirenary>

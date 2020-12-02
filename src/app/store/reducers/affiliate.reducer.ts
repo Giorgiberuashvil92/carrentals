@@ -114,6 +114,13 @@ export function AffiliateReducer(state: AffiliateState = initialState, action: A
                 partnerTransportsError: action.payload,
                 partnerTransportsLoading: false
             }
+        case AffiliateActionTypes.SET_AFFILIATE_PARTNER_TRANSPORTS:
+            return {
+                ...state,
+                partnerTransportsLoading: false,
+                partnerTransportsError: null,
+                partnerTransports: action.payload
+            }
         default:
             return state;
     }

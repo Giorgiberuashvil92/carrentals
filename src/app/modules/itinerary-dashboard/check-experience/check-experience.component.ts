@@ -59,12 +59,12 @@ export class CheckExperienceComponent implements OnInit, OnDestroy {
     }
   }
 
-  onClick(partnerActivity: any) {
+  onClick(activity: any) {
     this.dialogService.openDialog('acceptDialog', {
-      question: `Did you book ${partnerActivity.attributes.title}?`,
+      question: `Did you book ${activity.attributes.title}?`,
       yesFn: this.affiliateService.test
     });
-    window.open(partnerActivity.attributes.url , '_blank');
+    window.open(activity.attributes.url , '_blank');
   }
 
   generateDataToShow() {
