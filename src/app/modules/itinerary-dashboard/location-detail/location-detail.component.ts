@@ -8,7 +8,7 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 })
 export class LocationDetailComponent implements OnInit, OnChanges {
 
-  @Input() data: any[];
+  @Input() data: any[] = [];
   @Output() indexChange = new EventEmitter<number>();
   currentIndex = 0;
   watch: boolean = false;
@@ -30,6 +30,7 @@ export class LocationDetailComponent implements OnInit, OnChanges {
     this.indexChange.emit(0);
     this.currentIndex = 0;
     this.watch = true;
+    this.config.loop = this.data.length > 1;
     setTimeout(() => {
       this.watch = false
     }, 0);
