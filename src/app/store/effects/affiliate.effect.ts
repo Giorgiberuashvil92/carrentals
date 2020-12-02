@@ -61,27 +61,11 @@ export class AffiliateEffects {
         ),
     )
 
-    // @Effect() loadAffiliatePartnerTransports$ = this.actions$
-    // .pipe(
-    //     ofType<LoadAffiliatePartnerTransportsAction>(AffiliateActionTypes.LOAD_AFFILIATE_PARTNER_TRANSPORTS),
-    //     switchMap(
-    //     (d) =>
-    //         // this.affiliateService.getAffiliatePartnerTransports$(d.payload.itineraryId, d.payload.cityId)
-    //         of(this.affiliateService.test())
-    //         .pipe(
-    //         map(data => {
-    //             return new LoadAffiliatePartnerTransportsSuccessAction(data)
-    //         }),
-    //         catchError(error => of(new LoadAffiliatePartnerTransportsFailureAction(error)))
-    //         )
-    //     ),
-    // )
-
     @Effect() loadAffiliatePartnerTransports$ = this.actions$
     .pipe(
         ofType<LoadAffiliatePartnerTransportsAction>(AffiliateActionTypes.LOAD_AFFILIATE_PARTNER_TRANSPORTS),
-        switchMap(
-        (d) => this.affiliateService.getAffiliatePartnerTransports$(d.payload.itineraryId, d.payload.cityId)
+        mergeMap(
+        (d) => this.affiliateService.getAffiliatePartnerTransports$(d.payload.itineraryId, d.payload.subjectId, d.payload.subjectType)
             .pipe(
             map(data => {
                 return new LoadAffiliatePartnerTransportsSuccessAction(data)

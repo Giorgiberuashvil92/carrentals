@@ -8,7 +8,7 @@ import { CityService } from 'src/app/core/services/city.service';
 import { DeviceDetectorService } from 'src/app/core/services/device-detector.service';
 import { DialogService } from 'src/app/core/services/dialog.service';
 import { ItineraryService } from 'src/app/core/services/itinerary.service';
-import { LoadAffiliatePartnerActivitiesAction, SetAffiliatePartnerActivitiesAction, SetCitiesAction } from 'src/app/store/actions';
+import { LoadAffiliatePartnerActivitiesAction, LoadAffiliatePartnerTransportsAction, SetAffiliatePartnerActivitiesAction, SetAffiliatePartnerTransportsAction, SetCitiesAction } from 'src/app/store/actions';
 import { DeleteTourAction, LoadItineraryAction, LoadItineraryAlternateToursAction, SetDayIndexAction, SetTourAction, SetTourIndexAction } from 'src/app/store/actions/itinerary.action';
 import { AppState } from 'src/app/store/models/app-state.model';
 import { ItineraryState } from 'src/app/store/reducers';
@@ -147,16 +147,27 @@ export class ItineraryDashboardComponent implements OnInit, OnDestroy {
     if(event >= this.locationDetailData.length) return;
     const temp: any = this.locationDetailData[event];
     let query: string;
-    if(temp.type === 'tours') {
-      if(!temp.relationships['tour-offer'] || !temp.relationships['tour-offer'].data || !temp.relationships['tour-offer'].data.id) {
-        this.store.dispatch(new SetAffiliatePartnerActivitiesAction({ data: [] }));
-        return;
+    this.store.dispatch(new SetAffiliatePartnerActivitiesAction({ data: [] }));
+    this.store.dispatch(new SetAffiliatePartnerTransportsAction({ data: [] }));
+    if(temp.attributes.transportation) {
+      if(temp.attributes['transport-type'] !== 'car') {
+        this.store.dispatch(new LoadAffiliatePartnerTransportsAction({ 
+          itineraryId: this.itinerary.data.data.id,
+          subjectId: temp.id,
+          subjectType: 'tour-offer'
+        }));
       }
-      query = `subject-type=tour-offer&subject-id=${temp.relationships['tour-offer'].data.id}`;
     } else {
-      query = `subject-type=poi&subject-id=${temp.id}`;
+      if(temp.type === 'tours') {
+        if(!temp.relationships['tour-offer'] || !temp.relationships['tour-offer'].data || !temp.relationships['tour-offer'].data.id) {
+          return;
+        }
+        query = `subject-type=tour-offer&subject-id=${temp.relationships['tour-offer'].data.id}`;
+      } else {
+        query = `subject-type=poi&subject-id=${temp.id}`;
+      }
+      this.store.dispatch(new LoadAffiliatePartnerActivitiesAction(query));
     }
-    this.store.dispatch(new LoadAffiliatePartnerActivitiesAction(query));
   }
 
   onLocationChange(index: number) {

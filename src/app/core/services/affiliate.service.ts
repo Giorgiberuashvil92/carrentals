@@ -28,11 +28,8 @@ export class AffiliateService {
     return this.httpClient.get<AffiliateActivityTypesResponse>('/affiliate/activity-types');
   }
 
-  getAffiliatePartnerTransports$(itineraryId: string, cityId: string): Observable<AffiliatePartnerTransportsResponse> {
-    console.log(itineraryId, cityId)
-    // return of();
-    return this.httpClient.get<AffiliatePartnerTransportsResponse>(`/affiliate/partner-transports`);
-    // return this.httpClient.get<AffiliatePartnerTransportsResponse>(`/affiliate/partner-transports?itinerary-id=${itineraryId}&city-id=${cityId}`);
+  getAffiliatePartnerTransports$(itineraryId: string, subjectId: string, subjectType: string): Observable<AffiliatePartnerTransportsResponse> {
+    return this.httpClient.get<AffiliatePartnerTransportsResponse>(`/affiliate/partner-transports?itinerary-id=${itineraryId}&subject-id=${subjectId}&subject-type=${subjectType}`);
   }
 
   test() {
