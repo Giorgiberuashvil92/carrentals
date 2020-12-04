@@ -17,6 +17,13 @@
   background-position: center;
   border-radius: 10px;
 }
+.right-line{
+  width: 1px;
+    height: 27px;
+    background-color: black;
+    margin-left: 40px;
+}
+
 .fl-s{
   // border: 2px solid #02A388;
   // border-radius: 9px;
@@ -27,7 +34,7 @@
   align-items: center;
   justify-content: space-between;
   // border-right: 1px solid #1A1538;
-  margin-right: 50px;
+  margin-right: 15px;
   padding-left: 12px;
   position: relative;
 
@@ -37,6 +44,7 @@
 
   .fl-s:last-child{
     border: none;
+    width: 0px;
   }
 
   &:after:not(:last-child) {

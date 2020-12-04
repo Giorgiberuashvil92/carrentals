@@ -54,6 +54,9 @@
     border-radius: 10px;
 
 }
+.col:hover{
+  cursor: pointer;
+}
 .ph-t{
         width: 100%;
         max-width: 200px;
@@ -154,7 +157,7 @@ margin-right: 40px;
     }
 
   }
-  
+
   .vertical-line {
     margin-top: 10px;
     height: 170px;
