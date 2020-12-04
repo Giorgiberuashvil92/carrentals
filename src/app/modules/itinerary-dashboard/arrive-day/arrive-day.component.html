@@ -17,12 +17,12 @@
             <div class="calendars-wrapper">
                 <div class="from">
                     <div class="title">FROM:</div>
-                    <app-calendar [date]="itineraryState.data.data.attributes['start-date']"></app-calendar>
+                    <app-datepicker [date]="startDateString" [isEditable]="true" (dateChange)="onFromDateChange($event)"></app-datepicker>
                 </div>
         
                 <div class="to">
                     <div class="title">TO:</div>
-                    <app-calendar [date]="itineraryState.data.data.attributes['end-date']"></app-calendar>
+                    <app-datepicker [date]="endDateString" [isEditable]="false"></app-datepicker>
                 </div>
             </div>
                 
@@ -38,10 +38,9 @@
             </div>
             
             <div class="days-wrapper">
-                <app-location-days [data]="itineraryState.data.data.relationships['grouped-days'].data[0]" [counter]="0"></app-location-days>
-                <ng-container *ngFor="let gd of itineraryState.data.data.relationships['grouped-days'].data | slice:1; let i=index">
-                    <div class="spacing"></div>
-                    <app-location-days [data]="gd" [counter]="i+1"></app-location-days>
+                <ng-container *ngFor="let gd of itineraryState.data.data.relationships['grouped-days'].data; let i=index">
+                    <div class="spacing" *ngIf="i !== 0"></div>
+                    <app-location-days [data]="gd" [counter]="i" [daysDiff]="daysDiff"></app-location-days>
                 </ng-container>
             </div>
         

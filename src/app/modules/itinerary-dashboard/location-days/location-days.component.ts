@@ -15,6 +15,7 @@ export class LocationDaysComponent implements OnInit, OnDestroy {
 
   @Input() data: any;
   @Input() counter: number;
+  @Input() daysDiff: number;
 
   city: any;
   daysArr: any[];
@@ -144,6 +145,13 @@ export class LocationDaysComponent implements OnInit, OnDestroy {
 
   sortDays() {
     this.daysArr.sort((a, b) => a.attributes.index - b.attributes.index);
+  }
+
+  transformDate(date: string, daysDiff: number) {
+    const dateObj = new Date(date);
+    dateObj.setDate(dateObj.getDate() + daysDiff);
+    const newDateString = `${dateObj.getFullYear()}-${dateObj.getMonth()+1}-${dateObj.getDate()}`;
+    return newDateString;
   }
 
   ngOnDestroy() {

@@ -82,6 +82,7 @@ export class ItineraryDashboardComponent implements OnInit, OnDestroy {
     this.setLocationPaginatorIndexSub = this.itineraryService.setLocationPaginatorIndex.subscribe(res => {
       this.setLocationPaginatorActiveIndex(res);
     });
+    this.dialogService.openDialog('arriveDay');
   }
 
   onDayChange(day: number) {

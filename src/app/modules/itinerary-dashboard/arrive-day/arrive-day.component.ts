@@ -16,8 +16,14 @@ export class ArriveDayComponent implements OnInit, OnDestroy {
 
   itineraryState: ItineraryState;
   itineraryStateSub: Subscription;
+  dayChangeSub: Subscription;
 
-  updateItineraryLoading
+  updateItineraryLoading: boolean;
+  startDateString: string;
+  endDateString: string;
+  daysDiff: number = 0;
+  addedDays: number = 0;
+  
 
   constructor(
     public dialogService: DialogService,
@@ -28,6 +34,10 @@ export class ArriveDayComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.itineraryStateSub = this.store.select(store => store.itinerary).subscribe(res => {
       this.itineraryState = res;
+      if(this.itineraryState.data && this.itineraryState.data.data) {
+        this.startDateString = this.itineraryState.data.data.attributes['start-date'];
+        this.endDateString = this.itineraryState.data.data.attributes['end-date'];
+      }
       if(this.updateItineraryLoading && !this.itineraryState.updateItineraryLoading) {
         this.updateItineraryLoading = false;
         if(!this.itineraryState.updateItineraryError) {
@@ -37,6 +47,20 @@ export class ArriveDayComponent implements OnInit, OnDestroy {
         }
       }
     });
+    this.dayChangeSub = this.itineraryService.dayChange.subscribe(res => {
+      switch (res.action) {
+        case 'add':
+          this.addedDays++;
+          break;
+        case 'delete':
+          this.addedDays--;
+          break;
+        default:
+          break;
+      }
+      this.changeDates();
+    });
+
     this.itineraryService.daysObj = {
       old: [],
       new: []
@@ -72,22 +96,14 @@ export class ArriveDayComponent implements OnInit, OnDestroy {
           }
         }
       }
-      const addedDaysNum: number = daysArr.reduce((a, b) => {
-        if(b['_destroy']) return a-1;
-        else if(!b.id) return a+1;
-        return a;
-      }, 0);
-      const endDate = new Date(this.itineraryState.data.data.attributes["end-date"]);
-      endDate.setDate(endDate.getDate() + addedDaysNum);
       this.itineraryService.daysObj.new = [];
       this.store.dispatch(new UpdateItineraryAction({ 
         itineraryId: this.itineraryState.data.data.id,
         body: {
           type: 'itineraries',
           attributes: {
-            "start-date": this.itineraryState.data.data.attributes["start-date"],
-            "end-date": `${endDate.getFullYear()}-${endDate.getMonth() + 1}-${endDate.getDate()}`,
-            // "end-date": "2000-10-10",
+            "start-date": this.startDateString,
+            "end-date": this.endDateString,
             days: daysArr
           }
         }
@@ -97,7 +113,22 @@ export class ArriveDayComponent implements OnInit, OnDestroy {
     }, 0);
   }
 
+  onFromDateChange(date: Date) {
+    this.daysDiff = Math.abs(Math.ceil((date.getTime() - new Date(this.itineraryState.data.data.attributes["start-date"]).getTime()) / (1000 * 60 * 60 * 24)));
+    this.changeDates();
+  }
+
+  changeDates() {
+    const startDate = new Date(this.itineraryState.data.data.attributes["start-date"]);
+    startDate.setDate(startDate.getDate() + this.daysDiff);
+    const endDate = new Date(this.itineraryState.data.data.attributes["end-date"]);
+    endDate.setDate(endDate.getDate() + this.daysDiff + this.addedDays);
+    this.startDateString = `${startDate.getFullYear()}-${startDate.getMonth()+1}-${startDate.getDate()}`;
+    this.endDateString = `${endDate.getFullYear()}-${endDate.getMonth()+1}-${endDate.getDate()}`;
+  }
+
   ngOnDestroy() {
     if(this.itineraryStateSub) this.itineraryStateSub.unsubscribe();
+    if(this.dayChangeSub) this.dayChangeSub.unsubscribe();
   }
 }

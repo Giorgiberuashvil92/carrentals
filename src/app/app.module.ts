@@ -14,6 +14,11 @@ import { AuthEffects } from './store/effects/auth.effect';
 import { PasswordReducer } from './store/reducers/password.reducer';
 import { environment } from 'src/environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -45,7 +50,11 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
       PasswordEffects,
       AffiliateEffects
     ]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    MatNativeDateModule,
+    MatDatepickerModule, 
+    MatInputModule,
+    MatFormFieldModule
   ],
   providers: [
     {
