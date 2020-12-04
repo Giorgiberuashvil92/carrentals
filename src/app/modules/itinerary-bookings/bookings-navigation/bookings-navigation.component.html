@@ -28,7 +28,7 @@
           (click)="onCityClick(i)">
           <div class="rounded-full h-16 w-16 flex items-center justify-center bg-col"
           [ngClass]="{'grid-col': deviceDetectorService.isMobile}">
-            <div class="relative">
+            <div class="relative " style="width: 200px;">
               <div class="image" [style.background-image]="'url(\'' + item.attributes['image-url'] + '\')'"></div>
               <div class="absolute btm">
                 {{item.attributes.name}}
