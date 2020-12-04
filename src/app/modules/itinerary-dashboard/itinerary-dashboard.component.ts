@@ -144,14 +144,12 @@ export class ItineraryDashboardComponent implements OnInit, OnDestroy {
     let query: string;
     this.store.dispatch(new SetAffiliatePartnerActivitiesAction({ data: [] }));
     this.store.dispatch(new SetAffiliatePartnerTransportsAction({ data: [] }));
-    if(temp.attributes.transportation) {
-      if(temp.attributes['transport-type'] !== 'car') {
-        this.store.dispatch(new LoadAffiliatePartnerTransportsAction({ 
-          itineraryId: this.itinerary.data.data.id,
-          subjectId: temp.id,
-          subjectType: 'tour-offer'
-        }));
-      }
+    if(temp.attributes.transportation && temp.attributes['transport-type'] !== 'car') {
+      this.store.dispatch(new LoadAffiliatePartnerTransportsAction({ 
+        itineraryId: this.itinerary.data.data.id,
+        subjectId: temp.relationships['tour-offer'].data.id,
+        subjectType: 'tour-offer'
+      }));
     } else {
       if(temp.type === 'tours') {
         if(!temp.relationships['tour-offer'] || !temp.relationships['tour-offer'].data || !temp.relationships['tour-offer'].data.id) {
