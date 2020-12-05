@@ -1,12 +1,16 @@
 <div class="flex flex-wrap -mx-2 overflow-hidden lg:-mx-3 xl:-mx-2">
   <div class="my-2 px-2 w-1/5 overflow-hidden lg:my-3 lg:px-3 lg:w-1/5 xl:my-2 xl:px-2 xl:w-1/5 fl-x" *ngIf="!deviceDetectorService.isMobile">
-    <div class="fl-s flex gl-s" *ngFor="let item of array; let i = index" (click)="itineraryService.bookingOptionIndex.next(i)" >
+    <div class="fl-s flex gl-s" *ngFor="let item of array; let i = index" 
+      (click)="itineraryService.bookingOptionIndex.next(i)">
       <div class="fl-l gm-p cursor-pointer"
         [ngStyle]="{
           'font-weight': i === option ? 500 : 400,
           'opacity': i === option ? 1 : 0.5
+        }"
+        [ngClass]="{
+          'all-my-bookings': i === 0 && itineraryService.bookingOptionIndex.value === 0
         }">
-        <img [src]="item.imageURL" class="nav-img">
+        <img [src]="i === 0 && itineraryService.bookingOptionIndex.value === 0 ? '/assets/book-white.svg' : item.imageURL" class="nav-img">
         <h1>{{item.name}}</h1>
       </div>
       <div class="right-line"></div>
