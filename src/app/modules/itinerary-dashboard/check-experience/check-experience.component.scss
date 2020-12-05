@@ -42,17 +42,23 @@
   // padding-right: 30px;
   // padding-left: 20px;
   padding-bottom: 8px;
+  padding-right: 25px;
 }
 .col {
-    margin-top: 20px;
-    display: flex;
-    width: 100%;
-    max-width: 100%;
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.14);
-    // padding: 9px 10px;
-    padding: 10px 30px 8px 8px;
-    border-radius: 10px;
+  margin-top: 20px;
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.14);
+  // padding: 9px 10px;
+  padding: 10px 30px 8px 8px;
+  border-radius: 10px;
+  margin-left: 8px;
+  transition: box-shadow .3s;
 
+  &:hover {
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.4);
+  }
 }
 .col:hover{
   cursor: pointer;
@@ -121,6 +127,7 @@ margin-right: 40px;
   margin-left: 5px;
   display: flex;
   height: 190px;
+  cursor: pointer;
 
   .left-wrapper {
     margin-top: 10px;
