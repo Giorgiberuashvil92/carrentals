@@ -1,24 +1,30 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { map, mergeMap, catchError, switchMap, debounceTime } from 'rxjs/operators';
+import { map, mergeMap, catchError, switchMap, debounceTime, withLatestFrom } from 'rxjs/operators';
 
 import { of } from 'rxjs';
 import { ItineraryService } from 'src/app/core/services/itinerary.service';
 import { LoadAffiliatePartnerActivitiesFailureAction, DeleteTourAction, DeleteTourFailureAction, DeleteTourSuccessAction, ItineraryActionTypes, LoadItineraryAction, LoadItineraryAlternateToursAction, LoadItineraryAlternateToursySuccessAction, LoadItineraryFailureAction, LoadItinerarySuccessAction, UpdateItineraryTourOrTransportAction, UpdateItineraryTourOrTransportFailureAction, UpdateItineraryTourOrTransportSuccessAction, LoadItineraryToursSearchAction, LoadItineraryToursSearchSuccessAction, LoadItineraryToursSearchFailureAction, LoadItinerarySolutionsForTourAction, LoadItinerarySolutionsForTourSuccessAction, LoadItinerarySolutionsForTourFailureAction, PostItinerarySolutionForTourAction, PostItinerarySolutionForTourSuccessAction, PostItinerarySolutionForTourFailureAction, UpdateItineraryAction, UpdateItinerarySuccessAction, UpdateItineraryFailureAction } from '../actions';
+import { AppState } from '../models';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class ItineraryEffects {
 
     constructor(
       private actions$: Actions,
-      private itineraryService: ItineraryService
+      private itineraryService: ItineraryService,
+      private store: Store<AppState>
     ) { }
+
 
     @Effect() loadItinerary$ = this.actions$
     .pipe(
         ofType<LoadItineraryAction>(ItineraryActionTypes.LOAD_ITINERARY),
+        withLatestFrom(this.store.select(store => store.itinerary)),
         switchMap(
-        (d) => this.itineraryService.getItinerary$(d.payload)
+        (state) => 
+            (state[1].data && state[1].data.data && state[1].data.data.id === state[0].payload ? of(state[1].data) : this.itineraryService.getItinerary$(state[0].payload))
             .pipe(
             map(data => {
                 return new LoadItinerarySuccessAction(data)

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { DialogService } from 'src/app/core/services/dialog.service';
@@ -12,6 +12,8 @@ import { CityState } from 'src/app/store/reducers/city.reducer';
 })
 export class MyBookingsComponent implements OnInit {
 
+  @Input() city: any;
+  
   cityState$: Observable<CityState>;
 
   constructor(

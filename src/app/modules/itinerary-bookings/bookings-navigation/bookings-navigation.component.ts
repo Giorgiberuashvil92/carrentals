@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { DeviceDetectorService } from 'src/app/core/services/device-detector.service';
 import { DialogService } from 'src/app/core/services/dialog.service';
+import { ItineraryService } from 'src/app/core/services/itinerary.service';
 import { LoadAffiliatePartnerActivitiesAction, LoadAffiliatePartnerTransportsAction } from 'src/app/store/actions';
 import { AppState } from 'src/app/store/models';
 import { ItineraryState } from 'src/app/store/reducers';
@@ -19,13 +20,15 @@ export class BookingsNavigationComponent implements OnInit, OnDestroy {
   cityState: CityState;
   itineraryStateSub: Subscription
   cityStateSub: Subscription;
+  bookingOptionIndexSub: Subscription;
   activeCityIndex = 0;
-  option = 3;
+  option: number;
 
   constructor(
     public dialogService: DialogService,
     private store: Store<AppState>,
-    public deviceDetectorService : DeviceDetectorService
+    public deviceDetectorService : DeviceDetectorService,
+    public itineraryService: ItineraryService
   ) { }
 
   array = [
@@ -45,6 +48,10 @@ export class BookingsNavigationComponent implements OnInit, OnDestroy {
     this.itineraryStateSub = this.store.select(store => store.itinerary).subscribe(res => {
       this.itineraryState = res;
       this.onCityClick(0);
+    })
+
+    this.bookingOptionIndexSub = this.itineraryService.bookingOptionIndex.subscribe(res => {
+      this.option = res;
     })
   }
 
@@ -66,5 +73,6 @@ export class BookingsNavigationComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if(this.cityStateSub) this.cityStateSub.unsubscribe();
     if(this.itineraryStateSub) this.itineraryStateSub.unsubscribe();
+    if(this.bookingOptionIndexSub) this.bookingOptionIndexSub.unsubscribe();
   }
 }

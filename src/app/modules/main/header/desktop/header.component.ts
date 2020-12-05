@@ -1,50 +1,51 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { DialogService } from 'src/app/core/services/dialog.service';
+import { ItineraryService } from 'src/app/core/services/itinerary.service';
+import { AppState } from 'src/app/store/models';
+import { ItineraryState } from 'src/app/store/reducers';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
-  pages: any[] = [
-    {
-      name: 'Plan Another Trip',
-      url: 'bla'
-    }, 
-    {
-      name: 'All My Trips', 
-      url: '/all-my-trips',
-    },
-    {
-      name: 'Before Trip', 
-      url: 'bla'
-    },
-    {
-      name: 'FAQ',
-      url: 'bla'
-    },
-    { 
-      name: 'Contact us',
-      url: 'bla'
-    }
-  ];
+  isUserOpen: boolean = false;
+  isManageTripOpen: boolean = false;
+  itineraryId: string;
 
-  isOpen: boolean = false;
+  itineraryState: ItineraryState;
+  itineraryStateSub: Subscription;
+
+  manageTripItems = [
+    {name:'All My bookings', imageURL: '/assets/book.svg'},
+    {name:'City Cards & Local Transport', imageURL: '/assets/bus.svg'},
+    {name:'Tours & Activities', imageURL: '/assets/walking-man.svg'},
+    {name:'Inter-City Transport', imageURL: '/assets/interpoller.svg'},
+    {name:'Hotels & Apartments', imageURL: '/assets/bed.svg'},
+  ]
 
   constructor(
-    public router: Router
+    public router: Router,
+    public store: Store<AppState>,
+    public dialogService: DialogService,
+    public itineraryService: ItineraryService
   ) { }
 
   ngOnInit(): void {
+    this.itineraryStateSub = this.store.select(store => store.itinerary).subscribe(res => {
+      this.itineraryState = res;
+      if(this.itineraryState.data && this.itineraryState.data.data && this.itineraryState.data.data.id) {
+        this.itineraryId = this.itineraryState.data.data.id;
+      } 
+    });
   }
 
-  onMouseEnter(event) {
-    this.isOpen = true;
-  }
-
-  onMouseLeave(event) {
-    this.isOpen = false;
+  ngOnDestroy() {
+    if(this.itineraryStateSub) this.itineraryStateSub.unsubscribe();
   }
 }
