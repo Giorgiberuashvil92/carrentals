@@ -38,7 +38,7 @@
               <div class="image" [style.background-image]="'url(\'' + item.attributes['image-url'] + '\')'"></div>
               <div class="absolute name-background"></div>
               <div class="absolute name">
-                {{item.attributes.name}}
+                {{item.attributes.name | uppercase}}
               </div>
             </div>
           </div>
