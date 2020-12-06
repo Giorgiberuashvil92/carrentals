@@ -31,6 +31,22 @@ export class ChangeTransportComponent implements OnInit {
     if(this.currentIndex === 0) {
       return;
     }
-    this.dialogService.openDialog('editTrip', itineraryState.alternateTours.data[this.currentIndex - 1]);
+
+    if(itineraryState.alternateTours.data[this.currentIndex - 1].attributes.type === 'compadre') {
+      this.store.dispatch(new UpdateItineraryTourOrTransportAction({
+        itineraryId: itineraryState.data.data.id,
+        id: itineraryState.tour.id,
+        body: {
+          type: 'tours',
+          attributes: {
+            "solution-type": 'compadre',
+            "solution-id": itineraryState.alternateTours.data[this.currentIndex - 1].id
+          }
+        }
+      }));
+      this.dialogService.closeDialog();
+    } else {
+      this.dialogService.openDialog('editTrip', itineraryState.alternateTours.data[this.currentIndex - 1]);
+    }
   }
 }
