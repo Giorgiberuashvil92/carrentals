@@ -114,21 +114,24 @@
   height: 120px;
 }
 
-.btm{
+.name-background{
   left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #707070;
-    opacity: 0.7;
-    width: 100px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    height: 30px;
-    border-radius: 9px;
-    font-size: 16px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #000000;
+  opacity: 0.5;
+  width: 100px;
+  height: 30px;
+  border-radius: 9px;
+  backdrop-filter: blur(5px) brightness(15%) opacity(32%);
+}
+
+.name {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 16px;
 }
 
 @media only screen and (max-width: 768px) {
