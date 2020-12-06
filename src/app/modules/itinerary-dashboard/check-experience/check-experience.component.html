@@ -17,13 +17,13 @@
           <div class="wr-2 text-slice"><p>{{ item.attributes['description'] }}</p></div>
         </div>
 
-        <div class="thrd-2">
-            <div class="pdr-r">
+        <div class="thrd-2" >
+            <div class="pdr-r" *ngIf="item.attributes.duration">
               <img src="/assets/clock.svg" alt="">
               <div class="flex flex-column">
                 <span class="spn-d">Duration</span>
                 <span class="spn-col">
-                  {{ item.attributes.duration ? item.attributes.duration[keysOfDuration[i]] + keysOfDuration[i][0] : '' }}
+                  {{item.attributes.duration[keysOfDuration[i]]}}
                 </span>
               </div>
             </div>

@@ -19,8 +19,8 @@
 }
 .right-line{
   width: 1px;
-    height: 27px;
-    background-color: black;
+    height: 17px;
+    background-color: #02A388;
     margin-left: 40px;
 }
 
@@ -116,10 +116,19 @@
 
 .btm{
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  color:white;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #707070;
+    opacity: 0.7;
+    width: 100px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    height: 30px;
+    border-radius: 9px;
+    font-size: 16px;
 }
 
 @media only screen and (max-width: 768px) {

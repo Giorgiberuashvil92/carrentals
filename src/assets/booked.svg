@@ -1,5 +1,7 @@
-<svg id="Group_523" data-name="Group 523" xmlns="http://www.w3.org/2000/svg" width="9.844" height="7.016" viewBox="0 0 9.844 7.016">
-  <g id="Group_483" data-name="Group 483">
-    <path id="Path_51" data-name="Path 51" d="M170,168.532l3.792-3.792a1.279,1.279,0,1,0-1.809-1.809l-3.792,3.792L166.5,164.8a1.279,1.279,0,1,0-1.809,1.809l1.685,1.921C168.183,170.336,169.1,169.428,170,168.532Z" transform="translate(-164.319 -162.556)" fill="#02a388"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
+  <g id="Rectangle_84" data-name="Rectangle 84" fill="#fff" stroke="#02a388" stroke-width="1">
+    <rect width="14" height="14" rx="5" stroke="none"/>
+    <rect x="0.5" y="0.5" width="13" height="13" rx="4.5" fill="none"/>
   </g>
+
 </svg>
