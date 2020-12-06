@@ -1,6 +1,8 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import { AffiliateService } from 'src/app/core/services/affiliate.service';
+import { DialogService } from 'src/app/core/services/dialog.service';
 import { AppState } from 'src/app/store/models';
 import { AffiliateState } from 'src/app/store/reducers/affiliate.reducer';
 
@@ -20,7 +22,9 @@ export class CityCardsComponent implements OnInit, OnDestroy {
   dataToShow: any[];
 
   constructor(
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private dialogService: DialogService,
+    private affiliateService: AffiliateService
   ) { }
 
   ngOnInit() {
@@ -32,6 +36,15 @@ export class CityCardsComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  onClick(activity: any) {
+    this.dialogService.openDialog('acceptDialog', {
+      question: `Did you book ${activity.attributes.title}?`,
+      yesFn: this.affiliateService.test
+    });
+    window.open(activity.attributes.url , '_blank');
+  }
+
   
   ngOnDestroy() {
     if(this.affiliateStateSub) this.affiliateStateSub.unsubscribe();

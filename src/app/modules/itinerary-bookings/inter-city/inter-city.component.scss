@@ -20,8 +20,8 @@
 }
 .pd-r{
   margin-top: 17px;
-    padding-left: 7%;
-    width: 100%
+  padding-left: 7%;
+  width: 100%
 }
 
 
@@ -49,9 +49,9 @@
 }
 .img-classes{
   color: #02A388;
-   font-size: 12px;
-   font-weight: 500;
-   padding-left: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  padding-left: 10px;
 }
 .plane{
   box-shadow: #767388;
@@ -64,16 +64,21 @@
   width: 200px;
   // box-shadow: 2px 5px 16px 0px #0B325E
 }
-.checkButton{
-    width: 12px;
-    margin-top: 3px;
-    align-items: center;
-    justify-content: center;
-}
 .booked-img{
   display: flex;
   margin-top: 20px;
   padding-left: 17px;
+
+  .icon {
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: #02A388;
+    width: 14px;
+    height: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 .booked-pdf{
   padding-right: 11px;
@@ -229,6 +234,14 @@
     display: flex;
     height: 190px;
     max-width: 815px;
+    padding: 0px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: box-shadow .3s;
+
+    &:hover {
+      box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
+    }
 
     .left-wrapper {
       margin-top: 10px;
@@ -324,7 +337,7 @@
 
       .booked {
         position: absolute;
-        bottom: 18px;
+        bottom: 8px;
         right: 0px;
         display: flex;
         justify-content: space-between;
@@ -336,6 +349,19 @@
           font-size: 10px;
           font-weight: 600;
           color: #02A388;
+        }
+
+        .icon {
+          border-radius: 5px;
+          border-width: 1px;
+          border-color: #02A388;
+          width: 14px;
+          height: 14px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+          }
         }
       }
     }

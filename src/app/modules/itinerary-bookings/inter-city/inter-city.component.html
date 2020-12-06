@@ -45,9 +45,9 @@
       </div>
       <div class="booked">
         <div class="booked-img">
-          <div style="background-image: url('../assets/booked.svg'); width: 15px; background-repeat: no-repeat;">
-          <img src="../assets/booked-img.svg" alt="" class="checkButton">
-        </div>
+          <div class="icon">
+            <img src="/assets/booked-img.svg" alt="">
+          </div>
           <div class="booked-txt">Booked</div>
         </div>
         <div class="booked-pdf"><img src="../assets/pdf.svg" alt="alt"></div>
@@ -60,7 +60,8 @@
 <div class="transportation-wrapper">
   <div class="header">Transportation to Prague</div>
   <ng-container *ngIf="affiliateState && !affiliateState.partnerTransportsLoading && affiliateState.partnerTransports && affiliateState.partnerTransports.data && affiliateState.partnerTransports.data.length > 0">
-    <div class="transportation" *ngFor="let item of affiliateState.partnerTransports.data">
+    <div class="transportation" *ngFor="let item of affiliateState.partnerTransports.data"
+      (click)="onClick(item)">
       <div class="left-wrapper">
         <img src="/assets/bus-detailed.svg" alt="" *ngIf="item.attributes['transport-type'] === 'bus'">
         <img src="/assets/plane-detailed.svg" alt="" *ngIf="item.attributes['transport-type'] === 'air'">
@@ -97,7 +98,7 @@
         </div>
 
         <div class="booked">
-          <div class="icon"><img src="/assets/booked.svg" alt="alter"></div>
+          <div class="icon"><img src="/assets/booked-img.svg" alt="alter"></div>
           <div class="text">Booked</div>
         </div>
       </div>

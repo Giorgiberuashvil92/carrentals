@@ -5,7 +5,8 @@
   </div>
 
   <ng-container *ngIf="affiliateState && !affiliateState.partnerActivitiesLoading && affiliateState.partnerActivities.data && affiliateState.partnerActivities.data.length > 0">
-    <a class="block mini-wrapper" *ngFor="let item of dataToShow" [href]="item.attributes.url" target="_blank">
+    <a class="block mini-wrapper" *ngFor="let item of dataToShow"
+    (click)="onClick(item)">
   
       <div class="pr-img">
         <div class="img" [style.background-image]="'url(\'' + item.attributes['image-url'] + '\')'"></div>

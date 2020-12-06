@@ -8,36 +8,36 @@
       <img src="/assets/settings-icon.svg" alt="">
     </div>
 
-    <div class="page" 
+    <a class="page" 
       [ngClass]="{ 'page__active': router.url.includes('/trips') && !router.url.includes('/bookings') }"
       [routerLink]="itineraryId ? ['trips', itineraryId] : null"
-    >Itinerary</div>
+    >Itinerary</a>
     
-    <div class="page manage-trip" 
+    <a class="page manage-trip" 
       [ngClass]="{ 
         'page__active': router.url.includes('/trips') && router.url.includes('/bookings'),
         'manage-trip__active': isManageTripOpen
       }"
       (mouseenter)="isManageTripOpen = true" (mouseleave)="isManageTripOpen = false"
     >
-      <span 
+      <a 
         [routerLink]="itineraryId ? ['trips', itineraryId, 'bookings'] : null"
-        (click)="itineraryService.bookingOptionIndex.next(0)">Manage Trip</span>
+        (click)="itineraryService.bookingOptionIndex.next(0)">Manage Trip</a>
       
       <div class="manage-trip-menu" [ngClass]="{ 'manage-trip-menu__active': isManageTripOpen }">
         <ng-container *ngFor="let item of manageTripItems; let i = index">
-          <div class="manage-trip-item" 
+          <a class="manage-trip-item" 
             [ngClass]="{ 'manage-trip-item__active': router.url.includes('/trips') && router.url.includes('/bookings') && itineraryService.bookingOptionIndex.value === i}"
             [routerLink]="itineraryId ? ['trips', itineraryId, 'bookings'] : null"
             (click)="itineraryService.bookingOptionIndex.next(i)">
             <img [src]="item.imageURL" alt="">
             <div class="title">{{ item.name }}</div>
-          </div>
+          </a>
   
           <div class="horizontal-line" *ngIf="i !== manageTripItems.length - 1"></div>        
         </ng-container>
       </div>
-    </div>
+    </a>
 
     
 

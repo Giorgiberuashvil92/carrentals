@@ -127,7 +127,14 @@ margin-right: 40px;
   margin-left: 5px;
   display: flex;
   height: 190px;
+  padding: 0px 10px;
+  border-radius: 6px;
   cursor: pointer;
+  transition: box-shadow .3s;
+
+  &:hover {
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
+  }
 
   .left-wrapper {
     margin-top: 10px;
@@ -234,6 +241,19 @@ margin-right: 40px;
         font-size: 10px;
         font-weight: 600;
         color: #02A388;
+      }
+
+      .icon {
+        border-radius: 5px;
+        border-width: 1px;
+        border-color: #02A388;
+        width: 14px;
+        height: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+        }
       }
     }
   }
