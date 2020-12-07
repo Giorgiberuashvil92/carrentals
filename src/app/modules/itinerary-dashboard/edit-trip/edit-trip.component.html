@@ -1,5 +1,5 @@
-<ng-container *ngIf="itineraryState$ | async as itineraryState">
-    <div class="wrapper relative">
+<ng-container *ngIf="itineraryState">
+    <div class="wrapper relative" *ngIf="!isSubmitted; else elseBlock">
         <img class="close-dialog-btn absolute cursor-pointer" src="/assets/close-dialog-icon.svg" alt="" (click)="dialogService.closeDialog()">
         
         <div class="replace-day">
@@ -64,4 +64,8 @@
             </button>
         </div>
     </div>
+
+    <ng-template #elseBlock>
+        <app-loader></app-loader>
+    </ng-template>
 </ng-container>

@@ -34,12 +34,14 @@ export class ChangeActivityComponent implements OnInit, OnDestroy {
     this.itineraryStateSub = this.store.select(store => store.itinerary).subscribe(res => {
       this.itineraryState = res;
       this.isLoaded = this.itineraryState.alternateTours && this.itineraryState.alternateTours.data && this.itineraryState.alternateTours.data.length > 0;
-      if(this.isSubmitted && !this.itineraryState.updateTourOrTransportLoading) {
-        this.dialogService.closeDialog();
-      } else if(this.isLoaded) {
+      if(this.isLoaded && !this.isSubmitted) {
         this.dialogService.updateSize(this.dialogService.dialogMap[this.dialogService.currentDialogName].maxWidth);
       }
-      if(this.itineraryState.tour && !this.isSubmitted) {
+      if(this.isSubmitted && !this.itineraryState.updateTourOrTransportLoading) {
+        this.dialogService.closeDialog();
+        return;
+      }
+      if(this.itineraryState.tour && !this.isSubmitted && this.isLoaded) {
         this.generateTourTags();
       }
     });

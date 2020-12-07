@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { DialogService } from 'src/app/core/services/dialog.service';
 import { ItineraryService } from 'src/app/core/services/itinerary.service';
 import { UpdateItineraryTourOrTransportAction } from 'src/app/store/actions';
@@ -15,7 +15,10 @@ import { ItineraryState } from 'src/app/store/reducers';
 })
 export class EditTripComponent implements OnInit {
 
-  itineraryState$: Observable<ItineraryState>;
+  isSubmitted: boolean = false;
+
+  itineraryState: ItineraryState;
+  itineraryStateSub: Subscription;
 
   constructor(
     public dialogService: DialogService,
@@ -25,7 +28,13 @@ export class EditTripComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.itineraryState$ = this.store.select(store => store.itinerary);
+    this.itineraryStateSub = this.store.select(store => store.itinerary).subscribe(res => {
+      this.itineraryState = res;
+      if(this.isSubmitted && !this.itineraryState.updateTourOrTransportLoading) {
+        this.dialogService.closeDialog();
+        return;
+      }
+    });
   }
 
   onOK(itineraryState: ItineraryState) {
@@ -40,6 +49,7 @@ export class EditTripComponent implements OnInit {
         }
       }
     }));
-    this.dialogService.closeDialog();
+    this.isSubmitted = true;
+    this.dialogService.updateSize('250px');
   }
 }

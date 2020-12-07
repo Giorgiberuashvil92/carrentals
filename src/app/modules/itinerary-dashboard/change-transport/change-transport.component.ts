@@ -1,7 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { DialogService } from 'src/app/core/services/dialog.service';
 import { UpdateItineraryTourOrTransportAction } from 'src/app/store/actions';
 import { AppState } from 'src/app/store/models';
@@ -12,23 +12,38 @@ import { ItineraryState } from 'src/app/store/reducers';
   templateUrl: './change-transport.component.html',
   styleUrls: ['./change-transport.component.scss']
 })
-export class ChangeTransportComponent implements OnInit {
+export class ChangeTransportComponent implements OnInit, OnDestroy {
 
   currentIndex = 0;
-  itineraryState$: Observable<ItineraryState>;
+  isLoaded: boolean = false;
+  isSubmitted: boolean = false;
 
+  itineraryState: ItineraryState;
+  itineraryStateSub: Subscription;
+  
   constructor(
     public dialogService: DialogService,
     private store: Store<AppState>
   ) { }
 
   ngOnInit(): void {
-    this.itineraryState$ = this.store.select(store => store.itinerary);
+    this.dialogService.updateSize('250px');
+    this.itineraryStateSub = this.store.select(store => store.itinerary).subscribe(res => {
+      this.itineraryState = res;
+      this.isLoaded = this.itineraryState.alternateTours && this.itineraryState.alternateTours.data && this.itineraryState.alternateTours.data.length > 0;
+      if(this.isLoaded && !this.isSubmitted) {
+        this.dialogService.updateSize(this.dialogService.dialogMap[this.dialogService.currentDialogName].maxWidth);
+      }
+      if(this.isSubmitted && !this.itineraryState.updateTourOrTransportLoading) {
+        this.dialogService.closeDialog();
+        return;
+      }
+    });
   }
 
   onOK(itineraryState: ItineraryState) {
-    this.dialogService.closeDialog();
     if(this.currentIndex === 0) {
+      this.dialogService.closeDialog();
       return;
     }
 
@@ -44,9 +59,15 @@ export class ChangeTransportComponent implements OnInit {
           }
         }
       }));
-      this.dialogService.closeDialog();
+      this.isSubmitted = true;
+      this.dialogService.updateSize('250px');
     } else {
+      this.dialogService.closeDialog();
       this.dialogService.openDialog('editTrip', itineraryState.alternateTours.data[this.currentIndex - 1]);
     }
+  }
+
+  ngOnDestroy() {
+    if(this.itineraryStateSub) this.itineraryStateSub.unsubscribe();
   }
 }
