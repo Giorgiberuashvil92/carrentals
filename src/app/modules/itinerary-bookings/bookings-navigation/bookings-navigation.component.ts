@@ -21,7 +21,7 @@ export class BookingsNavigationComponent implements OnInit, OnDestroy {
   itineraryStateSub: Subscription
   cityStateSub: Subscription;
   bookingOptionIndexSub: Subscription;
-  activeCityIndex = 0;
+  activeCityIndex = -1;
   option: number;
 
   constructor(
@@ -42,12 +42,10 @@ export class BookingsNavigationComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.cityStateSub = this.store.select(store => store.city).subscribe(res => {
       this.cityState = res;
-      this.onCityClick(0);
     });
 
     this.itineraryStateSub = this.store.select(store => store.itinerary).subscribe(res => {
       this.itineraryState = res;
-      this.onCityClick(0);
     })
 
     this.bookingOptionIndexSub = this.itineraryService.bookingOptionIndex.subscribe(res => {

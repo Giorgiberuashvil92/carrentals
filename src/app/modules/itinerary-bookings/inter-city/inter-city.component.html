@@ -44,9 +44,9 @@
         </div>
       </div>
       <div class="booked">
-        <div class="booked-img">
+        <div class="booked">
           <div class="icon">
-            <img src="/assets/booked-img.svg" alt="">
+            <img src="/assets/booked.svg" alt="">
           </div>
           <div class="booked-txt">Booked</div>
         </div>
@@ -58,50 +58,52 @@
 </div>
 
 <div class="transportation-wrapper">
-  <div class="header">Transportation to Prague</div>
-  <ng-container *ngIf="affiliateState && !affiliateState.partnerTransportsLoading && affiliateState.partnerTransports && affiliateState.partnerTransports.data && affiliateState.partnerTransports.data.length > 0">
-    <div class="transportation" *ngFor="let item of affiliateState.partnerTransports.data"
-      (click)="onClick(item)">
-      <div class="left-wrapper">
-        <img src="/assets/bus-detailed.svg" alt="" *ngIf="item.attributes['transport-type'] === 'bus'">
-        <img src="/assets/plane-detailed.svg" alt="" *ngIf="item.attributes['transport-type'] === 'air'">
-        <img src="/assets/train-detailed.svg" alt="" *ngIf="item.attributes['transport-type'] === 'train'">
-
-        <div class="powered-by">
+  <ng-container *ngFor="let i of affiliateState.partnerTransports.data">
+    <div class="header">{{ i.attributes.title }}</div>
+    <ng-container *ngIf="affiliateState && !affiliateState.partnerTransportsLoading && affiliateState.partnerTransports && affiliateState.partnerTransports.data && affiliateState.partnerTransports.data.length > 0">
+      <div class="transportation" *ngFor="let item of i.attributes.transportations"
+        (click)="onClick(item)">
+        <div class="left-wrapper">
+          <img src="/assets/bus-detailed.svg" alt="" *ngIf="item['transport-type'] === 'bus'">
+          <img src="/assets/plane-detailed.svg" alt="" *ngIf="item['transport-type'] === 'air'">
+          <img src="/assets/train-detailed.svg" alt="" *ngIf="item['transport-type'] === 'train'">
+  
+          <div class="powered-by">
+            <div class="title">
+              Powered By
+            </div>
+            <div class="partner-name">
+              {{ item['partner-name'] }}
+            </div>
+          </div>
+  
+        </div>
+  
+        <div class="vertical-line"></div>
+  
+        <div class="right-wrapper">
           <div class="title">
-            Powered By
+            {{ item.title }}
           </div>
-          <div class="partner-name">
-            {{ item.attributes['partner-name'] }}
+  
+          <div class="description">
+            {{ item.description }}
           </div>
-        </div>
-
-      </div>
-
-      <div class="vertical-line"></div>
-
-      <div class="right-wrapper">
-        <div class="title">
-          {{ item.attributes.title }}
-        </div>
-
-        <div class="description">
-          {{ item.attributes.description }}
-        </div>
-
-        <div class="horizontal-line"></div>
-
-        <div class="tags">
-          <div class="tag" *ngFor="let tag of ['Plane', 'Tickets']">
-            {{ tag }}
+  
+          <div class="horizontal-line"></div>
+  
+          <div class="tags">
+            <div class="tag" *ngFor="let tag of ['Plane', 'Tickets']">
+              {{ tag }}
+            </div>
           </div>
-        </div>
-
-        <div class="booked">
-          <div class="icon"><img src="/assets/booked-img.svg" alt="alter"></div>
-          <div class="text">Booked</div>
+  
+          <div class="booked">
+            <div class="icon"><img src="/assets/booked.svg" alt="alter"></div>
+            <div class="text">Booked</div>
+          </div>
         </div>
       </div>
-    </div>
+    </ng-container>
   </ng-container>
 </div>
