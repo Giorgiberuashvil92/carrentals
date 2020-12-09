@@ -30,12 +30,12 @@ export class InterCityComponent implements OnInit, OnDestroy {
     });
   }
 
-  onClick(activity: any) {
+  onClick(activity: any, isTransport: boolean = false) {
     this.dialogService.openDialog('acceptDialog', {
-      question: `Did you book ${activity.attributes.title}?`,
+      question: `Did you book ${isTransport ? activity.title : activity.attributes.title}?`,
       yesFn: this.affiliateService.test
     });
-    window.open(activity.attributes.url , '_blank');
+    window.open(isTransport ? activity.url : activity.attributes.url , '_blank');
   }
 
   ngOnDestroy() {

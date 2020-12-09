@@ -58,7 +58,7 @@
 
       <div class="col-sc">
         <div class="transportation" *ngFor="let item of i.attributes.transportations"
-          (click)="onClick(item)">
+          (click)="onClick(item, true)">
           <div class="left-wrapper">
             <img src="/assets/bus-detailed.svg" alt="" *ngIf="item['transport-type'] === 'bus'">
             <img src="/assets/plane-detailed.svg" alt="" *ngIf="item['transport-type'] === 'air'">
