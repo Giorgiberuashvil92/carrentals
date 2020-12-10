@@ -48,7 +48,24 @@
     <div class="vertical-line"></div>
 
     <div class="trips">+ Trips</div>
-    <div class="balance">$ USD</div>
+    <div class="balance"
+      [ngClass]="{
+        'balance__active': isCurrencyOpen
+      }"
+      (mouseenter)="isCurrencyOpen = true" (mouseleave)="isCurrencyOpen = false">
+
+      <span>$ USD</span>
+
+      <div class="balance-menu" [ngClass]="{ 'balance-menu__active': isCurrencyOpen }">
+        <div class="currency">$ USD</div>
+        <div class="currency">$ AUD</div>
+        <div class="currency">$ CAD</div>
+        <div class="currency">$ NZD</div>
+        <div class="currency">$ SGD</div>
+        <div class="currency">£ GBP</div>
+        <div class="currency">€ EUR</div>
+      </div>
+    </div>
 
 
     <div class="user" (mouseenter)="isUserOpen = true" (mouseleave)="isUserOpen = false" [ngClass]="{ 'user__active': isUserOpen }">

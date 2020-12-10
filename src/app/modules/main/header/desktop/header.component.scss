@@ -30,11 +30,12 @@
       &__active {
         color: #02A388;
       }
+
+      &:hover {
+        color: #02A388;
+      }
     }
 
-    .page:hover {
-      color: #02A388;
-    }
 
     .manage-trip {
       display: flex;
@@ -108,6 +109,68 @@
           width: 90%;
           height: 1px;
           background-color: #DCDBE0;
+        }
+      }
+    }
+
+    .balance {
+      position: relative;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      
+      >span {
+        cursor: pointer;
+      }
+
+      &:hover {
+        >span {
+          color: #02A388;
+        }
+      }
+
+      &__active {
+        overflow: visible;
+      }
+
+      .balance-menu {
+        -webkit-box-shadow: 0px 6px 20px -10px rgba(0,0,0,0.62);
+        -moz-box-shadow: 0px 6px 20px -10px rgba(0,0,0,0.62);
+        box-shadow: 0px 6px 20px -10px rgba(0,0,0,0.62);
+        z-index: -1;
+        position: absolute;
+        background-color: #FFFFFF;
+        width: 90px;
+        height: 180px;
+        top: 0;
+        opacity: 0;
+        left: -0%;
+        border-radius: 8px;
+        border-width: 1px;
+        border-color: #DCDBE0;
+        flex-flow: column;
+        align-items: center;
+        justify-content: space-around;
+        display: none;
+        transform: translate(-27%, 0px);
+        padding: 25px 0px;
+        
+        &__active {
+          animation-name: balanceDropdown;
+          animation-duration: .5s;
+          top: 100%;
+          display: flex;
+          opacity: 1;
+        }
+
+        >div {
+          cursor: pointer;
+
+          &:hover {
+            color: #02A388;
+          }
         }
       }
     }
@@ -226,6 +289,21 @@
 }
 
 @keyframes manageTripDropdown {
+  0% { 
+    top: 0px;
+    opacity: 0;
+  }
+  60% {
+    top: calc(100% + 10px);
+    opacity: 0.9;
+  }
+  100% {
+    top: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes balanceDropdown {
   0% { 
     top: 0px;
     opacity: 0;

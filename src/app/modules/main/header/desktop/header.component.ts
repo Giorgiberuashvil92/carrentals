@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   isUserOpen: boolean = false;
   isManageTripOpen: boolean = false;
+  isCurrencyOpen: boolean = false;
   itineraryId: string;
 
   itineraryState: ItineraryState;
