@@ -32,7 +32,7 @@ export class CheckExperienceComponent implements OnInit, OnDestroy {
     public dialogService: DialogService,
     private store: Store<AppState>,
     public deviceDetectorService : DeviceDetectorService,
-    private affiliateService: AffiliateService
+    public affiliateService: AffiliateService
   ) { }
 
   ngOnInit(): void {
@@ -57,14 +57,6 @@ export class CheckExperienceComponent implements OnInit, OnDestroy {
       this.leftIndex++;
       this.generateDataToShow();
     }
-  }
-
-  onClick(activity: any, isTransport: boolean = false) {
-    this.dialogService.openDialog('acceptDialog', {
-      question: `Did you book ${isTransport ? activity.title : activity.attributes.title}?`,
-      yesFn: this.affiliateService.test
-    });
-    window.open(isTransport ? activity.url : activity.attributes.url , '_blank');
   }
 
   generateDataToShow() {

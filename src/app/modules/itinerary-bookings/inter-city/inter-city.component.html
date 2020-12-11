@@ -62,7 +62,7 @@
     <div class="header">{{ i.attributes.title }}</div>
     <ng-container *ngIf="affiliateState && !affiliateState.partnerTransportsLoading && affiliateState.partnerTransports && affiliateState.partnerTransports.data && affiliateState.partnerTransports.data.length > 0">
       <div class="transportation" *ngFor="let item of i.attributes.transportations"
-        (click)="onClick(item, true)">
+        (click)="affiliateService.onRedirect(item, true)">
         <div class="left-wrapper">
           <img src="/assets/bus-detailed.svg" alt="" *ngIf="item['transport-type'] === 'bus'">
           <img src="/assets/plane-detailed.svg" alt="" *ngIf="item['transport-type'] === 'air'">

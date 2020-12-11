@@ -7,7 +7,7 @@
     <div class="col-sc">
       <img class="lower-than cursor-pointer" *ngIf="deviceDetectorService.isMobile" (click)="onLeft()" src="/assets/lower-than-icon.svg">
       <div class="col" *ngFor="let item of dataToShow; let i=index"
-        (click)="onClick(item)">
+        (click)="affiliateService.onRedirect(item)">
         <div class="ph-t-2">
           <!-- <div [src]="item.attributes['image-url']" alt="" class="photo-flex"> -->
             <div class="photo-flex" [style.background-image]="'url(\'' + item.attributes['image-url'] + '\')'"></div>
@@ -58,7 +58,7 @@
 
       <div class="col-sc">
         <div class="transportation" *ngFor="let item of i.attributes.transportations"
-          (click)="onClick(item, true)">
+          (click)="affiliateService.onRedirect(item, true)">
           <div class="left-wrapper">
             <img src="/assets/bus-detailed.svg" alt="" *ngIf="item['transport-type'] === 'bus'">
             <img src="/assets/plane-detailed.svg" alt="" *ngIf="item['transport-type'] === 'air'">

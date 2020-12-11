@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { ItineraryAlternateToursResponse, ItinerarySolutionsForTourResponse, ItineraryToursSearchResponse, ItineraryResponse, UpdateItineraryTourOrTransportResponse } from 'src/app/store/models';
 import { ItineraryState } from 'src/app/store/reducers';
+import { DialogService } from './dialog.service';
 
 
 @Injectable({
@@ -19,7 +20,9 @@ export class ItineraryService {
     new: []
   }
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private httpClient: HttpClient
+  ) { }
 
   getItinerary$(id: string): Observable<ItineraryResponse> {
     return this.httpClient.get<ItineraryResponse>(`/itineraries/${id}`);

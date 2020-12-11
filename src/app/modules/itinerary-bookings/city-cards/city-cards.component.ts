@@ -24,7 +24,7 @@ export class CityCardsComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<AppState>,
     private dialogService: DialogService,
-    private affiliateService: AffiliateService
+    public affiliateService: AffiliateService
   ) { }
 
   ngOnInit() {
@@ -36,15 +36,6 @@ export class CityCardsComponent implements OnInit, OnDestroy {
       }
     });
   }
-
-  onClick(activity: any) {
-    this.dialogService.openDialog('acceptDialog', {
-      question: `Did you book ${activity.attributes.title}?`,
-      yesFn: this.affiliateService.test
-    });
-    window.open(activity.attributes.url , '_blank');
-  }
-
   
   ngOnDestroy() {
     if(this.affiliateStateSub) this.affiliateStateSub.unsubscribe();

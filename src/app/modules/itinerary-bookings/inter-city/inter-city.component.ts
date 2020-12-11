@@ -21,21 +21,13 @@ export class InterCityComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<AppState>,
     private dialogService: DialogService,
-    private affiliateService: AffiliateService
+    public affiliateService: AffiliateService
   ) { }
 
   ngOnInit(): void {
     this.affiliateStateSub = this.store.select(store => store.affiliate).subscribe(res => {
       this.affiliateState = res;
     });
-  }
-
-  onClick(activity: any, isTransport: boolean = false) {
-    this.dialogService.openDialog('acceptDialog', {
-      question: `Did you book ${isTransport ? activity.title : activity.attributes.title}?`,
-      yesFn: this.affiliateService.test
-    });
-    window.open(isTransport ? activity.url : activity.attributes.url , '_blank');
   }
 
   ngOnDestroy() {

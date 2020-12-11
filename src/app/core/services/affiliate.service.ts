@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { act } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
 import { AffiliateActivityTypesResponse, AffiliatePartnerActivitiesLiveSearchResponse, AffiliatePartnerActivitiesResponse, AffiliatePartnerTransportsResponse } from 'src/app/store/models';
+import { DialogService } from './dialog.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import { AffiliateActivityTypesResponse, AffiliatePartnerActivitiesLiveSearchRes
 export class AffiliateService {
 
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private dialogService: DialogService
   ) { }
 
   getAffiliatePartnerActivities$(query: string): Observable<AffiliatePartnerActivitiesResponse> {
@@ -34,5 +36,15 @@ export class AffiliateService {
 
   test() {
     console.log('test');
+  }
+
+  onRedirect(activity: any, isTransport: boolean = false) {
+    console.log(activity);
+    console.log(isTransport);
+    this.dialogService.openDialog('acceptDialog', {
+      question: `Did you book ${isTransport ? activity.title : activity.attributes.title}?`,
+      yesFn: this.test
+    });
+    window.open(`${window.location.origin}/redirect?url=${encodeURIComponent(isTransport ? activity.url : activity.attributes.url)}` , '_blank');
   }
 }
