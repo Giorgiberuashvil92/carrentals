@@ -10,13 +10,17 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PartnerActivityComponent } from './partner-activity/partner-activity.component';
+import { PartnerTransportComponent } from './partner-transport/partner-transport.component';
 
 @NgModule({
   declarations: [
     PaginatorComponent,
     LocationPaginatorComponent,
     DatepickerComponent,
-    LoaderComponent
+    LoaderComponent,
+    PartnerActivityComponent,
+    PartnerTransportComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +36,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PaginatorComponent,
     LocationPaginatorComponent,
     DatepickerComponent,
-    LoaderComponent
+    LoaderComponent,
+    PartnerActivityComponent,
+    PartnerTransportComponent
   ]
 })
 export class SharedModule { }

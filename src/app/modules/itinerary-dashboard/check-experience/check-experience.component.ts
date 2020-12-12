@@ -25,7 +25,7 @@ export class CheckExperienceComponent implements OnInit, OnDestroy {
   tours: any;
   index = 0;
   affiliateStateOne: any;
-  keysOfDuration: string[];
+  keysOfDuration: string[][];
 
 
   constructor(
@@ -64,7 +64,7 @@ export class CheckExperienceComponent implements OnInit, OnDestroy {
        : this.affiliateState.partnerActivities.data.slice(this.leftIndex, this.leftIndex + 2);
     this.keysOfDuration = this.dataToShow.map(r => {
       if(r.attributes.duration) {
-        return Object.keys(r.attributes.duration)[0];
+        return Object.keys(r.attributes.duration);
       }
       return null;
     });

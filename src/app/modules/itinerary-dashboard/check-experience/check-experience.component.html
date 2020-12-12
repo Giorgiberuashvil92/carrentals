@@ -17,19 +17,22 @@
           <div class="wr-2 text-slice"><p>{{ item.attributes['description'] }}</p></div>
         </div>
 
-        <div class="thrd-2" >
+        <div class="thrd-2">
             <div class="pdr-r" *ngIf="item.attributes.duration">
               <img src="/assets/clock.svg" alt="">
               <div class="flex flex-column">
                 <span class="spn-d">Duration</span>
-                <span class="spn-col">
-                  {{item.attributes.duration[keysOfDuration[i]]}}
+                <span class="spn-col text-center" style="width: 60px">
+                  <ng-container *ngFor="let k of keysOfDuration[i]">
+                    <ng-container *ngIf="k === 'hours'">{{item.attributes.duration[k]}}h </ng-container>
+                    <ng-container *ngIf="k === 'minutes'">{{item.attributes.duration[k]}}m</ng-container>
+                  </ng-container>
                 </span>
               </div>
             </div>
             <div class="pdr-r">
               <img src="/assets/dollar.svg" alt="">
-              <div class="flex flex-column">
+              <div class="flex flex-column" style="margin-left: 3px">
                 <span class="spn-d">Price</span>
                 <span class="spn-col">
                   {{ item.attributes['price'] | currency : item.attributes.currency }}~
@@ -39,7 +42,7 @@
             <div class="pdr-r">
               <img *ngIf="true" src="/assets/exit.svg" alt="">
               <img *ngIf="false" src="/assets/tick.svg" alt="">
-              <div class="booked flex flex-column">
+              <div class="booked flex flex-column" style="margin-left: 7px">
                 <span class="spn-d">Booked</span>
                 <span class="spn-col">NO</span>
               </div>
@@ -57,49 +60,7 @@
       </div>
 
       <div class="col-sc">
-        <div class="transportation" *ngFor="let item of i.attributes.transportations"
-          (click)="affiliateService.onRedirect(item, true)">
-          <div class="left-wrapper">
-            <img src="/assets/bus-detailed.svg" alt="" *ngIf="item['transport-type'] === 'bus'">
-            <img src="/assets/plane-detailed.svg" alt="" *ngIf="item['transport-type'] === 'air'">
-            <img src="/assets/train-detailed.svg" alt="" *ngIf="item['transport-type'] === 'train'">
-
-            <div class="powered-by">
-              <div class="title">
-                Powered By
-              </div>
-              <div class="partner-name">
-                {{ item['partner-name'] }}
-              </div>
-            </div>
-
-          </div>
-
-          <div class="vertical-line"></div>
-
-          <div class="right-wrapper">
-            <div class="title">
-              {{ item.title }}
-            </div>
-
-            <div class="description">
-              {{ item.description }}
-            </div>
-
-            <div class="horizontal-line"></div>
-
-            <div class="tags">
-              <div class="tag" *ngFor="let tag of ['Plane', 'Tickets']">
-                {{ tag }}
-              </div>
-            </div>
-
-            <div class="booked">
-              <div class="icon"><img src="/assets/booked.svg" alt="alter"></div>
-              <div class="text">Booked</div>
-            </div>
-          </div>
-        </div>
+        <app-partner-transport *ngFor="let item of i.attributes.transportations" [item]="item"></app-partner-transport>
       </div>
     </ng-container>
   </div>

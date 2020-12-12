@@ -13,8 +13,8 @@
         <img [src]="i === 0 && itineraryService.bookingOptionIndex.value === 0 ? '/assets/book-white.svg' : item.imageURL" class="nav-img">
         <h1>{{item.name}}</h1>
       </div>
-      <div class="right-line"></div>
 
+      <div class="right-line" *ngIf="i !== array.length - 1"></div>
     </div>
 
   </div>
@@ -26,7 +26,7 @@
 </div>
 
 <div class="wrapper flex flex-column-rips">
-  <div class="flex flex-wrap -mx-2 overflow-hidden sm:-mx-2 md:-mx-2 lg:-mx-2 xl:-mx-2 fl-g">
+  <div style="min-width: 200px" class="flex flex-wrap -mx-2 overflow-hidden sm:-mx-2 md:-mx-2 lg:-mx-2 xl:-mx-2 fl-g">
     <div class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 md:my-1 md:px-1 lg:my-1 lg:px-1 xl:my-1 xl:px-1 flex-column-rips-second">
       <ng-container *ngIf="cityState && cityState.cities && cityState.cities.data">
         <div class="gm-d cursor-pointer" *ngFor="let item of cityState.cities.data; let i=index"
