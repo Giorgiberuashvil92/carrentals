@@ -16,13 +16,13 @@ export class LocationPaginatorComponent implements OnInit, OnDestroy {
 
   @ViewChild('wrapper', { static: false }) wrapper: ElementRef;
 
-  @Input() data: LocationPaginator[];
+  data: any[];
   @Input() leftMostIndex: number = 1;
   @Input() locationsToShow: number = 5;
   @Input() activeIndex: number = 1;
   @Output() locationChange: EventEmitter<number> = new EventEmitter<number>();
 
-  dataToShow: LocationPaginator[];
+  dataToShow: any[];
   mobileTranslate: number = 0;
   isTouched = false;
   initialTouchX: number = 0;
@@ -39,13 +39,14 @@ export class LocationPaginatorComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.itineraryStateSub = this.store.select(store => store.itinerary).subscribe(res => {
       this.itineraryState = res;
+      this.data = this.itineraryState.data.data.attributes['transportation-plan'];
+      if(this.deviceDetectorService.isDesktop) {
+        this.generateArray();
+      } else {
+        this.dataToShow = this.data;
+      }
     });
 
-    if(this.deviceDetectorService.isDesktop) {
-      this.generateArray();
-    } else {
-      this.dataToShow = this.data;
-    }
   }
 
   onLeft() {
