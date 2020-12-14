@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { act } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
 import { AffiliateActivityTypesResponse, AffiliatePartnerActivitiesLiveSearchResponse, AffiliatePartnerActivitiesResponse, AffiliatePartnerTransportsResponse } from 'src/app/store/models';
 import { DialogService } from './dialog.service';
