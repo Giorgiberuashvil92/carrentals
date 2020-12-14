@@ -16,7 +16,8 @@
             <img class="plane secondary" src="/assets/redirect-plane.svg" alt="" [style.opacity]="fadedOpacity">
         </div>
 
-        <img src="/assets/musement-icon.svg" alt="">
+        <img src="/assets/musement-icon.svg" alt="" *ngIf="route.snapshot.queryParams.isTransport === 'false'">
+        <img class="omio-icon" src="/assets/omio-icon.PNG" alt="" *ngIf="route.snapshot.queryParams.isTransport === 'true'">
     </div>
 
     <div class="description">

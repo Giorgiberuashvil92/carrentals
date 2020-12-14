@@ -16,19 +16,19 @@ export class RedirectComponent implements OnInit {
   animationDuration: number = 1.8;
 
   constructor(
-    private route: ActivatedRoute
+    public route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    console.log(this.route.snapshot.queryParams);
-
     this.animate();
     setInterval(() => {
       this.animate();
     }, this.animationDuration * 1000 + 1005);
 
     setTimeout(() => {
-      window.open(decodeURIComponent(this.route.snapshot.queryParams.url), "_self");
+      const url = localStorage.getItem('urlToRedirect');
+      localStorage.removeItem('urlToRedirect');
+      window.open(url, "_self");
     }, 5000);
   }
   

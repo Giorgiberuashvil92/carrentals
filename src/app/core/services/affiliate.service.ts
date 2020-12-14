@@ -39,12 +39,12 @@ export class AffiliateService {
   }
 
   onRedirect(activity: any, isTransport: boolean = false) {
-    console.log(activity);
-    console.log(isTransport);
     this.dialogService.openDialog('acceptDialog', {
       question: `Did you book ${isTransport ? activity.title : activity.attributes.title}?`,
       yesFn: this.test
     });
-    window.open(`${window.location.origin}/redirect?url=${encodeURIComponent(isTransport ? activity.url : activity.attributes.url)}` , '_blank');
+    const rawUrl: string = isTransport ? activity.url : activity.attributes.url;
+    localStorage.setItem('urlToRedirect', rawUrl);
+    window.open(`${window.location.origin}/redirect?url=${encodeURIComponent(rawUrl)}&isTransport=${isTransport}` , '_blank');
   }
 }
