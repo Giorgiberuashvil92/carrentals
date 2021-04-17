@@ -13,18 +13,18 @@ const routes: Routes = [
     //     redirectTo: 'dashboard',
     //     pathMatch: 'full'
     //   },
-    //   {
-    //     path: 'dashboard',
-    //     loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
-    //   }
         {
-          path: 'trips/:itineraryId',
-          loadChildren: () => import('../itinerary-dashboard/itinerary-dashboard.module').then(m => m.ItineraryDashboardModule)
+          path: 'Auth',
+          loadChildren: () => import('../auth/auth.module').then(m => m.AuthModule)
         },
         {
-          path: 'trips/:itineraryId/bookings',
-          loadChildren: () => import('../itinerary-bookings/itinerary-bookings.module').then(m => m.ItineraryBookingsModule)
-        }
+          path: 'carrent',
+          loadChildren: () => import('../carrent/carrent.module').then(m => m.CarrentModule)
+        },
+        // {
+        //   path: 'trips/:itineraryId/bookings',
+        //   loadChildren: () => import('../itinerary-bookings/itinerary-bookings.module').then(m => m.ItineraryBookingsModule)
+        // }
     ]
   }
 ];

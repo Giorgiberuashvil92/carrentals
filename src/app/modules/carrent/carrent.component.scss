@@ -1,0 +1,63 @@
+h1{
+  margin: 0 auto;
+}
+
+.selecto{
+  font-size: 13px;
+  width: 100px;
+  height: 35px;
+  border-radius: 10px;
+  background-color: transparent;
+  border: 1px solid #45469D;
+  padding-left: 15px;
+}
+.selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 600px;
+}
+.wrapper{
+  display: flex;
+  margin-top: 50px;
+  align-items: center;
+  justify-content: space-around;
+}
+.carDetailing{
+  width: 210px;
+  height: 280px;
+  background-color: #F8F8FA;
+  border-radius: 20px;
+  -webkit-box-shadow: 14px 14px 48px -26px rgba(0,0,0,0.27);
+  -moz-box-shadow: 14px 14px 48px -26px rgba(0,0,0,0.27);
+    box-shadow: 14px 14px 48px -26px rgba(0,0,0,0.27);
+}
+
+.carItems{
+  display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    margin-left: 99px;
+    padding-left: 45px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 35px 1px;
+}
+.main{
+  flex-direction: column;
+  display: flex;
+}
+.wheel{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cars-footer{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-top: 15px;
+}

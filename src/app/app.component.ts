@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from './store/models/app-state.model'
 
 @Component({
   selector: 'app-root',
@@ -9,7 +8,7 @@ import { AppState } from './store/models/app-state.model'
 })
 export class AppComponent implements OnInit {
 
-  constructor(private store: Store<AppState>){}
+  constructor(){}
 
 
   ngOnInit(): void {

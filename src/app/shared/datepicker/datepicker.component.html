@@ -1,4 +1,4 @@
-<form class="wrapper" #wrapper (click)="toggleDatepicker()" [formGroup]="formGroup">
+<form class="wrapper" #wrapper (click)="toggleDatepicker()">
     <img src="/assets/calendar-icon.svg" alt="">
 
     <div class="numbers" *ngIf="date" [ngClass]="{ 'numbers__editable': isEditable }">
