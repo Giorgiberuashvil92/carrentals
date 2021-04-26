@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { GuardGuard } from 'src/app/core/services/guard.guard';
 import { MainComponent } from './main.component';
 
 
@@ -12,19 +13,24 @@ const routes: Routes = [
     //     path: '',
     //     redirectTo: 'dashboard',
     //     pathMatch: 'full'
-    //   },
-        {
-          path: 'Auth',
-          loadChildren: () => import('../auth/auth.module').then(m => m.AuthModule)
-        },
+    //   },n
         {
           path: 'carrent',
-          loadChildren: () => import('../carrent/carrent.module').then(m => m.CarrentModule)
+          loadChildren: () => import('../carrent/carrent.module').then(m => m.CarrentModule),
         },
-        // {
-        //   path: 'trips/:itineraryId/bookings',
-        //   loadChildren: () => import('../itinerary-bookings/itinerary-bookings.module').then(m => m.ItineraryBookingsModule)
-        // }
+        {
+          path: 'home',
+          loadChildren: () => import('../home/home.module').then(m => m.HomeModule),
+        },
+        {
+          path: 'login',
+          loadChildren: () => import('../login/login.module').then(m => m.LoginModule),
+
+        },
+        {
+          path: 'register',
+          loadChildren: () => import('../register/register.module').then(m => m.RegisterModule)
+        }
     ]
   }
 ];

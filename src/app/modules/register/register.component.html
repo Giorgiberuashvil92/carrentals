@@ -1,0 +1,68 @@
+<div class="wrapper">
+  <form [formGroup]="registerForm">
+    <div lines="full">
+      <div>
+        <label position="floating">First name</label>
+      </div>
+      <div>
+        <input type="text" required formControlName="name">
+      </div>
+    </div>
+
+    <div lines="full">
+     <div>
+      <label position="floating" >Last name</label>
+     </div>
+      <div>
+        <input type="text" required formControlName="lastName">
+      </div>
+    </div>
+
+    <div lines="full">
+      <div>
+        <label position="floating">Email</label>
+      </div>
+      <div>
+        <input type="text" required formControlName="email">
+      </div>
+    </div>
+
+    <div lines="full">
+      <div>
+        <label position="floating" >userName</label>
+      </div>
+      <div>
+        <input type="text" required formControlName="username">
+      </div>
+    </div>
+
+    <div lines="full">
+      <div>
+        <label position="floating" >Password</label>
+      </div>
+      <div>
+        <input type="password" required formControlName="password">
+      </div>
+    </div>
+
+    <div lines="full">
+      <div>
+        <label position="floating" >Mobile Phone</label>
+      </div>
+      <div>
+        <input type="phone" required formControlName="phone">
+      </div>
+    </div>
+  </form>
+
+<div>
+    <button
+        class="root-0-2-46 button-0-2-253 animation-0-2-47 weightMedium-0-2-61 sizeMd-0-2-51 variantPrimary-0-2-54"
+        type="submit"
+        (click)="onRegisterFormSubmit()"
+      >
+        Register
+      </button>
+</div>
+
+</div>

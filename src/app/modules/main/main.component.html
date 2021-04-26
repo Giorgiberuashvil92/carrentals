@@ -1,6 +1,7 @@
 <div class="wrapper">
   <div class="section">
-    <app-header *ngIf="deviceDetectorService.isDesktop" style="margin: 20px 30px;"></app-header>
-    <app-carrent style="margin-top: 50px;"></app-carrent>
+    <app-header style="margin: 20px 30px;"></app-header>
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
   </div>
 </div>

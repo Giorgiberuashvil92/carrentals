@@ -8,7 +8,9 @@ import { FooterMobileComponent } from './footer/mobile/footer-mobile.component';
 import { HeaderMobileComponent } from './header/mobile/header-mobile.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CarrentModule } from '../carrent/carrent.module';
+import {LoginModule} from '../login/login.module'
 import {MatSelectModule} from '@angular/material/select';
+import { RegisterModule } from '../register/register.module';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import {MatSelectModule} from '@angular/material/select';
     MainRoutingModule,
     SharedModule,
     CarrentModule,
-    MatSelectModule
+    MatSelectModule,
+    LoginModule,
+    RegisterModule,
   ]
 })
 export class MainModule { }

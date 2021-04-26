@@ -18,8 +18,6 @@ export class DeviceDetectorService {
   }
 
   private detectDevice() {
-    this.isDesktop = window.innerWidth > environment.breakpoint;
-    this.isMobile = window.innerWidth <= environment.breakpoint;
     this.width = window.innerWidth;
     this.height = window.innerHeight;
   }

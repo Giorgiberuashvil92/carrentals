@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 
 @Component({
@@ -11,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
 export class CarrentComponent implements OnInit {
   width;
   image = document.getElementsByClassName('carDetailing')
+  p: number = 1;
   cars = [
     {name:'pajero', price:'$46', image:'../assets/carebi.svg', transmision:'manual', seats:'5 seats', oil: '5L'},
     {name:'pajero', price:'$46', image:'../assets/carebi2.svg', transmision:'manual', seats:'5 seats', oil: '5L'},
@@ -19,12 +21,35 @@ export class CarrentComponent implements OnInit {
     {name:'pajero', price:'$46', image:'../assets/carebi2.svg', transmision:'manual', seats:'5 seats', oil: '5L'},
     {name:'pajero', price:'$46', image:'../assets/carebi2.svg', transmision:'manual', seats:'5 seats', oil: '5L'},
     {name:'pajero', price:'$46', image:'../assets/carebi2.svg', transmision:'manual', seats:'5 seats', oil: '5L'},
+    {name:'pajero', price:'$46', image:'../assets/carebi.svg', transmision:'manual', seats:'5 seats', oil: '5L'},
+    {name:'pajero', price:'$46', image:'../assets/carebi.svg', transmision:'manual', seats:'5 seats', oil: '5L'},
+    {name:'pajero', price:'$46', image:'../assets/carebi.svg', transmision:'manual', seats:'5 seats', oil: '5L'},
+    {name:'pajero', price:'$46', image:'../assets/carebi.svg', transmision:'manual', seats:'5 seats', oil: '5L'},
+    {name:'pajero', price:'$46', image:'../assets/carebi.svg', transmision:'manual', seats:'5 seats', oil: '5L'},
+    {name:'pajero', price:'$46', image:'../assets/carebi.svg', transmision:'manual', seats:'5 seats', oil: '5L'},
+    {name:'pajero', price:'$46', image:'../assets/carebi.svg', transmision:'manual', seats:'5 seats', oil: '5L'},
+    {name:'pajero', price:'$46', image:'../assets/carebi2.svg', transmision:'manual', seats:'5 seats', oil: '5L'},
+    {name:'pajero', price:'$46', image:'../assets/carebi2.svg', transmision:'manual', seats:'5 seats', oil: '5L'},
+    {name:'pajero', price:'$46', image:'../assets/carebi2.svg', transmision:'manual', seats:'5 seats', oil: '5L'},
+    {name:'pajero', price:'$46', image:'../assets/carebi2.svg', transmision:'manual', seats:'5 seats', oil: '5L'},
+    {name:'pajero', price:'$46', image:'../assets/carebi2.svg', transmision:'manual', seats:'5 seats', oil: '5L'},
+    {name:'pajero', price:'$46', image:'../assets/carebi2.svg', transmision:'manual', seats:'5 seats', oil: '5L'},
+    {name:'pajero', price:'$46', image:'../assets/carebi.svg', transmision:'manual', seats:'5 seats', oil: '5L'},
+    {name:'pajero', price:'$46', image:'../assets/carebi.svg', transmision:'manual', seats:'5 seats', oil: '5L'},
+    {name:'pajero', price:'$46', image:'../assets/carebi.svg', transmision:'manual', seats:'5 seats', oil: '5L'},
+    {name:'pajero', price:'$46', image:'../assets/carebi.svg', transmision:'manual', seats:'5 seats', oil: '5L'},
+    {name:'pajero', price:'$46', image:'../assets/carebi.svg', transmision:'manual', seats:'5 seats', oil: '5L'},
+    {name:'pajero', price:'$46', image:'../assets/carebi.svg', transmision:'manual', seats:'5 seats', oil: '5L'},
 
   ]
+
+  constructor(public authService: AuthService){
+
+  }
   ngOnInit(): void {
   }
-  // sizeAction(){
-  //   document.getElementById('changwidth').style.width="300px"
-  //   document.getElementById('changwidth').style.transition = 'all 3s ease'
-  // }
+
+  pageChanged() {
+    console.log('bero')
+  }
 }

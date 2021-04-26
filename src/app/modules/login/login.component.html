@@ -1,0 +1,49 @@
+<div class="LoginForm">
+  <div class="login">Login</div>
+  <div class="welcome">Welcome Back</div>
+
+  <form [formGroup]="loginForm" *ngIf="loginForm">
+    <div>
+      <div class="root-0-2-262">
+        <label class="label-0-2-263"
+          >Email
+          <span class="asteriskValid-0-2-264" style="display: inline">* </span>
+        </label>
+        <input
+          type="email"
+          autocomplete="email"
+          class="input-0-2-266"
+          required=""
+          value=""
+          formControlName="email"
+        />
+      </div>
+      <div class="root-0-2-262">
+        <label class="label-0-2-263"
+          >Password
+          <span class="asteriskValid-0-2-264" style="display: inline"
+            >*
+          </span></label
+        >
+        <input
+          type="password"
+          autocomplete="current-password"
+          class="input-0-2-266"
+          required=""
+          value=""
+          formControlName="password"
+        />
+      </div>
+    </div>
+    <div class="buttonField-0-2-252">
+      <a class="forgotPassword-0-2-258" href="/forgot">Forgot Password?</a>
+      <button
+        class="root-0-2-46 button-0-2-253 animation-0-2-47 weightMedium-0-2-61 sizeMd-0-2-51 variantPrimary-0-2-54"
+        type="submit"
+        (click)="onLoginSubmit()"
+      >
+        Login
+      </button>
+    </div>
+  </form>
+</div>

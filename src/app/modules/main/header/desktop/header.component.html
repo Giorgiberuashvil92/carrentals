@@ -1,18 +1,21 @@
 <div class="wrapper">
-    <div class="logo">C A R E N T</div>
+    <div class="logo" style="cursor: pointer;" [routerLink]="['']">C A R E N T</div>
     <div class="navigation">
       <div class="mainNav">
-      <div>Home</div>
+      <div [routerLink]="['/home']" routerLinkActive="router-link-active"  style="cursor: pointer;">Home</div>
       <div [routerLink]="['/carrent']" routerLinkActive="router-link-active"  style="cursor: pointer;">Catalogue</div>
-      <div [routerLink]="['/auth']">Parts</div>
+      <div>Parts</div>
       <div>Contact</div>
       </div>
-      <app-search-bar style="margin-top: 35px;"></app-search-bar>
+      <app-search-bar style="margin-top: 35px;" *ngIf="!router.url.includes('login')"></app-search-bar>
     </div>
     <div class="LoginForm">
-      <div class="register">Register</div>
-      <div class="login">
-        <button class="loginButton">LOGIN</button>
+      <div class="register" [routerLink]="['/register']" style="cursor: pointer;" *ngIf="!userLogedIn">Register</div>
+      <div class="login" *ngIf="!userLogedIn">
+        <button class="loginButton" [routerLink]="['/login']" style="text-decoration: none !important;" type="submit">LOGIN</button>
+      </div>
+      <div class="login" *ngIf="this.userLogedIn">
+        <button class="loginButton" [routerLink]="['/login']" style="text-decoration: none !important;" type="submit" (click)="logOut()">LOG OUT</button>
       </div>
     </div>
 </div>

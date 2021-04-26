@@ -1,27 +1,31 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs';
-import { 
-  SignUpAuthActionRequest, 
-  SignUpAuthActionSuccessResponse,
-  SignInAuthActionRequest, 
-  SignInAuthActionSuccessResponse 
-} from 'src/app/store/models';
+import {environment} from '../../../environments/environment'
+import { clientModel } from '../models/registration.model';
+import {LoginReq, LoginRes} from '../models/user.model'
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService  {
+  public loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private urlSuffix =  environment.API_URL + '/auth';
 
-  constructor(
-    private httpClient: HttpClient
-  ) { }
-
-  signUpUser$(payload: SignUpAuthActionRequest): Observable<SignUpAuthActionSuccessResponse> {
-    return this.httpClient.post<SignUpAuthActionSuccessResponse>('/profile', payload);
+  constructor(private httpClient: HttpClient) {
   }
 
-  signInUser$(payload: SignInAuthActionRequest): Observable<SignInAuthActionSuccessResponse> {
-    return this.httpClient.post<SignInAuthActionSuccessResponse>('/session', payload);
+  login(loginBody: LoginReq): Observable<LoginRes> {
+    return this.httpClient.post<LoginRes>(this.urlSuffix + '/login', loginBody);
   }
+
+  register(registerBody: clientModel): Observable<clientModel> {
+    return this.httpClient.post<clientModel>(this.urlSuffix + '/register', registerBody);
+  }
+
+  setUserLogedIn(){
+    return this.loggedIn.next(true);
+ }
+
 }

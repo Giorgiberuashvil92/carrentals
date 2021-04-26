@@ -10,13 +10,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { MatDialogComponent } from './mat-dialog/mat-dialog.component';
 
 @NgModule({
   declarations: [
     PaginatorComponent,
     DatepickerComponent,
     LoaderComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    MatDialogComponent
   ],
   imports: [
     CommonModule,

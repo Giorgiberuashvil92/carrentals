@@ -20,9 +20,9 @@
     </div>
   </div>
   <div class="carItems">
-    <div class="carDetailing" *ngFor="let item of cars" id="changwidth">
-      <h1 style="font-size: 15px; color: #303237; padding-top: 20px; padding-left: 20px;">{{item.name}}</h1>
-      <div class="price" style="display: flex;align-items: center;padding-left: 20px;max-width: 20px">
+    <div class="carDetailing" *ngFor="let item of cars | paginate: { itemsPerPage: 10, currentPage: this.p }" id="changwidth" >
+      <h1 style="font-size: 15px; color: #303237; padding-top: 10px; padding-left: 20px; font-family: 'Kiwi Maru', serif;">{{item.name}}</h1>
+      <div class="price" style="display: flex;align-items: center;padding-left: 20px; padding-top:10px;max-width: 20px; font-family: 'Kiwi Maru', serif;">
         <h1 style="font-size: 15px; font-weight: 700 ;color: #303237;">{{item.price}}</h1>
         <p style="font-weight: 400;">/day</p>
       </div>
@@ -44,5 +44,20 @@
   </div>
 </div>
     </div>
+  </div>
+  <div class="pagination">
+  <pagination-controls
+  (pageChange)="this.p = $event"
+  (pageBoundsCorrection)="this.p = $event"
+  maxSize="9"
+  directionLinks="true"
+  autoHide="true"
+  responsive="true"
+  previousLabel="Previous"
+  nextLabel="Next"
+  screenReaderPaginationLabel="Pagination"
+  screenReaderPageLabel="page"
+  screenReaderCurrentLabel="You're on page">
+</pagination-controls>
   </div>
 </div>

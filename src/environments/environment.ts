@@ -3,10 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  breakpoint: 768,
-  apiUrl: 'https://api-staging.gorealtravel.com/api/v3'
+  production: true,
+  API_URL: 'http://localhost:8000/api',
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

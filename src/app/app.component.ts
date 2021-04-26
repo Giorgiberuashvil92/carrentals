@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { AuthService } from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,6 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  title = 'grt-website-b2b';
+  title = 'Carrent';
 
 }

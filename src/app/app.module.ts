@@ -11,6 +11,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { CookieService } from 'ngx-cookie-service';
+import {MatStepperModule} from '@angular/material/stepper';
 
 @NgModule({
   declarations: [
@@ -25,10 +28,12 @@ import { MatInputModule } from '@angular/material/input';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     MatNativeDateModule,
     MatDatepickerModule,
+    MatStepperModule,
     MatInputModule,
+    NgxPaginationModule,
     MatFormFieldModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
